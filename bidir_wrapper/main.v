@@ -23,6 +23,10 @@
 `ifdef _testbench
 //
 module main(
+			clk,
+			rst_clkgen,
+			Locked,
+			clk_2mhz,
 			data_en1,
 			data_en2,
 			data_out1,
@@ -33,8 +37,8 @@ module main(
 			data_io2
     );
 	 
-input	data_out1,data_out2,data_en1,data_en2;
-output	data_in1,data_in2;
+input	data_out1,data_out2,data_en1,data_en2,clk,rst_clkgen;
+output	data_in1,data_in2,clk_2mhz,Locked;
 inout	data_io1,data_io2;
 //
 `else
@@ -42,6 +46,12 @@ inout	data_io1,data_io2;
 
 //
 `endif
+
+
+wire clk_8mhz,Locked;
+wire[1:0] divider_next;
+reg[1:0] divider;
+reg clk_2mhz;
  
 inout_module	dev1(
 		.data_en(data_en1),
@@ -57,4 +67,40 @@ inout_module	dev2(
 		.data_io(data_io2)
 	);
 
+//clock module
+clkgen _8MhzClk(
+    .CLKIN_IN(clk), 
+    .RST_IN(rst_clkgen), 
+    .CLKFX_OUT(clk_8mhz), 
+    .CLKIN_IBUFG_OUT(), 
+    .CLK0_OUT(), 
+    .LOCKED_OUT(Locked)
+    );
+	 
+assign divider_next=Locked?	divider+1'b1:2'b0;
+
+always @(posedge clk_8mhz)begin
+	divider<=divider_next;
+	if(divider<=2'b01)begin
+		clk_2mhz<=1'b0;
+	end else begin
+		clk_2mhz<=1'b1;
+	end
+end
+
+//
 endmodule
+
+
+/*
+
+#this code doesn't seem to work...?
+
+always @(posedge divider[1] or posedge Locked)begin
+	if(Locked)begin
+		clk_2mhz=~clk_2mhz;
+	end else begin
+		clk_2mhz=1'b0;
+	end
+end
+*/

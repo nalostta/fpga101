@@ -39,27 +39,43 @@ Data Sheet report:
 -----------------
 All values displayed in nanoseconds (ns)
 
+Clock clk to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+clk_2mhz    |    5.595(R)|clk_8mhz          |   0.000|
+------------+------------+------------------+--------+
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    2.127|         |         |         |
+---------------+---------+---------+---------+---------+
+
 Pad to Pad
 ---------------+---------------+---------+
 Source Pad     |Destination Pad|  Delay  |
 ---------------+---------------+---------+
-data_en1       |data_io1       |    5.197|
+data_en1       |data_io1       |    5.465|
 data_en2       |data_io2       |    5.225|
-data_io1       |data_in1       |    5.398|
+data_io1       |data_in1       |    5.448|
 data_io2       |data_in2       |    5.398|
-data_out1      |data_io1       |    5.453|
-data_out2      |data_io2       |    5.686|
+data_out1      |data_io1       |    5.417|
+data_out2      |data_io2       |    5.448|
 ---------------+---------------+---------+
 
 
-Analysis completed Fri Feb 22 21:15:01 2019 
+Analysis completed Fri Feb 22 22:29:25 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 4507 MB
+Peak Memory Usage: 4523 MB
 
 
 
