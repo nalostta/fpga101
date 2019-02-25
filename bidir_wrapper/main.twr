@@ -44,7 +44,7 @@ Clock clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-clk_2mhz    |    6.769(R)|clk_8mhz          |   0.000|
+clk_2mhz    |    7.661(R)|clk_8mhz          |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -52,7 +52,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    2.096|         |         |         |
+clk            |    2.199|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock data_in1
@@ -60,7 +60,7 @@ Clock to Setup on destination clock data_in1
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-data_in1       |   -0.316|   -0.316|         |         |
+data_in1       |   -0.615|   -0.615|         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock data_in2
@@ -68,11 +68,11 @@ Clock to Setup on destination clock data_in2
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-data_in2       |   -0.387|   -0.387|         |         |
+data_in2       |   -0.319|   -0.319|         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Mon Feb 25 08:44:49 2019 
+Analysis completed Mon Feb 25 13:01:36 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

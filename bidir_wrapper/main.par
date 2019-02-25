@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-NALOSTTA::  Mon Feb 25 08:44:41 2019
+NALOSTTA::  Mon Feb 25 13:01:28 2019
 
 par -w -intstyle ise -ol high -t 1 main_map.ncd main.ncd main.pcf 
 
@@ -39,7 +39,7 @@ Design Summary Report:
 
    Number of BUFGMUXs                        2 out of 24      8%
    Number of DCMs                            1 out of 2      50%
-   Number of Slices                         25 out of 704     3%
+   Number of Slices                         18 out of 704     2%
       Number of SLICEMs                      0 out of 352     0%
 
 
@@ -58,43 +58,43 @@ Total REAL time at the beginning of Placer: 1 secs
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:311) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:215) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:311) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:215) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:311) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:215) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
-..............
-Phase 4.2  Initial Clock and IO Placement (Checksum:1c4c4be) REAL time: 3 secs 
+.............
+Phase 4.2  Initial Clock and IO Placement (Checksum:1c4c3c2) REAL time: 3 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:1c4c4be) REAL time: 3 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:1c4c3c2) REAL time: 3 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:1c4c4be) REAL time: 3 secs 
+Phase 6.36  Local Placement Optimization (Checksum:1c4c3c2) REAL time: 3 secs 
 
 Phase 7.3  Local Placement Optimization
-.........
-Phase 7.3  Local Placement Optimization (Checksum:1ca605a) REAL time: 3 secs 
+............
+Phase 7.3  Local Placement Optimization (Checksum:1ca2d24) REAL time: 3 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:1ca605a) REAL time: 3 secs 
+Phase 8.5  Local Placement Optimization (Checksum:1ca2d24) REAL time: 3 secs 
 
 Phase 9.8  Global Placement
 ..
-Phase 9.8  Global Placement (Checksum:4ab2463) REAL time: 3 secs 
+Phase 9.8  Global Placement (Checksum:69c3f31) REAL time: 3 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:4ab2463) REAL time: 3 secs 
+Phase 10.5  Local Placement Optimization (Checksum:69c3f31) REAL time: 3 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:4a3e1d5) REAL time: 3 secs 
+Phase 11.18  Placement Optimization (Checksum:8903ce7) REAL time: 3 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:4a3e1d5) REAL time: 3 secs 
+Phase 12.5  Local Placement Optimization (Checksum:8903ce7) REAL time: 3 secs 
 
 Total REAL time to Placer completion: 3 secs 
 Total CPU  time to Placer completion: 3 secs 
@@ -105,13 +105,13 @@ Writing design to file main.ncd
 Starting Router
 
 
-Phase  1  : 137 unrouted;      REAL time: 4 secs 
+Phase  1  : 109 unrouted;      REAL time: 4 secs 
 
-Phase  2  : 111 unrouted;      REAL time: 4 secs 
+Phase  2  : 96 unrouted;      REAL time: 4 secs 
 
-Phase  3  : 13 unrouted;      REAL time: 4 secs 
+Phase  3  : 10 unrouted;      REAL time: 4 secs 
 
-Phase  4  : 17 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
+Phase  4  : 13 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
 Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
@@ -131,9 +131,9 @@ Phase 11  : 0 unrouted; (Par is working to improve performance)     REAL time: 4
 
 Phase 12  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 WARNING:Route:455 - CLK Net:clk_2mhz_OBUF may have excessive skew because 
-      1 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
+      0 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
 WARNING:Route:455 - CLK Net:Locked_OBUF may have excessive skew because 
-      2 CLK pins and 21 NON_CLK pins failed to route using a CLK template.
+      4 CLK pins and 17 NON_CLK pins failed to route using a CLK template.
 
 Total REAL time to Router completion: 4 secs 
 Total CPU time to Router completion: 4 secs 
@@ -154,17 +154,17 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|            clk_8mhz | BUFGMUX_X2Y11| No   |    2 |  0.000     |  0.507      |
+|            clk_8mhz | BUFGMUX_X2Y11| No   |    2 |  0.000     |  0.504      |
 +---------------------+--------------+------+------+------------+-------------+
-|       clk_2mhz_OBUF |         Local|      |   11 |  0.384     |  1.974      |
+|       clk_2mhz_OBUF |         Local|      |    5 |  0.006     |  2.118      |
 +---------------------+--------------+------+------+------------+-------------+
-|         Locked_OBUF |         Local|      |   23 |  0.870     |  1.611      |
+|         Locked_OBUF |         Local|      |   21 |  0.740     |  1.632      |
 +---------------------+--------------+------+------+------------+-------------+
 |partner1/shift_1_not |              |      |      |            |             |
-|                0001 |         Local|      |    1 |  0.000     |  0.663      |
+|                0001 |         Local|      |    1 |  0.000     |  1.163      |
 +---------------------+--------------+------+------+------------+-------------+
 |partner2/shift_1_not |              |      |      |            |             |
-|                0001 |         Local|      |    1 |  0.000     |  1.165      |
+|                0001 |         Local|      |    1 |  0.000     |  0.659      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -184,11 +184,14 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net clk | SETUP       |         N/A|     2.874ns|     N/A|           0
-  _2mhz_OBUF                                | HOLD        |     1.561ns|            |       0|           0
+  Autotimespec constraint for clock net clk | SETUP       |         N/A|     3.093ns|     N/A|           0
+  _2mhz_OBUF                                | HOLD        |     1.756ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net clk | SETUP       |         N/A|     2.096ns|     N/A|           0
-  _8mhz                                     | HOLD        |     1.159ns|            |       0|           0
+  Autotimespec constraint for clock net Loc | SETUP       |         N/A|     2.026ns|     N/A|           0
+  ked_OBUF                                  | HOLD        |     1.410ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  Autotimespec constraint for clock net clk | SETUP       |         N/A|     2.199ns|     N/A|           0
+  _8mhz                                     | HOLD        |     1.348ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
