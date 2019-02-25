@@ -25,17 +25,17 @@ reg data_in1,data_in2,clk_in,clk_rst_in;
 wire data_out1,data_io,data_out2,clk_2mhz,Locked,other1,other2;
 
 main main_wrapper(
+			.data_io1(data_io),
+			.clk_2mhz(clk_2mhz),
+			.data_in1(data_in1),
+			.data_out1(data_out1),
+			.other1(other1),
+			.data_in2(data_in2),
+			.other2(other2),
+			.data_out2(data_out2),
 			.clk(clk_in),
 			.rst_clkgen(clk_rst_in),
-			.Locked(Locked),
-			.clk_2mhz(clk_2mhz),
-			.other1(other1),
-			.other2(other2),
-			.data_out1(data_out1),
-			.data_out2(data_out2),
-			.data_in1(data_in1),
-			.data_in2(data_in2),
-			.data_io1(data_io),
+			.Locked(Locked),			
 			.data_io2(data_io)
     );
 
@@ -47,6 +47,11 @@ initial begin
 	data_in1<=0;
 	data_in2<=0;
 	#4000 data_in1=1'b1;
+	#800 data_in1=1'b0;
+	#800 data_in2=1'b1;
+	#800 data_in2=1'b0;
+	#800 data_in1=1'b1;
+	#800 data_in1=1'b0;
 	#4000 $finish;
 end
 endmodule
