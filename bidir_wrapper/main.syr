@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Reading design: main.prj
 
@@ -161,24 +161,26 @@ Module <bidir_wrapper> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
-INFO:Xst:2679 - Register <partner_state_out> in unit <bidir_wrapper> has a constant value of 0 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <bidir_wrapper>.
     Related source file is "bidir_wrapper.v".
-WARNING:Xst:646 - Signal <data_read> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <rcount_next<2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <count_next<2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <count_en> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:737 - Found 1-bit latch for signal <shift_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Found 1-bit register for signal <my_state_out>.
     Found 1-bit tristate buffer for signal <data_link>.
+    Found 1-bit register for signal <partner_state_out>.
     Found 2-bit register for signal <count>.
     Found 2-bit adder carry out for signal <count_next$addsub0000>.
     Found 1-bit register for signal <data_en>.
-    Found 1-bit xor2 for signal <data_en$xor0000> created at line 54.
-    Found 1-bit register for signal <shift<0>>.
+    Found 2-bit register for signal <rcount>.
+    Found 2-bit adder carry out for signal <rcount_next$addsub0000>.
+    Found 1-bit register for signal <read_en>.
+    Found 1-bit register for signal <rshift>.
+    Found 2-bit register for signal <shift>.
+    Found 1-bit xor2 for signal <shift_1$xor0000> created at line 55.
     Summary:
-	inferred   5 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
+	inferred  11 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
 	inferred   1 Tristate(s).
 Unit <bidir_wrapper> synthesized.
 
@@ -205,14 +207,12 @@ Unit <main> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
  2-bit adder                                           : 1
- 2-bit adder carry out                                 : 2
-# Registers                                            : 12
- 1-bit register                                        : 11
+ 2-bit adder carry out                                 : 4
+# Registers                                            : 24
+ 1-bit register                                        : 23
  2-bit register                                        : 1
-# Latches                                              : 2
- 1-bit latch                                           : 2
 # Comparators                                          : 1
  2-bit comparator lessequal                            : 1
 # Tristates                                            : 2
@@ -231,13 +231,11 @@ Macro Statistics
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
  2-bit adder                                           : 1
- 2-bit adder carry out                                 : 2
-# Registers                                            : 13
- Flip-Flops                                            : 13
-# Latches                                              : 2
- 1-bit latch                                           : 2
+ 2-bit adder carry out                                 : 4
+# Registers                                            : 25
+ Flip-Flops                                            : 25
 # Comparators                                          : 1
  2-bit comparator lessequal                            : 1
 # Xors                                                 : 2
@@ -253,7 +251,7 @@ Optimizing unit <main> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 3.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 6.
 
 Final Macro Processing ...
 
@@ -261,8 +259,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 13
- Flip-Flops                                            : 13
+# Registers                                            : 25
+ Flip-Flops                                            : 25
 
 =========================================================================
 
@@ -291,26 +289,26 @@ Design Statistics
 # IOs                              : 12
 
 Cell Usage :
-# BELS                             : 40
+# BELS                             : 70
 #      GND                         : 1
 #      INV                         : 5
-#      LUT2                        : 19
-#      LUT3                        : 8
-#      LUT3_L                      : 2
-#      LUT4                        : 4
+#      LUT2                        : 31
+#      LUT2_D                      : 2
+#      LUT3                        : 18
+#      LUT4                        : 10
+#      LUT4_D                      : 2
 #      VCC                         : 1
-# FlipFlops/Latches                : 15
-#      FDCP                        : 8
-#      FDCPE                       : 2
+# FlipFlops/Latches                : 25
+#      FDCP                        : 16
+#      FDCPE                       : 6
 #      FDR                         : 3
-#      LDE_1                       : 2
-# Clock Buffers                    : 2
-#      BUFG                        : 2
+# Clock Buffers                    : 3
+#      BUFG                        : 3
 # IO Buffers                       : 12
 #      IBUF                        : 3
 #      IBUFG                       : 1
+#      IOBUF                       : 2
 #      OBUF                        : 6
-#      OBUFT                       : 2
 # DCMs                             : 1
 #      DCM_SP                      : 1
 =========================================================================
@@ -320,12 +318,12 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       22  out of    704     3%  
- Number of Slice Flip Flops:             15  out of   1408     1%  
- Number of 4 input LUTs:                 38  out of   1408     2%  
+ Number of Slices:                       43  out of    704     6%  
+ Number of Slice Flip Flops:             25  out of   1408     1%  
+ Number of 4 input LUTs:                 68  out of   1408     4%  
  Number of IOs:                          12
  Number of bonded IOBs:                  12  out of    108    11%  
- Number of GCLKs:                         2  out of     24     8%  
+ Number of GCLKs:                         3  out of     24    12%  
  Number of DCMs:                          1  out of      2    50%  
 
 ---------------------------
@@ -346,53 +344,71 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------------------------+---------------------------+-------+
-Clock Signal                                         | Clock buffer(FF name)     | Load  |
------------------------------------------------------+---------------------------+-------+
-clk                                                  | _8MhzClk/DCM_SP_INST:CLKFX| 3     |
-partner2/shift_1_not0001(partner2/shift_1_not00011:O)| NONE(*)(partner2/shift_1) | 1     |
-clk_2mhz_OBUF                                        | NONE(partner2/count_0)    | 10    |
-partner1/shift_1_not0001(partner1/shift_1_not00011:O)| NONE(*)(partner1/shift_1) | 1     |
------------------------------------------------------+---------------------------+-------+
-(*) These 2 clock signal(s) are generated by combinatorial logic,
-and XST is not able to identify which are the primary clock signals.
-Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
-INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+-----------------------------------+---------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)     | Load  |
+-----------------------------------+---------------------------+-------+
+clk                                | _8MhzClk/DCM_SP_INST:CLKFX| 3     |
+clk_2mhz_OBUF1                     | BUFG                      | 22    |
+-----------------------------------+---------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
----------------------------------------------------------------+----------------------------+-------+
-Control Signal                                                 | Buffer(FF name)            | Load  |
----------------------------------------------------------------+----------------------------+-------+
-partner1/count_0_and0000(partner1/count_0_and00001:O)          | NONE(partner1/count_0)     | 1     |
-partner1/count_0_and0001(partner1/count_0_and00011:O)          | NONE(partner1/count_0)     | 1     |
-partner1/count_1_and0000(partner1/count_1_and00001:O)          | NONE(partner1/count_1)     | 1     |
-partner1/count_1_and0001(partner1/count_1_and00011:O)          | NONE(partner1/count_1)     | 1     |
-partner1/data_en_and0000(partner1/data_en_and00001:O)          | NONE(partner1/data_en)     | 1     |
-partner1/data_en_and0001(partner1/data_en_and00012:O)          | NONE(partner1/data_en)     | 1     |
-partner1/my_state_out_and0000(partner1/my_state_out_and00001:O)| NONE(partner1/my_state_out)| 1     |
-partner1/my_state_out_and0001(partner1/my_state_out_and00011:O)| NONE(partner1/my_state_out)| 1     |
-partner1/shift_0_and0000(partner1/shift_0_and00001:O)          | NONE(partner1/shift_0)     | 1     |
-partner1/shift_0_and0001(partner1/shift_0_and00011:O)          | NONE(partner1/shift_0)     | 1     |
-partner2/count_0_and0000(partner2/count_0_and00001:O)          | NONE(partner2/count_0)     | 1     |
-partner2/count_0_and0001(partner2/count_0_and00011:O)          | NONE(partner2/count_0)     | 1     |
-partner2/count_1_and0000(partner2/count_1_and00001:O)          | NONE(partner2/count_1)     | 1     |
-partner2/count_1_and0001(partner2/count_1_and00011:O)          | NONE(partner2/count_1)     | 1     |
-partner2/data_en_and0000(partner2/data_en_and00001:O)          | NONE(partner2/data_en)     | 1     |
-partner2/data_en_and0001(partner2/data_en_and00012:O)          | NONE(partner2/data_en)     | 1     |
-partner2/my_state_out_and0000(partner2/my_state_out_and00001:O)| NONE(partner2/my_state_out)| 1     |
-partner2/my_state_out_and0001(partner2/my_state_out_and00011:O)| NONE(partner2/my_state_out)| 1     |
-partner2/shift_0_and0000(partner2/shift_0_and00001:O)          | NONE(partner2/shift_0)     | 1     |
-partner2/shift_0_and0001(partner2/shift_0_and00011:O)          | NONE(partner2/shift_0)     | 1     |
----------------------------------------------------------------+----------------------------+-------+
+-------------------------------------------------------------------------+---------------------------------+-------+
+Control Signal                                                           | Buffer(FF name)                 | Load  |
+-------------------------------------------------------------------------+---------------------------------+-------+
+partner1/count_0_and0000(partner1/count_0_and00001:O)                    | NONE(partner1/count_0)          | 1     |
+partner1/count_0_and0001(partner1/count_0_and00011:O)                    | NONE(partner1/count_0)          | 1     |
+partner1/count_1_and0000(partner1/count_1_and00001:O)                    | NONE(partner1/count_1)          | 1     |
+partner1/count_1_and0001(partner1/count_1_and00011:O)                    | NONE(partner1/count_1)          | 1     |
+partner1/data_en_and0000(partner1/data_en_and00001:O)                    | NONE(partner1/data_en)          | 1     |
+partner1/data_en_and0001(partner1/data_en_and0001:O)                     | NONE(partner1/data_en)          | 1     |
+partner1/my_state_out_and0000(partner1/my_state_out_and00001:O)          | NONE(partner1/my_state_out)     | 1     |
+partner1/my_state_out_and0001(partner1/my_state_out_and00011:O)          | NONE(partner1/my_state_out)     | 1     |
+partner1/partner_state_out_and0000(partner1/partner_state_out_and00001:O)| NONE(partner1/partner_state_out)| 1     |
+partner1/partner_state_out_and0001(partner1/partner_state_out_and00011:O)| NONE(partner1/partner_state_out)| 1     |
+partner1/rcount_0_and0000(partner1/rcount_0_and00001:O)                  | NONE(partner1/rcount_0)         | 1     |
+partner1/rcount_0_and0001(partner1/rcount_0_and00011:O)                  | NONE(partner1/rcount_0)         | 1     |
+partner1/rcount_1_and0000(partner1/rcount_1_and00001:O)                  | NONE(partner1/rcount_1)         | 1     |
+partner1/rcount_1_and0001(partner1/rcount_1_and00011:O)                  | NONE(partner1/rcount_1)         | 1     |
+partner1/read_en_and0000(partner1/read_en_and00001:O)                    | NONE(partner1/read_en)          | 1     |
+partner1/read_en_and0001(partner1/read_en_and00011:O)                    | NONE(partner1/read_en)          | 1     |
+partner1/rshift_and0000(partner1/rshift_and00001:O)                      | NONE(partner1/rshift)           | 1     |
+partner1/rshift_and0001(partner1/rshift_and00011:O)                      | NONE(partner1/rshift)           | 1     |
+partner1/shift_0_and0000(partner1/shift_0_and00001:O)                    | NONE(partner1/shift_0)          | 1     |
+partner1/shift_0_and0001(partner1/shift_0_and00011:O)                    | NONE(partner1/shift_0)          | 1     |
+partner1/shift_1_and0000(partner1/shift_1_and00001:O)                    | NONE(partner1/shift_1)          | 1     |
+partner1/shift_1_and0001(partner1/shift_1_and00011:O)                    | NONE(partner1/shift_1)          | 1     |
+partner2/count_0_and0000(partner2/count_0_and00001:O)                    | NONE(partner2/count_0)          | 1     |
+partner2/count_0_and0001(partner2/count_0_and00011:O)                    | NONE(partner2/count_0)          | 1     |
+partner2/count_1_and0000(partner2/count_1_and00001:O)                    | NONE(partner2/count_1)          | 1     |
+partner2/count_1_and0001(partner2/count_1_and00011:O)                    | NONE(partner2/count_1)          | 1     |
+partner2/data_en_and0000(partner2/data_en_and00001:O)                    | NONE(partner2/data_en)          | 1     |
+partner2/data_en_and0001(partner2/data_en_and0001:O)                     | NONE(partner2/data_en)          | 1     |
+partner2/my_state_out_and0000(partner2/my_state_out_and00001:O)          | NONE(partner2/my_state_out)     | 1     |
+partner2/my_state_out_and0001(partner2/my_state_out_and00011:O)          | NONE(partner2/my_state_out)     | 1     |
+partner2/partner_state_out_and0000(partner2/partner_state_out_and00001:O)| NONE(partner2/partner_state_out)| 1     |
+partner2/partner_state_out_and0001(partner2/partner_state_out_and00011:O)| NONE(partner2/partner_state_out)| 1     |
+partner2/rcount_0_and0000(partner2/rcount_0_and00001:O)                  | NONE(partner2/rcount_0)         | 1     |
+partner2/rcount_0_and0001(partner2/rcount_0_and00011:O)                  | NONE(partner2/rcount_0)         | 1     |
+partner2/rcount_1_and0000(partner2/rcount_1_and00001:O)                  | NONE(partner2/rcount_1)         | 1     |
+partner2/rcount_1_and0001(partner2/rcount_1_and00011:O)                  | NONE(partner2/rcount_1)         | 1     |
+partner2/read_en_and0000(partner2/read_en_and00001:O)                    | NONE(partner2/read_en)          | 1     |
+partner2/read_en_and0001(partner2/read_en_and00011:O)                    | NONE(partner2/read_en)          | 1     |
+partner2/rshift_and0000(partner2/rshift_and00001:O)                      | NONE(partner2/rshift)           | 1     |
+partner2/rshift_and0001(partner2/rshift_and00011:O)                      | NONE(partner2/rshift)           | 1     |
+partner2/shift_0_and0000(partner2/shift_0_and00001:O)                    | NONE(partner2/shift_0)          | 1     |
+partner2/shift_0_and0001(partner2/shift_0_and00011:O)                    | NONE(partner2/shift_0)          | 1     |
+partner2/shift_1_and0000(partner2/shift_1_and00001:O)                    | NONE(partner2/shift_1)          | 1     |
+partner2/shift_1_and0001(partner2/shift_1_and00011:O)                    | NONE(partner2/shift_1)          | 1     |
+-------------------------------------------------------------------------+---------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 3.462ns (Maximum Frequency: 288.850MHz)
-   Minimum input arrival time before clock: 2.959ns
-   Maximum output required time after clock: 6.915ns
+   Minimum period: 4.045ns (Maximum Frequency: 247.219MHz)
+   Minimum input arrival time before clock: 4.030ns
+   Maximum output required time after clock: 6.954ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -422,111 +438,74 @@ Delay:               2.975ns (Levels of Logic = 1)
                                        (70.9% logic, 29.1% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'clk_2mhz_OBUF'
-  Clock period: 3.462ns (frequency: 288.850MHz)
-  Total number of paths / destination ports: 10 / 4
+Timing constraint: Default period analysis for Clock 'clk_2mhz_OBUF1'
+  Clock period: 4.045ns (frequency: 247.219MHz)
+  Total number of paths / destination ports: 26 / 10
 -------------------------------------------------------------------------
-Delay:               3.462ns (Levels of Logic = 2)
-  Source:            partner2/count_0 (FF)
+Delay:               4.045ns (Levels of Logic = 2)
+  Source:            partner2/data_en (FF)
   Destination:       partner2/data_en (FF)
-  Source Clock:      clk_2mhz_OBUF rising
-  Destination Clock: clk_2mhz_OBUF rising
+  Source Clock:      clk_2mhz_OBUF1 rising
+  Destination Clock: clk_2mhz_OBUF1 rising
 
-  Data Path: partner2/count_0 to partner2/data_en
+  Data Path: partner2/data_en to partner2/data_en
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCP:C->Q             7   0.591   0.740  partner2/count_0 (partner2/count_0)
-     LUT3_L:I2->LO         1   0.648   0.103  partner2/data_en_not00011_SW0 (N4)
+     FDCPE:C->Q           14   0.591   1.003  partner2/data_en (partner2/data_en)
+     LUT4_D:I3->O          1   0.648   0.423  partner2/shift_1_and00031 (partner2/shift_1_and0003)
      LUT4:I3->O            1   0.648   0.420  partner2/data_en_not00011 (partner2/data_en_not0001)
      FDCPE:CE                  0.312          partner2/data_en
     ----------------------------------------
-    Total                      3.462ns (2.199ns logic, 1.263ns route)
-                                       (63.5% logic, 36.5% route)
+    Total                      4.045ns (2.199ns logic, 1.846ns route)
+                                       (54.4% logic, 45.6% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'partner2/shift_1_not0001'
-  Total number of paths / destination ports: 1 / 1
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_2mhz_OBUF1'
+  Total number of paths / destination ports: 6 / 6
 -------------------------------------------------------------------------
-Offset:              1.688ns (Levels of Logic = 1)
-  Source:            data_in2 (PAD)
-  Destination:       partner2/shift_1 (LATCH)
-  Destination Clock: partner2/shift_1_not0001 rising
-
-  Data Path: data_in2 to partner2/shift_1
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             4   0.849   0.587  data_in2_IBUF (data_in2_IBUF)
-     LDE_1:D                   0.252          partner2/shift_1
-    ----------------------------------------
-    Total                      1.688ns (1.101ns logic, 0.587ns route)
-                                       (65.2% logic, 34.8% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_2mhz_OBUF'
-  Total number of paths / destination ports: 2 / 2
--------------------------------------------------------------------------
-Offset:              2.959ns (Levels of Logic = 2)
+Offset:              4.030ns (Levels of Logic = 3)
   Source:            data_in2 (PAD)
   Destination:       partner2/data_en (FF)
-  Destination Clock: clk_2mhz_OBUF rising
+  Destination Clock: clk_2mhz_OBUF1 rising
 
   Data Path: data_in2 to partner2/data_en
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             4   0.849   0.730  data_in2_IBUF (data_in2_IBUF)
-     LUT4:I0->O            1   0.648   0.420  partner2/data_en_not00011 (partner2/data_en_not0001)
+     LUT4_D:I0->O          1   0.648   0.423  partner2/shift_1_and00031 (partner2/shift_1_and0003)
+     LUT4:I3->O            1   0.648   0.420  partner2/data_en_not00011 (partner2/data_en_not0001)
      FDCPE:CE                  0.312          partner2/data_en
     ----------------------------------------
-    Total                      2.959ns (1.809ns logic, 1.150ns route)
-                                       (61.1% logic, 38.9% route)
+    Total                      4.030ns (2.457ns logic, 1.573ns route)
+                                       (61.0% logic, 39.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'partner1/shift_1_not0001'
-  Total number of paths / destination ports: 1 / 1
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_2mhz_OBUF1'
+  Total number of paths / destination ports: 8 / 6
 -------------------------------------------------------------------------
-Offset:              1.688ns (Levels of Logic = 1)
-  Source:            data_in1 (PAD)
-  Destination:       partner1/shift_1 (LATCH)
-  Destination Clock: partner1/shift_1_not0001 rising
-
-  Data Path: data_in1 to partner1/shift_1
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             4   0.849   0.587  data_in1_IBUF (data_in1_IBUF)
-     LDE_1:D                   0.252          partner1/shift_1
-    ----------------------------------------
-    Total                      1.688ns (1.101ns logic, 0.587ns route)
-                                       (65.2% logic, 34.8% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_2mhz_OBUF'
-  Total number of paths / destination ports: 6 / 4
--------------------------------------------------------------------------
-Offset:              6.915ns (Levels of Logic = 2)
+Offset:              6.954ns (Levels of Logic = 2)
   Source:            partner1/data_en (FF)
   Destination:       data_io1 (PAD)
-  Source Clock:      clk_2mhz_OBUF rising
+  Source Clock:      clk_2mhz_OBUF1 rising
 
   Data Path: partner1/data_en to data_io1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCPE:C->Q           12   0.591   0.961  partner1/data_en (partner1/data_en)
+     FDCPE:C->Q           14   0.591   1.000  partner1/data_en (partner1/data_en)
      INV:I->O              1   0.648   0.420  partner1/data_en_inv1_INV_0 (partner1/data_en_inv)
-     OBUFT:T->O                4.295          data_io1_OBUFT (data_io1)
+     IOBUF:T->IO               4.295          data_io1_IOBUF (data_io1)
     ----------------------------------------
-    Total                      6.915ns (5.534ns logic, 1.381ns route)
-                                       (80.0% logic, 20.0% route)
+    Total                      6.954ns (5.534ns logic, 1.420ns route)
+                                       (79.6% logic, 20.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
-Offset:              6.044ns (Levels of Logic = 1)
+Offset:              5.558ns (Levels of Logic = 1)
   Source:            clk_2mhz (FF)
   Destination:       clk_2mhz (PAD)
   Source Clock:      clk rising 0.3X
@@ -535,23 +514,23 @@ Offset:              6.044ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q             11   0.591   0.933  clk_2mhz (clk_2mhz_OBUF)
+     FDR:C->Q              2   0.591   0.447  clk_2mhz (clk_2mhz_OBUF1)
      OBUF:I->O                 4.520          clk_2mhz_OBUF (clk_2mhz)
     ----------------------------------------
-    Total                      6.044ns (5.111ns logic, 0.933ns route)
-                                       (84.6% logic, 15.4% route)
+    Total                      5.558ns (5.111ns logic, 0.447ns route)
+                                       (92.0% logic, 8.0% route)
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.89 secs
+Total CPU time to Xst completion: 5.33 secs
  
 --> 
 
-Total memory usage is 4551856 kilobytes
+Total memory usage is 4551936 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    4 (   0 filtered)
-Number of infos    :    2 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 
