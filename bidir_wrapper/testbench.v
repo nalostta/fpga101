@@ -48,6 +48,8 @@ initial begin
 	data_in2<=0;
 	#4000 data_in1=1'b1;
 	#8000 data_in1=1'b0;
+	#8000 data_in2=1'b1;
+	#8000 data_in2=1'b0;
 	#4000 $finish;
 end
 endmodule

@@ -29,9 +29,10 @@ module bidir_wrapper(
 input  my_state_in,clk,Locked;
 output my_state_out,partner_state_out;
 inout data_link;
-wire data_read,count_next;
-reg my_state_out,data_en,partner_state_out,count_en,count;
-reg[1:0] shift;
+wire data_read;
+wire[2:0] count_next;
+reg my_state_out,data_en,partner_state_out,count_en;
+reg[1:0] shift,count;
 
 //check if the line goes low, yes: allot 2 cycles to read data
 //else check self state 
@@ -50,14 +51,12 @@ assign count_next	=	count+1'b1;
 always @(posedge clk or posedge Locked)begin
 	if(Locked)begin
 		//algorithm
-		//if(data_read!=0)begin
-			if(my_state_in!=my_state_out)begin
+			if(my_state_in!=my_state_out && data_en!=1'b1)begin
 				shift[1]<=my_state_in;
 				data_en<=1'b1;
 			end
-		//end
-		
-			if(count==1'b1)begin
+				
+			if(count==2'b10)begin
 				data_en<=1'b0;
 			end
 		end else begin
@@ -68,18 +67,15 @@ always @(posedge clk or posedge Locked)begin
 	end
 end
 
-always @(posedge clk or posedge Locked)begin
-	if(Locked)begin
-		if(data_en)begin
-			count<=count_next;
-			my_state_out<=shift[0];
-			shift[0]<=shift[1];
-		end else begin
-			count<=1'b0;
-			shift[0]<=1'b0;
-		end
+always @(posedge clk or posedge data_en)begin
+	if(data_en)begin
+		count<=count_next;
+		shift[0]<=shift[1];
+		my_state_out<=shift[0];
 	end else begin
-		my_state_out<=1'b0;
+		count<=2'b0;
+		shift[0]<=1'b0;
+		my_state_out<=my_state_out && Locked;
 	end
 end
 endmodule
