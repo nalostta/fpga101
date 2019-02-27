@@ -18,9 +18,20 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-//`define _testbench
+`define _testbench
 
 `ifdef _testbench
+
+`define data_in1	data_in1
+`define data_in2	data_in2
+`define data_out1	data_out1
+`define data_out2	data_out2
+`define data_io1	data_io1
+`define data_io2	data_io2
+`define other1	other1
+`define other2	other2
+`define rst_clkgen	rst_clkgen
+`define Locked	Locked
 //
 module main(
 			clk,
@@ -52,7 +63,7 @@ inout	data_io1,data_io2;
 `define data_io2	datalink2
 `define other1	led[6]
 `define other2	led[1]
-`define rst_clkgen	push_btn
+`define rst_clkgen	!push_btn
 `define Locked	led[4]
 
 module main(
@@ -69,6 +80,9 @@ input clk,push_btn;
 output[7:0] led;
 input[7:0]	switch;
 
+assign led[2]	=	1'b0;
+assign led[3]	=	1'b0;
+assign led[5]	=	1'b0;
 //
 `endif
 
@@ -108,9 +122,6 @@ bidir_wrapper partner2(
 
 	 
 assign divider_next=Locked?	divider+1'b1:2'b0;
-assign led[2]	=	1'b0;
-assign led[3]	=	1'b0;
-assign led[5]	=	1'b0;
 
 always @(posedge clk_8mhz)begin
 	divider<=divider_next;

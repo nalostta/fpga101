@@ -192,12 +192,10 @@ Unit <clkgen> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:647 - Input <switch<6:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:653 - Signal <Locked> is used but never assigned. This sourceless signal will be automatically connected to value 0.
     Found 1-bit register for signal <clk_2mhz>.
-    Found 2-bit comparator lessequal for signal <clk_2mhz$cmp_le0000> created at line 117.
+    Found 2-bit comparator lessequal for signal <clk_2mhz$cmp_le0000> created at line 128.
     Found 2-bit register for signal <divider>.
-    Found 2-bit adder for signal <divider_next$addsub0000> created at line 110.
+    Found 2-bit adder for signal <divider_next$addsub0000> created at line 124.
     Summary:
 	inferred   3 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
@@ -228,18 +226,16 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-WARNING:Xst:1710 - FF/Latch <divider_0> (without init value) has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <divider_1> (without init value) has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2404 -  FFs/Latches <divider<1:0>> (without init value) have a constant value of 0 in block <main>.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 4
+# Adders/Subtractors                                   : 5
+ 2-bit adder                                           : 1
  2-bit adder carry out                                 : 4
-# Registers                                            : 23
- Flip-Flops                                            : 23
+# Registers                                            : 25
+ Flip-Flops                                            : 25
 # Comparators                                          : 1
  2-bit comparator lessequal                            : 1
 # Xors                                                 : 2
@@ -263,8 +259,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 23
- Flip-Flops                                            : 23
+# Registers                                            : 25
+ Flip-Flops                                            : 25
 
 =========================================================================
 
@@ -290,29 +286,29 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 20
+# IOs                              : 12
 
 Cell Usage :
-# BELS                             : 66
+# BELS                             : 70
 #      GND                         : 1
-#      INV                         : 2
-#      LUT2                        : 30
+#      INV                         : 5
+#      LUT2                        : 31
 #      LUT2_D                      : 2
 #      LUT3                        : 18
 #      LUT4                        : 10
 #      LUT4_D                      : 2
 #      VCC                         : 1
-# FlipFlops/Latches                : 23
+# FlipFlops/Latches                : 25
 #      FDCP                        : 16
 #      FDCPE                       : 6
-#      FDR                         : 1
+#      FDR                         : 3
 # Clock Buffers                    : 3
 #      BUFG                        : 3
-# IO Buffers                       : 14
+# IO Buffers                       : 12
 #      IBUF                        : 3
 #      IBUFG                       : 1
 #      IOBUF                       : 2
-#      OBUF                        : 8
+#      OBUF                        : 6
 # DCMs                             : 1
 #      DCM_SP                      : 1
 =========================================================================
@@ -322,11 +318,11 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       42  out of    704     5%  
- Number of Slice Flip Flops:             23  out of   1408     1%  
- Number of 4 input LUTs:                 64  out of   1408     4%  
- Number of IOs:                          20
- Number of bonded IOBs:                  14  out of    108    12%  
+ Number of Slices:                       43  out of    704     6%  
+ Number of Slice Flip Flops:             25  out of   1408     1%  
+ Number of 4 input LUTs:                 68  out of   1408     4%  
+ Number of IOs:                          12
+ Number of bonded IOBs:                  12  out of    108    11%  
  Number of GCLKs:                         3  out of     24    12%  
  Number of DCMs:                          1  out of      2    50%  
 
@@ -351,8 +347,8 @@ Clock Information:
 -----------------------------------+---------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)     | Load  |
 -----------------------------------+---------------------------+-------+
-clk                                | _8MhzClk/DCM_SP_INST:CLKFX| 1     |
-clk_2mhz1                          | BUFG                      | 22    |
+clk                                | _8MhzClk/DCM_SP_INST:CLKFX| 3     |
+clk_2mhz_OBUF1                     | BUFG                      | 22    |
 -----------------------------------+---------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -420,15 +416,37 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'clk_2mhz1'
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 0.952ns (frequency: 1050.420MHz)
+  Total number of paths / destination ports: 4 / 3
+-------------------------------------------------------------------------
+Delay:               2.975ns (Levels of Logic = 1)
+  Source:            divider_1 (FF)
+  Destination:       clk_2mhz (FF)
+  Source Clock:      clk rising 0.3X
+  Destination Clock: clk rising 0.3X
+
+  Data Path: divider_1 to clk_2mhz
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.591   0.447  divider_1 (divider_1)
+     INV:I->O              1   0.648   0.420  clk_2mhz_cmp_le00001_INV_0 (clk_2mhz_cmp_le0000)
+     FDR:R                     0.869          clk_2mhz
+    ----------------------------------------
+    Total                      2.975ns (2.108ns logic, 0.867ns route)
+                                       (70.9% logic, 29.1% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk_2mhz_OBUF1'
   Clock period: 4.045ns (frequency: 247.219MHz)
   Total number of paths / destination ports: 26 / 10
 -------------------------------------------------------------------------
 Delay:               4.045ns (Levels of Logic = 2)
   Source:            partner2/data_en (FF)
   Destination:       partner2/data_en (FF)
-  Source Clock:      clk_2mhz1 rising
-  Destination Clock: clk_2mhz1 rising
+  Source Clock:      clk_2mhz_OBUF1 rising
+  Destination Clock: clk_2mhz_OBUF1 rising
 
   Data Path: partner2/data_en to partner2/data_en
                                 Gate     Net
@@ -443,19 +461,19 @@ Delay:               4.045ns (Levels of Logic = 2)
                                        (54.4% logic, 45.6% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_2mhz1'
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_2mhz_OBUF1'
   Total number of paths / destination ports: 6 / 6
 -------------------------------------------------------------------------
 Offset:              4.030ns (Levels of Logic = 3)
-  Source:            switch<0> (PAD)
+  Source:            data_in2 (PAD)
   Destination:       partner2/data_en (FF)
-  Destination Clock: clk_2mhz1 rising
+  Destination Clock: clk_2mhz_OBUF1 rising
 
-  Data Path: switch<0> to partner2/data_en
+  Data Path: data_in2 to partner2/data_en
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             4   0.849   0.730  switch_0_IBUF (switch_0_IBUF)
+     IBUF:I->O             4   0.849   0.730  data_in2_IBUF (data_in2_IBUF)
      LUT4_D:I0->O          1   0.648   0.423  partner2/shift_1_and00031 (partner2/shift_1_and0003)
      LUT4:I3->O            1   0.648   0.420  partner2/data_en_not00011 (partner2/data_en_not0001)
      FDCPE:CE                  0.312          partner2/data_en
@@ -464,36 +482,55 @@ Offset:              4.030ns (Levels of Logic = 3)
                                        (61.0% logic, 39.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_2mhz1'
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_2mhz_OBUF1'
   Total number of paths / destination ports: 8 / 6
 -------------------------------------------------------------------------
 Offset:              6.954ns (Levels of Logic = 2)
   Source:            partner1/data_en (FF)
-  Destination:       datalink1 (PAD)
-  Source Clock:      clk_2mhz1 rising
+  Destination:       data_io1 (PAD)
+  Source Clock:      clk_2mhz_OBUF1 rising
 
-  Data Path: partner1/data_en to datalink1
+  Data Path: partner1/data_en to data_io1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDCPE:C->Q           14   0.591   1.000  partner1/data_en (partner1/data_en)
      INV:I->O              1   0.648   0.420  partner1/data_en_inv1_INV_0 (partner1/data_en_inv)
-     IOBUF:T->IO               4.295          datalink1_IOBUF (datalink1)
+     IOBUF:T->IO               4.295          data_io1_IOBUF (data_io1)
     ----------------------------------------
     Total                      6.954ns (5.534ns logic, 1.420ns route)
                                        (79.6% logic, 20.4% route)
 
 =========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              5.558ns (Levels of Logic = 1)
+  Source:            clk_2mhz (FF)
+  Destination:       clk_2mhz (PAD)
+  Source Clock:      clk rising 0.3X
+
+  Data Path: clk_2mhz to clk_2mhz
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.591   0.447  clk_2mhz (clk_2mhz_OBUF1)
+     OBUF:I->O                 4.520          clk_2mhz_OBUF (clk_2mhz)
+    ----------------------------------------
+    Total                      5.558ns (5.111ns logic, 0.447ns route)
+                                       (92.0% logic, 8.0% route)
+
+=========================================================================
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 4.94 secs
+Total CPU time to Xst completion: 4.99 secs
  
 --> 
 
-Total memory usage is 4551900 kilobytes
+Total memory usage is 4551896 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    7 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 
