@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`define _testbench
+//`define _testbench
 
 `ifdef _testbench
 //
@@ -40,9 +40,34 @@ module main(
 input	clk,rst_clkgen,data_in1,data_in2;
 output	data_out1,data_out2,clk_2mhz,Locked,other1,other2;
 inout	data_io1,data_io2;
+
 //
 `else
 //
+`define data_in1	switch[7]
+`define data_in2	switch[0]
+`define data_out1	led[7]
+`define data_out2	led[0]
+`define data_io1	datalink1
+`define data_io2	datalink2
+`define other1	led[6]
+`define other2	led[1]
+`define rst_clkgen	push_btn
+`define Locked	led[4]
+
+module main(
+			clk,
+			push_btn,
+			led,
+			switch,
+			datalink1,
+			datalink2
+    );
+	 
+inout datalink1,datalink2;
+input clk,push_btn;
+output[7:0] led;
+input[7:0]	switch;
 
 //
 `endif
@@ -55,34 +80,37 @@ reg clk_2mhz;
 
 clkgen _8MhzClk(
     .CLKIN_IN(clk), 
-    .RST_IN(rst_clkgen), 
+    .RST_IN(`rst_clkgen), 
     .CLKFX_OUT(clk_8mhz), 
     .CLKIN_IBUFG_OUT(), 
     .CLK0_OUT(), 
-    .LOCKED_OUT(Locked)
+    .LOCKED_OUT(`Locked)
     );
 
 bidir_wrapper partner1(
 		.clk(clk_2mhz),
-		.Locked(Locked),
-		.my_state_in(data_in1),
-		.my_state_out(data_out1),
-		.partner_state_out(other2),
-		.data_link(data_io1)
+		.Locked(`Locked),
+		.my_state_in(`data_in1),
+		.my_state_out(`data_out1),
+		.partner_state_out(`other2),
+		.data_link(`data_io1)
     );
 
 bidir_wrapper partner2(
 		.clk(clk_2mhz),
-		.Locked(Locked),
-		.my_state_in(data_in2),
-		.my_state_out(data_out2),
-		.partner_state_out(other1),
-		.data_link(data_io2)
+		.Locked(`Locked),
+		.my_state_in(`data_in2),
+		.my_state_out(`data_out2),
+		.partner_state_out(`other1),
+		.data_link(`data_io2)
     );
 
 
 	 
 assign divider_next=Locked?	divider+1'b1:2'b0;
+assign led[2]	=	1'b0;
+assign led[3]	=	1'b0;
+assign led[5]	=	1'b0;
 
 always @(posedge clk_8mhz)begin
 	divider<=divider_next;
