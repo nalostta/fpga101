@@ -77,19 +77,19 @@ always @(posedge clk or posedge data_en)begin
 	end else begin
 		count<=2'b0;
 		shift[0]<=1'b0;
-		my_state_out<=my_state_out && Locked;
+		my_state_out<=my_state_out && Locked; 
 	end
 end
 
 always @(posedge clk or posedge Locked)begin
 	if(Locked)begin
-		if(data_read==1'b0 && data_en!=1)begin
-			read_en<=1;
+		if(data_read==1'b0 && data_en==1'b1)begin
+			read_en<=1'b1;
 		end
 		//
 		if(rcount==2'b10)begin
 			
-			read_en<=0;
+			read_en<=1'b0;
 		end
 	end else begin
 		read_en<=1'b0;

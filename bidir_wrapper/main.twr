@@ -3,7 +3,8 @@ Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
--n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf
+-n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
+constraints1.ucf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -15,7 +16,6 @@ Environment Variable      Effect
 NONE                      No environment variables were set
 --------------------------------------------------------------------------------
 
-INFO:Timing:2698 - No timing constraints found, doing default enumeration.
 INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
 INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
    option. All paths that are not constrained will be reported in the 
@@ -33,30 +33,122 @@ INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and
    SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
    Error.
 
+================================================================================
+Timing constraint: NET "_8MhzClk/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  10.000ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "_8MhzClk/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: _8MhzClk/DCM_SP_INST/CLKIN
+  Logical resource: _8MhzClk/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: _8MhzClk/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 40.000ns
+  High pulse: 20.000ns
+  High pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: _8MhzClk/DCM_SP_INST/CLKIN
+  Logical resource: _8MhzClk/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: _8MhzClk/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpc)
+  Physical resource: _8MhzClk/DCM_SP_INST/CLKIN
+  Logical resource: _8MhzClk/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: _8MhzClk/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PERIOD analysis for net "_8MhzClk/CLKFX_BUF" derived from  
+NET "_8MhzClk/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;  multiplied by 3.13 to 125 
+nS and duty cycle corrected to HIGH 62.500 nS  
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is   3.002ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: PERIOD analysis for net "_8MhzClk/CLKFX_BUF" derived from
+ NET "_8MhzClk/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ multiplied by 3.13 to 125 nS and duty cycle corrected to HIGH 62.500 nS 
+
+--------------------------------------------------------------------------------
+Slack: 75.000ns (max period limit - period)
+  Period: 125.000ns
+  Max period limit: 200.000ns (5.000MHz) ()
+  Physical resource: _8MhzClk/DCM_SP_INST/CLKFX
+  Logical resource: _8MhzClk/DCM_SP_INST/CLKFX
+  Location pin: DCM_X1Y0.CLKFX
+  Clock network: _8MhzClk/CLKFX_BUF
+--------------------------------------------------------------------------------
+Slack: 121.998ns (period - min period limit)
+  Period: 125.000ns
+  Min period limit: 3.002ns (333.111MHz) ()
+  Physical resource: _8MhzClk/DCM_SP_INST/CLKFX
+  Logical resource: _8MhzClk/DCM_SP_INST/CLKFX
+  Location pin: DCM_X1Y0.CLKFX
+  Clock network: _8MhzClk/CLKFX_BUF
+--------------------------------------------------------------------------------
+Slack: 123.518ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 125.000ns
+  Low pulse: 62.500ns
+  Low pulse limit: 0.741ns (Tcl)
+  Physical resource: clk_2mhz1/CLK
+  Logical resource: clk_2mhz/CK
+  Location pin: SLICE_X15Y11.CLK
+  Clock network: clk_8mhz
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for _8MhzClk/CLKIN_IBUFG
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|_8MhzClk/CLKIN_IBUFG           |     40.000ns|     10.000ns|      0.961ns|            0|            0|            0|            0|
+| _8MhzClk/CLKFX_BUF            |    125.000ns|      3.002ns|          N/A|            0|            0|            0|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
 
 
 Data Sheet report:
 -----------------
-All values displayed in nanoseconds (ns)
+No constraints were found to generate data for the Data Sheet Report section.
+Use the Advanced Analysis (-a) option or generate global constraints for each
+clock, its pad to setup and clock to pad paths, and a pad to pad constraint.
 
-Clock clk to Pad
-------------+------------+------------------+--------+
-            | clk (edge) |                  | Clock  |
-Destination |   to PAD   |Internal Clock(s) | Phase  |
-------------+------------+------------------+--------+
-clk_2mhz    |    5.743(R)|clk_8mhz          |   0.000|
-------------+------------+------------------+--------+
+Timing summary:
+---------------
 
-Clock to Setup on destination clock clk
----------------+---------+---------+---------+---------+
-               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
----------------+---------+---------+---------+---------+
-clk            |    2.118|         |         |         |
----------------+---------+---------+---------+---------+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 0 paths, 0 nets, and 0 connections
+
+Design statistics:
+   Minimum period:  10.000ns{1}   (Maximum frequency: 100.000MHz)
 
 
-Analysis completed Wed Feb 27 13:43:14 2019 
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Thu Feb 28 16:07:21 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
