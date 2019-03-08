@@ -49,7 +49,7 @@ module main(
     );
 	 
 input	clk,rst_clkgen,data_in1,data_in2;
-output	data_out1,data_out2,clk_2mhz,Locked,other1,other2;
+output data_out1,data_out2,clk_2mhz,Locked,other1,other2;
 inout	data_io1,data_io2;
 
 //
@@ -63,7 +63,7 @@ inout	data_io1,data_io2;
 `define data_io2	datalink2
 `define other1	led[6]
 `define other2	led[1]
-`define rst_clkgen	!push_btn
+`define rst_clkgen !push_btn
 `define Locked	led[4]
 
 module main(
@@ -101,7 +101,7 @@ clkgen _8MhzClk(
     .LOCKED_OUT(`Locked)
     );
 
-bidir_wrapper partner1(
+bidir_wrapper2 partner1(
 		.clk(clk_2mhz),
 		.Locked(`Locked),
 		.my_state_in(`data_in1),
@@ -110,7 +110,7 @@ bidir_wrapper partner1(
 		.data_link(`data_io1)
     );
 
-bidir_wrapper partner2(
+bidir_wrapper2 partner2(
 		.clk(clk_2mhz),
 		.Locked(`Locked),
 		.my_state_in(`data_in2),

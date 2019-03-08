@@ -103,13 +103,13 @@ Slack: 121.998ns (period - min period limit)
   Location pin: DCM_X1Y0.CLKFX
   Clock network: _8MhzClk/CLKFX_BUF
 --------------------------------------------------------------------------------
-Slack: 123.518ns (period - (min low pulse limit / (low pulse / period)))
+Slack: 123.398ns (period - (min low pulse limit / (low pulse / period)))
   Period: 125.000ns
   Low pulse: 62.500ns
-  Low pulse limit: 0.741ns (Tcl)
-  Physical resource: clk_2mhz1/CLK
+  Low pulse limit: 0.801ns (Tcl)
+  Physical resource: clk_2mhz/CLK
   Logical resource: clk_2mhz/CK
-  Location pin: SLICE_X15Y11.CLK
+  Location pin: SLICE_X16Y19.CLK
   Clock network: clk_8mhz
 --------------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Thu Feb 28 16:07:21 2019 
+Analysis completed Sat Mar 09 00:11:39 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
