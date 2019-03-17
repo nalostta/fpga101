@@ -40,10 +40,11 @@ boundary conditions:
 		
 		
 algorithm:
-1.	check boundary condition	//combi
-2. if(violating): adjust tan(x)	//combi
-3.	calculate new posn(centre)	//combi
-4.	update	//posedge clock
+1.	check boundary condition	
+2. if(Hcentre > Hmax or < Hmin): flip Hvelocity
+3. repeat for vertical velocity
+3.	calculate new posn(centre)	(new_centre = old_centre(+/-)increments)
+4.	update	
 */
 
 
@@ -73,13 +74,7 @@ assign Vmin	=	32;
 assign Hcen_next =	(Hst==1'b1)?	Hcen+Hsp:Hcen-Hsp;
 assign Vcen_next =	(Vst==1'b1)?	Vcen+Vsp:Vcen-Vsp;
 
-
 assign count_next=count+1'b1;
-//seq
-/*
-	Hsp <= ((Hcen<=Hmin)||(Hcen>=Hmax))?	-Hsp:Hsp;
-	Vsp <= ((Vcen<=Vmin)||(Vcen>=Vmax))?	-Vsp:Vsp;
-*/
 
 always @(posedge PixClk or negedge enable)begin
 		if(!enable)begin
@@ -91,7 +86,7 @@ always @(posedge PixClk or negedge enable)begin
 			count<=count_next;
 			if(count==1)begin
 				if(Hcen<=Hmin)begin
-					Hst<=1'b1;
+					Hst<=1'b1;			
 				end else 
 				if(Hcen>=Hmax)begin
 					Hst<=1'b0;

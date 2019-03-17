@@ -36,12 +36,8 @@ main main_wrapper(
 			.clk(clk_in),
 			.rst_clkgen(clk_rst_in),
 			.Locked(Locked),			
-			.data_io2(data_io),
-			.write_en1(write_en1),
-			.read_en1(read_en1),
-			.write_en2(write_en2),
-			.read_en2(read_en2)
-    );
+			.data_io2(data_io)
+			);
 
 always #20 clk_in=~clk_in;
 	 

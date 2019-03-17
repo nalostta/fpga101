@@ -56,6 +56,5 @@ assign Vwire	=	Vcounter;
 assign CharRst	=	((Vcounter<16)&&(Hcounter>=216)&&(Hcounter<424))?	1'b0:1'b1;
 assign CharData =	{CharSelect,Vwire,Hwire};
 assign PixData	=	(Bin==1)?	`WHITE:`BLACK;
-assign ch_next=CharSelect+1'b1;
 assign CharSelect = (Hcounter<224)?	5'b0:((Hcounter<232)?	5'b1:((Hcounter<240)?	5'b10:((Hcounter<248)?	5'b11:((Hcounter<256)?	5'b100:((Hcounter<264)?	5'b101:((Hcounter<272)?	5'b110:((Hcounter<280)?	5'b111:((Hcounter<288)?	5'b1000:((Hcounter<296)?	5'b1001:((Hcounter<304)?	5'b1010:((Hcounter<312)?	5'b1011:((Hcounter<320)?	5'b1100:((Hcounter<328)?	5'b1101:((Hcounter<336)?	5'b1110:((Hcounter<344)?	5'b1111:((Hcounter<352)?	5'b10000:((Hcounter<360)?	5'b10001:((Hcounter<368)?	5'b10010:((Hcounter<376)?	5'b10011:((Hcounter<384)?	5'b10100:((Hcounter<392)?	5'b10101:((Hcounter<400)?	5'b10110:((Hcounter<408)?	5'b10111:((Hcounter<416)?	5'b11000:((Hcounter<424)?	5'b11001:5'b11010)))))))))))))))))))))))));	
 endmodule

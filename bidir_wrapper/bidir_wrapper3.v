@@ -24,9 +24,7 @@ module bidir_wrapper3(
 		my_state_in,
 		my_state_out,
 		partner_state_out,
-		data_link,
-		write_en,
-		read_en
+		data_link
     );
 
 /*
@@ -47,16 +45,12 @@ Modules :
 ->data-receive buffer.
 */
 
-localparam	IDLE	=	2'b00,
-				CHECK	=	2'b01,				
-				READ	=	2'b10,
-				WRITE	=	2'b11;
 
 //I/Os:
 input clk,Locked,my_state_in;
 output my_state_out,partner_state_out;
 inout data_link;
-output write_en,read_en;
+//output write_en,read_en;
 
 //resources
 wire data_read;
@@ -83,13 +77,13 @@ always @(posedge clk or posedge Locked)begin
 	end
 end
 
-always @(negedge read_en or posedge Locked)begin
+always @(negedge read_en)begin
 	if(Locked)begin
 		if(!read_en)begin
 			partner_state_out<=Rbuffer;
-		end else begin
+		end/* else begin
 			partner_state_out<=1'b0;
-		end
+		end*/
 	end else begin
 		partner_state_out<=1'b0;
 	end
@@ -146,7 +140,7 @@ always @(posedge write_en or posedge Locked)begin
 			Wbuffer[0]<=my_state_in;
 			my_state_out<=my_state_in;
 		end else begin
-			my_state_out<=1'b0;
+			/*my_state_out<=1'b0;*/
 			Wbuffer[0]<=1'b0;
 		end
 	end else begin
