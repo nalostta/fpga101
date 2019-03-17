@@ -45,12 +45,17 @@ module main(
 			data_in1,
 			data_in2,
 			data_io1,
-			data_io2
+			data_io2,
+			write_en1,
+			read_en1,
+			write_en2,
+			read_en2
     );
 	 
 input	clk,rst_clkgen,data_in1,data_in2;
 output data_out1,data_out2,clk_2mhz,Locked,other1,other2;
 inout	data_io1,data_io2;
+output write_en1,write_en2,read_en1,read_en2;
 
 //
 `else
@@ -101,22 +106,26 @@ clkgen _8MhzClk(
     .LOCKED_OUT(`Locked)
     );
 
-bidir_wrapper2 partner1(
+bidir_wrapper3 partner1(
 		.clk(clk_2mhz),
 		.Locked(`Locked),
 		.my_state_in(`data_in1),
 		.my_state_out(`data_out1),
 		.partner_state_out(`other2),
-		.data_link(`data_io1)
+		.data_link(`data_io1),
+		.write_en(write_en1),
+		.read_en(read_en1)
     );
 
-bidir_wrapper2 partner2(
+bidir_wrapper3 partner2(
 		.clk(clk_2mhz),
 		.Locked(`Locked),
 		.my_state_in(`data_in2),
 		.my_state_out(`data_out2),
 		.partner_state_out(`other1),
-		.data_link(`data_io2)
+		.data_link(`data_io2),
+		.write_en(write_en2),
+		.read_en(read_en2)
     );
 
 

@@ -22,7 +22,7 @@ module testbench(
     );
 	 
 reg data_in1,data_in2,clk_in,clk_rst_in;
-wire data_out1,data_io,data_out2,clk_2mhz,Locked,other1,other2;
+wire data_out1,data_io,data_out2,clk_2mhz,Locked,other1,other2,write_en1,write_en2,read_en1,read_en2;
 
 main main_wrapper(
 			.data_io1(data_io),
@@ -36,7 +36,11 @@ main main_wrapper(
 			.clk(clk_in),
 			.rst_clkgen(clk_rst_in),
 			.Locked(Locked),			
-			.data_io2(data_io)
+			.data_io2(data_io),
+			.write_en1(write_en1),
+			.read_en1(read_en1),
+			.write_en2(write_en2),
+			.read_en2(read_en2)
     );
 
 always #20 clk_in=~clk_in;
