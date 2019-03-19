@@ -47,11 +47,6 @@ Modules :
 ->data-receive buffer.
 */
 
-localparam	IDLE	=	2'b00,
-				CHECK	=	2'b01,				
-				READ	=	2'b10,
-				WRITE	=	2'b11;
-
 //I/Os:
 input clk,Locked,my_state_in;
 output my_state_out,partner_state_out;
@@ -59,7 +54,7 @@ inout data_link;
 output write_en,read_en;
 
 //resources
-wire data_read;
+wire data_read,data_out;
 
 reg read_en,my_state_out,partner_state_out,write_en,Rbuffer;
 reg[1:0] Wcount,Rcount;
@@ -67,7 +62,8 @@ reg[2:0]	curr_state,next_state;
 reg[1:0] Wbuffer;
 
 assign data_read	=	data_link;
-assign data_link	=	(write_en)?	Wbuffer[1]:1'bz;
+assign data_link	=	(write_en)?	data_out:1'bz;
+assign data_out	=	(Wbuffer[1])?	1'b1:1'b0;
 
 always @(posedge clk or posedge Locked)begin
 	if(Locked)begin
@@ -87,9 +83,9 @@ always @(negedge read_en or posedge Locked)begin
 	if(Locked)begin
 		if(!read_en)begin
 			partner_state_out<=Rbuffer;
-		end else begin
+		end /*else begin
 			partner_state_out<=1'b0;
-		end
+		end*/
 	end else begin
 		partner_state_out<=1'b0;
 	end
@@ -146,7 +142,7 @@ always @(posedge write_en or posedge Locked)begin
 			Wbuffer[0]<=my_state_in;
 			my_state_out<=my_state_in;
 		end else begin
-			my_state_out<=1'b0;
+			//my_state_out<=1'b0;
 			Wbuffer[0]<=1'b0;
 		end
 	end else begin

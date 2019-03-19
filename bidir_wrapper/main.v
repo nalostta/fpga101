@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`define _testbench
+//`define _testbench
 
 `ifdef _testbench
 
@@ -45,11 +45,7 @@ module main(
 			data_in1,
 			data_in2,
 			data_io1,
-			data_io2,
-			write_en1,
-			read_en1,
-			write_en2,
-			read_en2
+			data_io2
     );
 	 
 input	clk,rst_clkgen,data_in1,data_in2;
@@ -62,14 +58,14 @@ output write_en1,write_en2,read_en1,read_en2;
 //
 `define data_in1	switch[7]
 `define data_in2	switch[0]
-`define data_out1	led[7]
+`define data_out1	led[7]	//shows the status of partner 1
 `define data_out2	led[0]
 `define data_io1	datalink1
 `define data_io2	datalink2
-`define other1	led[6]
-`define other2	led[1]
+`define other1	led[6]		//part of partner2, shows the status of partner1 in partner2
+`define other2	led[1]		//part of partner1
 `define rst_clkgen !push_btn
-`define Locked	led[4]
+`define Locked	Locked
 
 module main(
 			clk,
@@ -96,6 +92,12 @@ wire clk_8mhz,Locked;
 wire[1:0] divider_next;
 reg[1:0] divider;
 reg clk_2mhz;
+
+`ifndef _testbench
+
+assign led[4]	=	Locked;
+
+`endif
 
 clkgen _8MhzClk(
     .CLKIN_IN(clk), 
