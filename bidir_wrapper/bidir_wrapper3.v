@@ -18,6 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
+
 module bidir_wrapper3(
 		clk,
 		Locked,
@@ -47,11 +48,6 @@ Modules :
 ->data-receive buffer.
 */
 
-localparam	IDLE	=	2'b00,
-				CHECK	=	2'b01,				
-				READ	=	2'b10,
-				WRITE	=	2'b11;
-
 //I/Os:
 input clk,Locked,my_state_in;
 output my_state_out,partner_state_out;
@@ -61,62 +57,24 @@ output write_en,read_en;
 //resources
 wire data_read;
 
-reg read_en,my_state_out,partner_state_out,write_en,Rbuffer;
+reg my_state_out=1'b0;
+reg partner_state_out,Rbuffer;
+reg write_en = 1'b0;
+reg read_en	 =	1'b0;
 reg[1:0] Wcount,Rcount;
 reg[2:0]	curr_state,next_state;
 reg[1:0] Wbuffer;
 
 assign data_read	=	data_link;
-assign data_link	=	(write_en)?	Wbuffer[1]:1'bz;
+assign data_link	=	(write_en)?	1'b0:1'bz;
 
-always @(posedge clk or posedge Locked)begin
-	if(Locked)begin
-		if((!write_en)&&(!read_en)&&(data_read==1'b0))begin
-			read_en<=1'b1;
-		end else begin
-			if(read_en&&(Rcount==2'b00))begin
-				read_en<=1'b0;
-			end
-		end
-	end else begin
-		read_en<=1'b0;
-	end
-end
-
-always @(negedge read_en or posedge Locked)begin
-	if(Locked)begin
-		if(!read_en)begin
-			partner_state_out<=Rbuffer;
-		end else begin
-			partner_state_out<=1'b0;
-		end
-	end else begin
-		partner_state_out<=1'b0;
-	end
-end
-
-
-always @(posedge clk or posedge Locked)begin
-	if(Locked)begin
-		if(read_en)begin
-			Rcount<=Rcount+1'b1;
-			Rbuffer<=data_read;
-		end else begin
-			Rcount<=2'b0;
-			Rbuffer<=1'b0;
-		end
-	end else begin
-		Rcount<=2'b0;
-		Rbuffer<=1'b0;
-	end
-end
-
-always @(posedge clk or posedge Locked)begin
+//---------------------write control block--------------------------
+always @(posedge clk/* or posedge Locked*/)begin
 	if(Locked)begin
 		if((!write_en)&&(!read_en)&&(my_state_in!=my_state_out))begin
 			write_en<=1'b1;
 		end else begin
-			if(write_en&&(Wcount==2'b01))begin
+			if((write_en)&&(Wcount==2'b01))begin
 				write_en<=1'b0;
 			end
 		end
@@ -124,8 +82,10 @@ always @(posedge clk or posedge Locked)begin
 		write_en<=1'b0;
 	end
 end
+//------------------------------------------------------------------
 
-always @(posedge clk or posedge Locked)begin 
+//------------------------write shift block-------------------------
+always @(posedge clk/* or posedge Locked*/)begin 
 	if(Locked)begin
 		if(write_en)begin
 			Wcount<=Wcount+1'b1;
@@ -139,7 +99,9 @@ always @(posedge clk or posedge Locked)begin
 		Wbuffer[1]<=1'b0;
 	end
 end
+//------------------------------------------------------------------
 
+//-------------------------write o/p block--------------------------
 always @(posedge write_en or posedge Locked)begin
 	if(Locked)begin
 		if(write_en)begin
@@ -154,4 +116,54 @@ always @(posedge write_en or posedge Locked)begin
 		Wbuffer[0]<=1'b0;
 	end
 end
+//------------------------------------------------------------------
+
+
+//-------------------------read ctrl block--------------------------
+always @(posedge clk or posedge Locked)begin
+	if(Locked)begin
+		if((!write_en)&&(!read_en)&&(data_read==1'b0))begin
+			read_en<=1'b1;
+		end else begin
+			if(read_en&&(Rcount==2'b00))begin
+				read_en<=1'b0;
+			end
+		end
+	end else begin
+		read_en<=1'b0;
+	end
+end
+//------------------------------------------------------------------
+
+//------------------------read o/p block----------------------------
+always @(negedge read_en or posedge Locked)begin
+	if(Locked)begin
+		if(!read_en)begin
+			partner_state_out<=Rbuffer;
+		end else begin
+			partner_state_out<=1'b0;
+		end
+	end else begin
+		partner_state_out<=1'b0;
+	end
+end
+//------------------------------------------------------------------
+
+
+//----------------------read shift block----------------------------
+always @(posedge clk or posedge Locked)begin
+	if(Locked)begin
+		if(read_en)begin
+			Rcount<=Rcount+1'b1;
+			Rbuffer<=data_read;
+		end else begin
+			Rcount<=2'b0;
+			Rbuffer<=1'b0;
+		end
+	end else begin
+		Rcount<=2'b0;
+		Rbuffer<=1'b0;
+	end
+end
+//------------------------------------------------------------------
 endmodule

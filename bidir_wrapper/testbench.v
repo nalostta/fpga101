@@ -22,11 +22,11 @@ module testbench(
     );
 	 
 reg data_in1,data_in2,clk_in,clk_rst_in;
-wire data_out1,data_io,data_out2,clk_2mhz,Locked,other1,other2,write_en1,write_en2,read_en1,read_en2;
+wire data_out1,data_io,data_out2,SlowClk,Locked,other1,other2,write_en1,write_en2,read_en1,read_en2;
 
 main main_wrapper(
 			.data_io1(data_io),
-			.clk_2mhz(clk_2mhz),
+			.SlowClk(SlowClk),
 			.data_in1(data_in1),
 			.data_out1(data_out1),
 			.other1(other1),

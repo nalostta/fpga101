@@ -1,0 +1,487 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
+ 
+--> Reading design: main.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "main.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "main"
+Output Format                      : NGC
+Target Device                      : xc3s50a-4-tq144
+
+---- Source Options
+Top Module Name                    : main
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "xmit.v" in library work
+Compiling verilog file "rxc.v" in library work
+Module <xmit> compiled
+Compiling verilog file "clkgen.v" in library work
+Module <rxc> compiled
+Compiling verilog file "main.v" in library work
+Module <clkgen> compiled
+Module <main> compiled
+No errors in compilation
+Analysis of file <"main.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <main> in library <work>.
+
+Analyzing hierarchy for module <clkgen> in library <work>.
+
+Analyzing hierarchy for module <rxc> in library <work>.
+
+Analyzing hierarchy for module <xmit> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <main>.
+Module <main> is correct for synthesis.
+ 
+Analyzing module <clkgen> in library <work>.
+Module <clkgen> is correct for synthesis.
+ 
+    Set user-defined property "CAPACITANCE =  DONT_CARE" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "IBUF_DELAY_VALUE =  0" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "IBUF_LOW_PWR =  TRUE" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "IOSTANDARD =  DEFAULT" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "CLKDV_DIVIDE =  2.000000" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKFX_DIVIDE =  25" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKFX_MULTIPLY =  8" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKIN_PERIOD =  40.000000" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLK_FEEDBACK =  1X" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_SP_INST> in unit <clkgen>.
+Analyzing module <rxc> in library <work>.
+Module <rxc> is correct for synthesis.
+ 
+Analyzing module <xmit> in library <work>.
+Module <xmit> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <rxc>.
+    Related source file is "rxc.v".
+WARNING:Xst:647 - Input <Locked> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <clk_50khz> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1305 - Output <led> is never assigned. Tied to value 0.
+WARNING:Xst:1780 - Signal <state> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rx_in> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rx_data_r> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rx_data> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <read_trig> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <data_read> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <count_en> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <count> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <rxc> synthesized.
+
+
+Synthesizing Unit <xmit>.
+    Related source file is "xmit.v".
+WARNING:Xst:1305 - Output <my_state_out> is never assigned. Tied to value 0.
+    Found 1-bit tristate buffer for signal <datalink>.
+    Found 2-bit adder for signal <$add0000> created at line 56.
+    Found 2-bit register for signal <count>.
+    Found 1-bit register for signal <data_en>.
+    Found 1-bit xor2 for signal <data_en$xor0000> created at line 42.
+    Found 1-bit register for signal <state>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Tristate(s).
+Unit <xmit> synthesized.
+
+
+Synthesizing Unit <clkgen>.
+    Related source file is "clkgen.v".
+Unit <clkgen> synthesized.
+
+
+Synthesizing Unit <main>.
+    Related source file is "main.v".
+WARNING:Xst:647 - Input <switch<7:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <clk_50khz>.
+    Found 4-bit register for signal <divider>.
+    Found 4-bit adder for signal <divider_next$addsub0000> created at line 43.
+    Summary:
+	inferred   5 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <main> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 2-bit adder                                           : 1
+ 4-bit adder                                           : 1
+# Registers                                            : 6
+ 1-bit register                                        : 5
+ 4-bit register                                        : 1
+# Tristates                                            : 1
+ 1-bit tristate buffer                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 2-bit adder                                           : 1
+ 4-bit adder                                           : 1
+# Registers                                            : 9
+ Flip-Flops                                            : 9
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <main> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 1.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 9
+ Flip-Flops                                            : 9
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : main.ngr
+Top Level Output File Name         : main
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 19
+
+Cell Usage :
+# BELS                             : 16
+#      GND                         : 1
+#      INV                         : 3
+#      LUT2                        : 5
+#      LUT3                        : 3
+#      LUT4                        : 3
+#      MUXF5                       : 1
+# FlipFlops/Latches                : 9
+#      FD                          : 1
+#      FDCP                        : 2
+#      FDR                         : 4
+#      FDRE                        : 1
+#      FDRSE                       : 1
+# Clock Buffers                    : 2
+#      BUFG                        : 2
+# IO Buffers                       : 11
+#      IBUF                        : 1
+#      IBUFG                       : 1
+#      OBUF                        : 8
+#      OBUFT                       : 1
+# DCMs                             : 1
+#      DCM_SP                      : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50atq144-4 
+
+ Number of Slices:                        7  out of    704     0%  
+ Number of Slice Flip Flops:              9  out of   1408     0%  
+ Number of 4 input LUTs:                 14  out of   1408     0%  
+ Number of IOs:                          19
+ Number of bonded IOBs:                  11  out of    108    10%  
+ Number of GCLKs:                         2  out of     24     8%  
+ Number of DCMs:                          1  out of      2    50%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+--------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)          | Load  |
+-----------------------------------+--------------------------------+-------+
+clk                                | instance_name/DCM_SP_INST:CLKFX| 5     |
+clk_50khz                          | NONE(inst1/count_0)            | 4     |
+-----------------------------------+--------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------------------+------------------------+-------+
+Control Signal                                 | Buffer(FF name)        | Load  |
+-----------------------------------------------+------------------------+-------+
+inst1/count_0_and0000(inst1/count_0_and00001:O)| NONE(inst1/count_0)    | 1     |
+inst1/count_0_and0001(inst1/count_0_and00011:O)| NONE(inst1/count_0)    | 1     |
+inst1/count_1_and0000(inst1/count_1_and00001:O)| NONE(inst1/count_1)    | 1     |
+inst1/count_1_and0001(inst1/count_1_and00011:O)| NONE(inst1/count_1)    | 1     |
+-----------------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 3.050ns (Maximum Frequency: 327.869MHz)
+   Minimum input arrival time before clock: 3.403ns
+   Maximum output required time after clock: 6.587ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 0.826ns (frequency: 1211.240MHz)
+  Total number of paths / destination ports: 19 / 5
+-------------------------------------------------------------------------
+Delay:               2.580ns (Levels of Logic = 1)
+  Source:            divider_0 (FF)
+  Destination:       divider_0 (FF)
+  Source Clock:      clk rising 0.3X
+  Destination Clock: clk rising 0.3X
+
+  Data Path: divider_0 to divider_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              6   0.591   0.669  divider_0 (divider_0)
+     INV:I->O              1   0.648   0.420  Madd_divider_next_addsub0000_xor<0>11_INV_0 (divider_next<0>_norst)
+     FDR:D                     0.252          divider_0
+    ----------------------------------------
+    Total                      2.580ns (1.491ns logic, 1.089ns route)
+                                       (57.8% logic, 42.2% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk_50khz'
+  Clock period: 3.050ns (frequency: 327.869MHz)
+  Total number of paths / destination ports: 4 / 3
+-------------------------------------------------------------------------
+Delay:               3.050ns (Levels of Logic = 1)
+  Source:            inst1/state (FF)
+  Destination:       inst1/data_en (FF)
+  Source Clock:      clk_50khz rising
+  Destination Clock: clk_50khz rising
+
+  Data Path: inst1/state to inst1/data_en
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             1   0.591   0.500  inst1/state (inst1/state)
+     LUT2:I1->O            2   0.643   0.447  inst1/Mxor_data_en_xor0000_Result1 (inst1/data_en_not0001_inv)
+     FDRSE:S                   0.869          inst1/data_en
+    ----------------------------------------
+    Total                      3.050ns (2.103ns logic, 0.947ns route)
+                                       (69.0% logic, 31.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_50khz'
+  Total number of paths / destination ports: 3 / 3
+-------------------------------------------------------------------------
+Offset:              3.403ns (Levels of Logic = 2)
+  Source:            switch<0> (PAD)
+  Destination:       inst1/data_en (FF)
+  Destination Clock: clk_50khz rising
+
+  Data Path: switch<0> to inst1/data_en
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   0.849   0.590  switch_0_IBUF (switch_0_IBUF)
+     LUT2:I0->O            2   0.648   0.447  inst1/Mxor_data_en_xor0000_Result1 (inst1/data_en_not0001_inv)
+     FDRSE:S                   0.869          inst1/data_en
+    ----------------------------------------
+    Total                      3.403ns (2.366ns logic, 1.037ns route)
+                                       (69.5% logic, 30.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_50khz'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              6.587ns (Levels of Logic = 2)
+  Source:            inst1/data_en (FF)
+  Destination:       datalink1 (PAD)
+  Source Clock:      clk_50khz rising
+
+  Data Path: inst1/data_en to datalink1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRSE:C->Q            5   0.591   0.633  inst1/data_en (inst1/data_en)
+     INV:I->O              1   0.648   0.420  inst1/data_en_inv1_INV_0 (inst1/data_en_inv)
+     OBUFT:T->O                4.295          datalink1_OBUFT (datalink1)
+    ----------------------------------------
+    Total                      6.587ns (5.534ns logic, 1.053ns route)
+                                       (84.0% logic, 16.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.21 secs
+ 
+--> 
+
+Total memory usage is 4551888 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   13 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
+
