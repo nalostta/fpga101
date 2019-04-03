@@ -56,23 +56,23 @@ inout data_link;
 wire data_read;
 
 reg my_state_out=1'b0;
-reg partner_state_out,Rbuffer;
+reg partner_state_out=1'b0;
+reg Rbuffer=1'b0;
 reg write_en = 1'b0;
 reg read_en	 =	1'b0;
 reg[1:0] Wcount,Rcount;
-reg[2:0]	curr_state,next_state;
-reg[1:0] Wbuffer;
+reg[2:0] Wbuffer=2'b00;
 
 assign data_read	=	data_link;
-assign data_link	=	(write_en)?	1'b0:1'bz;
+assign data_link	=	(write_en)?	Wbuffer[1]:1'bz;
 
-//---------------------write control block--------------------------
-always @(posedge clk or posedge Locked)begin
+//---------------------write control block---------------------------
+always @(posedge clk)begin
 	if(Locked)begin
 		if((!write_en)&&(!read_en)&&(my_state_in!=my_state_out))begin
 			write_en<=1'b1;
 		end else begin
-			if((write_en)&&(Wcount==2'b01))begin
+			if(write_en&&(Wcount==2'b01))begin
 				write_en<=1'b0;
 			end
 		end
@@ -80,45 +80,35 @@ always @(posedge clk or posedge Locked)begin
 		write_en<=1'b0;
 	end
 end
-//------------------------------------------------------------------
+//---------------------write control block---------------------------
 
-//------------------------write shift block-------------------------
-always @(posedge clk or posedge Locked)begin 
-	if(Locked)begin
-		if(write_en)begin
-			Wcount<=Wcount+1'b1;
-			Wbuffer[1]<=Wbuffer[0];
-		end else begin
-			Wcount<=2'b0;
-			Wbuffer[1]<=1'b0;
-		end
+//----------------------write count block----------------------------
+always @(posedge clk)begin
+	if(Locked&&write_en)begin
+		Wcount<=Wcount+1'b1;
 	end else begin
-		Wcount<=2'b0;
+		Wcount<=2'b00; 
+	end
+end
+//----------------------write count block----------------------------
+
+//-----------------------write shift block---------------------------
+always @(posedge write_en)begin
+	my_state_out<=my_state_in;
+end
+
+always @(posedge clk)begin
+	if(write_en)begin
+		Wbuffer[1]<=Wbuffer[0];
+	end else begin
 		Wbuffer[1]<=1'b0;
+		Wbuffer[0]<=my_state_in;
 	end
 end
-//------------------------------------------------------------------
+//-----------------------write shift block---------------------------
 
-//-------------------------write o/p block--------------------------
-always @(posedge write_en or posedge Locked)begin
-	if(Locked)begin
-		if(write_en)begin
-			Wbuffer[0]<=my_state_in;
-			my_state_out<=my_state_in;
-		end else begin
-			my_state_out<=1'b0;
-			Wbuffer[0]<=1'b0;
-		end
-	end else begin
-		my_state_out<=1'b0;
-		Wbuffer[0]<=1'b0;
-	end
-end
-//------------------------------------------------------------------
-
-
-//-------------------------read ctrl block--------------------------
-always @(posedge clk or posedge Locked)begin
+//-----------------------read control block--------------------------
+always @(posedge clk)begin
 	if(Locked)begin
 		if((!write_en)&&(!read_en)&&(data_read==1'b0))begin
 			read_en<=1'b1;
@@ -131,37 +121,25 @@ always @(posedge clk or posedge Locked)begin
 		read_en<=1'b0;
 	end
 end
-//------------------------------------------------------------------
+//-----------------------read control block--------------------------
 
-//------------------------read o/p block----------------------------
-always @(negedge read_en or posedge Locked)begin
-	if(Locked)begin
-		if(!read_en)begin
-			partner_state_out<=Rbuffer;
-		end else begin
-			partner_state_out<=1'b0;
-		end
-	end else begin
-		partner_state_out<=1'b0;
-	end
-end
-//------------------------------------------------------------------
-
-
-//----------------------read shift block----------------------------
-always @(posedge clk or posedge Locked)begin
-	if(Locked)begin
-		if(read_en)begin
-			Rcount<=Rcount+1'b1;
-			Rbuffer<=data_read;
-		end else begin
-			Rcount<=2'b0;
-			Rbuffer<=1'b0;
-		end
+always @(posedge clk)begin
+	if(Locked&&read_en)begin
+		Rcount<=Rcount+1'b1;
 	end else begin
 		Rcount<=2'b0;
+	end
+end
+
+always @(posedge clk)begin
+	if(Locked&&read_en)begin
+		Rbuffer<=data_read;
+	end else begin
 		Rbuffer<=1'b0;
 	end
 end
-//------------------------------------------------------------------
+
+always @(negedge read_en)begin
+	partner_state_out<=Rbuffer;
+end
 endmodule

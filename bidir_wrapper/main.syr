@@ -10,7 +10,7 @@ Total CPU time to Xst completion: 0.13 secs
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: main.prj
 
@@ -164,25 +164,20 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <bidir_wrapper3>.
     Related source file is "bidir_wrapper3.v".
-WARNING:Xst:1780 - Signal <next_state> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <curr_state> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <Wbuffer<1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-INFO:Xst:1608 - Relative priorities of control signals on register <write_en> differ from those commonly found in the selected device family. This will result in additional logic around the register.
-INFO:Xst:1608 - Relative priorities of control signals on register <read_en> differ from those commonly found in the selected device family. This will result in additional logic around the register.
+WARNING:Xst:1780 - Signal <Wbuffer<2>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <my_state_out>.
     Found 1-bit tristate buffer for signal <data_link>.
     Found 1-bit register for signal <partner_state_out>.
-    Found 2-bit adder for signal <$add0000> created at line 89.
-    Found 2-bit adder for signal <$add0001> created at line 155.
     Found 1-bit register for signal <Rbuffer>.
-    Found 2-bit register for signal <Rcount>.
+    Found 2-bit up counter for signal <Rcount>.
     Found 1-bit register for signal <read_en>.
-    Found 2-bit register for signal <Wcount>.
+    Found 2-bit register for signal <Wbuffer<1:0>>.
+    Found 2-bit up counter for signal <Wcount>.
     Found 1-bit register for signal <write_en>.
     Found 1-bit xor2 for signal <write_en$xor0000> created at line 72.
     Summary:
-	inferred   9 D-type flip-flop(s).
-	inferred   2 Adder/Subtractor(s).
+	inferred   2 Counter(s).
+	inferred   7 D-type flip-flop(s).
 	inferred   1 Tristate(s).
 Unit <bidir_wrapper3> synthesized.
 
@@ -207,12 +202,11 @@ Unit <main> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 4
- 2-bit adder                                           : 4
-# Counters                                             : 1
+# Counters                                             : 5
+ 2-bit up counter                                      : 4
  25-bit up counter                                     : 1
-# Registers                                            : 19
- 1-bit register                                        : 19
+# Registers                                            : 15
+ 1-bit register                                        : 15
 # Tristates                                            : 2
  1-bit tristate buffer                                 : 2
 # Xors                                                 : 2
@@ -229,12 +223,11 @@ Macro Statistics
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 4
- 2-bit adder                                           : 4
-# Counters                                             : 1
+# Counters                                             : 5
+ 2-bit up counter                                      : 4
  25-bit up counter                                     : 1
-# Registers                                            : 19
- Flip-Flops                                            : 19
+# Registers                                            : 15
+ Flip-Flops                                            : 15
 # Xors                                                 : 2
  1-bit xor2                                            : 2
 
@@ -251,7 +244,7 @@ Optimizing unit <main> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 7.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 3.
 FlipFlop partner1/my_state_out has been replicated 1 time(s) to handle iob=true attribute.
 FlipFlop partner2/my_state_out has been replicated 1 time(s) to handle iob=true attribute.
 
@@ -261,8 +254,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 43
- Flip-Flops                                            : 43
+# Registers                                            : 47
+ Flip-Flops                                            : 47
 
 =========================================================================
 
@@ -291,23 +284,22 @@ Design Statistics
 # IOs                              : 20
 
 Cell Usage :
-# BELS                             : 135
+# BELS                             : 104
 #      GND                         : 1
-#      INV                         : 5
+#      INV                         : 10
 #      LUT1                        : 21
-#      LUT2                        : 1
-#      LUT3                        : 26
-#      LUT4                        : 25
+#      LUT2                        : 9
+#      LUT3                        : 6
+#      LUT4                        : 7
 #      MUXCY                       : 27
-#      MUXF5                       : 6
 #      VCC                         : 1
 #      XORCY                       : 22
-# FlipFlops/Latches                : 43
-#      FD                          : 22
-#      FDCP                        : 14
-#      FDCP_1                      : 2
-#      FDCPE                       : 4
-#      FDE                         : 1
+# FlipFlops/Latches                : 47
+#      FD                          : 26
+#      FD_1                        : 2
+#      FDE                         : 3
+#      FDR                         : 12
+#      FDRSE                       : 4
 # Clock Buffers                    : 2
 #      BUFG                        : 2
 # IO Buffers                       : 14
@@ -324,9 +316,9 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       44  out of    704     6%  
- Number of Slice Flip Flops:             39  out of   1408     2%  
- Number of 4 input LUTs:                 78  out of   1408     5%  
+ Number of Slices:                       26  out of    704     3%  
+ Number of Slice Flip Flops:             43  out of   1408     3%  
+ Number of 4 input LUTs:                 53  out of   1408     3%  
  Number of IOs:                          20
  Number of bonded IOBs:                  14  out of    108    12%  
     IOB Flip Flops:                       4
@@ -355,9 +347,9 @@ Clock Information:
 Clock Signal                       | Clock buffer(FF name)           | Load  |
 -----------------------------------+---------------------------------+-------+
 clk                                | _8MhzClk/DCM_SP_INST:CLKFX      | 23    |
+SlowClk                            | NONE(partner2/Rcount_1)         | 18    |
 partner2/read_en                   | NONE(partner2/partner_state_out)| 1     |
 partner2/write_en                  | NONE(partner2/my_state_out)     | 2     |
-SlowClk                            | NONE(partner2/Rcount_0)         | 14    |
 partner1/read_en                   | NONE(partner1/partner_state_out)| 1     |
 partner1/write_en                  | NONE(partner1/my_state_out)     | 2     |
 -----------------------------------+---------------------------------+-------+
@@ -365,55 +357,16 @@ INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered
 
 Asynchronous Control Signals Information:
 ----------------------------------------
--------------------------------------------------------------------------+---------------------------------+-------+
-Control Signal                                                           | Buffer(FF name)                 | Load  |
--------------------------------------------------------------------------+---------------------------------+-------+
-partner1/my_state_out_and0000(partner1/my_state_out_and00001:O)          | NONE(partner1/my_state_out)     | 2     |
-partner1/my_state_out_and0001(partner1/my_state_out_and00011:O)          | NONE(partner1/my_state_out)     | 2     |
-partner2/my_state_out_and0000(partner2/my_state_out_and00001:O)          | NONE(partner2/my_state_out)     | 2     |
-partner2/my_state_out_and0001(partner2/my_state_out_and00011:O)          | NONE(partner2/my_state_out)     | 2     |
-partner1/Rbuffer_and0000(partner1/Rbuffer_and00001:O)                    | NONE(partner1/Rbuffer)          | 1     |
-partner1/Rbuffer_and0001(partner1/Rbuffer_and00011:O)                    | NONE(partner1/Rbuffer)          | 1     |
-partner1/Rcount_0_and0000(partner1/Rcount_0_and00001:O)                  | NONE(partner1/Rcount_0)         | 1     |
-partner1/Rcount_0_and0001(partner1/read_en_and000011:O)                  | NONE(partner1/Rcount_0)         | 1     |
-partner1/Rcount_1_and0000(partner1/Rcount_1_and00001:O)                  | NONE(partner1/Rcount_1)         | 1     |
-partner1/Rcount_1_and0001(partner1/Rcount_1_and00011:O)                  | NONE(partner1/Rcount_1)         | 1     |
-partner1/Wcount_0_and0000(partner1/Wcount_0_and00001:O)                  | NONE(partner1/Wcount_0)         | 1     |
-partner1/Wcount_0_and0001(partner1/Wcount_0_and00011:O)                  | NONE(partner1/Wcount_0)         | 1     |
-partner1/Wcount_1_and0000(partner1/Wcount_1_and00001:O)                  | NONE(partner1/Wcount_1)         | 1     |
-partner1/Wcount_1_and0001(partner1/Wcount_1_and00011:O)                  | NONE(partner1/Wcount_1)         | 1     |
-partner1/partner_state_out_and0000(partner1/partner_state_out_and00001:O)| NONE(partner1/partner_state_out)| 1     |
-partner1/partner_state_out_and0001(partner1/partner_state_out_and00011:O)| NONE(partner1/partner_state_out)| 1     |
-partner1/read_en_and0000(partner1/read_en_and00002:O)                    | NONE(partner1/read_en)          | 1     |
-partner1/read_en_and0001(partner1/read_en_and00011:O)                    | NONE(partner1/read_en)          | 1     |
-partner1/write_en_and0000(partner1/write_en_and00001:O)                  | NONE(partner1/write_en)         | 1     |
-partner1/write_en_and0001(partner1/write_en_and0001_f5:O)                | NONE(partner1/write_en)         | 1     |
-partner2/Rbuffer_and0000(partner2/Rbuffer_and00001:O)                    | NONE(partner2/Rbuffer)          | 1     |
-partner2/Rbuffer_and0001(partner2/Rbuffer_and00011:O)                    | NONE(partner2/Rbuffer)          | 1     |
-partner2/Rcount_0_and0000(partner2/Rcount_0_and00001:O)                  | NONE(partner2/Rcount_0)         | 1     |
-partner2/Rcount_0_and0001(partner2/read_en_and000011:O)                  | NONE(partner2/Rcount_0)         | 1     |
-partner2/Rcount_1_and0000(partner2/Rcount_1_and00001:O)                  | NONE(partner2/Rcount_1)         | 1     |
-partner2/Rcount_1_and0001(partner2/Rcount_1_and00011:O)                  | NONE(partner2/Rcount_1)         | 1     |
-partner2/Wcount_0_and0000(partner2/Wcount_0_and00001:O)                  | NONE(partner2/Wcount_0)         | 1     |
-partner2/Wcount_0_and0001(partner2/Wcount_0_and00011:O)                  | NONE(partner2/Wcount_0)         | 1     |
-partner2/Wcount_1_and0000(partner2/Wcount_1_and00001:O)                  | NONE(partner2/Wcount_1)         | 1     |
-partner2/Wcount_1_and0001(partner2/Wcount_1_and00011:O)                  | NONE(partner2/Wcount_1)         | 1     |
-partner2/partner_state_out_and0000(partner2/partner_state_out_and00001:O)| NONE(partner2/partner_state_out)| 1     |
-partner2/partner_state_out_and0001(partner2/partner_state_out_and00011:O)| NONE(partner2/partner_state_out)| 1     |
-partner2/read_en_and0000(partner2/read_en_and00002:O)                    | NONE(partner2/read_en)          | 1     |
-partner2/read_en_and0001(partner2/read_en_and00011:O)                    | NONE(partner2/read_en)          | 1     |
-partner2/write_en_and0000(partner2/write_en_and00001:O)                  | NONE(partner2/write_en)         | 1     |
-partner2/write_en_and0001(partner2/write_en_and0001_f5:O)                | NONE(partner2/write_en)         | 1     |
--------------------------------------------------------------------------+---------------------------------+-------+
+No asynchronous control signals found in this design
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 3.407ns (Maximum Frequency: 293.513MHz)
-   Minimum input arrival time before clock: 3.213ns
-   Maximum output required time after clock: 6.971ns
-   Maximum combinational path delay: 6.002ns
+   Minimum period: 3.347ns (Maximum Frequency: 298.775MHz)
+   Minimum input arrival time before clock: 3.516ns
+   Maximum output required time after clock: 6.773ns
+   Maximum combinational path delay: 5.900ns
 
 Timing Detail:
 --------------
@@ -464,53 +417,89 @@ Delay:               4.792ns (Levels of Logic = 22)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'SlowClk'
-  Clock period: 3.407ns (frequency: 293.513MHz)
-  Total number of paths / destination ports: 16 / 4
+  Clock period: 3.347ns (frequency: 298.775MHz)
+  Total number of paths / destination ports: 48 / 32
 -------------------------------------------------------------------------
-Delay:               3.407ns (Levels of Logic = 2)
-  Source:            partner2/write_en (FF)
-  Destination:       partner2/read_en (FF)
+Delay:               3.347ns (Levels of Logic = 1)
+  Source:            partner2/read_en (FF)
+  Destination:       partner2/Rcount_1 (FF)
   Source Clock:      SlowClk rising
   Destination Clock: SlowClk rising
 
-  Data Path: partner2/write_en to partner2/read_en
+  Data Path: partner2/read_en to partner2/Rcount_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCPE:C->Q           15   0.591   1.160  partner2/write_en (partner2/write_en)
-     LUT3:I0->O            1   0.648   0.000  partner2/read_en_not0001_F (N50)
-     MUXF5:I0->O           1   0.276   0.420  partner2/read_en_not0001 (partner2/read_en_not0001)
-     FDCPE:CE                  0.312          partner2/read_en
+     FDRSE:C->Q            5   0.591   0.713  partner2/read_en (partner2/read_en)
+     LUT2:I1->O            3   0.643   0.531  partner2/Rcount_and0000_inv1 (partner2/Rcount_and0000_inv)
+     FDR:R                     0.869          partner2/Rbuffer
     ----------------------------------------
-    Total                      3.407ns (1.827ns logic, 1.580ns route)
-                                       (53.6% logic, 46.4% route)
+    Total                      3.347ns (2.103ns logic, 1.244ns route)
+                                       (62.8% logic, 37.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'SlowClk'
-  Total number of paths / destination ports: 4 / 4
+  Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              3.213ns (Levels of Logic = 3)
-  Source:            datalink2 (PAD)
-  Destination:       partner2/read_en (FF)
+Offset:              3.516ns (Levels of Logic = 2)
+  Source:            switch<0> (PAD)
+  Destination:       partner2/write_en (FF)
   Destination Clock: SlowClk rising
 
-  Data Path: datalink2 to partner2/read_en
+  Data Path: switch<0> to partner2/write_en
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IOBUF:IO->O           5   0.849   0.713  datalink2_IOBUF (led_5_OBUF)
-     LUT3:I1->O            1   0.643   0.000  partner2/read_en_not0001_F (N50)
-     MUXF5:I0->O           1   0.276   0.420  partner2/read_en_not0001 (partner2/read_en_not0001)
-     FDCPE:CE                  0.312          partner2/read_en
+     IBUF:I->O             4   0.849   0.730  switch_0_IBUF (switch_0_IBUF)
+     LUT4:I0->O            1   0.648   0.420  partner2/write_en_and00011 (partner2/write_en_not0001_inv)
+     FDRSE:S                   0.869          partner2/write_en
     ----------------------------------------
-    Total                      3.213ns (2.080ns logic, 1.133ns route)
-                                       (64.7% logic, 35.3% route)
+    Total                      3.516ns (2.366ns logic, 1.150ns route)
+                                       (67.3% logic, 32.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'partner2/write_en'
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Offset:              1.688ns (Levels of Logic = 1)
+  Source:            switch<0> (PAD)
+  Destination:       partner2/my_state_out (FF)
+  Destination Clock: partner2/write_en rising
+
+  Data Path: switch<0> to partner2/my_state_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   0.849   0.587  switch_0_IBUF (switch_0_IBUF)
+     FD:D                      0.252          partner2/my_state_out
+    ----------------------------------------
+    Total                      1.688ns (1.101ns logic, 0.587ns route)
+                                       (65.2% logic, 34.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'partner1/write_en'
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Offset:              1.688ns (Levels of Logic = 1)
+  Source:            switch<7> (PAD)
+  Destination:       partner1/my_state_out (FF)
+  Destination Clock: partner1/write_en rising
+
+  Data Path: switch<7> to partner1/my_state_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             4   0.849   0.587  switch_7_IBUF (switch_7_IBUF)
+     FD:D                      0.252          partner1/my_state_out
+    ----------------------------------------
+    Total                      1.688ns (1.101ns logic, 0.587ns route)
+                                       (65.2% logic, 34.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'SlowClk'
-  Total number of paths / destination ports: 2 / 2
+  Total number of paths / destination ports: 4 / 2
 -------------------------------------------------------------------------
-Offset:              6.971ns (Levels of Logic = 2)
+Offset:              6.773ns (Levels of Logic = 2)
   Source:            partner1/write_en (FF)
   Destination:       datalink1 (PAD)
   Source Clock:      SlowClk rising
@@ -519,12 +508,12 @@ Offset:              6.971ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCPE:C->Q           15   0.591   1.017  partner1/write_en (partner1/write_en)
-     INV:I->O              1   0.648   0.420  partner1/write_en_inv1_INV_0 (partner1/write_en_inv)
+     FDRSE:C->Q            7   0.591   0.708  partner1/write_en (partner1/write_en)
+     INV:I->O              3   0.648   0.531  partner1/write_en_inv1_INV_0 (partner1/write_en_inv)
      IOBUF:T->IO               4.295          datalink1_IOBUF (datalink1)
     ----------------------------------------
-    Total                      6.971ns (5.534ns logic, 1.437ns route)
-                                       (79.4% logic, 20.6% route)
+    Total                      6.773ns (5.534ns logic, 1.239ns route)
+                                       (81.7% logic, 18.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'partner1/write_en'
@@ -539,7 +528,7 @@ Offset:              5.531ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCP:C->Q             1   0.591   0.420  partner1/my_state_out_1 (partner1/my_state_out_1)
+     FD:C->Q               1   0.591   0.420  partner1/my_state_out_1 (partner1/my_state_out_1)
      OBUF:I->O                 4.520          led_7_OBUF (led<7>)
     ----------------------------------------
     Total                      5.531ns (5.111ns logic, 0.420ns route)
@@ -558,7 +547,7 @@ Offset:              5.531ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCP_1:C->Q           1   0.591   0.420  partner2/partner_state_out (partner2/partner_state_out)
+     FD_1:C->Q             1   0.591   0.420  partner2/partner_state_out (partner2/partner_state_out)
      OBUF:I->O                 4.520          led_6_OBUF (led<6>)
     ----------------------------------------
     Total                      5.531ns (5.111ns logic, 0.420ns route)
@@ -568,7 +557,7 @@ Offset:              5.531ns (Levels of Logic = 1)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
-Offset:              6.145ns (Levels of Logic = 1)
+Offset:              6.213ns (Levels of Logic = 1)
   Source:            SlowClk (FF)
   Destination:       led<4> (PAD)
   Source Clock:      clk rising 0.3X
@@ -577,11 +566,11 @@ Offset:              6.145ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             16   0.591   1.034  SlowClk (SlowClk)
+     FDE:C->Q             20   0.591   1.102  SlowClk (SlowClk)
      OBUF:I->O                 4.520          led_4_OBUF (led<4>)
     ----------------------------------------
-    Total                      6.145ns (5.111ns logic, 1.034ns route)
-                                       (83.2% logic, 16.8% route)
+    Total                      6.213ns (5.111ns logic, 1.102ns route)
+                                       (82.3% logic, 17.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'partner1/read_en'
@@ -596,7 +585,7 @@ Offset:              5.531ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCP_1:C->Q           1   0.591   0.420  partner1/partner_state_out (partner1/partner_state_out)
+     FD_1:C->Q             1   0.591   0.420  partner1/partner_state_out (partner1/partner_state_out)
      OBUF:I->O                 4.520          led_1_OBUF (led<1>)
     ----------------------------------------
     Total                      5.531ns (5.111ns logic, 0.420ns route)
@@ -615,7 +604,7 @@ Offset:              5.531ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCP:C->Q             1   0.591   0.420  partner2/my_state_out_1 (partner2/my_state_out_1)
+     FD:C->Q               1   0.591   0.420  partner2/my_state_out_1 (partner2/my_state_out_1)
      OBUF:I->O                 4.520          led_0_OBUF (led<0>)
     ----------------------------------------
     Total                      5.531ns (5.111ns logic, 0.420ns route)
@@ -625,7 +614,7 @@ Offset:              5.531ns (Levels of Logic = 1)
 Timing constraint: Default path analysis
   Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
-Delay:               6.002ns (Levels of Logic = 2)
+Delay:               5.900ns (Levels of Logic = 2)
   Source:            datalink2 (PAD)
   Destination:       led<5> (PAD)
 
@@ -633,23 +622,23 @@ Delay:               6.002ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IOBUF:IO->O           5   0.849   0.633  datalink2_IOBUF (led_5_OBUF)
+     IOBUF:IO->O           3   0.849   0.531  datalink2_IOBUF (led_5_OBUF)
      OBUF:I->O                 4.520          led_5_OBUF (led<5>)
     ----------------------------------------
-    Total                      6.002ns (5.369ns logic, 0.633ns route)
-                                       (89.5% logic, 10.5% route)
+    Total                      5.900ns (5.369ns logic, 0.531ns route)
+                                       (91.0% logic, 9.0% route)
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.06 secs
+Total CPU time to Xst completion: 5.00 secs
  
 --> 
 
-Total memory usage is 4551956 kilobytes
+Total memory usage is 4551848 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    7 (   0 filtered)
-Number of infos    :    3 (   0 filtered)
+Number of warnings :    5 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
 
