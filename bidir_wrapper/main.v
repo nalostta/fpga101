@@ -21,7 +21,7 @@
 //`define _testbench
 
 `ifdef _testbench
-
+//--------------------------------------------------------------------------------
 `define data_in1	data_in1
 `define data_in2	data_in2
 `define data_out1	data_out1
@@ -84,11 +84,10 @@ output[7:0] led;
 input[7:0]	switch;
 
 assign led[2]	=	1'b0;
-//assign led[3]	=	1'b0;
-assign led[5]	=	1'b0;
+//assign led[5]	=	1'b0;
 //
 `endif
-
+//--------------------------------------------------------------------------------
 
 wire clk_8mhz,Locked;
 reg[24:0] divider=25'b0;
@@ -109,9 +108,7 @@ bidir_wrapper3 partner1(
 		.my_state_in(`data_in1),
 		.my_state_out(`data_out1),
 		.partner_state_out(`other2),
-		.data_link(`data_io1),
-		.write_en(write_en1),
-		.read_en(read_en1)
+		.data_link(`data_io1)
     );
 
 bidir_wrapper3 partner2(
@@ -120,13 +117,12 @@ bidir_wrapper3 partner2(
 		.my_state_in(`data_in2),
 		.my_state_out(`data_out2),
 		.partner_state_out(`other1),
-		.data_link(`data_io2),
-		.write_en(write_en2), //what happens to this redundant port?
-		.read_en(read_en2)
+		.data_link(`data_io2)
     );
 	 
 wire[24:0] divider_next;
 assign divider_next=divider+1'b1;
+assign led[5] = datalink2;
 assign led[4] = SlowClk;
 assign led[3] = datalink1;
 

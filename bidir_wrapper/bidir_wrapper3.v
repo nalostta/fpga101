@@ -25,9 +25,7 @@ module bidir_wrapper3(
 		my_state_in,
 		my_state_out,
 		partner_state_out,
-		data_link,
-		write_en,
-		read_en
+		data_link
     );
 
 /*
@@ -52,7 +50,7 @@ Modules :
 input clk,Locked,my_state_in;
 output my_state_out,partner_state_out;
 inout data_link;
-output write_en,read_en;
+//output write_en,read_en;
 
 //resources
 wire data_read;
@@ -69,7 +67,7 @@ assign data_read	=	data_link;
 assign data_link	=	(write_en)?	1'b0:1'bz;
 
 //---------------------write control block--------------------------
-always @(posedge clk/* or posedge Locked*/)begin
+always @(posedge clk or posedge Locked)begin
 	if(Locked)begin
 		if((!write_en)&&(!read_en)&&(my_state_in!=my_state_out))begin
 			write_en<=1'b1;
@@ -85,7 +83,7 @@ end
 //------------------------------------------------------------------
 
 //------------------------write shift block-------------------------
-always @(posedge clk/* or posedge Locked*/)begin 
+always @(posedge clk or posedge Locked)begin 
 	if(Locked)begin
 		if(write_en)begin
 			Wcount<=Wcount+1'b1;
