@@ -122,13 +122,13 @@ bidir_wrapper3 partner2(
 	 
 wire[24:0] divider_next;
 assign divider_next=divider+1'b1;
-assign led[5] = datalink2;
-assign led[4] = SlowClk;
-assign led[3] = datalink1;
+assign led[5] = 1'b0;
+assign led[4] = 1'b0;
+assign led[3] = 1'b0;
 
 always @(posedge clk_8mhz)begin
 	divider<=divider_next;
-	if(divider[21:0]==22'b1)begin
+	if(divider[0]==1'b1)begin
 		SlowClk<=~SlowClk;
 	end
 end

@@ -10,7 +10,7 @@ Total CPU time to Xst completion: 0.13 secs
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.13 secs
  
 --> Reading design: main.prj
 
@@ -236,6 +236,27 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:2677 - Node <divider_1> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_2> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_3> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_4> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_6> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_7> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_8> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_9> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_10> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_11> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_12> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_13> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_14> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_15> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_16> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_17> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_18> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_19> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_20> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <divider_21> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <divider_22> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <divider_23> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <divider_24> of sequential type is unconnected in block <main>.
@@ -244,7 +265,7 @@ Optimizing unit <main> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 3.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 2.
 FlipFlop partner1/my_state_out has been replicated 1 time(s) to handle iob=true attribute.
 FlipFlop partner2/my_state_out has been replicated 1 time(s) to handle iob=true attribute.
 
@@ -254,8 +275,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 47
- Flip-Flops                                            : 47
+# Registers                                            : 26
+ Flip-Flops                                            : 26
 
 =========================================================================
 
@@ -284,18 +305,15 @@ Design Statistics
 # IOs                              : 20
 
 Cell Usage :
-# BELS                             : 104
+# BELS                             : 28
 #      GND                         : 1
 #      INV                         : 10
-#      LUT1                        : 21
-#      LUT2                        : 9
+#      LUT2                        : 8
 #      LUT3                        : 6
-#      LUT4                        : 7
-#      MUXCY                       : 27
-#      VCC                         : 1
-#      XORCY                       : 22
-# FlipFlops/Latches                : 47
-#      FD                          : 26
+#      LUT4                        : 2
+#      XORCY                       : 1
+# FlipFlops/Latches                : 26
+#      FD                          : 5
 #      FD_1                        : 2
 #      FDE                         : 3
 #      FDR                         : 12
@@ -316,9 +334,9 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       26  out of    704     3%  
- Number of Slice Flip Flops:             43  out of   1408     3%  
- Number of 4 input LUTs:                 53  out of   1408     3%  
+ Number of Slices:                       13  out of    704     1%  
+ Number of Slice Flip Flops:             22  out of   1408     1%  
+ Number of 4 input LUTs:                 26  out of   1408     1%  
  Number of IOs:                          20
  Number of bonded IOBs:                  14  out of    108    12%  
     IOB Flip Flops:                       4
@@ -346,7 +364,7 @@ Clock Information:
 -----------------------------------+---------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)           | Load  |
 -----------------------------------+---------------------------------+-------+
-clk                                | _8MhzClk/DCM_SP_INST:CLKFX      | 23    |
+clk                                | _8MhzClk/DCM_SP_INST:CLKFX      | 2     |
 SlowClk                            | NONE(partner2/Rcount_1)         | 18    |
 partner2/read_en                   | NONE(partner2/partner_state_out)| 1     |
 partner2/write_en                  | NONE(partner2/my_state_out)     | 2     |
@@ -366,7 +384,7 @@ Speed Grade: -4
    Minimum period: 3.347ns (Maximum Frequency: 298.775MHz)
    Minimum input arrival time before clock: 3.516ns
    Maximum output required time after clock: 6.773ns
-   Maximum combinational path delay: 5.900ns
+   Maximum combinational path delay: No path found
 
 Timing Detail:
 --------------
@@ -374,46 +392,25 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 1.533ns (frequency: 652.128MHz)
-  Total number of paths / destination ports: 276 / 24
+  Clock period: 0.959ns (frequency: 1043.057MHz)
+  Total number of paths / destination ports: 3 / 3
 -------------------------------------------------------------------------
-Delay:               4.792ns (Levels of Logic = 22)
-  Source:            divider_1 (FF)
-  Destination:       divider_21 (FF)
+Delay:               2.996ns (Levels of Logic = 1)
+  Source:            SlowClk (FF)
+  Destination:       SlowClk (FF)
   Source Clock:      clk rising 0.3X
   Destination Clock: clk rising 0.3X
 
-  Data Path: divider_1 to divider_21
+  Data Path: SlowClk to SlowClk
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               2   0.591   0.590  divider_1 (divider_1)
-     LUT1:I0->O            1   0.648   0.000  Mcount_divider_cy<1>_rt (Mcount_divider_cy<1>_rt)
-     MUXCY:S->O            1   0.632   0.000  Mcount_divider_cy<1> (Mcount_divider_cy<1>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<2> (Mcount_divider_cy<2>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<3> (Mcount_divider_cy<3>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<4> (Mcount_divider_cy<4>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<5> (Mcount_divider_cy<5>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<6> (Mcount_divider_cy<6>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<7> (Mcount_divider_cy<7>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<8> (Mcount_divider_cy<8>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<9> (Mcount_divider_cy<9>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<10> (Mcount_divider_cy<10>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<11> (Mcount_divider_cy<11>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<12> (Mcount_divider_cy<12>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<13> (Mcount_divider_cy<13>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<14> (Mcount_divider_cy<14>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<15> (Mcount_divider_cy<15>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<16> (Mcount_divider_cy<16>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<17> (Mcount_divider_cy<17>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<18> (Mcount_divider_cy<18>)
-     MUXCY:CI->O           1   0.065   0.000  Mcount_divider_cy<19> (Mcount_divider_cy<19>)
-     MUXCY:CI->O           0   0.065   0.000  Mcount_divider_cy<20> (Mcount_divider_cy<20>)
-     XORCY:CI->O           1   0.844   0.000  Mcount_divider_xor<21> (Result<21>)
-     FD:D                      0.252          divider_21
+     FDE:C->Q             19   0.591   1.085  SlowClk (SlowClk)
+     INV:I->O              1   0.648   0.420  SlowClk_not00011_INV_0 (SlowClk_not0001)
+     FDE:D                     0.252          SlowClk
     ----------------------------------------
-    Total                      4.792ns (4.202ns logic, 0.590ns route)
-                                       (87.7% logic, 12.3% route)
+    Total                      2.996ns (1.491ns logic, 1.505ns route)
+                                       (49.8% logic, 50.2% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'SlowClk'
@@ -554,25 +551,6 @@ Offset:              5.531ns (Levels of Logic = 1)
                                        (92.4% logic, 7.6% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              6.213ns (Levels of Logic = 1)
-  Source:            SlowClk (FF)
-  Destination:       led<4> (PAD)
-  Source Clock:      clk rising 0.3X
-
-  Data Path: SlowClk to led<4>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q             20   0.591   1.102  SlowClk (SlowClk)
-     OBUF:I->O                 4.520          led_4_OBUF (led<4>)
-    ----------------------------------------
-    Total                      6.213ns (5.111ns logic, 1.102ns route)
-                                       (82.3% logic, 17.7% route)
-
-=========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'partner1/read_en'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
@@ -611,34 +589,16 @@ Offset:              5.531ns (Levels of Logic = 1)
                                        (92.4% logic, 7.6% route)
 
 =========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 2 / 2
--------------------------------------------------------------------------
-Delay:               5.900ns (Levels of Logic = 2)
-  Source:            datalink2 (PAD)
-  Destination:       led<5> (PAD)
-
-  Data Path: datalink2 to led<5>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O           3   0.849   0.531  datalink2_IOBUF (led_5_OBUF)
-     OBUF:I->O                 4.520          led_5_OBUF (led<5>)
-    ----------------------------------------
-    Total                      5.900ns (5.369ns logic, 0.531ns route)
-                                       (91.0% logic, 9.0% route)
-
-=========================================================================
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 4.86 secs
  
 --> 
 
-Total memory usage is 4551848 kilobytes
+Total memory usage is 4551956 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    5 (   0 filtered)
+Number of warnings :   26 (   0 filtered)
 Number of infos    :    1 (   0 filtered)
 

@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-NALOSTTA::  Wed Apr 03 13:06:13 2019
+NALOSTTA::  Wed Apr 03 13:11:04 2019
 
 par -w -intstyle ise -ol high -t 1 main_map.ncd main.ncd main.pcf 
 
@@ -41,7 +41,7 @@ Design Summary Report:
 
    Number of BUFGMUXs                        2 out of 24      8%
    Number of DCMs                            1 out of 2      50%
-   Number of Slices                         36 out of 704     5%
+   Number of Slices                         24 out of 704     3%
       Number of SLICEMs                      0 out of 352     0%
 
 
@@ -66,37 +66,36 @@ Total REAL time at the beginning of Placer: 1 secs
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:db10fa3) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:115239ac) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:db10fa3) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:115239ac) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:db10fa3) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:115239ac) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:129175a6) REAL time: 2 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:16e4c7d4) REAL time: 2 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:129175a6) REAL time: 2 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:16e4c7d4) REAL time: 2 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:129175a6) REAL time: 2 secs 
+Phase 6.36  Local Placement Optimization (Checksum:16e4c7d4) REAL time: 2 secs 
 
 Phase 7.8  Global Placement
-........
-..
-Phase 7.8  Global Placement (Checksum:48f4d0de) REAL time: 2 secs 
+....
+Phase 7.8  Global Placement (Checksum:2a2ca801) REAL time: 2 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:48f4d0de) REAL time: 2 secs 
+Phase 8.5  Local Placement Optimization (Checksum:2a2ca801) REAL time: 2 secs 
 
 Phase 9.18  Placement Optimization
-Phase 9.18  Placement Optimization (Checksum:48cb2b52) REAL time: 2 secs 
+Phase 9.18  Placement Optimization (Checksum:2cffc0c3) REAL time: 2 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:48cb2b52) REAL time: 2 secs 
+Phase 10.5  Local Placement Optimization (Checksum:2cffc0c3) REAL time: 2 secs 
 
 Total REAL time to Placer completion: 2 secs 
 Total CPU  time to Placer completion: 2 secs 
@@ -107,13 +106,13 @@ Writing design to file main.ncd
 Starting Router
 
 
-Phase  1  : 197 unrouted;      REAL time: 3 secs 
+Phase  1  : 132 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 164 unrouted;      REAL time: 3 secs 
+Phase  2  : 104 unrouted;      REAL time: 3 secs 
 
-Phase  3  : 29 unrouted;      REAL time: 3 secs 
+Phase  3  : 12 unrouted;      REAL time: 3 secs 
 
-Phase  4  : 29 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  4  : 12 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
 Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
@@ -126,14 +125,14 @@ Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 WARNING:Route:455 - CLK Net:partner1/write_en may have excessive skew because 
       0 CLK pins and 7 NON_CLK pins failed to route using a CLK template.
-WARNING:Route:455 - CLK Net:partner2/write_en may have excessive skew because 
-      0 CLK pins and 7 NON_CLK pins failed to route using a CLK template.
 WARNING:Route:455 - CLK Net:partner2/read_en may have excessive skew because 
       1 CLK pins and 4 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:partner2/write_en may have excessive skew because 
+      0 CLK pins and 7 NON_CLK pins failed to route using a CLK template.
 WARNING:Route:455 - CLK Net:partner1/read_en may have excessive skew because 
       1 CLK pins and 4 NON_CLK pins failed to route using a CLK template.
 WARNING:Route:455 - CLK Net:SlowClk may have excessive skew because 
-      5 CLK pins and 2 NON_CLK pins failed to route using a CLK template.
+      0 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
 
 Total REAL time to Router completion: 3 secs 
 Total CPU time to Router completion: 3 secs 
@@ -154,17 +153,17 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|            clk_8mhz | BUFGMUX_X2Y11| No   |   12 |  0.078     |  0.576      |
+|            clk_8mhz | BUFGMUX_X2Y11| No   |    2 |  0.000     |  0.507      |
 +---------------------+--------------+------+------+------------+-------------+
-|   partner1/write_en |         Local|      |    9 |  0.300     |  2.364      |
+|             SlowClk |         Local|      |   15 |  0.174     |  2.030      |
 +---------------------+--------------+------+------+------------+-------------+
-|   partner2/write_en |         Local|      |    9 |  0.068     |  2.170      |
+|   partner1/write_en |         Local|      |    9 |  0.006     |  1.821      |
 +---------------------+--------------+------+------+------------+-------------+
-|             SlowClk |         Local|      |   16 |  1.109     |  3.345      |
+|    partner2/read_en |         Local|      |    5 |  0.000     |  2.116      |
 +---------------------+--------------+------+------+------------+-------------+
-|    partner2/read_en |         Local|      |    5 |  0.000     |  1.317      |
+|   partner2/write_en |         Local|      |    9 |  0.119     |  2.103      |
 +---------------------+--------------+------+------+------------+-------------+
-|    partner1/read_en |         Local|      |    5 |  0.000     |  2.181      |
+|    partner1/read_en |         Local|      |    5 |  0.000     |  1.821      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -189,8 +188,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   NET "_8MhzClk/CLKIN_IBUFG" PERIOD = 40 ns | MINLOWPULSE |    30.000ns|    10.000ns|       0|           0
    HIGH 50%                                 |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  PERIOD analysis for net "_8MhzClk/CLKFX_B | SETUP       |   120.629ns|     4.371ns|       0|           0
-  UF" derived from  NET "_8MhzClk/CLKIN_IBU | HOLD        |     1.110ns|            |       0|           0
+  PERIOD analysis for net "_8MhzClk/CLKFX_B | SETUP       |   121.848ns|     3.152ns|       0|           0
+  UF" derived from  NET "_8MhzClk/CLKIN_IBU | HOLD        |     1.032ns|            |       0|           0
   FG" PERIOD = 40 ns HIGH 50%               |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
 
@@ -205,8 +204,8 @@ Derived Constraints for _8MhzClk/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|_8MhzClk/CLKIN_IBUFG           |     40.000ns|     10.000ns|      1.399ns|            0|            0|            0|          276|
-| _8MhzClk/CLKFX_BUF            |    125.000ns|      4.371ns|          N/A|            0|            0|          276|            0|
+|_8MhzClk/CLKIN_IBUFG           |     40.000ns|     10.000ns|      1.009ns|            0|            0|            0|            3|
+| _8MhzClk/CLKFX_BUF            |    125.000ns|      3.152ns|          N/A|            0|            0|            3|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -221,7 +220,7 @@ WARNING:Par:283 - There are 6 loadless signals in this design. This design will 
 Total REAL time to PAR completion: 3 secs 
 Total CPU time to PAR completion: 3 secs 
 
-Peak Memory Usage:  4451 MB
+Peak Memory Usage:  4450 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.
