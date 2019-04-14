@@ -18,7 +18,6 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`timescale 1ns / 1ps
 
 module bfm_ps2_data_out(
 	clk,
@@ -182,7 +181,7 @@ begin
 		begin
 			ps2_data_en = 1'b1;
 			ps2_clock_en = 1'b1;	
-			ps2_data_out = data_to_be_sent[0] ^ data_to_be_sent[1] ^ data_to_be_sent[2] ^ data_to_be_sent[3] ^ data_to_be_sent[4] ^ data_to_be_sent[5] ^ data_to_be_sent[6] ^ data_to_be_sent[7] ^ 1'b1;; 
+			ps2_data_out = data_to_be_sent[0] ^ data_to_be_sent[1] ^ data_to_be_sent[2] ^ data_to_be_sent[3] ^ data_to_be_sent[4] ^ data_to_be_sent[5] ^ data_to_be_sent[6] ^ data_to_be_sent[7] ^ 1'b1;
 			if (negedge_ps2_clk_sig) next_state = STOP;
 			else next_state = PARITY;
 		end

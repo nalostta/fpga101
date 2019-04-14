@@ -3,7 +3,8 @@ Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
--n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf
+-n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
+constraint_led.ucf -ucf constraints.ucf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -39,12 +40,32 @@ Data Sheet report:
 -----------------
 All values displayed in nanoseconds (ns)
 
+Setup/Hold to clock datalink<0>
+------------+------------+------------+------------------+--------+
+            |Max Setup to|Max Hold to |                  | Clock  |
+Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
+------------+------------+------------+------------------+--------+
+datalink<1> |    1.218(F)|    0.404(F)|datalink_0_IBUF   |   0.000|
+switch<0>   |   -0.050(F)|    2.288(F)|datalink_0_IBUF   |   0.000|
+switch<1>   |    1.539(F)|    1.665(F)|datalink_0_IBUF   |   0.000|
+switch<7>   |   -0.343(F)|    2.299(F)|datalink_0_IBUF   |   0.000|
+------------+------------+------------+------------------+--------+
+
 Clock clk to Pad
 ------------+------------+------------------+--------+
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-op          |    7.679(R)|clk_BUFGP         |   0.000|
+datalink<2> |    7.580(R)|CLK16             |   0.000|
+datalink<3> |    7.733(R)|CLK16             |   0.000|
+------------+------------+------------------+--------+
+
+Clock datalink<0> to Pad
+------------+------------+------------------+--------+
+            | clk (edge) |                  | Clock  |
+Destination |   to PAD   |Internal Clock(s) | Phase  |
+------------+------------+------------------+--------+
+led<0>      |   10.081(F)|datalink_0_IBUF   |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -52,18 +73,27 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    3.859|         |         |         |
+clk            |    3.844|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock datalink<0>
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |         |         |    2.199|         |
+datalink<0>    |         |         |    2.268|    2.268|
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Fri Apr 12 19:04:17 2019 
+Analysis completed Fri Apr 12 22:28:10 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 4507 MB
+Peak Memory Usage: 4523 MB
 
 
 

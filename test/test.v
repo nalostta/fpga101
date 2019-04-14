@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    15:49:00 03/27/2019 
+// Create Date:    19:04:39 04/12/2019 
 // Design Name: 
 // Module Name:    test 
 // Project Name: 
@@ -21,20 +21,21 @@
 module test(
     );
 
-reg clk_in,inp;
-wire data_io;
+reg clk,reset;
+wire op;
 
 main DUT(
-		.switch(inp),
-		.clk(clk_in),
-		.led(),
-		.datalink1(data_io),
-		.datalink2(data_io)
+		.clk(clk),
+		.reset(reset),
+		.op(op)
     );
 
-always #20 clk_in<=~clk_in;
+always #1 clk=~clk;
 
 initial begin
-	clk_in<=1'b0;
+	reset = 1'b0;
+	#10 reset = 1'b1;
+	clk	=	1'b1;
+	$monitor("%d",op);
 end
 endmodule
