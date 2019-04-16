@@ -104,13 +104,13 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling verilog file "PS2_data_out.v" in library work
 Compiling verilog file "PS2_data_in.v" in library work
-Module <bfm_ps2_data_out> compiled
 Compiling verilog file "CLK16Mhz.v" in library work
 Module <ps2_data_in> compiled
-Compiling verilog file "main.v" in library work
+Compiling verilog file "DataOutModule1.v" in library work
 Module <CLK16Mhz> compiled
+Compiling verilog file "main.v" in library work
+Module <DataOutModule1> compiled
 Module <main> compiled
 No errors in compilation
 Analysis of file <"main.prj"> succeeded.
@@ -121,34 +121,11 @@ Analysis of file <"main.prj"> succeeded.
 =========================================================================
 Analyzing hierarchy for module <main> in library <work>.
 
-Analyzing hierarchy for module <ps2_data_in> in library <work> with parameters.
-	DATA0 = "0001"
-	DATA1 = "0010"
-	DATA2 = "0011"
-	DATA3 = "0100"
-	DATA4 = "0101"
-	DATA5 = "0110"
-	DATA6 = "0111"
-	DATA7 = "1000"
-	IDLE = "0000"
-	PARITY = "1001"
-	RX_COMPLETE = "1010"
-
 Analyzing hierarchy for module <CLK16Mhz> in library <work>.
 
-Analyzing hierarchy for module <bfm_ps2_data_out> in library <work> with parameters.
-	DATA0 = "0010"
-	DATA1 = "0011"
-	DATA2 = "0100"
-	DATA3 = "0101"
-	DATA4 = "0110"
-	DATA5 = "0111"
-	DATA6 = "1000"
-	DATA7 = "1001"
-	IDLE = "0000"
-	PARITY = "1010"
-	START = "0001"
-	STOP = "1011"
+Analyzing hierarchy for module <DataOutModule1> in library <work>.
+
+Analyzing hierarchy for module <ps2_data_in> in library <work>.
 
 
 =========================================================================
@@ -156,20 +133,6 @@ Analyzing hierarchy for module <bfm_ps2_data_out> in library <work> with paramet
 =========================================================================
 Analyzing top module <main>.
 Module <main> is correct for synthesis.
- 
-Analyzing module <ps2_data_in> in library <work>.
-	DATA0 = 4'b0001
-	DATA1 = 4'b0010
-	DATA2 = 4'b0011
-	DATA3 = 4'b0100
-	DATA4 = 4'b0101
-	DATA5 = 4'b0110
-	DATA6 = 4'b0111
-	DATA7 = 4'b1000
-	IDLE = 4'b0000
-	PARITY = 4'b1001
-	RX_COMPLETE = 4'b1010
-Module <ps2_data_in> is correct for synthesis.
  
 Analyzing module <CLK16Mhz> in library <work>.
 Module <CLK16Mhz> is correct for synthesis.
@@ -193,22 +156,11 @@ Module <CLK16Mhz> is correct for synthesis.
     Set user-defined property "FACTORY_JF =  C080" for instance <DCM_SP_INST> in unit <CLK16Mhz>.
     Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_SP_INST> in unit <CLK16Mhz>.
     Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_SP_INST> in unit <CLK16Mhz>.
-Analyzing module <bfm_ps2_data_out> in library <work>.
-	DATA0 = 4'b0010
-	DATA1 = 4'b0011
-	DATA2 = 4'b0100
-	DATA3 = 4'b0101
-	DATA4 = 4'b0110
-	DATA5 = 4'b0111
-	DATA6 = 4'b1000
-	DATA7 = 4'b1001
-	IDLE = 4'b0000
-	PARITY = 4'b1010
-	START = 4'b0001
-	STOP = 4'b1011
-WARNING:Xst:905 - "PS2_data_out.v" line 93: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <data_to_be_sent>
-Module <bfm_ps2_data_out> is correct for synthesis.
+Analyzing module <DataOutModule1> in library <work>.
+Module <DataOutModule1> is correct for synthesis.
+ 
+Analyzing module <ps2_data_in> in library <work>.
+Module <ps2_data_in> is correct for synthesis.
  
 
 =========================================================================
@@ -216,54 +168,43 @@ Module <bfm_ps2_data_out> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <i> in unit <DataOutModule1> has a constant value of 111 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <i> in unit <ps2_data_in> has a constant value of 0111 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <i> in unit <ps2_data_in> has a constant value of 1000 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <DataOutModule1>.
+    Related source file is "DataOutModule1.v".
+WARNING:Xst:647 - Input <transmit> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <txmatch<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <txdisable> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <shiftmatch<1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <shiftmatch<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <dout> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <detect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit tristate buffer for signal <ps2data>.
+    Found 1-bit tristate buffer for signal <ps2clk>.
+    Found 14-bit adder for signal <$add0000> created at line 55.
+    Found 8-bit register for signal <buffer>.
+    Found 14-bit register for signal <ClkDivider>.
+    Found 10-bit up counter for signal <disablecount>.
+    Found 1-bit register for signal <en>.
+    Found 1-bit register for signal <txmatch<1>>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  24 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Tristate(s).
+Unit <DataOutModule1> synthesized.
+
 
 Synthesizing Unit <ps2_data_in>.
     Related source file is "PS2_data_in.v".
-WARNING:Xst:646 - Signal <Rx_Parity> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <Rx_Buffer> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 4-bit register for signal <state>.
-    Found 1-bit register for signal <rx_complete>.
-    Found 4-bit register for signal <next_state>.
+WARNING:Xst:1780 - Signal <ClkDivider> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 8-bit register for signal <data>.
+    Found 8-bit register for signal <buffer>.
     Summary:
-	inferred   9 D-type flip-flop(s).
+	inferred  16 D-type flip-flop(s).
 Unit <ps2_data_in> synthesized.
-
-
-Synthesizing Unit <bfm_ps2_data_out>.
-    Related source file is "PS2_data_out.v".
-WARNING:Xst:646 - Signal <ps2_data_in> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <ps2_clock_in> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found finite state machine <FSM_0> for signal <curr_state>.
-    -----------------------------------------------------------------------
-    | States             | 12                                             |
-    | Transitions        | 24                                             |
-    | Inputs             | 2                                              |
-    | Outputs            | 12                                             |
-    | Clock              | clk                       (rising_edge)        |
-    | Reset              | reset                     (negative)           |
-    | Reset type         | asynchronous                                   |
-    | Reset State        | 0000                                           |
-    | Encoding           | automatic                                      |
-    | Implementation     | LUT                                            |
-    -----------------------------------------------------------------------
-WARNING:Xst:737 - Found 1-bit latch for signal <ps2_data_out>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <ps2_clock_en>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <ps2_data_en>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 1-bit tristate buffer for signal <ps2_data>.
-    Found 1-bit tristate buffer for signal <ps2_clock>.
-    Found 16-bit up counter for signal <clk_counter>.
-    Found 1-bit register for signal <ps2_clk_sig_q>.
-    Found 1-bit register for signal <start_xmit_temp>.
-    Found 1-bit register for signal <start_xmit_temp_q>.
-    Summary:
-	inferred   1 Finite State Machine(s).
-	inferred   1 Counter(s).
-	inferred   3 D-type flip-flop(s).
-	inferred   2 Tristate(s).
-Unit <bfm_ps2_data_out> synthesized.
 
 
 Synthesizing Unit <CLK16Mhz>.
@@ -273,8 +214,6 @@ Unit <CLK16Mhz> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:647 - Input <switch<5:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <CLK0_OUT> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <main> synthesized.
 
 
@@ -282,13 +221,10 @@ Unit <main> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Counters                                             : 1
- 16-bit up counter                                     : 1
-# Registers                                            : 9
- 1-bit register                                        : 8
- 4-bit register                                        : 1
-# Latches                                              : 3
- 1-bit latch                                           : 3
+# Adders/Subtractors                                   : 1
+ 14-bit adder                                          : 1
+# Registers                                            : 40
+ 1-bit register                                        : 40
 # Tristates                                            : 2
  1-bit tristate buffer                                 : 2
 
@@ -298,52 +234,77 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <given_module/curr_state/FSM> on signal <curr_state[1:4]> with user encoding.
--------------------
- State | Encoding
--------------------
- 0000  | 0000
- 0001  | 0001
- 0010  | 0010
- 0011  | 0011
- 0100  | 0100
- 0101  | 0101
- 0110  | 0110
- 0111  | 0111
- 1000  | 1000
- 1001  | 1001
- 1010  | 1010
- 1011  | 1011
--------------------
+WARNING:Xst:1710 - FF/Latch <txmatch_1> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <en> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_9> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_0> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_1> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_4> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_2> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_3> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_5> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_6> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_7> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_13> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_10> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_12> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_11> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_8> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_7> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_6> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_3> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_5> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_4> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_0> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_2> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <ClkDivider_1> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 1
-# Counters                                             : 1
- 16-bit up counter                                     : 1
-# Registers                                            : 12
- Flip-Flops                                            : 12
-# Latches                                              : 3
- 1-bit latch                                           : 3
+# Adders/Subtractors                                   : 1
+ 14-bit adder                                          : 1
+# Registers                                            : 40
+ Flip-Flops                                            : 40
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1710 - FF/Latch <buffer_0> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_1> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_4> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_2> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_3> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_5> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_6> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <txmatch_1> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ClkDivider_9> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <buffer_7> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <en> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <ClkDivider_13> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_10> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_12> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_11> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_8> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_7> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_6> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_3> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_5> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_4> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_0> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_2> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_1> of sequential type is unconnected in block <DataOutModule1>.
 
 Optimizing unit <main> ...
-WARNING:Xst:1294 - Latch <given_module/ps2_clock_en> is equivalent to a wire in block <main>.
-WARNING:Xst:1294 - Latch <given_module/ps2_data_en> is equivalent to a wire in block <main>.
 
 Optimizing unit <ps2_data_in> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 5.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 2.
 
 Final Macro Processing ...
 
@@ -351,8 +312,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 32
- Flip-Flops                                            : 32
+# Registers                                            : 16
+ Flip-Flops                                            : 16
 
 =========================================================================
 
@@ -378,34 +339,22 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 21
+# IOs                              : 22
 
 Cell Usage :
-# BELS                             : 88
+# BELS                             : 19
 #      GND                         : 1
-#      INV                         : 3
-#      LUT1                        : 15
-#      LUT2                        : 10
-#      LUT2_L                      : 1
-#      LUT3                        : 5
-#      LUT3_D                      : 1
-#      LUT4                        : 17
-#      LUT4_D                      : 1
-#      MUXCY                       : 15
-#      MUXF5                       : 2
+#      INV                         : 1
+#      LUT2                        : 16
 #      VCC                         : 1
-#      XORCY                       : 16
-# FlipFlops/Latches                : 33
-#      FDC                         : 22
-#      FDCE                        : 1
-#      FDCP                        : 4
-#      FDE_1                       : 1
-#      FDR_1                       : 4
-#      LD                          : 1
+# FlipFlops/Latches                : 16
+#      FDCP                        : 8
+#      FDR_1                       : 8
 # Clock Buffers                    : 3
-#      BUFG                        : 3
-# IO Buffers                       : 17
-#      IBUF                        : 6
+#      BUFG                        : 2
+#      BUFGP                       : 1
+# IO Buffers                       : 12
+#      IBUF                        : 1
 #      IBUFG                       : 1
 #      OBUF                        : 8
 #      OBUFT                       : 2
@@ -418,12 +367,12 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       32  out of    704     4%  
- Number of Slice Flip Flops:             32  out of   1408     2%  
- Number of 4 input LUTs:                 53  out of   1408     3%  
- Number of IOs:                          21
- Number of bonded IOBs:                  17  out of    108    15%  
-    IOB Flip Flops:                       1
+ Number of Slices:                        9  out of    704     1%  
+ Number of Slice Flip Flops:              8  out of   1408     0%  
+ Number of 4 input LUTs:                 17  out of   1408     1%  
+ Number of IOs:                          22
+ Number of bonded IOBs:                  13  out of    108    12%  
+    IOB Flip Flops:                       8
  Number of GCLKs:                         3  out of     24    12%  
  Number of DCMs:                          1  out of      2    50%  
 
@@ -445,41 +394,43 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
-----------------------------------------------------+-----------------------------------+-------+
-Clock Signal                                        | Clock buffer(FF name)             | Load  |
-----------------------------------------------------+-----------------------------------+-------+
-clk                                                 | clkgen/DCM_SP_INST:CLKFX          | 27    |
-given_module/ps2_data_en(given_module/ps2_data_en:O)| NONE(*)(given_module/ps2_data_out)| 1     |
-datalink<0>                                         | IBUF+BUFG                         | 5     |
-----------------------------------------------------+-----------------------------------+-------+
-(*) This 1 clock signal(s) are generated by combinatorial logic,
-and XST is not able to identify which are the primary clock signals.
-Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
-INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+-----------------------------------+-------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)   | Load  |
+-----------------------------------+-------------------------+-------+
+datalink<2>                        | BUFGP                   | 8     |
+clk                                | clkgen/DCM_SP_INST:CLKFX| 8     |
+-----------------------------------+-------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
--------------------------------------------------------------------------------------------+---------------------------------+-------+
-Control Signal                                                                             | Buffer(FF name)                 | Load  |
--------------------------------------------------------------------------------------------+---------------------------------+-------+
-given_module/curr_state_FSM_Acst_FSM_inv(given_module/curr_state_FSM_Acst_FSM_inv1_INV_0:O)| NONE(given_module/clk_counter_0)| 23    |
-Receive1/state_0_and0000(Receive1/state_0_and00001:O)                                      | NONE(Receive1/state_0)          | 1     |
-Receive1/state_0_and0001(Receive1/state_0_and00011:O)                                      | NONE(Receive1/state_0)          | 1     |
-Receive1/state_1_and0000(Receive1/state_1_and00001:O)                                      | NONE(Receive1/state_1)          | 1     |
-Receive1/state_1_and0001(Receive1/state_1_and00011:O)                                      | NONE(Receive1/state_1)          | 1     |
-Receive1/state_2_and0000(Receive1/state_2_and00001:O)                                      | NONE(Receive1/state_2)          | 1     |
-Receive1/state_2_and0001(Receive1/state_2_and00011:O)                                      | NONE(Receive1/state_2)          | 1     |
-Receive1/state_3_and0000(Receive1/state_3_and00001:O)                                      | NONE(Receive1/state_3)          | 1     |
-Receive1/state_3_and0001(Receive1/state_3_and00011:O)                                      | NONE(Receive1/state_3)          | 1     |
--------------------------------------------------------------------------------------------+---------------------------------+-------+
+---------------------------------------------------+------------------------+-------+
+Control Signal                                     | Buffer(FF name)        | Load  |
+---------------------------------------------------+------------------------+-------+
+receive1/data_0_and0000(receive1/data_0_and00001:O)| NONE(receive1/data_0)  | 1     |
+receive1/data_0_and0001(receive1/data_0_and00011:O)| NONE(receive1/data_0)  | 1     |
+receive1/data_1_and0000(receive1/data_1_and00001:O)| NONE(receive1/data_1)  | 1     |
+receive1/data_1_and0001(receive1/data_1_and00011:O)| NONE(receive1/data_1)  | 1     |
+receive1/data_2_and0000(receive1/data_2_and00001:O)| NONE(receive1/data_2)  | 1     |
+receive1/data_2_and0001(receive1/data_2_and00011:O)| NONE(receive1/data_2)  | 1     |
+receive1/data_3_and0000(receive1/data_3_and00001:O)| NONE(receive1/data_3)  | 1     |
+receive1/data_3_and0001(receive1/data_3_and00011:O)| NONE(receive1/data_3)  | 1     |
+receive1/data_4_and0000(receive1/data_4_and00001:O)| NONE(receive1/data_4)  | 1     |
+receive1/data_4_and0001(receive1/data_4_and00011:O)| NONE(receive1/data_4)  | 1     |
+receive1/data_5_and0000(receive1/data_5_and00001:O)| NONE(receive1/data_5)  | 1     |
+receive1/data_5_and0001(receive1/data_5_and00011:O)| NONE(receive1/data_5)  | 1     |
+receive1/data_6_and0000(receive1/data_6_and00001:O)| NONE(receive1/data_6)  | 1     |
+receive1/data_6_and0001(receive1/data_6_and00011:O)| NONE(receive1/data_6)  | 1     |
+receive1/data_7_and0000(receive1/data_7_and00001:O)| NONE(receive1/data_7)  | 1     |
+receive1/data_7_and0001(receive1/data_7_and00011:O)| NONE(receive1/data_7)  | 1     |
+---------------------------------------------------+------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 2.800ns (Maximum Frequency: 357.143MHz)
-   Minimum input arrival time before clock: 4.768ns
-   Maximum output required time after clock: 8.004ns
+   Minimum period: 1.374ns (Maximum Frequency: 727.802MHz)
+   Minimum input arrival time before clock: 1.521ns
+   Maximum output required time after clock: 5.531ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -487,156 +438,75 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 2.800ns (frequency: 357.143MHz)
-  Total number of paths / destination ports: 166 / 23
+Timing constraint: Default period analysis for Clock 'datalink<2>'
+  Clock period: 1.374ns (frequency: 727.802MHz)
+  Total number of paths / destination ports: 7 / 7
 -------------------------------------------------------------------------
-Delay:               4.375ns (Levels of Logic = 16)
-  Source:            given_module/clk_counter_1 (FF)
-  Destination:       given_module/clk_counter_15 (FF)
-  Source Clock:      clk rising 0.6X
-  Destination Clock: clk rising 0.6X
+Delay:               1.374ns (Levels of Logic = 0)
+  Source:            receive1/buffer_1 (FF)
+  Destination:       receive1/buffer_0 (FF)
+  Source Clock:      datalink<2> falling
+  Destination Clock: datalink<2> falling
 
-  Data Path: given_module/clk_counter_1 to given_module/clk_counter_15
+  Data Path: receive1/buffer_1 to receive1/buffer_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              1   0.591   0.563  given_module/clk_counter_1 (given_module/clk_counter_1)
-     LUT1:I0->O            1   0.648   0.000  given_module/Mcount_clk_counter_cy<1>_rt (given_module/Mcount_clk_counter_cy<1>_rt)
-     MUXCY:S->O            1   0.632   0.000  given_module/Mcount_clk_counter_cy<1> (given_module/Mcount_clk_counter_cy<1>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<2> (given_module/Mcount_clk_counter_cy<2>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<3> (given_module/Mcount_clk_counter_cy<3>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<4> (given_module/Mcount_clk_counter_cy<4>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<5> (given_module/Mcount_clk_counter_cy<5>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<6> (given_module/Mcount_clk_counter_cy<6>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<7> (given_module/Mcount_clk_counter_cy<7>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<8> (given_module/Mcount_clk_counter_cy<8>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<9> (given_module/Mcount_clk_counter_cy<9>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<10> (given_module/Mcount_clk_counter_cy<10>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<11> (given_module/Mcount_clk_counter_cy<11>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<12> (given_module/Mcount_clk_counter_cy<12>)
-     MUXCY:CI->O           1   0.065   0.000  given_module/Mcount_clk_counter_cy<13> (given_module/Mcount_clk_counter_cy<13>)
-     MUXCY:CI->O           0   0.065   0.000  given_module/Mcount_clk_counter_cy<14> (given_module/Mcount_clk_counter_cy<14>)
-     XORCY:CI->O           1   0.844   0.000  given_module/Mcount_clk_counter_xor<15> (given_module/Result<15>)
-     FDC:D                     0.252          given_module/clk_counter_15
+     FDR_1:C->Q            3   0.591   0.531  receive1/buffer_1 (receive1/buffer_1)
+     FDR_1:D                   0.252          receive1/buffer_0
     ----------------------------------------
-    Total                      4.375ns (3.812ns logic, 0.563ns route)
-                                       (87.1% logic, 12.9% route)
+    Total                      1.374ns (0.843ns logic, 0.531ns route)
+                                       (61.4% logic, 38.6% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'datalink<0>'
-  Clock period: 2.081ns (frequency: 480.538MHz)
+Timing constraint: Default OFFSET IN BEFORE for Clock 'datalink<2>'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
-Delay:               2.081ns (Levels of Logic = 1)
-  Source:            Receive1/rx_complete (FF)
-  Destination:       Receive1/rx_complete (FF)
-  Source Clock:      datalink<0> falling
-  Destination Clock: datalink<0> falling
+Offset:              1.521ns (Levels of Logic = 1)
+  Source:            datalink<3> (PAD)
+  Destination:       receive1/buffer_7 (FF)
+  Destination Clock: datalink<2> falling
 
-  Data Path: Receive1/rx_complete to Receive1/rx_complete
+  Data Path: datalink<3> to receive1/buffer_7
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE_1:C->Q            2   0.591   0.590  Receive1/rx_complete (Receive1/rx_complete)
-     LUT4:I0->O            1   0.648   0.000  Receive1/rx_complete_mux0000 (Receive1/rx_complete_mux0000)
-     FDE_1:D                   0.252          Receive1/rx_complete
+     IBUF:I->O             1   0.849   0.420  datalink_3_IBUF (datalink_3_IBUF)
+     FDR_1:D                   0.252          receive1/buffer_7
     ----------------------------------------
-    Total                      2.081ns (1.491ns logic, 0.590ns route)
-                                       (71.6% logic, 28.4% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'datalink<0>'
-  Total number of paths / destination ports: 23 / 9
--------------------------------------------------------------------------
-Offset:              4.768ns (Levels of Logic = 4)
-  Source:            datalink<0> (PAD)
-  Destination:       Receive1/next_state_1 (FF)
-  Destination Clock: datalink<0> falling
-
-  Data Path: datalink<0> to Receive1/next_state_1
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             5   0.849   0.665  datalink_0_IBUF (datalink_0_IBUF1)
-     LUT3:I2->O            3   0.648   0.611  Receive1/next_state_mux0000<0>31 (Receive1/next_state_mux0000<0>_bdd1)
-     LUT4:I1->O            1   0.643   0.452  Receive1/next_state_mux0000<2>2_SW1 (N12)
-     LUT4:I2->O            1   0.648   0.000  Receive1/next_state_mux0000<2>2 (Receive1/next_state_mux0000<2>)
-     FDR_1:D                   0.252          Receive1/next_state_1
-    ----------------------------------------
-    Total                      4.768ns (3.040ns logic, 1.728ns route)
-                                       (63.8% logic, 36.2% route)
+    Total                      1.521ns (1.101ns logic, 0.420ns route)
+                                       (72.4% logic, 27.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 11 / 2
+  Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              8.004ns (Levels of Logic = 3)
-  Source:            given_module/curr_state_FSM_FFd1 (FF)
-  Destination:       datalink<3> (PAD)
+Offset:              5.531ns (Levels of Logic = 1)
+  Source:            receive1/data_7 (FF)
+  Destination:       led<7> (PAD)
   Source Clock:      clk rising 0.6X
 
-  Data Path: given_module/curr_state_FSM_FFd1 to datalink<3>
+  Data Path: receive1/data_7 to led<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              6   0.591   0.812  given_module/curr_state_FSM_FFd1 (given_module/curr_state_FSM_FFd1)
-     LUT3_D:I0->O          2   0.648   0.590  given_module/curr_state_FSM_FFd4-In5 (given_module/curr_state_FSM_FFd4-In5)
-     LUT4:I0->O            1   0.648   0.420  given_module/ps2_data_en_inv1 (given_module/ps2_data_en_inv)
-     OBUFT:T->O                4.295          datalink_3_OBUFT (datalink<3>)
+     FDCP:C->Q             1   0.591   0.420  receive1/data_7 (receive1/data_7)
+     OBUF:I->O                 4.520          led_7_OBUF (led<7>)
     ----------------------------------------
-    Total                      8.004ns (6.182ns logic, 1.822ns route)
-                                       (77.2% logic, 22.8% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'given_module/ps2_data_en'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              5.668ns (Levels of Logic = 1)
-  Source:            given_module/ps2_data_out (LATCH)
-  Destination:       datalink<3> (PAD)
-  Source Clock:      given_module/ps2_data_en falling
-
-  Data Path: given_module/ps2_data_out to datalink<3>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     LD:G->Q               1   0.728   0.420  given_module/ps2_data_out (given_module/ps2_data_out)
-     OBUFT:I->O                4.520          datalink_3_OBUFT (datalink<3>)
-    ----------------------------------------
-    Total                      5.668ns (5.248ns logic, 0.420ns route)
-                                       (92.6% logic, 7.4% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'datalink<0>'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              5.558ns (Levels of Logic = 1)
-  Source:            Receive1/rx_complete (FF)
-  Destination:       led<0> (PAD)
-  Source Clock:      datalink<0> falling
-
-  Data Path: Receive1/rx_complete to led<0>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE_1:C->Q            2   0.591   0.447  Receive1/rx_complete (Receive1/rx_complete)
-     OBUF:I->O                 4.520          led_0_OBUF (led<0>)
-    ----------------------------------------
-    Total                      5.558ns (5.111ns logic, 0.447ns route)
-                                       (92.0% logic, 8.0% route)
+    Total                      5.531ns (5.111ns logic, 0.420ns route)
+                                       (92.4% logic, 7.6% route)
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.35 secs
+Total CPU time to Xst completion: 5.12 secs
  
 --> 
 
-Total memory usage is 4551852 kilobytes
+Total memory usage is 4551900 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   12 (   0 filtered)
-Number of infos    :    4 (   0 filtered)
+Number of warnings :   56 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
 

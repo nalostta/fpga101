@@ -16,3 +16,5 @@
 -> design fsm-based 1st version of the actual model starting from
 	the prev stage.
 -> build on it adding other features.
+
+//MISC : test 1-bit vectors in sensitivity lists

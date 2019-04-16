@@ -1,4 +1,4 @@
-`timescale 1us / 1ns
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -20,7 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 module testbench(
     );
-
 /* 
 reset - S7
 rx_en - S1
@@ -30,33 +29,34 @@ ps2clk		-	DL0
 ps2data		-	DL1
 */
 
-reg clk_in,HoldData,rx_en,_PS2CLK,_PS2DATA;
-wire PS2CLK,PS2DATA;
-wire RX_complete;
-wire[3:0] state;
-
-assign PS2CLK = _PS2CLK;
-assign PS2DATA = _PS2DATA;
+reg clk_in,pushbtn;
+wire datalink,clocklink;
+reg[7:0] datain;
+wire[7:0] dataout;
+wire txmatch0,txmatch1,en;
 
 main DUT(
 		.clk(clk_in),
-		.switch({6'b0,rx_en,HoldData}),
-		.led({RX_complete}),
-		.datalink({PS2DATA,PS2CLK}),
-		.state(state)
+		.switch(datain),
+		.led(dataout),
+		.datalink({datalink,clocklink,datalink,clocklink}),
+		.pushbtn(pushbtn),
+		.en(en)
     );
 	
-always #1 clk_in = ~clk_in; 
+always #20 clk_in = ~clk_in; 
 
-always #50 _PS2CLK = ~_PS2CLK; 
-	
 initial begin
+pushbtn =	1'b0;
 clk_in = 1'b1;
-rx_en = 1'b1;
-HoldData = 1'b1;
-_PS2DATA = 1'b0;
-_PS2CLK = 1'b0;
-#10000 HoldData = 1'b0;
-//$monitor("%d",RX_complete);
+datain = 8'h0f;
+#1600 pushbtn =	1'b1;
+#1600 pushbtn =	1'b0;
+#18000000 
+datain = 8'b10011001;
+#1600 pushbtn =	1'b1;
+#1600 pushbtn =	1'b0;
+#18000000 
+$finish;
 end
 endmodule
