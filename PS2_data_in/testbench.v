@@ -29,34 +29,43 @@ ps2clk		-	DL0
 ps2data		-	DL1
 */
 
-reg clk_in,pushbtn;
-wire datalink,clocklink;
+reg clk_in;
+//wire datalink,clocklink;
 reg[7:0] datain;
 wire[7:0] dataout;
-wire txmatch0,txmatch1,en;
+wire txmatch0,txmatch1;
 
 main DUT(
 		.clk(clk_in),
 		.switch(datain),
-		.led(dataout),
-		.datalink({datalink,clocklink,datalink,clocklink}),
-		.pushbtn(pushbtn),
-		.en(en)
+		.led(dataout)//,
+		//.datalink({datalink,clocklink,datalink,clocklink})
     );
 	
 always #20 clk_in = ~clk_in; 
 
 initial begin
-pushbtn =	1'b0;
+	clk_in=1'b1;
+	datain = 8'h00;
+	#4000 datain = 8'h01;
+	#4000 datain = 8'h02;
+	#4000 datain = 8'h04;
+	#4000 datain = 8'h08;
+	#40000 $finish;
+end
+
+/*
+initial begin
+//pushbtn =	1'b0;
 clk_in = 1'b1;
 datain = 8'h0f;
-#1600 pushbtn =	1'b1;
-#1600 pushbtn =	1'b0;
+//#1600 pushbtn =	1'b1;
+//#1600 pushbtn =	1'b0;
 #18000000 
 datain = 8'b10011001;
-#1600 pushbtn =	1'b1;
-#1600 pushbtn =	1'b0;
+//#1600 pushbtn =	1'b1;
+//#1600 pushbtn =	1'b0;
 #18000000 
 $finish;
-end
+end*/
 endmodule

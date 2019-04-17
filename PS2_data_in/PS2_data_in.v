@@ -74,7 +74,7 @@ always @(negedge _ps2clk)begin
 		for(i=0;i<=6;i=i+1) buffer[i]<=buffer[i+1];
 		buffer[7]<=_ps2data;
 	end else begin
-		buffer[7:0]<=8'b0;
+		buffer[7:0]<=8'b1;
 	end
 end
 

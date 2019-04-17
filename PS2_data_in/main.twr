@@ -4,7 +4,8 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
 -n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
-constraint_led.ucf -ucf constraints.ucf -ucf constraint_clk.ucf
+constraint_led.ucf -ucf constraint_clk.ucf -ucf constraints.ucf -ucf
+constraint_pushbtn.ucf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -77,9 +78,135 @@ Timing constraint: PERIOD analysis for net "clkgen/CLKFX_BUF" derived from  NET
 and duty cycle corrected to HIGH 31.250 nS  
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
- 0 timing errors detected. (0 component switching limit errors)
+ 2 paths analyzed, 2 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
  Minimum period is   3.002ns.
+--------------------------------------------------------------------------------
+
+Paths for end point sender/debug (SLICE_X13Y15.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     59.568ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/debug (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      2.882ns (Levels of Logic = 1)
+  Clock Path Skew:      -0.050ns (0.200 - 0.250)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_0 to sender/debug
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X9Y15.YQ       Tcko                  0.580   sender/SentData<0>
+                                                       sender/SentData_0
+    SLICE_X8Y14.G4       net (fanout=1)        0.404   sender/SentData<0>
+    SLICE_X8Y14.Y        Tilo                  0.707   sender/SentData_0_not0001_inv
+                                                       sender/Mxor_SentData_0_xor0000_Result1
+    SLICE_X13Y15.CE      net (fanout=2)        0.880   sender/SentData_0_not0001_inv
+    SLICE_X13Y15.CLK     Tceck                 0.311   sender/debug
+                                                       sender/debug
+    -------------------------------------------------  ---------------------------
+    Total                                      2.882ns (1.598ns logic, 1.284ns route)
+                                                       (55.4% logic, 44.6% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/SentData_0 (SLICE_X9Y15.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (setup path):     59.576ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/SentData_0 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      2.924ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_0 to sender/SentData_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X9Y15.YQ       Tcko                  0.580   sender/SentData<0>
+                                                       sender/SentData_0
+    SLICE_X8Y14.G4       net (fanout=1)        0.404   sender/SentData<0>
+    SLICE_X8Y14.Y        Tilo                  0.707   sender/SentData_0_not0001_inv
+                                                       sender/Mxor_SentData_0_xor0000_Result1
+    SLICE_X9Y15.CE       net (fanout=2)        0.922   sender/SentData_0_not0001_inv
+    SLICE_X9Y15.CLK      Tceck                 0.311   sender/SentData<0>
+                                                       sender/SentData_0
+    -------------------------------------------------  ---------------------------
+    Total                                      2.924ns (1.598ns logic, 1.326ns route)
+                                                       (54.7% logic, 45.3% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: PERIOD analysis for net "clkgen/CLKFX_BUF" derived from
+ NET "clkgen/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ multiplied by 1.56 to 62.500 nS and duty cycle corrected to HIGH 31.250 nS 
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/debug (SLICE_X13Y15.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      2.033ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/debug (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.057ns (Levels of Logic = 1)
+  Clock Path Skew:      0.024ns (0.236 - 0.212)
+  Source Clock:         CLK16 rising at 62.500ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/SentData_0 to sender/debug
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X9Y15.YQ       Tcko                  0.464   sender/SentData<0>
+                                                       sender/SentData_0
+    SLICE_X8Y14.G4       net (fanout=1)        0.323   sender/SentData<0>
+    SLICE_X8Y14.Y        Tilo                  0.566   sender/SentData_0_not0001_inv
+                                                       sender/Mxor_SentData_0_xor0000_Result1
+    SLICE_X13Y15.CE      net (fanout=2)        0.704   sender/SentData_0_not0001_inv
+    SLICE_X13Y15.CLK     Tckce       (-Th)     0.000   sender/debug
+                                                       sender/debug
+    -------------------------------------------------  ---------------------------
+    Total                                      2.057ns (1.030ns logic, 1.027ns route)
+                                                       (50.1% logic, 49.9% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/SentData_0 (SLICE_X9Y15.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      2.090ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/SentData_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.090ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK16 rising at 62.500ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/SentData_0 to sender/SentData_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X9Y15.YQ       Tcko                  0.464   sender/SentData<0>
+                                                       sender/SentData_0
+    SLICE_X8Y14.G4       net (fanout=1)        0.323   sender/SentData<0>
+    SLICE_X8Y14.Y        Tilo                  0.566   sender/SentData_0_not0001_inv
+                                                       sender/Mxor_SentData_0_xor0000_Result1
+    SLICE_X9Y15.CE       net (fanout=2)        0.737   sender/SentData_0_not0001_inv
+    SLICE_X9Y15.CLK      Tckce       (-Th)     0.000   sender/SentData<0>
+                                                       sender/SentData_0
+    -------------------------------------------------  ---------------------------
+    Total                                      2.090ns (1.030ns logic, 1.060ns route)
+                                                       (49.3% logic, 50.7% route)
+
 --------------------------------------------------------------------------------
 
 Component Switching Limit Checks: PERIOD analysis for net "clkgen/CLKFX_BUF" derived from
@@ -99,18 +226,18 @@ Slack: 61.018ns (period - (min low pulse limit / (low pulse / period)))
   Period: 62.500ns
   Low pulse: 31.250ns
   Low pulse limit: 0.741ns (Tcl)
-  Physical resource: led<0>/OTCLK1
-  Logical resource: receive1/data_0/CK
-  Location pin: P68.OTCLK1
+  Physical resource: sender/SentData<0>/CLK
+  Logical resource: sender/SentData_0/CK
+  Location pin: SLICE_X9Y15.CLK
   Clock network: CLK16
 --------------------------------------------------------------------------------
 Slack: 61.018ns (period - (min high pulse limit / (high pulse / period)))
   Period: 62.500ns
   High pulse: 31.250ns
-  High pulse limit: 0.741ns (Twc)
-  Physical resource: led<0>/OTCLK1
-  Logical resource: receive1/data_0/CK
-  Location pin: P68.OTCLK1
+  High pulse limit: 0.741ns (Tch)
+  Physical resource: sender/SentData<0>/CLK
+  Logical resource: sender/SentData_0/CK
+  Location pin: SLICE_X9Y15.CLK
   Clock network: CLK16
 --------------------------------------------------------------------------------
 
@@ -122,8 +249,8 @@ Derived Constraints for clkgen/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      1.921ns|            0|            0|            0|            0|
-| clkgen/CLKFX_BUF              |     62.500ns|      3.002ns|          N/A|            0|            0|            0|            0|
+|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      1.921ns|            0|            0|            0|            2|
+| clkgen/CLKFX_BUF              |     62.500ns|      3.002ns|          N/A|            0|            0|            2|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -131,16 +258,23 @@ All constraints were met.
 
 Data Sheet report:
 -----------------
-No constraints were found to generate data for the Data Sheet Report section.
-Use the Advanced Analysis (-a) option or generate global constraints for each
-clock, its pad to setup and clock to pad paths, and a pad to pad constraint.
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    2.932|         |         |         |
+---------------+---------+---------+---------+---------+
+
 
 Timing summary:
 ---------------
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 0 paths, 0 nets, and 0 connections
+Constraints cover 2 paths, 0 nets, and 9 connections
 
 Design statistics:
    Minimum period:  10.000ns{1}   (Maximum frequency: 100.000MHz)
@@ -149,14 +283,14 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Tue Apr 16 17:27:43 2019 
+Analysis completed Wed Apr 17 19:13:35 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 4507 MB
+Peak Memory Usage: 4524 MB
 
 
 

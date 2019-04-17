@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: main.prj
 
@@ -168,32 +168,34 @@ Module <ps2_data_in> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <SentData<7>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SentData<6>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SentData<5>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SentData<4>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SentData<3>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SentData<2>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <SentData<1>> in unit <DataOutModule1> has a constant value of 0 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <i> in unit <DataOutModule1> has a constant value of 111 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <i> in unit <ps2_data_in> has a constant value of 0111 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <i> in unit <ps2_data_in> has a constant value of 1000 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <DataOutModule1>.
     Related source file is "DataOutModule1.v".
-WARNING:Xst:647 - Input <transmit> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:653 - Signal <txmatch<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <txdisable> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <shiftmatch<1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <shiftmatch<0>> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1780 - Signal <txmatch> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <shiftmatch> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <dout> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <detect> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 1-bit tristate buffer for signal <ps2data>.
-    Found 1-bit tristate buffer for signal <ps2clk>.
-    Found 14-bit adder for signal <$add0000> created at line 55.
+WARNING:Xst:646 - Signal <SentData<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <debug>.
+    Found 14-bit adder for signal <$add0000> created at line 50.
     Found 8-bit register for signal <buffer>.
     Found 14-bit register for signal <ClkDivider>.
-    Found 10-bit up counter for signal <disablecount>.
     Found 1-bit register for signal <en>.
-    Found 1-bit register for signal <txmatch<1>>.
+    Found 1-bit register for signal <SentData<0>>.
+    Found 1-bit xor2 for signal <SentData_0$xor0000> created at line 56.
     Summary:
-	inferred   1 Counter(s).
-	inferred  24 D-type flip-flop(s).
+	inferred  25 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
-	inferred   2 Tristate(s).
 Unit <DataOutModule1> synthesized.
 
 
@@ -214,6 +216,7 @@ Unit <CLK16Mhz> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
+WARNING:Xst:647 - Input <switch<6:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <main> synthesized.
 
 
@@ -223,10 +226,10 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  14-bit adder                                          : 1
-# Registers                                            : 40
- 1-bit register                                        : 40
-# Tristates                                            : 2
- 1-bit tristate buffer                                 : 2
+# Registers                                            : 41
+ 1-bit register                                        : 41
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
 
 =========================================================================
 
@@ -234,30 +237,8 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-WARNING:Xst:1710 - FF/Latch <txmatch_1> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <en> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_9> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_0> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_1> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_4> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_2> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_3> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_5> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_6> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_7> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_13> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_10> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_12> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_11> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_8> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_7> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_6> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_3> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_5> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_4> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_0> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_2> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <ClkDivider_1> (without init value) has a constant value of 0 in block <sender>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1290 - Hierarchical block <receive1> is unconnected in block <main>.
+   It will be removed from the design.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -265,46 +246,65 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  14-bit adder                                          : 1
-# Registers                                            : 40
- Flip-Flops                                            : 40
+# Registers                                            : 41
+ Flip-Flops                                            : 41
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1710 - FF/Latch <buffer_0> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_1> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_7> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <buffer_4> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_2> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_3> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <buffer_5> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <buffer_6> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <txmatch_1> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <ClkDivider_9> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <buffer_7> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <en> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <ClkDivider_13> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_10> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_12> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_11> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_8> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_7> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_6> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_3> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_5> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_4> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_0> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_2> of sequential type is unconnected in block <DataOutModule1>.
-WARNING:Xst:2677 - Node <ClkDivider_1> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:1710 - FF/Latch <buffer_5> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_3> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_2> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <buffer_1> (without init value) has a constant value of 0 in block <DataOutModule1>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <main> ...
 
+Optimizing unit <DataOutModule1> ...
+
 Optimizing unit <ps2_data_in> ...
+WARNING:Xst:2677 - Node <sender/ClkDivider_0> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_2> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_3> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_1> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_6> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_4> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_7> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_8> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_9> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_10> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_12> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_13> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/ClkDivider_11> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/buffer_0> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <sender/en> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_0> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_1> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_2> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_3> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_4> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_6> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_7> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_6> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_4> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_3> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_2> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_1> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/data_0> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <receive1/buffer_7> of sequential type is unconnected in block <main>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 2.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 0.
 
 Final Macro Processing ...
 
@@ -312,8 +312,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 16
- Flip-Flops                                            : 16
+# Registers                                            : 2
+ Flip-Flops                                            : 2
 
 =========================================================================
 
@@ -339,25 +339,22 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 22
+# IOs                              : 18
 
 Cell Usage :
-# BELS                             : 19
+# BELS                             : 5
 #      GND                         : 1
 #      INV                         : 1
-#      LUT2                        : 16
+#      LUT2                        : 2
 #      VCC                         : 1
-# FlipFlops/Latches                : 16
-#      FDCP                        : 8
-#      FDR_1                       : 8
-# Clock Buffers                    : 3
+# FlipFlops/Latches                : 2
+#      FDRE                        : 2
+# Clock Buffers                    : 2
 #      BUFG                        : 2
-#      BUFGP                       : 1
-# IO Buffers                       : 12
-#      IBUF                        : 1
+# IO Buffers                       : 11
+#      IBUF                        : 2
 #      IBUFG                       : 1
 #      OBUF                        : 8
-#      OBUFT                       : 2
 # DCMs                             : 1
 #      DCM_SP                      : 1
 =========================================================================
@@ -367,13 +364,12 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                        9  out of    704     1%  
- Number of Slice Flip Flops:              8  out of   1408     0%  
- Number of 4 input LUTs:                 17  out of   1408     1%  
- Number of IOs:                          22
- Number of bonded IOBs:                  13  out of    108    12%  
-    IOB Flip Flops:                       8
- Number of GCLKs:                         3  out of     24    12%  
+ Number of Slices:                        2  out of    704     0%  
+ Number of Slice Flip Flops:              2  out of   1408     0%  
+ Number of 4 input LUTs:                  3  out of   1408     0%  
+ Number of IOs:                          18
+ Number of bonded IOBs:                  11  out of    108    10%  
+ Number of GCLKs:                         2  out of     24     8%  
  Number of DCMs:                          1  out of      2    50%  
 
 ---------------------------
@@ -397,39 +393,19 @@ Clock Information:
 -----------------------------------+-------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)   | Load  |
 -----------------------------------+-------------------------+-------+
-datalink<2>                        | BUFGP                   | 8     |
-clk                                | clkgen/DCM_SP_INST:CLKFX| 8     |
+clk                                | clkgen/DCM_SP_INST:CLKFX| 2     |
 -----------------------------------+-------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
----------------------------------------------------+------------------------+-------+
-Control Signal                                     | Buffer(FF name)        | Load  |
----------------------------------------------------+------------------------+-------+
-receive1/data_0_and0000(receive1/data_0_and00001:O)| NONE(receive1/data_0)  | 1     |
-receive1/data_0_and0001(receive1/data_0_and00011:O)| NONE(receive1/data_0)  | 1     |
-receive1/data_1_and0000(receive1/data_1_and00001:O)| NONE(receive1/data_1)  | 1     |
-receive1/data_1_and0001(receive1/data_1_and00011:O)| NONE(receive1/data_1)  | 1     |
-receive1/data_2_and0000(receive1/data_2_and00001:O)| NONE(receive1/data_2)  | 1     |
-receive1/data_2_and0001(receive1/data_2_and00011:O)| NONE(receive1/data_2)  | 1     |
-receive1/data_3_and0000(receive1/data_3_and00001:O)| NONE(receive1/data_3)  | 1     |
-receive1/data_3_and0001(receive1/data_3_and00011:O)| NONE(receive1/data_3)  | 1     |
-receive1/data_4_and0000(receive1/data_4_and00001:O)| NONE(receive1/data_4)  | 1     |
-receive1/data_4_and0001(receive1/data_4_and00011:O)| NONE(receive1/data_4)  | 1     |
-receive1/data_5_and0000(receive1/data_5_and00001:O)| NONE(receive1/data_5)  | 1     |
-receive1/data_5_and0001(receive1/data_5_and00011:O)| NONE(receive1/data_5)  | 1     |
-receive1/data_6_and0000(receive1/data_6_and00001:O)| NONE(receive1/data_6)  | 1     |
-receive1/data_6_and0001(receive1/data_6_and00011:O)| NONE(receive1/data_6)  | 1     |
-receive1/data_7_and0000(receive1/data_7_and00001:O)| NONE(receive1/data_7)  | 1     |
-receive1/data_7_and0001(receive1/data_7_and00011:O)| NONE(receive1/data_7)  | 1     |
----------------------------------------------------+------------------------+-------+
+No asynchronous control signals found in this design
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 1.374ns (Maximum Frequency: 727.802MHz)
-   Minimum input arrival time before clock: 1.521ns
+   Minimum period: 1.596ns (Maximum Frequency: 626.755MHz)
+   Minimum input arrival time before clock: 3.281ns
    Maximum output required time after clock: 5.531ns
    Maximum combinational path delay: No path found
 
@@ -438,59 +414,61 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'datalink<2>'
-  Clock period: 1.374ns (frequency: 727.802MHz)
-  Total number of paths / destination ports: 7 / 7
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 1.596ns (frequency: 626.755MHz)
+  Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
-Delay:               1.374ns (Levels of Logic = 0)
-  Source:            receive1/buffer_1 (FF)
-  Destination:       receive1/buffer_0 (FF)
-  Source Clock:      datalink<2> falling
-  Destination Clock: datalink<2> falling
+Delay:               2.493ns (Levels of Logic = 1)
+  Source:            sender/SentData_0 (FF)
+  Destination:       sender/debug (FF)
+  Source Clock:      clk rising 0.6X
+  Destination Clock: clk rising 0.6X
 
-  Data Path: receive1/buffer_1 to receive1/buffer_0
+  Data Path: sender/SentData_0 to sender/debug
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR_1:C->Q            3   0.591   0.531  receive1/buffer_1 (receive1/buffer_1)
-     FDR_1:D                   0.252          receive1/buffer_0
+     FDRE:C->Q             1   0.591   0.500  sender/SentData_0 (sender/SentData_0)
+     LUT2:I1->O            2   0.643   0.447  sender/Mxor_SentData_0_xor0000_Result1 (sender/SentData_0_not0001_inv)
+     FDRE:CE                   0.312          sender/SentData_0
     ----------------------------------------
-    Total                      1.374ns (0.843ns logic, 0.531ns route)
-                                       (61.4% logic, 38.6% route)
+    Total                      2.493ns (1.546ns logic, 0.947ns route)
+                                       (62.0% logic, 38.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'datalink<2>'
-  Total number of paths / destination ports: 1 / 1
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 4 / 4
 -------------------------------------------------------------------------
-Offset:              1.521ns (Levels of Logic = 1)
-  Source:            datalink<3> (PAD)
-  Destination:       receive1/buffer_7 (FF)
-  Destination Clock: datalink<2> falling
+Offset:              3.281ns (Levels of Logic = 2)
+  Source:            pushbtn (PAD)
+  Destination:       sender/debug (FF)
+  Destination Clock: clk rising 0.6X
 
-  Data Path: datalink<3> to receive1/buffer_7
+  Data Path: pushbtn to sender/debug
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             1   0.849   0.420  datalink_3_IBUF (datalink_3_IBUF)
-     FDR_1:D                   0.252          receive1/buffer_7
+     IBUF:I->O             1   0.849   0.500  pushbtn_IBUF (pushbtn_IBUF)
+     LUT2:I1->O            1   0.643   0.420  sender/debug_or00001 (sender/debug_or0000)
+     FDRE:R                    0.869          sender/debug
     ----------------------------------------
-    Total                      1.521ns (1.101ns logic, 0.420ns route)
-                                       (72.4% logic, 27.6% route)
+    Total                      3.281ns (2.361ns logic, 0.920ns route)
+                                       (72.0% logic, 28.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 8 / 8
+  Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
 Offset:              5.531ns (Levels of Logic = 1)
-  Source:            receive1/data_7 (FF)
+  Source:            sender/debug (FF)
   Destination:       led<7> (PAD)
   Source Clock:      clk rising 0.6X
 
-  Data Path: receive1/data_7 to led<7>
+  Data Path: sender/debug to led<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCP:C->Q             1   0.591   0.420  receive1/data_7 (receive1/data_7)
+     FDRE:C->Q             1   0.591   0.420  sender/debug (sender/debug)
      OBUF:I->O                 4.520          led_7_OBUF (led<7>)
     ----------------------------------------
     Total                      5.531ns (5.111ns logic, 0.420ns route)
@@ -499,14 +477,14 @@ Offset:              5.531ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.12 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.31 secs
  
 --> 
 
 Total memory usage is 4551900 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   56 (   0 filtered)
-Number of infos    :    3 (   0 filtered)
+Number of warnings :   48 (   0 filtered)
+Number of infos    :   10 (   0 filtered)
 

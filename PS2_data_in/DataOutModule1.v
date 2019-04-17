@@ -24,31 +24,26 @@ module DataOutModule1(
 		ps2data,
 		data,
 		Locked,
-		transmit
+		debug,
+		pushbtn
     );
 
-input clk,Locked,transmit;
+input clk,Locked,pushbtn;
 inout ps2data,ps2clk;
 input[7:0] data;
-
+output debug;
+reg debug;
 reg[13:0] ClkDivider;
-reg[7:0] buffer;
+reg[7:0] buffer,SentData;
 reg[1:0] txmatch,shiftmatch;
-reg dout;
-reg en;
+reg dout,en;
 integer i;
-reg[9:0] disablecount;
-reg txdisable;
 
-assign NewData = (ClkDivider[13:10]==4'b1001)?	1'b1:1'b0;
+assign NewData = (ClkDivider[13:10]==4'b1000)?	1'b1:1'b0;
 assign ShiftData = (ClkDivider[12:9]==4'b001)?	1'b1:1'b0;
-assign ps2clk 	= (en)?	ClkDivider[9]:1'bz;
-assign ps2data = (en)?	buffer[0]:1'bz;
+assign ps2clk 	= (en)?	ClkDivider[9]:1'b1;
+assign ps2data = (en)?	buffer[0]:1'b1;
 assign detect  = (ClkDivider[9]==1)?	1'b1:1'b0;
-
-/*
-buffer => b4 the 1st ps2clk
-*/
 
 //A-----------------------------------------A
 always @(posedge clk or posedge en)begin
@@ -58,40 +53,30 @@ end
 
 always @(posedge clk)begin
 	if(Locked)begin
-		if(txmatch[1]!=txmatch[0])begin
-			txmatch[1]<=txmatch[0];
+		if(SentData[0]!=data[0])begin
+			SentData[0]<=data[0];
 			en<=1'b1;
+			debug<=1'b1;
 		end
+		if(pushbtn)debug<=1'b0;
 		if(NewData)en<=1'b0;
 	end else begin
 		en<=1'b0;
-		txmatch[1]<=1'b0;
-	end
-end
-
-always @(posedge clk)begin
-	if(txdisable)begin
-		disablecount<=disablecount+1;
-	end else begin
-		disablecount<=10'b0;
+		SentData<=8'h00;
+		debug<=0;
 	end
 end
 
 always @(posedge ps2clk or posedge en)begin
 	if(en)begin
-		for(i=0;i<=6;i=i+1)	buffer[i]<=buffer[i+1];
-		dout<=buffer[0];
-		//Q-------------------------------------------Q
-		//if(detect) buffer[7:0]<=data[7:0];
-		if(ShiftData)begin
-			buffer<=data;
-			shiftmatch[1]<=shiftmatch[0];
+		if(ShiftData)	buffer[7:0]<=data[7:0];
+		else begin
+			for(i=0;i<=6;i=i+1)	buffer[i]<=buffer[i+1];
+			dout<=buffer[0];
 		end
-		//Q-------------------------------------------Q
 	end else begin
 		buffer[7:0]<=8'b0;
 		dout<=1'b0;
-		shiftmatch[1]<=1'b0;
 	end
 end
 //A-----------------------------------------A
