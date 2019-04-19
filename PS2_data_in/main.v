@@ -22,20 +22,23 @@ module main(
 		clk,
 		switch,
 		led,
-		pushbtn
-		/*datalink*/
+		pushbtn,
+		RedLed,
+		datalink
     );
 	 
 input clk,pushbtn;
 input[7:0] switch;
 output[7:0] led;
-//inout[3:0] datalink;
-
+output RedLed;
+inout[3:0] datalink;
 //assign led[7:1]=7'b0;
 wire CLK16,Locked;
-assign led[6:0]=0;
+//assign led[6:0]=0;
 wire datalink;
 wire clocklink;
+
+assign RedLed = datalink[0];
 
 CLK16Mhz clkgen(
     .CLKIN_IN(clk), 
@@ -48,19 +51,18 @@ CLK16Mhz clkgen(
 	 
 DataOutModule1 sender(
 			.clk(CLK16),
-			.ps2clk(clocklink),
-			.ps2data(datalink),
-			.data({switch[7]}),
+			.ps2clk(datalink[0]),
+			.ps2data(datalink[1]),
+			.data(switch),
 			.Locked(Locked),
-			.debug(led[7]),
-			.pushbtn(!pushbtn)
+			.debug(pushbtn)
 		 );
 
 ps2_data_in receive1(
 		.clk(CLK16),
-		.ps2clk(clocklink),
-		.ps2data(datalink),
-		.data(),
+		.ps2clk(datalink[2]),
+		.ps2data(datalink[3]),
+		.data(led),
 		.en(Locked)
     );
 endmodule

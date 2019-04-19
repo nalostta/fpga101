@@ -4,8 +4,8 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
 -n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
-constraint_led.ucf -ucf constraint_clk.ucf -ucf constraints.ucf -ucf
-constraint_pushbtn.ucf
+constraint_led.ucf -ucf constraints.ucf -ucf constraint_clk.ucf -ucf
+constraint_pushbtn.ucf -ucf constraint_switch.ucf -ucf constraint_rgbLed.ucf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -78,68 +78,287 @@ Timing constraint: PERIOD analysis for net "clkgen/CLKFX_BUF" derived from  NET
 and duty cycle corrected to HIGH 31.250 nS  
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 2 paths analyzed, 2 endpoints analyzed, 0 failing endpoints
+ 74 paths analyzed, 11 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   3.002ns.
+ Minimum period is   4.680ns.
 --------------------------------------------------------------------------------
 
-Paths for end point sender/debug (SLICE_X13Y15.CE), 1 path
+Paths for end point sender/en (SLICE_X6Y7.CE), 8 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     59.568ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               sender/SentData_0 (FF)
-  Destination:          sender/debug (FF)
+Slack (setup path):     57.820ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_5 (FF)
+  Destination:          sender/en (FF)
   Requirement:          62.500ns
-  Data Path Delay:      2.882ns (Levels of Logic = 1)
-  Clock Path Skew:      -0.050ns (0.200 - 0.250)
+  Data Path Delay:      4.631ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.049ns (0.223 - 0.272)
   Source Clock:         CLK16 rising at 0.000ns
   Destination Clock:    CLK16 rising at 62.500ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: sender/SentData_0 to sender/debug
+  Maximum Data Path: sender/SentData_5 to sender/en
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y15.YQ       Tcko                  0.580   sender/SentData<0>
-                                                       sender/SentData_0
-    SLICE_X8Y14.G4       net (fanout=1)        0.404   sender/SentData<0>
-    SLICE_X8Y14.Y        Tilo                  0.707   sender/SentData_0_not0001_inv
-                                                       sender/Mxor_SentData_0_xor0000_Result1
-    SLICE_X13Y15.CE      net (fanout=2)        0.880   sender/SentData_0_not0001_inv
-    SLICE_X13Y15.CLK     Tceck                 0.311   sender/debug
-                                                       sender/debug
+    SLICE_X2Y4.XQ        Tcko                  0.631   sender/SentData<5>
+                                                       sender/SentData_5
+    SLICE_X3Y4.F1        net (fanout=1)        0.471   sender/SentData<5>
+    SLICE_X3Y4.X         Tilo                  0.643   sender/SentData_not0001_inv113
+                                                       sender/SentData_not0001_inv113
+    SLICE_X4Y5.F4        net (fanout=1)        0.660   sender/SentData_not0001_inv113
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X6Y7.CE        net (fanout=5)        1.223   sender/SentData_not0001_inv
+    SLICE_X6Y7.CLK       Tceck                 0.311   sender/en
+                                                       sender/en
     -------------------------------------------------  ---------------------------
-    Total                                      2.882ns (1.598ns logic, 1.284ns route)
-                                                       (55.4% logic, 44.6% route)
+    Total                                      4.631ns (2.277ns logic, 2.354ns route)
+                                                       (49.2% logic, 50.8% route)
 
 --------------------------------------------------------------------------------
-
-Paths for end point sender/SentData_0 (SLICE_X9Y15.CE), 1 path
---------------------------------------------------------------------------------
-Slack (setup path):     59.576ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               sender/SentData_0 (FF)
-  Destination:          sender/SentData_0 (FF)
+Slack (setup path):     57.880ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_6 (FF)
+  Destination:          sender/en (FF)
   Requirement:          62.500ns
-  Data Path Delay:      2.924ns (Levels of Logic = 1)
+  Data Path Delay:      4.552ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.068ns (0.223 - 0.291)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_6 to sender/en
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X5Y5.YQ        Tcko                  0.580   sender/SentData<7>
+                                                       sender/SentData_6
+    SLICE_X3Y4.F2        net (fanout=1)        0.443   sender/SentData<6>
+    SLICE_X3Y4.X         Tilo                  0.643   sender/SentData_not0001_inv113
+                                                       sender/SentData_not0001_inv113
+    SLICE_X4Y5.F4        net (fanout=1)        0.660   sender/SentData_not0001_inv113
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X6Y7.CE        net (fanout=5)        1.223   sender/SentData_not0001_inv
+    SLICE_X6Y7.CLK       Tceck                 0.311   sender/en
+                                                       sender/en
+    -------------------------------------------------  ---------------------------
+    Total                                      4.552ns (2.226ns logic, 2.326ns route)
+                                                       (48.9% logic, 51.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     58.039ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/en (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.391ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.070ns (0.223 - 0.293)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_0 to sender/en
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y3.YQ        Tcko                  0.676   sender/SentData<1>
+                                                       sender/SentData_0
+    SLICE_X4Y2.F4        net (fanout=1)        0.358   sender/SentData<0>
+    SLICE_X4Y2.X         Tilo                  0.692   sender/SentData_not0001_inv146
+                                                       sender/SentData_not0001_inv146
+    SLICE_X4Y5.F1        net (fanout=1)        0.439   sender/SentData_not0001_inv146
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X6Y7.CE        net (fanout=5)        1.223   sender/SentData_not0001_inv
+    SLICE_X6Y7.CLK       Tceck                 0.311   sender/en
+                                                       sender/en
+    -------------------------------------------------  ---------------------------
+    Total                                      4.391ns (2.371ns logic, 2.020ns route)
+                                                       (54.0% logic, 46.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/SentData_7 (SLICE_X5Y5.CE), 8 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     57.848ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_5 (FF)
+  Destination:          sender/SentData_7 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.627ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.025ns (0.247 - 0.272)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_5 to sender/SentData_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X2Y4.XQ        Tcko                  0.631   sender/SentData<5>
+                                                       sender/SentData_5
+    SLICE_X3Y4.F1        net (fanout=1)        0.471   sender/SentData<5>
+    SLICE_X3Y4.X         Tilo                  0.643   sender/SentData_not0001_inv113
+                                                       sender/SentData_not0001_inv113
+    SLICE_X4Y5.F4        net (fanout=1)        0.660   sender/SentData_not0001_inv113
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X5Y5.CE        net (fanout=5)        1.219   sender/SentData_not0001_inv
+    SLICE_X5Y5.CLK       Tceck                 0.311   sender/SentData<7>
+                                                       sender/SentData_7
+    -------------------------------------------------  ---------------------------
+    Total                                      4.627ns (2.277ns logic, 2.350ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     57.952ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_6 (FF)
+  Destination:          sender/SentData_7 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.548ns (Levels of Logic = 2)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK16 rising at 0.000ns
   Destination Clock:    CLK16 rising at 62.500ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: sender/SentData_0 to sender/SentData_0
+  Maximum Data Path: sender/SentData_6 to sender/SentData_7
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y15.YQ       Tcko                  0.580   sender/SentData<0>
-                                                       sender/SentData_0
-    SLICE_X8Y14.G4       net (fanout=1)        0.404   sender/SentData<0>
-    SLICE_X8Y14.Y        Tilo                  0.707   sender/SentData_0_not0001_inv
-                                                       sender/Mxor_SentData_0_xor0000_Result1
-    SLICE_X9Y15.CE       net (fanout=2)        0.922   sender/SentData_0_not0001_inv
-    SLICE_X9Y15.CLK      Tceck                 0.311   sender/SentData<0>
-                                                       sender/SentData_0
+    SLICE_X5Y5.YQ        Tcko                  0.580   sender/SentData<7>
+                                                       sender/SentData_6
+    SLICE_X3Y4.F2        net (fanout=1)        0.443   sender/SentData<6>
+    SLICE_X3Y4.X         Tilo                  0.643   sender/SentData_not0001_inv113
+                                                       sender/SentData_not0001_inv113
+    SLICE_X4Y5.F4        net (fanout=1)        0.660   sender/SentData_not0001_inv113
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X5Y5.CE        net (fanout=5)        1.219   sender/SentData_not0001_inv
+    SLICE_X5Y5.CLK       Tceck                 0.311   sender/SentData<7>
+                                                       sender/SentData_7
     -------------------------------------------------  ---------------------------
-    Total                                      2.924ns (1.598ns logic, 1.326ns route)
-                                                       (54.7% logic, 45.3% route)
+    Total                                      4.548ns (2.226ns logic, 2.322ns route)
+                                                       (48.9% logic, 51.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     58.106ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/SentData_7 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.387ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.007ns (0.025 - 0.032)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_0 to sender/SentData_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y3.YQ        Tcko                  0.676   sender/SentData<1>
+                                                       sender/SentData_0
+    SLICE_X4Y2.F4        net (fanout=1)        0.358   sender/SentData<0>
+    SLICE_X4Y2.X         Tilo                  0.692   sender/SentData_not0001_inv146
+                                                       sender/SentData_not0001_inv146
+    SLICE_X4Y5.F1        net (fanout=1)        0.439   sender/SentData_not0001_inv146
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X5Y5.CE        net (fanout=5)        1.219   sender/SentData_not0001_inv
+    SLICE_X5Y5.CLK       Tceck                 0.311   sender/SentData<7>
+                                                       sender/SentData_7
+    -------------------------------------------------  ---------------------------
+    Total                                      4.387ns (2.371ns logic, 2.016ns route)
+                                                       (54.0% logic, 46.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/SentData_6 (SLICE_X5Y5.CE), 8 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     57.848ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_5 (FF)
+  Destination:          sender/SentData_6 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.627ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.025ns (0.247 - 0.272)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_5 to sender/SentData_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X2Y4.XQ        Tcko                  0.631   sender/SentData<5>
+                                                       sender/SentData_5
+    SLICE_X3Y4.F1        net (fanout=1)        0.471   sender/SentData<5>
+    SLICE_X3Y4.X         Tilo                  0.643   sender/SentData_not0001_inv113
+                                                       sender/SentData_not0001_inv113
+    SLICE_X4Y5.F4        net (fanout=1)        0.660   sender/SentData_not0001_inv113
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X5Y5.CE        net (fanout=5)        1.219   sender/SentData_not0001_inv
+    SLICE_X5Y5.CLK       Tceck                 0.311   sender/SentData<7>
+                                                       sender/SentData_6
+    -------------------------------------------------  ---------------------------
+    Total                                      4.627ns (2.277ns logic, 2.350ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     57.952ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_6 (FF)
+  Destination:          sender/SentData_6 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.548ns (Levels of Logic = 2)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_6 to sender/SentData_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X5Y5.YQ        Tcko                  0.580   sender/SentData<7>
+                                                       sender/SentData_6
+    SLICE_X3Y4.F2        net (fanout=1)        0.443   sender/SentData<6>
+    SLICE_X3Y4.X         Tilo                  0.643   sender/SentData_not0001_inv113
+                                                       sender/SentData_not0001_inv113
+    SLICE_X4Y5.F4        net (fanout=1)        0.660   sender/SentData_not0001_inv113
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X5Y5.CE        net (fanout=5)        1.219   sender/SentData_not0001_inv
+    SLICE_X5Y5.CLK       Tceck                 0.311   sender/SentData<7>
+                                                       sender/SentData_6
+    -------------------------------------------------  ---------------------------
+    Total                                      4.548ns (2.226ns logic, 2.322ns route)
+                                                       (48.9% logic, 51.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     58.106ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               sender/SentData_0 (FF)
+  Destination:          sender/SentData_6 (FF)
+  Requirement:          62.500ns
+  Data Path Delay:      4.387ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.007ns (0.025 - 0.032)
+  Source Clock:         CLK16 rising at 0.000ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: sender/SentData_0 to sender/SentData_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y3.YQ        Tcko                  0.676   sender/SentData<1>
+                                                       sender/SentData_0
+    SLICE_X4Y2.F4        net (fanout=1)        0.358   sender/SentData<0>
+    SLICE_X4Y2.X         Tilo                  0.692   sender/SentData_not0001_inv146
+                                                       sender/SentData_not0001_inv146
+    SLICE_X4Y5.F1        net (fanout=1)        0.439   sender/SentData_not0001_inv146
+    SLICE_X4Y5.X         Tilo                  0.692   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X5Y5.CE        net (fanout=5)        1.219   sender/SentData_not0001_inv
+    SLICE_X5Y5.CLK       Tceck                 0.311   sender/SentData<7>
+                                                       sender/SentData_6
+    -------------------------------------------------  ---------------------------
+    Total                                      4.387ns (2.371ns logic, 2.016ns route)
+                                                       (54.0% logic, 46.0% route)
 
 --------------------------------------------------------------------------------
 
@@ -149,63 +368,152 @@ Hold Paths: PERIOD analysis for net "clkgen/CLKFX_BUF" derived from
 
 --------------------------------------------------------------------------------
 
-Paths for end point sender/debug (SLICE_X13Y15.CE), 1 path
+Paths for end point sender/disable_input_0 (SLICE_X4Y9.G2), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      2.033ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               sender/SentData_0 (FF)
-  Destination:          sender/debug (FF)
+Slack (hold path):      1.413ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/disable_input_1 (FF)
+  Destination:          sender/disable_input_0 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      2.057ns (Levels of Logic = 1)
-  Clock Path Skew:      0.024ns (0.236 - 0.212)
-  Source Clock:         CLK16 rising at 62.500ns
-  Destination Clock:    CLK16 rising at 62.500ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path: sender/SentData_0 to sender/debug
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X9Y15.YQ       Tcko                  0.464   sender/SentData<0>
-                                                       sender/SentData_0
-    SLICE_X8Y14.G4       net (fanout=1)        0.323   sender/SentData<0>
-    SLICE_X8Y14.Y        Tilo                  0.566   sender/SentData_0_not0001_inv
-                                                       sender/Mxor_SentData_0_xor0000_Result1
-    SLICE_X13Y15.CE      net (fanout=2)        0.704   sender/SentData_0_not0001_inv
-    SLICE_X13Y15.CLK     Tckce       (-Th)     0.000   sender/debug
-                                                       sender/debug
-    -------------------------------------------------  ---------------------------
-    Total                                      2.057ns (1.030ns logic, 1.027ns route)
-                                                       (50.1% logic, 49.9% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point sender/SentData_0 (SLICE_X9Y15.CE), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      2.090ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               sender/SentData_0 (FF)
-  Destination:          sender/SentData_0 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      2.090ns (Levels of Logic = 1)
+  Data Path Delay:      1.413ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK16 rising at 62.500ns
   Destination Clock:    CLK16 rising at 62.500ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: sender/SentData_0 to sender/SentData_0
+  Minimum Data Path: sender/disable_input_1 to sender/disable_input_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y15.YQ       Tcko                  0.464   sender/SentData<0>
-                                                       sender/SentData_0
-    SLICE_X8Y14.G4       net (fanout=1)        0.323   sender/SentData<0>
-    SLICE_X8Y14.Y        Tilo                  0.566   sender/SentData_0_not0001_inv
-                                                       sender/Mxor_SentData_0_xor0000_Result1
-    SLICE_X9Y15.CE       net (fanout=2)        0.737   sender/SentData_0_not0001_inv
-    SLICE_X9Y15.CLK      Tckce       (-Th)     0.000   sender/SentData<0>
-                                                       sender/SentData_0
+    SLICE_X4Y9.XQ        Tcko                  0.505   sender/disable_input<1>
+                                                       sender/disable_input_1
+    SLICE_X4Y9.G2        net (fanout=2)        0.391   sender/disable_input<1>
+    SLICE_X4Y9.CLK       Tckg        (-Th)    -0.517   sender/disable_input<1>
+                                                       sender/disable_input_next1
+                                                       sender/disable_input_0
     -------------------------------------------------  ---------------------------
-    Total                                      2.090ns (1.030ns logic, 1.060ns route)
-                                                       (49.3% logic, 50.7% route)
+    Total                                      1.413ns (1.022ns logic, 0.391ns route)
+                                                       (72.3% logic, 27.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/disable_input_0 (SLICE_X4Y9.G4), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.420ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/disable_input_0 (FF)
+  Destination:          sender/disable_input_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.420ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK16 rising at 62.500ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/disable_input_0 to sender/disable_input_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y9.YQ        Tcko                  0.541   sender/disable_input<1>
+                                                       sender/disable_input_0
+    SLICE_X4Y9.G4        net (fanout=2)        0.362   sender/disable_input<0>
+    SLICE_X4Y9.CLK       Tckg        (-Th)    -0.517   sender/disable_input<1>
+                                                       sender/disable_input_next1
+                                                       sender/disable_input_0
+    -------------------------------------------------  ---------------------------
+    Total                                      1.420ns (1.058ns logic, 0.362ns route)
+                                                       (74.5% logic, 25.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point sender/SentData_5 (SLICE_X2Y4.CE), 8 paths
+--------------------------------------------------------------------------------
+Slack (hold path):      2.456ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/SentData_1 (FF)
+  Destination:          sender/SentData_5 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.479ns (Levels of Logic = 2)
+  Clock Path Skew:      0.023ns (0.272 - 0.249)
+  Source Clock:         CLK16 rising at 62.500ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/SentData_1 to sender/SentData_5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y3.XQ        Tcko                  0.505   sender/SentData<1>
+                                                       sender/SentData_1
+    SLICE_X4Y5.G3        net (fanout=1)        0.271   sender/SentData<1>
+    SLICE_X4Y5.Y         Tilo                  0.566   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv32
+    SLICE_X4Y5.F3        net (fanout=1)        0.034   sender/SentData_not0001_inv32/O
+    SLICE_X4Y5.X         Tilo                  0.554   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X2Y4.CE        net (fanout=5)        0.549   sender/SentData_not0001_inv
+    SLICE_X2Y4.CLK       Tckce       (-Th)     0.000   sender/SentData<5>
+                                                       sender/SentData_5
+    -------------------------------------------------  ---------------------------
+    Total                                      2.479ns (1.625ns logic, 0.854ns route)
+                                                       (65.6% logic, 34.4% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      2.589ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/SentData_2 (FF)
+  Destination:          sender/SentData_5 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.614ns (Levels of Logic = 2)
+  Clock Path Skew:      0.025ns (0.272 - 0.247)
+  Source Clock:         CLK16 rising at 62.500ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/SentData_2 to sender/SentData_5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y4.YQ        Tcko                  0.541   sender/SentData<3>
+                                                       sender/SentData_2
+    SLICE_X4Y5.G1        net (fanout=1)        0.370   sender/SentData<2>
+    SLICE_X4Y5.Y         Tilo                  0.566   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv32
+    SLICE_X4Y5.F3        net (fanout=1)        0.034   sender/SentData_not0001_inv32/O
+    SLICE_X4Y5.X         Tilo                  0.554   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X2Y4.CE        net (fanout=5)        0.549   sender/SentData_not0001_inv
+    SLICE_X2Y4.CLK       Tckce       (-Th)     0.000   sender/SentData<5>
+                                                       sender/SentData_5
+    -------------------------------------------------  ---------------------------
+    Total                                      2.614ns (1.661ns logic, 0.953ns route)
+                                                       (63.5% logic, 36.5% route)
+
+--------------------------------------------------------------------------------
+Slack (hold path):      2.737ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               sender/SentData_4 (FF)
+  Destination:          sender/SentData_5 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      2.737ns (Levels of Logic = 2)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK16 rising at 62.500ns
+  Destination Clock:    CLK16 rising at 62.500ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: sender/SentData_4 to sender/SentData_5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X2Y4.YQ        Tcko                  0.541   sender/SentData<5>
+                                                       sender/SentData_4
+    SLICE_X5Y4.F4        net (fanout=1)        0.274   sender/SentData<4>
+    SLICE_X5Y4.X         Tilo                  0.514   sender/SentData_not0001_inv65
+                                                       sender/SentData_not0001_inv65
+    SLICE_X4Y5.F2        net (fanout=1)        0.305   sender/SentData_not0001_inv65
+    SLICE_X4Y5.X         Tilo                  0.554   sender/SentData_not0001_inv
+                                                       sender/SentData_not0001_inv164
+    SLICE_X2Y4.CE        net (fanout=5)        0.549   sender/SentData_not0001_inv
+    SLICE_X2Y4.CLK       Tckce       (-Th)     0.000   sender/SentData<5>
+                                                       sender/SentData_5
+    -------------------------------------------------  ---------------------------
+    Total                                      2.737ns (1.609ns logic, 1.128ns route)
+                                                       (58.8% logic, 41.2% route)
 
 --------------------------------------------------------------------------------
 
@@ -222,22 +530,22 @@ Slack: 59.498ns (period - min period limit)
   Location pin: DCM_X1Y0.CLKFX
   Clock network: clkgen/CLKFX_BUF
 --------------------------------------------------------------------------------
-Slack: 61.018ns (period - (min low pulse limit / (low pulse / period)))
+Slack: 60.898ns (period - (min low pulse limit / (low pulse / period)))
   Period: 62.500ns
   Low pulse: 31.250ns
-  Low pulse limit: 0.741ns (Tcl)
-  Physical resource: sender/SentData<0>/CLK
-  Logical resource: sender/SentData_0/CK
-  Location pin: SLICE_X9Y15.CLK
+  Low pulse limit: 0.801ns (Tcl)
+  Physical resource: sender/disable_input<1>/CLK
+  Logical resource: sender/disable_input_1/CK
+  Location pin: SLICE_X4Y9.CLK
   Clock network: CLK16
 --------------------------------------------------------------------------------
-Slack: 61.018ns (period - (min high pulse limit / (high pulse / period)))
+Slack: 60.898ns (period - (min high pulse limit / (high pulse / period)))
   Period: 62.500ns
   High pulse: 31.250ns
-  High pulse limit: 0.741ns (Tch)
-  Physical resource: sender/SentData<0>/CLK
-  Logical resource: sender/SentData_0/CK
-  Location pin: SLICE_X9Y15.CLK
+  High pulse limit: 0.801ns (Tch)
+  Physical resource: sender/disable_input<1>/CLK
+  Logical resource: sender/disable_input_1/CK
+  Location pin: SLICE_X4Y9.CLK
   Clock network: CLK16
 --------------------------------------------------------------------------------
 
@@ -249,8 +557,8 @@ Derived Constraints for clkgen/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      1.921ns|            0|            0|            0|            2|
-| clkgen/CLKFX_BUF              |     62.500ns|      3.002ns|          N/A|            0|            0|            2|            0|
+|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      2.995ns|            0|            0|            0|           74|
+| clkgen/CLKFX_BUF              |     62.500ns|      4.680ns|          N/A|            0|            0|           74|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -265,7 +573,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    2.932|         |         |         |
+clk            |    4.680|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -274,7 +582,7 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 2 paths, 0 nets, and 9 connections
+Constraints cover 74 paths, 0 nets, and 29 connections
 
 Design statistics:
    Minimum period:  10.000ns{1}   (Maximum frequency: 100.000MHz)
@@ -283,7 +591,7 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Wed Apr 17 19:13:35 2019 
+Analysis completed Fri Apr 19 00:08:13 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

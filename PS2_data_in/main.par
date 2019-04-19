@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-NALOSTTA::  Wed Apr 17 19:13:27 2019
+NALOSTTA::  Fri Apr 19 00:08:05 2019
 
 par -w -intstyle ise -ol high -t 1 main_map.ncd main.ncd main.pcf 
 
@@ -19,26 +19,29 @@ Device speed data version:  "PRODUCTION 1.42 2013-10-13".
 
 Design Summary Report:
 
- Number of External IOBs                          11 out of 108    10%
+ Number of External IOBs                          23 out of 108    21%
 
-   Number of External Input IOBs                  3
+   Number of External Input IOBs                 12
 
-      Number of External Input IBUFs              3
-        Number of LOCed External Input IBUFs      2 out of 3      66%
-
-
-   Number of External Output IOBs                 8
-
-      Number of External Output IOBs              8
-        Number of LOCed External Output IOBs      8 out of 8     100%
+      Number of External Input IBUFs             12
+        Number of LOCed External Input IBUFs     12 out of 12    100%
 
 
-   Number of External Bidir IOBs                  0
+   Number of External Output IOBs                10
+
+      Number of External Output IOBs             10
+        Number of LOCed External Output IOBs     10 out of 10    100%
 
 
-   Number of BUFGMUXs                        2 out of 24      8%
+   Number of External Bidir IOBs                  1
+
+      Number of External Bidir IOBs               1
+        Number of LOCed External Bidir IOBs       1 out of 1     100%
+
+
+   Number of BUFGMUXs                        3 out of 24     12%
    Number of DCMs                            1 out of 2      50%
-   Number of Slices                          4 out of 704     1%
+   Number of Slices                         23 out of 704     3%
       Number of SLICEMs                      0 out of 352     0%
 
 
@@ -57,43 +60,44 @@ Total REAL time at the beginning of Placer: 1 secs
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:1d4e82e) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:11c73052) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:1d4e82e) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:11c73052) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:1d4e82e) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:11c73052) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
-............
-Phase 4.2  Initial Clock and IO Placement (Checksum:380a45e) REAL time: 2 secs 
+
+..................
+WARNING:Place:1019 - A clock IOB / clock component pair have been found that are not placed at an optimal clock IOB /
+   clock site pair. The clock component <datalink_2_BUFGP/BUFG> is placed at site <BUFGMUX_X2Y11>. The IO component
+   <datalink<2>> is placed at site <P113>.  This will not allow the use of the fast path between the IO and the Clock
+   buffer. This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint was applied on COMP.PIN <datalink<2>.PAD>
+   allowing your design to continue. This constraint disables all clock placer rules related to the specified COMP.PIN.
+   The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that
+   this error condition be corrected in the design.
+Phase 4.2  Initial Clock and IO Placement (Checksum:158cf268) REAL time: 2 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:380a45e) REAL time: 2 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:158cf268) REAL time: 2 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:380a45e) REAL time: 2 secs 
+Phase 6.36  Local Placement Optimization (Checksum:158cf268) REAL time: 2 secs 
 
-Phase 7.3  Local Placement Optimization
-...........
-Phase 7.3  Local Placement Optimization (Checksum:382962e) REAL time: 2 secs 
+Phase 7.8  Global Placement
+..
+Phase 7.8  Global Placement (Checksum:255b3898) REAL time: 2 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:382962e) REAL time: 2 secs 
+Phase 8.5  Local Placement Optimization (Checksum:255b3898) REAL time: 2 secs 
 
-Phase 9.8  Global Placement
-..
-Phase 9.8  Global Placement (Checksum:53210b7) REAL time: 2 secs 
+Phase 9.18  Placement Optimization
+Phase 9.18  Placement Optimization (Checksum:242faf02) REAL time: 2 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:53210b7) REAL time: 2 secs 
-
-Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:55a09ff) REAL time: 2 secs 
-
-Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:55a09ff) REAL time: 2 secs 
+Phase 10.5  Local Placement Optimization (Checksum:242faf02) REAL time: 2 secs 
 
 Total REAL time to Placer completion: 2 secs 
 Total CPU  time to Placer completion: 2 secs 
@@ -104,13 +108,13 @@ Writing design to file main.ncd
 Starting Router
 
 
-Phase  1  : 32 unrouted;      REAL time: 3 secs 
+Phase  1  : 168 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 27 unrouted;      REAL time: 3 secs 
+Phase  2  : 140 unrouted;      REAL time: 3 secs 
 
-Phase  3  : 2 unrouted;      REAL time: 3 secs 
+Phase  3  : 18 unrouted;      REAL time: 3 secs 
 
-Phase  4  : 2 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  4  : 18 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
 Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
@@ -141,7 +145,11 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|               CLK16 | BUFGMUX_X2Y11| No   |    2 |  0.014     |  0.479      |
+|               CLK16 | BUFGMUX_X2Y10| No   |   14 |  0.050     |  0.522      |
++---------------------+--------------+------+------+------------+-------------+
+|    datalink_2_BUFGP | BUFGMUX_X2Y11| No   |    4 |  0.011     |  0.493      |
++---------------------+--------------+------+------+------------+-------------+
+|    sender/debug_inp |         Local|      |    7 |  0.015     |  1.857      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -166,9 +174,9 @@ Asterisk (*) preceding a constraint indicates it was not met.
   NET "clkgen/CLKIN_IBUFG" PERIOD = 40 ns H | MINLOWPULSE |    30.000ns|    10.000ns|       0|           0
   IGH 50%                                   |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  PERIOD analysis for net "clkgen/CLKFX_BUF | SETUP       |    59.568ns|     2.932ns|       0|           0
-  " derived from  NET "clkgen/CLKIN_IBUFG"  | HOLD        |     2.033ns|            |       0|           0
-  PERIOD = 40 ns HIGH 50%                   | MINPERIOD   |    59.498ns|     3.002ns|       0|           0
+  PERIOD analysis for net "clkgen/CLKFX_BUF | SETUP       |    57.820ns|     4.680ns|       0|           0
+  " derived from  NET "clkgen/CLKIN_IBUFG"  | HOLD        |     1.413ns|            |       0|           0
+  PERIOD = 40 ns HIGH 50%                   |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -182,8 +190,8 @@ Derived Constraints for clkgen/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      1.921ns|            0|            0|            0|            2|
-| clkgen/CLKFX_BUF              |     62.500ns|      3.002ns|          N/A|            0|            0|            2|            0|
+|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      2.995ns|            0|            0|            0|           74|
+| clkgen/CLKFX_BUF              |     62.500ns|      4.680ns|          N/A|            0|            0|           74|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -203,7 +211,7 @@ Routing: Completed - No errors found.
 Timing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 0
+Number of warning messages: 1
 Number of info messages: 0
 
 Writing design to file main.ncd

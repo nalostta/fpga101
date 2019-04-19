@@ -51,6 +51,12 @@
     <file xil_pn:name="constraint_pushbtn.ucf" xil_pn:type="FILE_UCF">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
+    <file xil_pn:name="constraint_switch.ucf" xil_pn:type="FILE_UCF">
+      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+    </file>
+    <file xil_pn:name="constraint_rgbLed.ucf" xil_pn:type="FILE_UCF">
+      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+    </file>
   </files>
 
   <properties>
@@ -373,6 +379,8 @@
     <binding xil_pn:location="/main" xil_pn:name="constraints.ucf"/>
     <binding xil_pn:location="/main" xil_pn:name="constraint_clk.ucf"/>
     <binding xil_pn:location="/main" xil_pn:name="constraint_pushbtn.ucf"/>
+    <binding xil_pn:location="/main" xil_pn:name="constraint_switch.ucf"/>
+    <binding xil_pn:location="/main" xil_pn:name="constraint_rgbLed.ucf"/>
   </bindings>
 
   <libraries/>
