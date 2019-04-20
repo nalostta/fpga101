@@ -66,13 +66,13 @@ assign _ps2clk		=	ps2clk;
 reg[9:0] ClkDivider;
 reg[7:0] buffer,data;
 integer i,j;
-
+reg dbuf,dbuf_q,cbuf,cbuf_q;
 //A-----------------------------------------A
 //		simplest clock based shift register
-always @(negedge _ps2clk)begin
+always @(negedge cbuf_q)begin
 	if(en)begin
 		for(i=0;i<=6;i=i+1) buffer[i]<=buffer[i+1];
-		buffer[7]<=_ps2data;
+		buffer[7]<=dbuf_q;
 	end else begin
 		buffer[7:0]<=8'b0;
 	end
@@ -80,6 +80,10 @@ end
 //A-----------------------------------------A
 
 always @(posedge clk)begin
+	dbuf<=dbuf_q;
+	dbuf_q<=_ps2data;
+	cbuf_q<=_ps2clk;
+	cbuf<=cbuf_q;
 	if(en)	for(j=0;j<=7;j=j+1) data[j]<=buffer[j];
 	else data<=8'b0;
 end

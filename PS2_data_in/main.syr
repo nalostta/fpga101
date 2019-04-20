@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: main.prj
 
@@ -174,36 +174,43 @@ INFO:Xst:2679 - Register <j> in unit <ps2_data_in> has a constant value of 1000 
 
 Synthesizing Unit <DataOutModule1>.
     Related source file is "DataOutModule1.v".
+WARNING:Xst:647 - Input <debug> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1780 - Signal <txmatch> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <shiftmatch> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <dout> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <ClkDivider> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <disable_input> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <dbuf> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cbuf> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit tristate buffer for signal <ps2data>.
-    Found 1-bit tristate buffer for signal <ps2clk>.
+    Found 14-bit adder for signal <$add0000> created at line 57.
     Found 8-bit register for signal <buffer>.
+    Found 1-bit register for signal <cbuf_q>.
+    Found 14-bit register for signal <ClkDivider>.
     Found 4-bit up counter for signal <count>.
-    Found 1-bit tristate buffer for signal <debug_inp>.
-    Found 15-bit register for signal <disable_input>.
-    Found 1-bit subtractor for signal <disable_input_next$addsub0000> created at line 42.
+    Found 1-bit register for signal <dbuf_q>.
     Found 1-bit register for signal <en>.
     Found 8-bit register for signal <SentData>.
-    Found 8-bit comparator not equal for signal <SentData$cmp_ne0000> created at line 62.
+    Found 8-bit comparator not equal for signal <SentData$cmp_ne0000> created at line 63.
     Summary:
 	inferred   1 Counter(s).
-	inferred  32 D-type flip-flop(s).
+	inferred  33 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
 	inferred   1 Comparator(s).
-	inferred   3 Tristate(s).
+	inferred   1 Tristate(s).
 Unit <DataOutModule1> synthesized.
 
 
 Synthesizing Unit <ps2_data_in>.
     Related source file is "PS2_data_in.v".
+WARNING:Xst:646 - Signal <dbuf> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cbuf> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <ClkDivider> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
     Found 8-bit register for signal <data>.
     Found 8-bit register for signal <buffer>.
+    Found 1-bit register for signal <cbuf_q>.
+    Found 1-bit register for signal <dbuf_q>.
     Summary:
-	inferred  16 D-type flip-flop(s).
+	inferred  18 D-type flip-flop(s).
 Unit <ps2_data_in> synthesized.
 
 
@@ -223,17 +230,16 @@ HDL Synthesis Report
 
 Macro Statistics
 # Adders/Subtractors                                   : 1
- 1-bit subtractor                                      : 1
+ 14-bit adder                                          : 1
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 27
- 1-bit register                                        : 25
- 15-bit register                                       : 1
+# Registers                                            : 44
+ 1-bit register                                        : 43
  8-bit register                                        : 1
 # Comparators                                          : 1
  8-bit comparator not equal                            : 1
-# Tristates                                            : 3
- 1-bit tristate buffer                                 : 3
+# Tristates                                            : 1
+ 1-bit tristate buffer                                 : 1
 
 =========================================================================
 
@@ -241,18 +247,17 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-INFO:Xst:2261 - The FF/Latch <disable_input_1> in Unit <sender> is equivalent to the following 13 FFs/Latches, which will be removed : <disable_input_2> <disable_input_3> <disable_input_4> <disable_input_5> <disable_input_6> <disable_input_7> <disable_input_8> <disable_input_9> <disable_input_10> <disable_input_11> <disable_input_12> <disable_input_13> <disable_input_14> 
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
 # Adders/Subtractors                                   : 1
- 1-bit subtractor                                      : 1
+ 14-bit adder                                          : 1
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 48
- Flip-Flops                                            : 48
+# Registers                                            : 51
+ Flip-Flops                                            : 51
 # Comparators                                          : 1
  8-bit comparator not equal                            : 1
 
@@ -261,8 +266,10 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <disable_input_1> in Unit <DataOutModule1> is equivalent to the following 13 FFs/Latches, which will be removed : <disable_input_2> <disable_input_3> <disable_input_4> <disable_input_5> <disable_input_6> <disable_input_7> <disable_input_8> <disable_input_9> <disable_input_10> <disable_input_11> <disable_input_12> <disable_input_13> <disable_input_14> 
-WARNING:Xst:2041 - Unit main: 1 internal tristate is replaced by logic (pull-up yes): sender/debug_inp.
+WARNING:Xst:2677 - Node <ClkDivider_12> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_13> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_11> of sequential type is unconnected in block <DataOutModule1>.
+WARNING:Xst:2677 - Node <ClkDivider_10> of sequential type is unconnected in block <DataOutModule1>.
 
 Optimizing unit <main> ...
 
@@ -270,7 +277,7 @@ Optimizing unit <ps2_data_in> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 3.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 5.
 
 Final Macro Processing ...
 
@@ -278,8 +285,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 39
- Flip-Flops                                            : 39
+# Registers                                            : 51
+ Flip-Flops                                            : 51
 
 =========================================================================
 
@@ -308,29 +315,31 @@ Design Statistics
 # IOs                              : 23
 
 Cell Usage :
-# BELS                             : 26
+# BELS                             : 75
 #      GND                         : 1
-#      INV                         : 4
-#      LUT2                        : 2
-#      LUT3                        : 9
+#      INV                         : 5
+#      LUT1                        : 9
+#      LUT2                        : 23
+#      LUT3                        : 8
 #      LUT4                        : 7
 #      LUT4_L                      : 1
+#      MUXCY                       : 9
 #      MUXF5                       : 1
 #      VCC                         : 1
-# FlipFlops/Latches                : 39
+#      XORCY                       : 10
+# FlipFlops/Latches                : 51
+#      FD                          : 4
+#      FDCP                        : 10
 #      FDR                         : 19
 #      FDR_1                       : 8
 #      FDRE                        : 2
-#      FDS                         : 2
 #      FDSE                        : 8
-# Clock Buffers                    : 3
+# Clock Buffers                    : 2
 #      BUFG                        : 2
-#      BUFGP                       : 1
 # IO Buffers                       : 22
 #      IBUF                        : 10
 #      IBUFG                       : 1
-#      IOBUF                       : 1
-#      OBUF                        : 9
+#      OBUF                        : 10
 #      OBUFT                       : 1
 # DCMs                             : 1
 #      DCM_SP                      : 1
@@ -341,13 +350,13 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       21  out of    704     2%  
- Number of Slice Flip Flops:             31  out of   1408     2%  
- Number of 4 input LUTs:                 23  out of   1408     1%  
+ Number of Slices:                       37  out of    704     5%  
+ Number of Slice Flip Flops:             40  out of   1408     2%  
+ Number of 4 input LUTs:                 53  out of   1408     3%  
  Number of IOs:                          23
- Number of bonded IOBs:                  23  out of    108    21%  
-    IOB Flip Flops:                       8
- Number of GCLKs:                         3  out of     24    12%  
+ Number of bonded IOBs:                  22  out of    108    20%  
+    IOB Flip Flops:                      11
+ Number of GCLKs:                         2  out of     24     8%  
  Number of DCMs:                          1  out of      2    50%  
 
 ---------------------------
@@ -368,13 +377,13 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
-----------------------------------------------+-------------------------+-------+
-Clock Signal                                  | Clock buffer(FF name)   | Load  |
-----------------------------------------------+-------------------------+-------+
-sender/debug_inp(sender/debug_inpLogicTrst1:O)| NONE(*)(sender/count_3) | 12    |
-clk                                           | clkgen/DCM_SP_INST:CLKFX| 19    |
-datalink<2>                                   | BUFGP                   | 8     |
-----------------------------------------------+-------------------------+-------+
+-----------------------------------+-------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)   | Load  |
+-----------------------------------+-------------------------+-------+
+RedLed_OBUF(sender/ps2clk1:O)      | NONE(*)(sender/count_3) | 12    |
+clk                                | clkgen/DCM_SP_INST:CLKFX| 31    |
+receive1/cbuf_q                    | NONE(receive1/buffer_0) | 8     |
+-----------------------------------+-------------------------+-------+
 (*) This 1 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
@@ -382,31 +391,54 @@ INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-No asynchronous control signals found in this design
+-----------------------------------------------------------+--------------------------+-------+
+Control Signal                                             | Buffer(FF name)          | Load  |
+-----------------------------------------------------------+--------------------------+-------+
+sender/ClkDivider_0_and0000(sender/ClkDivider_0_and00001:O)| NONE(sender/ClkDivider_0)| 1     |
+sender/ClkDivider_0_and0001(sender/ClkDivider_0_and00011:O)| NONE(sender/ClkDivider_0)| 1     |
+sender/ClkDivider_1_and0000(sender/ClkDivider_1_and00001:O)| NONE(sender/ClkDivider_1)| 1     |
+sender/ClkDivider_1_and0001(sender/ClkDivider_1_and00011:O)| NONE(sender/ClkDivider_1)| 1     |
+sender/ClkDivider_2_and0000(sender/ClkDivider_2_and00001:O)| NONE(sender/ClkDivider_2)| 1     |
+sender/ClkDivider_2_and0001(sender/ClkDivider_2_and00011:O)| NONE(sender/ClkDivider_2)| 1     |
+sender/ClkDivider_3_and0000(sender/ClkDivider_3_and00001:O)| NONE(sender/ClkDivider_3)| 1     |
+sender/ClkDivider_3_and0001(sender/ClkDivider_3_and00011:O)| NONE(sender/ClkDivider_3)| 1     |
+sender/ClkDivider_4_and0000(sender/ClkDivider_4_and00001:O)| NONE(sender/ClkDivider_4)| 1     |
+sender/ClkDivider_4_and0001(sender/ClkDivider_4_and00011:O)| NONE(sender/ClkDivider_4)| 1     |
+sender/ClkDivider_5_and0000(sender/ClkDivider_5_and00001:O)| NONE(sender/ClkDivider_5)| 1     |
+sender/ClkDivider_5_and0001(sender/ClkDivider_5_and00011:O)| NONE(sender/ClkDivider_5)| 1     |
+sender/ClkDivider_6_and0000(sender/ClkDivider_6_and00001:O)| NONE(sender/ClkDivider_6)| 1     |
+sender/ClkDivider_6_and0001(sender/ClkDivider_6_and00011:O)| NONE(sender/ClkDivider_6)| 1     |
+sender/ClkDivider_7_and0000(sender/ClkDivider_7_and00001:O)| NONE(sender/ClkDivider_7)| 1     |
+sender/ClkDivider_7_and0001(sender/ClkDivider_7_and00011:O)| NONE(sender/ClkDivider_7)| 1     |
+sender/ClkDivider_8_and0000(sender/ClkDivider_8_and00001:O)| NONE(sender/ClkDivider_8)| 1     |
+sender/ClkDivider_8_and0001(sender/ClkDivider_8_and00011:O)| NONE(sender/ClkDivider_8)| 1     |
+sender/ClkDivider_9_and0000(sender/ClkDivider_9_and00001:O)| NONE(sender/ClkDivider_9)| 1     |
+sender/ClkDivider_9_and0001(sender/ClkDivider_9_and00011:O)| NONE(sender/ClkDivider_9)| 1     |
+-----------------------------------------------------------+--------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
    Minimum period: 3.602ns (Maximum Frequency: 277.624MHz)
-   Minimum input arrival time before clock: 4.378ns
-   Maximum output required time after clock: 6.954ns
-   Maximum combinational path delay: 5.956ns
+   Minimum input arrival time before clock: 5.183ns
+   Maximum output required time after clock: 8.104ns
+   Maximum combinational path delay: No path found
 
 Timing Detail:
 --------------
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'sender/debug_inp'
+Timing constraint: Default period analysis for Clock 'RedLed_OBUF'
   Clock period: 3.602ns (frequency: 277.624MHz)
   Total number of paths / destination ports: 49 / 12
 -------------------------------------------------------------------------
 Delay:               3.602ns (Levels of Logic = 2)
   Source:            sender/count_3 (FF)
   Destination:       sender/buffer_0 (FF)
-  Source Clock:      sender/debug_inp rising
-  Destination Clock: sender/debug_inp rising
+  Source Clock:      RedLed_OBUF rising
+  Destination Clock: RedLed_OBUF rising
 
   Data Path: sender/count_3 to sender/buffer_0
                                 Gate     Net
@@ -422,37 +454,38 @@ Delay:               3.602ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 2.609ns (frequency: 383.247MHz)
-  Total number of paths / destination ports: 74 / 10
+  Clock period: 3.019ns (frequency: 331.249MHz)
+  Total number of paths / destination ports: 82 / 10
 -------------------------------------------------------------------------
-Delay:               4.077ns (Levels of Logic = 2)
-  Source:            sender/SentData_3 (FF)
+Delay:               4.717ns (Levels of Logic = 3)
+  Source:            sender/SentData_5 (FF)
   Destination:       sender/en (FF)
   Source Clock:      clk rising 0.6X
   Destination Clock: clk rising 0.6X
 
-  Data Path: sender/SentData_3 to sender/en
+  Data Path: sender/SentData_5 to sender/en
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDSE:C->Q             1   0.591   0.563  sender/SentData_3 (sender/SentData_3)
-     LUT4:I0->O            1   0.648   0.500  sender/SentData_not0001_inv65 (sender/SentData_not0001_inv65)
-     LUT4:I1->O            9   0.643   0.820  sender/SentData_not0001_inv164 (sender/SentData_not0001_inv)
+     FDSE:C->Q             1   0.591   0.500  sender/SentData_5 (sender/SentData_5)
+     LUT2:I1->O            1   0.643   0.423  sender/SentData_and0000113_SW0 (N6)
+     LUT4_L:I3->LO         1   0.648   0.132  sender/SentData_and0000147 (sender/SentData_and0000147)
+     LUT4:I2->O            9   0.648   0.820  sender/SentData_and0000177 (sender/SentData_not0001_inv)
      FDSE:CE                   0.312          sender/SentData_0
     ----------------------------------------
-    Total                      4.077ns (2.194ns logic, 1.883ns route)
-                                       (53.8% logic, 46.2% route)
+    Total                      4.717ns (2.842ns logic, 1.875ns route)
+                                       (60.3% logic, 39.7% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'datalink<2>'
+Timing constraint: Default period analysis for Clock 'receive1/cbuf_q'
   Clock period: 1.290ns (frequency: 775.194MHz)
   Total number of paths / destination ports: 7 / 7
 -------------------------------------------------------------------------
 Delay:               1.290ns (Levels of Logic = 0)
   Source:            receive1/buffer_1 (FF)
   Destination:       receive1/buffer_0 (FF)
-  Source Clock:      datalink<2> falling
-  Destination Clock: datalink<2> falling
+  Source Clock:      receive1/cbuf_q falling
+  Destination Clock: receive1/cbuf_q falling
 
   Data Path: receive1/buffer_1 to receive1/buffer_0
                                 Gate     Net
@@ -465,13 +498,13 @@ Delay:               1.290ns (Levels of Logic = 0)
                                        (65.3% logic, 34.7% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'sender/debug_inp'
+Timing constraint: Default OFFSET IN BEFORE for Clock 'RedLed_OBUF'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
 Offset:              2.423ns (Levels of Logic = 2)
   Source:            switch<0> (PAD)
   Destination:       sender/buffer_0 (FF)
-  Destination Clock: sender/debug_inp rising
+  Destination Clock: RedLed_OBUF rising
 
   Data Path: switch<0> to sender/buffer_0
                                 Gate     Net
@@ -488,47 +521,29 @@ Offset:              2.423ns (Levels of Logic = 2)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
   Total number of paths / destination ports: 82 / 19
 -------------------------------------------------------------------------
-Offset:              4.378ns (Levels of Logic = 3)
-  Source:            switch<3> (PAD)
+Offset:              5.183ns (Levels of Logic = 4)
+  Source:            switch<0> (PAD)
   Destination:       sender/en (FF)
   Destination Clock: clk rising 0.6X
 
-  Data Path: switch<3> to sender/en
+  Data Path: switch<0> to sender/en
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             3   0.849   0.611  switch_3_IBUF (switch_3_IBUF)
-     LUT4:I1->O            1   0.643   0.500  sender/SentData_not0001_inv65 (sender/SentData_not0001_inv65)
-     LUT4:I1->O            9   0.643   0.820  sender/SentData_not0001_inv164 (sender/SentData_not0001_inv)
+     IBUF:I->O             3   0.849   0.674  switch_0_IBUF (switch_0_IBUF)
+     LUT4:I0->O            1   0.648   0.452  sender/SentData_and0000146 (sender/SentData_and0000146)
+     LUT4_L:I2->LO         1   0.648   0.132  sender/SentData_and0000147 (sender/SentData_and0000147)
+     LUT4:I2->O            9   0.648   0.820  sender/SentData_and0000177 (sender/SentData_not0001_inv)
      FDSE:CE                   0.312          sender/SentData_0
     ----------------------------------------
-    Total                      4.378ns (2.447ns logic, 1.931ns route)
-                                       (55.9% logic, 44.1% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'datalink<2>'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              1.521ns (Levels of Logic = 1)
-  Source:            datalink<3> (PAD)
-  Destination:       receive1/buffer_7 (FF)
-  Destination Clock: datalink<2> falling
-
-  Data Path: datalink<3> to receive1/buffer_7
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   0.849   0.420  datalink_3_IBUF (datalink_3_IBUF)
-     FDR_1:D                   0.252          receive1/buffer_7
-    ----------------------------------------
-    Total                      1.521ns (1.101ns logic, 0.420ns route)
-                                       (72.4% logic, 27.6% route)
+    Total                      5.183ns (3.105ns logic, 2.078ns route)
+                                       (59.9% logic, 40.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 10 / 10
+  Total number of paths / destination ports: 14 / 11
 -------------------------------------------------------------------------
-Offset:              6.954ns (Levels of Logic = 2)
+Offset:              8.104ns (Levels of Logic = 2)
   Source:            sender/en (FF)
   Destination:       datalink<0> (PAD)
   Source Clock:      clk rising 0.6X
@@ -537,61 +552,24 @@ Offset:              6.954ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             1   0.591   0.420  sender/en (sender/en)
-     INV:I->O             14   0.648   1.000  sender/en_inv1_INV_0 (sender/en_inv)
-     OBUFT:T->O                4.295          datalink_1_OBUFT (datalink<1>)
+     FDRE:C->Q            23   0.591   1.345  sender/en (sender/en)
+     LUT2:I0->O           14   0.648   1.000  sender/ps2clk1 (RedLed_OBUF)
+     OBUF:I->O                 4.520          datalink_0_OBUF (datalink<0>)
     ----------------------------------------
-    Total                      6.954ns (5.534ns logic, 1.420ns route)
-                                       (79.6% logic, 20.4% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'sender/debug_inp'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              5.531ns (Levels of Logic = 1)
-  Source:            sender/buffer_0 (FF)
-  Destination:       datalink<1> (PAD)
-  Source Clock:      sender/debug_inp rising
-
-  Data Path: sender/buffer_0 to datalink<1>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDR:C->Q              1   0.591   0.420  sender/buffer_0 (sender/buffer_0)
-     OBUFT:I->O                4.520          datalink_1_OBUFT (datalink<1>)
-    ----------------------------------------
-    Total                      5.531ns (5.111ns logic, 0.420ns route)
-                                       (92.4% logic, 7.6% route)
-
-=========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 2 / 2
--------------------------------------------------------------------------
-Delay:               5.956ns (Levels of Logic = 2)
-  Source:            pushbtn (PAD)
-  Destination:       datalink<0> (PAD)
-
-  Data Path: pushbtn to datalink<0>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             4   0.849   0.587  pushbtn_IBUF (pushbtn_IBUF)
-     IOBUF:I->IO               4.520          datalink_0_IOBUF (datalink<0>)
-    ----------------------------------------
-    Total                      5.956ns (5.369ns logic, 0.587ns route)
-                                       (90.1% logic, 9.9% route)
+    Total                      8.104ns (5.759ns logic, 2.345ns route)
+                                       (71.1% logic, 28.9% route)
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.02 secs
+Total CPU time to Xst completion: 5.00 secs
  
 --> 
 
-Total memory usage is 4551852 kilobytes
+Total memory usage is 4551892 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    7 (   0 filtered)
-Number of infos    :    6 (   0 filtered)
+Number of warnings :   15 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
 
