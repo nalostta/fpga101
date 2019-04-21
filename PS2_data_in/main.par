@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-NALOSTTA::  Sun Apr 21 02:01:31 2019
+NALOSTTA::  Sun Apr 21 23:50:51 2019
 
 par -w -intstyle ise -ol high -t 1 main_map.ncd main.ncd main.pcf 
 
@@ -38,7 +38,7 @@ Design Summary Report:
 
    Number of BUFGMUXs                        2 out of 24      8%
    Number of DCMs                            1 out of 2      50%
-   Number of Slices                         50 out of 704     7%
+   Number of Slices                         34 out of 704     4%
       Number of SLICEMs                      0 out of 352     0%
 
 
@@ -51,46 +51,45 @@ Router effort level (-rl):    High
 Starting initial Timing Analysis.  REAL time: 1 secs 
 Finished initial Timing Analysis.  REAL time: 1 secs 
 
-WARNING:Par:288 - The signal pushbtn_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
 Total REAL time at the beginning of Placer: 1 secs 
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:a5d0c6a) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:d1381e1) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:a5d0c6a) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:d1381e1) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:a5d0c6a) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:d1381e1) REAL time: 1 secs 
 
 WARNING:Place:414 - The input design contains local clock signal(s). To get a better result, we recommend users run map
    with the "-timing" option set before starting the placement.
 Phase 4.2  Initial Clock and IO Placement
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:e66844b) REAL time: 2 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:1187dea5) REAL time: 2 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:e66844b) REAL time: 2 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:1187dea5) REAL time: 2 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:e66844b) REAL time: 2 secs 
+Phase 6.36  Local Placement Optimization (Checksum:1187dea5) REAL time: 2 secs 
 
 Phase 7.8  Global Placement
 ..
 ..
-Phase 7.8  Global Placement (Checksum:55e322e7) REAL time: 2 secs 
+Phase 7.8  Global Placement (Checksum:3c438e81) REAL time: 2 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:55e322e7) REAL time: 2 secs 
+Phase 8.5  Local Placement Optimization (Checksum:3c438e81) REAL time: 2 secs 
 
 Phase 9.18  Placement Optimization
-Phase 9.18  Placement Optimization (Checksum:5386a8cf) REAL time: 2 secs 
+Phase 9.18  Placement Optimization (Checksum:3c9ed227) REAL time: 2 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:5386a8cf) REAL time: 2 secs 
+Phase 10.5  Local Placement Optimization (Checksum:3c9ed227) REAL time: 2 secs 
 
 Total REAL time to Placer completion: 2 secs 
 Total CPU  time to Placer completion: 2 secs 
@@ -101,13 +100,13 @@ Writing design to file main.ncd
 Starting Router
 
 
-Phase  1  : 261 unrouted;      REAL time: 3 secs 
+Phase  1  : 228 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 213 unrouted;      REAL time: 3 secs 
+Phase  2  : 199 unrouted;      REAL time: 3 secs 
 
-Phase  3  : 16 unrouted;      REAL time: 3 secs 
+Phase  3  : 35 unrouted;      REAL time: 3 secs 
 
-Phase  4  : 16 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  4  : 35 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
 Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
@@ -118,10 +117,8 @@ Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
 Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-WARNING:Route:455 - CLK Net:RedLed_OBUF may have excessive skew because 
-      0 CLK pins and 2 NON_CLK pins failed to route using a CLK template.
 WARNING:Route:455 - CLK Net:receive1/cbuf_q may have excessive skew because 
-      4 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+      5 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
 
 Total REAL time to Router completion: 3 secs 
 Total CPU time to Router completion: 3 secs 
@@ -142,11 +139,11 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|               CLK16 | BUFGMUX_X2Y11| No   |   27 |  0.056     |  0.518      |
+|               CLK16 | BUFGMUX_X2Y11| No   |   25 |  0.042     |  0.509      |
 +---------------------+--------------+------+------+------------+-------------+
-|         RedLed_OBUF |         Local|      |    9 |  0.208     |  2.092      |
+|  sender/ps2_data_en |         Local|      |    1 |  0.000     |  0.828      |
 +---------------------+--------------+------+------+------------+-------------+
-|     receive1/cbuf_q |         Local|      |    4 |  1.094     |  2.818      |
+|     receive1/cbuf_q |         Local|      |    5 |  1.553     |  2.772      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -171,8 +168,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   NET "clkgen/CLKIN_IBUFG" PERIOD = 40 ns H | MINLOWPULSE |    30.000ns|    10.000ns|       0|           0
   IGH 50%                                   |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  PERIOD analysis for net "clkgen/CLKFX_BUF | SETUP       |    57.033ns|     5.467ns|       0|           0
-  " derived from  NET "clkgen/CLKIN_IBUFG"  | HOLD        |     1.226ns|            |       0|           0
+  PERIOD analysis for net "clkgen/CLKFX_BUF | SETUP       |    57.984ns|     4.516ns|       0|           0
+  " derived from  NET "clkgen/CLKIN_IBUFG"  | HOLD        |     1.011ns|            |       0|           0
   PERIOD = 40 ns HIGH 50%                   |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
 
@@ -187,8 +184,8 @@ Derived Constraints for clkgen/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      3.499ns|            0|            0|            0|           82|
-| clkgen/CLKFX_BUF              |     62.500ns|      5.467ns|          N/A|            0|            0|           82|            0|
+|clkgen/CLKIN_IBUFG             |     40.000ns|     10.000ns|      2.890ns|            0|            0|            0|          175|
+| clkgen/CLKFX_BUF              |     62.500ns|      4.516ns|          N/A|            0|            0|          175|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -197,8 +194,6 @@ All constraints were met.
 Generating Pad Report.
 
 All signals are completely routed.
-
-WARNING:Par:283 - There are 1 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
 Total REAL time to PAR completion: 3 secs 
 Total CPU time to PAR completion: 3 secs 
@@ -210,7 +205,7 @@ Routing: Completed - No errors found.
 Timing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 6
+Number of warning messages: 2
 Number of info messages: 0
 
 Writing design to file main.ncd

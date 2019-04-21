@@ -9,9 +9,10 @@
 
 //approach 2 : begin with design the ps2-rx-module bottom-up approach
 
--> decide on the operating frequency => 15625Hz
+-> decide on the operating frequency => 15625Hz ./
 
 -> implement shift registers in both tx and rx 
+	->test and observe all the signals
 
 -> design fsm-based 1st version of the actual model starting from
 	the prev stage.

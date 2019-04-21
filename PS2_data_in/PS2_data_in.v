@@ -64,15 +64,15 @@ code dependability :
 assign _ps2data	=	ps2data;
 assign _ps2clk		=	ps2clk;
 reg[9:0] ClkDivider;
-reg[7:0] buffer,data;
+reg[9:0] buffer,data;
 integer i,j;
 reg dbuf,dbuf_q,cbuf,cbuf_q;
 //A-----------------------------------------A
 //		simplest clock based shift register
 always @(negedge cbuf_q)begin
 	if(en)begin
-		for(i=0;i<=6;i=i+1) buffer[i]<=buffer[i+1];
-		buffer[7]<=dbuf_q;
+		for(i=0;i<=8;i=i+1) buffer[i]<=buffer[i+1];
+		buffer[9]<=dbuf_q;
 	end else begin
 		buffer[7:0]<=8'b0;
 	end

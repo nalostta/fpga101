@@ -24,10 +24,12 @@ module DataOutModule1(
 		ps2data,
 		data,
 		Locked,
+		pushbtn,
 		debug
     );
 
-input clk,Locked,debug;
+input clk,Locked,pushbtn;
+output debug;
 inout ps2data,ps2clk;
 input[7:0] data;
 
@@ -37,7 +39,7 @@ reg[3:0] count;
 reg[1:0] txmatch,shiftmatch;
 reg[14:0] disable_input;
 reg cbuf,cbuf_q,dbuf,dbuf_q;
-reg dout,en;
+reg dout,en,debug;
 integer i;
 
 //assign disable_input_next = (disable_input==0)?	1'b0:disable_input-1'b1;
@@ -79,20 +81,39 @@ always @(posedge clk)begin
 	cbuf_q<=ClkDivider[9];
 end
 
-always @(posedge ps2clk)begin
+
+always @(posedge clk)begin
+	if(count==0)debug<=1;
+	else debug<=0;
+	if(en)begin
+		if(cbuf_q)begin
+			//active shift state
+			count<=count+1'b1;	
+			for(i=0;i<=6;i=i+1)	buffer[i]<=buffer[i+1];
+		end 
+	end else begin
+		//reset state
+		buffer[7:0]<=data[7:0];
+		count<=0;
+	end
+end
+
+
+/*always @(posedge ps2clk)begin
+	if(count==0)debug<=1;
+	else debug<=0;
 	if(en)begin
 		count<=count+1'b1;
-		if(/*ShiftData*/count==3'b0)	buffer[7:0]<=data[7:0];
+		if(count==4'b0)	buffer[7:0]<=data[7:0];
 		else begin
 			for(i=0;i<=6;i=i+1)	buffer[i]<=buffer[i+1];
-			dout<=buffer[0];
 		end
 	end else begin
 		buffer[7:0]<=8'b0;
 		dout<=1'b0;
 		count<=0;
 	end
-end
+end*/
 
 /*always @(posedge clk)begin
 	if(debug)begin
