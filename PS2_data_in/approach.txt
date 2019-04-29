@@ -19,3 +19,4 @@
 -> build on it adding other features.
 
 //MISC : test 1-bit vectors in sensitivity lists
+//design a debugging module and test it.

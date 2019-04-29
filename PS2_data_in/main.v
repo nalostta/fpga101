@@ -24,20 +24,26 @@ module main(
 		led,
 		pushbtn,
 		RedLed,
-		datalink
+		datalink,
+		DigCh,
+		SSDArray
     );
 	 
-input clk,pushbtn;
+input clk;
+input pushbtn;
 input[7:0] switch;
-output[7:0] led;
+
+output[7:0] led,SSDArray;
+output[2:0]	DigCh;
 output RedLed;
+
 inout[3:0] datalink;
-assign RedLed=0;
 
 wire CLK16,Locked;
-//assign led[6:0]=0;
 wire datalink;
 wire clocklink;
+wire[7:0] SegData;
+reg[9:0] clkdivider;
 
 CLK16Mhz clkgen(
     .CLKIN_IN(clk), 
@@ -47,30 +53,43 @@ CLK16Mhz clkgen(
     .CLK0_OUT(), 
     .LOCKED_OUT(Locked)
     );
-/*	 
-DataOutModule1 sender(
-			.clk(CLK16),
-			.ps2clk(datalink[0]),
-			.ps2data(datalink[1]),
-			.data(switch),
-			.Locked(Locked),
-			.pushbtn(),
-			.debug(RedLed)
-		 );*/
 		 
 bfm_ps2_data_out sender(
 		.clk(CLK16),
-		.reset(pushbtn),
+		.reset(!pushbtn),
 		.ps2_data(datalink[1]),
 		.ps2_clock(datalink[0]),
 		.data_to_be_sent(switch)
     );
-
-ps2_data_in receive1(
+	 
+fsm_ps2_in receive2(
 		.clk(CLK16),
-		.ps2clk(datalink[2]),
-		.ps2data(datalink[3]),
-		.data(led),
-		.en(Locked)
+		.Locked(Locked),
+		.ps2_clk(datalink[2]),
+		.ps2_data(datalink[3]),
+		.received_data(SegData),
+		.received_data_en(),
+		.debug(),
+		.RedLed(RedLed)
     );
+	 
+seg7display SegDisp(
+    .clk(clkdivider[9]),
+	 .en(Locked),
+	 .ssdarray(SSDArray),
+    .Bin(SegData),
+	 .DigCh(DigCh)
+    );
+
+//assign RedLed=1'b1;
+assign led = 0;
+//assign SegData=8'hff;
+
+always @(posedge CLK16)begin
+	if(Locked)begin
+		clkdivider<=clkdivider+1'b1;
+	end else begin
+		clkdivider<=1'b0;
+	end
+end
 endmodule
