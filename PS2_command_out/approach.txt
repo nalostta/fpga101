@@ -1,0 +1,30 @@
+//PS2_command_out
+
+host-to-device communication,frame:
+
+HOST 	=> | start bit | data bits 7-0 | parity Bit | stop bit | 		  |
+DEVICE	=> |		   |			   |			|		   | ACK bit  |
+	
+
+pseudo [host side]:
+
+->assuming the clock line is IDLE, pull down the clock line low for 100us.
+->Release the clock line and pull down the dataline (start bit), Thus wait for the device to generate clock.
+->Wait for the device to generate clock till 15ms failing which, TIMEOUT occurs i.e. communication failure.
+->If clock generated, shift out the data frame @neg edge of the clock line.
+->If the clock stops midway or the time period extends beyond 2ms, timeout condition occurs again.
+->after shifting out Stop bit, release data line and wait till timeout for ACK bit.
+->If ACK received from the device in time,communication successful.
+----------------------------------------------------transmission complete----------------------------------------------------
+
+pseudo [device side]:
+
+->if clock low for 100us start generating clock pulses.
+->shift in data @posedge of clk pulses
+->once frame received, send ACK bit.
+-----------------------rx complete--------------------------- 
+
+########################################################################################################################################################################
+
+
+model 1:

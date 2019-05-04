@@ -18,16 +18,14 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module main(
-		clk,
+module main(		
 		switch,
 		led
     );
 	 
-input clk;
 input[7:0] switch;
-output[7:0] led;
+output[7:0] led;	
 
-assign led=switch;
+assign led[7:0]=!switch[7:0];
 
 endmodule

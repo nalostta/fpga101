@@ -1,4 +1,6 @@
-//approach 1 : test out PS2_out module first (reverse engineer)
+//-------------------------------------------------------------------------
+PS2_data_in
+approach 1 : test out PS2_out module first (reverse engineer)
 
 -> detect clock and data pulses
 -> clock based shift register approach 
@@ -20,3 +22,16 @@
 
 //MISC : test 1-bit vectors in sensitivity lists
 //design a debugging module and test it.
+//-------------------------------------------------------------------------
+
+
+
+//-------------------------------------------------------------------------
+ps2_command_out
+
+
+
+//-------------------------------------------------------------------------
+
+word power made easy.
+5-pound GRE from manhattan.

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    18:07:52 04/30/2019 
+// Create Date:    01:48:18 05/04/2019 
 // Design Name: 
-// Module Name:    main 
+// Module Name:    testbench 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,16 +18,15 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module main(
-		clk,
-		switch,
-		led
+module testbench(
     );
-	 
-input clk;
-input[7:0] switch;
-output[7:0] led;
 
-assign led=switch;
 
+main DUT(
+		.clk(clk),		
+		.datalink(),
+		.pushbtn(),
+		.switch(),
+		.led()
+    );
 endmodule

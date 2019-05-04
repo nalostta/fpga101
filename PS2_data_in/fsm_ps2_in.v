@@ -40,10 +40,9 @@ reg[9:0] rx_data_q;
 reg[7:0] received_data,debug;
 reg[2:0] bit_count;
 reg[1:0] state,next_state,StopBitFlag;
-reg cbuf_q,dbuf_q,shift_en,parity,RedLed;
-wire data_valid;
+reg cbuf_q,dbuf_q,shift_en,RedLed;
 
-assign data_valid = (rx_data_q[8]^rx_data_q[0]^rx_data_q[1]^rx_data_q[2]^rx_data_q[3]^rx_data_q[4]^rx_data_q[5]^rx_data_q[6]^rx_data_q[7]);
+assign data_valid= (rx_data_q[8]==rx_data_q[0]^rx_data_q[1]^rx_data_q[2]^rx_data_q[3]^rx_data_q[4]^rx_data_q[5]^rx_data_q[6]^rx_data_q[7])?	1'b0:1'b1;
 
 
 integer i;
@@ -58,9 +57,7 @@ always @(posedge clk)begin
 	debug[7:2]<=0;
 	cbuf_q<=_ps2clk;
 	dbuf_q<=_ps2data;
-	received_data<=rx_data_q;
-	//received_data[7:1]<=0;
-	//parity<=rx_data_q[8];
+	received_data<=rx_data_q[8:1];
 	state<=next_state;
 	RedLed<=data_valid;
 end

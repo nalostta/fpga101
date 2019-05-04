@@ -3,8 +3,7 @@ Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
--n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
-constraint_led.ucf -ucf constraint_switch.ucf -ucf constraint_clk.ucf
+-n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -16,6 +15,7 @@ Environment Variable      Effect
 NONE                      No environment variables were set
 --------------------------------------------------------------------------------
 
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
 INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
 INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
    option. All paths that are not constrained will be reported in the 
@@ -33,35 +33,28 @@ INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and
    SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
    Error.
 
-================================================================================
-Timing constraint: NET "clk_IBUF" PERIOD = 40 ns HIGH 50%;
-For more information, see Period Analysis in the Timing Closure User Guide (UG612).
-
- 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
- 0 timing errors detected. (0 component switching limit errors)
---------------------------------------------------------------------------------
-
-
-All constraints were met.
 
 
 Data Sheet report:
 -----------------
-No constraints were found to generate data for the Data Sheet Report section.
-Use the Advanced Analysis (-a) option or generate global constraints for each
-clock, its pad to setup and clock to pad paths, and a pad to pad constraint.
+All values displayed in nanoseconds (ns)
 
-Timing summary:
----------------
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+switch<0>      |led<0>         |    7.737|
+switch<1>      |led<0>         |    7.498|
+switch<2>      |led<0>         |    7.566|
+switch<3>      |led<0>         |    7.627|
+switch<4>      |led<0>         |    7.497|
+switch<5>      |led<0>         |    7.538|
+switch<6>      |led<0>         |    7.682|
+switch<7>      |led<0>         |    7.272|
+---------------+---------------+---------+
 
-Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 0 paths, 0 nets, and 0 connections
-
-Design statistics:
-No global statistics to report.
-
-Analysis completed Sat May 04 13:38:13 2019 
+Analysis completed Sat May 04 13:55:06 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
