@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-NALOSTTA::  Sat May 04 20:36:31 2019
+NALOSTTA::  Sat May 11 12:43:46 2019
 
 par -w -intstyle ise -ol high -t 1 main_map.ncd main.ncd main.pcf 
 
@@ -19,7 +19,7 @@ Device speed data version:  "PRODUCTION 1.42 2013-10-13".
 
 Design Summary Report:
 
- Number of External IOBs                          23 out of 108    21%
+ Number of External IOBs                          26 out of 108    24%
 
    Number of External Input IOBs                 11
 
@@ -27,10 +27,10 @@ Design Summary Report:
         Number of LOCed External Input IBUFs     11 out of 11    100%
 
 
-   Number of External Output IOBs                 8
+   Number of External Output IOBs                11
 
-      Number of External Output IOBs              8
-        Number of LOCed External Output IOBs      8 out of 8     100%
+      Number of External Output IOBs             11
+        Number of LOCed External Output IOBs     11 out of 11    100%
 
 
    Number of External Bidir IOBs                  4
@@ -39,9 +39,9 @@ Design Summary Report:
         Number of LOCed External Bidir IOBs       4 out of 4     100%
 
 
-   Number of BUFGMUXs                        1 out of 24      4%
+   Number of BUFGMUXs                        2 out of 24      8%
    Number of DCMs                            1 out of 2      50%
-   Number of Slices                         73 out of 704    10%
+   Number of Slices                         90 out of 704    12%
       Number of SLICEMs                      0 out of 352     0%
 
 
@@ -54,54 +54,50 @@ Router effort level (-rl):    High
 Starting initial Timing Analysis.  REAL time: 1 secs 
 Finished initial Timing Analysis.  REAL time: 1 secs 
 
-WARNING:Par:288 - The signal switch<0>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<1>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<2>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<3>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<4>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<5>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<6>_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal switch<7>_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
 Total REAL time at the beginning of Placer: 1 secs 
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:202fdb39) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:406df6b7) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:202fdb39) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:406df6b7) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:202fdb39) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:406df6b7) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:21d4a416) REAL time: 2 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:4bfa398e) REAL time: 2 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:21d4a416) REAL time: 2 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:4bfa398e) REAL time: 2 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:21d4a416) REAL time: 2 secs 
+Phase 6.36  Local Placement Optimization (Checksum:4bfa398e) REAL time: 2 secs 
 
 Phase 7.8  Global Placement
 ......
+..
+.....
+....
 ...
-Phase 7.8  Global Placement (Checksum:d1b3ced7) REAL time: 2 secs 
+..
+Phase 7.8  Global Placement (Checksum:3a8a1455) REAL time: 2 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:d1b3ced7) REAL time: 2 secs 
+Phase 8.5  Local Placement Optimization (Checksum:3a8a1455) REAL time: 2 secs 
 
 Phase 9.18  Placement Optimization
-Phase 9.18  Placement Optimization (Checksum:d932c65e) REAL time: 2 secs 
+Phase 9.18  Placement Optimization (Checksum:4e2bcd2a) REAL time: 3 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:d932c65e) REAL time: 2 secs 
+Phase 10.5  Local Placement Optimization (Checksum:4e2bcd2a) REAL time: 3 secs 
 
-Total REAL time to Placer completion: 2 secs 
-Total CPU  time to Placer completion: 2 secs 
+Total REAL time to Placer completion: 3 secs 
+Total CPU  time to Placer completion: 3 secs 
 Writing design to file main.ncd
 
 
@@ -109,32 +105,52 @@ Writing design to file main.ncd
 Starting Router
 
 
-Phase  1  : 522 unrouted;      REAL time: 3 secs 
+Phase  1  : 577 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 470 unrouted;      REAL time: 3 secs 
+Phase  2  : 507 unrouted;      REAL time: 3 secs 
 
 Phase  3  : 74 unrouted;      REAL time: 3 secs 
 
-Phase  4  : 74 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  4  : 76 unrouted; (Setup:1776, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  5  : 0 unrouted; (Setup:1776, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
 Updating file: main.ncd with current fully routed design.
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  6  : 0 unrouted; (Setup:1776, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  7  : 0 unrouted; (Setup:1776, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-WARNING:Route:455 - CLK Net:command_module/data_write_en_or00005 may have excessive skew because 
+Phase  8  : 0 unrouted; (Setup:1776, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+
+Phase  9  : 0 unrouted; (Setup:1478, Hold:0, Component Switching Limit:0)     REAL time: 5 secs 
+
+Phase 10  : 0 unrouted; (Setup:1478, Hold:0, Component Switching Limit:0)     REAL time: 5 secs 
+
+Phase 11  : 0 unrouted; (Setup:1478, Hold:0, Component Switching Limit:0)     REAL time: 5 secs 
+
+Phase 12  : 0 unrouted; (Setup:1478, Hold:0, Component Switching Limit:0)     REAL time: 5 secs 
+WARNING:Route:455 - CLK Net:RX_module/ps2_clock_en_inv may have excessive skew because 
       1 CLK pins and 1 NON_CLK pins failed to route using a CLK template.
-WARNING:Route:455 - CLK Net:command_module/data_write_en_or0000 may have excessive skew because 
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_5_or0000 may have excessive skew because 
+      1 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_4_or0000 may have excessive skew because 
       2 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
-WARNING:Route:455 - CLK Net:RX_module/curr_state_FSM_FFd4 may have excessive skew because 
-      1 CLK pins and 4 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_2_or0000 may have excessive skew because 
+      1 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_7_or0000 may have excessive skew because 
+      1 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_6_or0000 may have excessive skew because 
+      2 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_3_or0000 may have excessive skew because 
+      2 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/received_cmd_1_or0000 may have excessive skew because 
+      2 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:RX_module/curr_state_FSM_FFd5 may have excessive skew because 
+      1 CLK pins and 2 NON_CLK pins failed to route using a CLK template.
 
-Total REAL time to Router completion: 3 secs 
-Total CPU time to Router completion: 3 secs 
+Total REAL time to Router completion: 5 secs 
+Total CPU time to Router completion: 5 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -152,43 +168,39 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|                CLK0 | BUFGMUX_X1Y10| No   |   49 |  0.086     |  0.549      |
+|                CLK0 | BUFGMUX_X2Y11| No   |   40 |  0.087     |  0.549      |
++---------------------+--------------+------+------+------------+-------------+
+|               CLK16 | BUFGMUX_X1Y10| No   |   12 |  0.056     |  0.516      |
++---------------------+--------------+------+------+------------+-------------+
+|RX_module/ps2_clock_ |              |      |      |            |             |
+|              en_inv |         Local|      |    2 |  0.000     |  1.272      |
++---------------------+--------------+------+------+------------+-------------+
+|RX_module/received_c |              |      |      |            |             |
+|         md_0_or0000 |         Local|      |    2 |  0.011     |  1.644      |
++---------------------+--------------+------+------+------------+-------------+
+|RX_module/received_c |              |      |      |            |             |
+|         md_5_or0000 |         Local|      |    2 |  0.591     |  1.639      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/curr_state |              |      |      |            |             |
-|           _FSM_FFd4 |         Local|      |    5 |  0.000     |  1.441      |
+|           _FSM_FFd5 |         Local|      |    3 |  0.000     |  0.698      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/received_c |              |      |      |            |             |
-|         md_0_or0000 |         Local|      |    1 |  0.000     |  1.420      |
+|         md_4_or0000 |         Local|      |    2 |  0.182     |  1.202      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/received_c |              |      |      |            |             |
-|         md_1_or0000 |         Local|      |    1 |  0.000     |  1.502      |
+|         md_2_or0000 |         Local|      |    2 |  0.730     |  1.617      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/received_c |              |      |      |            |             |
-|         md_2_or0000 |         Local|      |    1 |  0.000     |  1.395      |
+|         md_7_or0000 |         Local|      |    2 |  1.313     |  1.653      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/received_c |              |      |      |            |             |
-|         md_3_or0000 |         Local|      |    1 |  0.000     |  1.144      |
+|         md_6_or0000 |         Local|      |    2 |  0.333     |  1.453      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/received_c |              |      |      |            |             |
-|         md_4_or0000 |         Local|      |    1 |  0.000     |  1.325      |
+|         md_3_or0000 |         Local|      |    2 |  0.382     |  0.969      |
 +---------------------+--------------+------+------+------------+-------------+
 |RX_module/received_c |              |      |      |            |             |
-|         md_5_or0000 |         Local|      |    1 |  0.000     |  1.452      |
-+---------------------+--------------+------+------+------------+-------------+
-|RX_module/received_c |              |      |      |            |             |
-|         md_6_or0000 |         Local|      |    1 |  0.000     |  1.371      |
-+---------------------+--------------+------+------+------------+-------------+
-|RX_module/received_c |              |      |      |            |             |
-|         md_7_or0000 |         Local|      |    1 |  0.000     |  1.097      |
-+---------------------+--------------+------+------+------------+-------------+
-|command_module/data_ |              |      |      |            |             |
-|    write_en_or00005 |         Local|      |    2 |  0.000     |  0.866      |
-+---------------------+--------------+------+------+------------+-------------+
-|command_module/data_ |              |      |      |            |             |
-|     write_en_or0000 |         Local|      |    2 |  0.646     |  1.870      |
-+---------------------+--------------+------+------+------------+-------------+
-|command_module/data_ |              |      |      |            |             |
-|    write_buf_or0000 |         Local|      |    1 |  0.000     |  1.436      |
+|         md_1_or0000 |         Local|      |    2 |  0.022     |  0.893      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -199,7 +211,24 @@ the minimum and maximum path delays which includes logic delays.
 * The fanout is the number of component pins not the individual BEL loads,
 for example SLICE loads not FF loads.
 
-Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+Timing Score: 1478 (Setup: 1478, Hold: 0, Component Switching Limit: 0)
+
+WARNING:Par:468 - Your design did not meet timing.  The following are some suggestions to assist you to meet timing in
+   your design.
+
+   Review the timing report using Timing Analyzer (In ISE select "Post-Place &
+   Route Static Timing Report"). Go to the failing constraint(s) and evaluate the failing paths for each constraint.
+
+   Try the Design Goal and Strategies for Timing Performance(In ISE select Project -> Design Goals & Strategies) to
+   ensure the best options are set in the tools for timing closure.
+
+   Use the Xilinx "SmartXplorer" script to try special combinations of
+   options known to produce very good results.
+
+   Visit the Xilinx technical support web at http://support.xilinx.com and go to
+   either "Troubleshoot->Tech Tips->Timing & Constraints" or "
+   TechXclusives->Timing Closure" for tips and suggestions for meeting timing
+   in your design.
 
 Number of Timing Constraints that were not applied: 1
 
@@ -210,12 +239,16 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
+* PERIOD analysis for net "ClkGen_1/CLK0_BU | SETUP       |    -0.571ns|    49.136ns|       4|        1478
+  F" derived from  NET "ClkGen_1/CLKIN_IBUF | HOLD        |     1.272ns|            |       0|           0
+  G" PERIOD = 40 ns HIGH 50%                |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
   NET "ClkGen_1/CLKIN_IBUFG" PERIOD = 40 ns | MINLOWPULSE |    30.000ns|    10.000ns|       0|           0
    HIGH 50%                                 |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  PERIOD analysis for net "ClkGen_1/CLK0_BU | SETUP       |    34.339ns|     5.661ns|       0|           0
-  F" derived from  NET "ClkGen_1/CLKIN_IBUF | HOLD        |     1.283ns|            |       0|           0
-  G" PERIOD = 40 ns HIGH 50%                |             |            |            |        |            
+  PERIOD analysis for net "ClkGen_1/CLKFX_B | SETUP       |    58.356ns|     4.144ns|       0|           0
+  UF" derived from  NET "ClkGen_1/CLKIN_IBU | HOLD        |     1.352ns|            |       0|           0
+  FG" PERIOD = 40 ns HIGH 50%               |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -229,30 +262,29 @@ Derived Constraints for ClkGen_1/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|ClkGen_1/CLKIN_IBUFG           |     40.000ns|     10.000ns|      5.661ns|            0|            0|            0|          569|
-| ClkGen_1/CLK0_BUF             |     40.000ns|      5.661ns|          N/A|            0|            0|          569|            0|
+|ClkGen_1/CLKIN_IBUFG           |     40.000ns|     10.000ns|     49.136ns|            0|            4|            0|          838|
+| ClkGen_1/CLK0_BUF             |     40.000ns|     49.136ns|          N/A|            4|            0|          730|            0|
+| ClkGen_1/CLKFX_BUF            |     62.500ns|      4.144ns|          N/A|            0|            0|          108|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
-All constraints were met.
+1 constraint not met.
 
 
 Generating Pad Report.
 
 All signals are completely routed.
 
-WARNING:Par:283 - There are 8 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
-
-Total REAL time to PAR completion: 3 secs 
-Total CPU time to PAR completion: 3 secs 
+Total REAL time to PAR completion: 6 secs 
+Total CPU time to PAR completion: 5 secs 
 
 Peak Memory Usage:  4450 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.
-Timing: Completed - No errors found.
+Timing: Completed - 4 errors found.
 
 Number of error messages: 0
-Number of warning messages: 13
+Number of warning messages: 10
 Number of info messages: 0
 
 Writing design to file main.ncd
