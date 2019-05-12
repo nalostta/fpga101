@@ -94,7 +94,7 @@ always @(posedge clk)begin
 	else hold_count<=hold_count+1'b1;
 end
 
-assign hold_100us = hold_count==12'h9c5; //9b0 tested to give a delay period of 100 us whereas 9c5 gave 116us
+assign hold_100us = hold_count==12'h9c5; //(redundant now)9b0 tested to give a delay period of 100 us whereas 9c5 gave 116us
 
 
 assign ack_received = ((state==WAIT_FOR_ACK)&&(!_ps2data)&&(posedge_ps2_clk));
@@ -118,11 +118,16 @@ always @(posedge clk or posedge reset)begin
 			
 		HOLD_CLOCK:begin
 			hold_clock_en<=1'b1;
-			clk_write_en<=1'b1;
 			clk_write_buf<=1'b0;  //write 0 to clk line
 			data_write_en<=1'b0;
-			if(hold_100us)state<=START_BIT;
-			else state<=HOLD_CLOCK;
+			clk_write_en<=1'b1;
+			if(hold_100us)begin
+				state<=START_BIT;
+				data_write_en<=1'b1;
+				data_write_buf<=1'b0;
+			end else begin
+				state<=HOLD_CLOCK;
+			end
 		end
 			
 		START_BIT:begin
@@ -219,8 +224,13 @@ always @(posedge clk or posedge reset)begin
 			clk_write_en<=1'b0;
 			data_write_en<=1'b1;
 			data_write_buf<=1'b1; //stop bit
-			if(negedge_ps2_clk)state<=WAIT_FOR_ACK;
-			else state<=STOP;
+			if(negedge_ps2_clk)begin
+				data_write_en<=1'b0;
+				state<=WAIT_FOR_ACK;
+			end else begin
+				data_write_en<=1'b1;
+				state<=STOP;
+			end
 		end
 		
 		WAIT_FOR_ACK:begin
@@ -235,7 +245,7 @@ always @(posedge clk or posedge reset)begin
 			status<=1'b0;
 			clk_write_en<=1'b0;
 			data_write_en<=1'b0;
-			if(negedge_ps2_clk)state<=IDLE;
+			if(pushbtn)state<=IDLE;
 			else state<=TX_END;
 		end
 

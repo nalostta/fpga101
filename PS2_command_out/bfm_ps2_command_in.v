@@ -25,10 +25,11 @@ module bfm_ps2_command_in(
 	ps2_clock,
 	received_cmd,
 	received_cmd_en,
-	debug
+	debug,
+	pushbtn
     );
 
-input clk, reset;
+input clk, reset,pushbtn;
 inout ps2_data, ps2_clock;
 output [7:0] received_cmd;
 output [3:0] debug;
@@ -92,7 +93,8 @@ localparam	IDLE		= 4'h0,
 				PARITY	= 4'hA,
 				STOP   	= 4'hB,
 				ACK		= 4'hC,
-				FINISH   = 4'hD;
+				FINISH   = 4'hD,
+				DEBUG		= 4'hE;
 
 always @(posedge clk or negedge reset)
 	if (~reset) curr_state <= IDLE;
@@ -220,7 +222,13 @@ begin
 			ps2_data_out = 1'b0;
 			received_cmd_en = 1'b0;
 			if (negedge_ps2_clk_sig) next_state = IDLE;
-			else next_state = FINISH;
+			else next_state = DEBUG;
+		end
+		
+	DEBUG:
+		begin
+			if(pushbtn)next_state=IDLE;
+			else next_state=DEBUG;
 		end
 		
 	default:

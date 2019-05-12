@@ -23,21 +23,20 @@ module main(
 		switch,
 		pushbtn,
 		led,
-		datalink,
+		datalink/*,
 		debug_state_tx,
-		debug_state_rx
+		debug_state_rx*/
 		);
 
 input[7:0]	switch;
 input[1:0]	pushbtn;
 input 		clk;
 output[7:0]	led;
-output[3:0] debug_state_tx,debug_state_rx;
+//output[3:0] debug_state_tx,debug_state_rx;
 inout[3:0]	datalink;
 
 wire[7:0] garbage,received_cmd;
 wire CLK16,CLK0,Locked,received_cmd_en,pushbtn0,pushbtn1,status1,status2,timeout;
-
 
 clkgen ClkGen_1(
     .CLKIN_IN(clk), 
@@ -54,30 +53,26 @@ fsm_cmd_out command_module(
 		.clk(CLK0),						
 		.reset(Locked),					
 		.the_command(switch),			
-		.send_command(pushbtn[0]),	
+		.send_command(pushbtn0),	
 		.ps2_clk(datalink[0]),
 		.ps2_data(datalink[1]),
 		.command_was_sent(),
 		.error_comm_timed_out(),
-		.debug(debug_state_tx),
+		.debug(led[3:0]),
 		.pushbtn(pushbtn1)
     );
-
-//------------------------
-
-
-//------------------------
 
 bfm_ps2_command_in RX_module(
 	.clk(CLK0),
 	.reset(Locked),
 	.ps2_data(datalink[3]),
 	.ps2_clock(datalink[2]),
-	.received_cmd(led),
+	.received_cmd(),
 	.received_cmd_en(received_cmd_en),
-	.debug(debug_state_rx)
+	.debug(led[7:4]),
+	.pushbtn(pushbtn1)
     );
-/*	 
+
 debouncer pushbtn_0(
 		.clk(CLK16),
 		.pushbtn(!pushbtn[0]),
@@ -88,6 +83,6 @@ debouncer pushbtn_1(
 		.clk(CLK16),
 		.pushbtn(!pushbtn[1]),
 		.trigger_out(pushbtn1)
-    );*/
+    );
 endmodule
 

@@ -26,5 +26,8 @@ pseudo [device side]:
 
 ########################################################################################################################################################################
 
-
-model 1:
+IMPORTANT NOTE :
+ -> Test out the different models in an fsm and the execution/output w.r.t clock pulse. my previous models involved the complete FSM
+	design in a single always block, this caused some timing issues (mentioned) in the commit about the extra ps2clock cycle : (25e930cfbbd63daa9aeebfae05f5b40358e3a65c)
+	
+	The provided module split the sequential and the combinational element.
