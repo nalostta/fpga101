@@ -20,7 +20,7 @@ pseudo [host side]:
 pseudo [device side]:
 
 ->if clock low for 100us start generating clock pulses.
-->shift in data @posedge of clk pulses
+->shift IN data @posedge of clk pulses
 ->once frame received, send ACK bit.
 -----------------------rx complete--------------------------- 
 

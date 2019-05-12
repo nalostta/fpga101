@@ -25,18 +25,17 @@ module bfm_ps2_command_in(
 	ps2_clock,
 	received_cmd,
 	received_cmd_en,
-	debug,
-	pushbtn,
-	status
+	debug
     );
 
-input clk, reset,pushbtn;
+input clk, reset;
 inout ps2_data, ps2_clock;
-output [7:0] received_cmd,debug;
-output received_cmd_en,status;
+output [7:0] received_cmd;
+output [3:0] debug;
+output received_cmd_en;
 reg [11:0] clk_pulldown_ctr;
+reg [3:0] debug;
 
-reg status;
 reg  ps2_data_en;
 reg  ps2_clock_en;
 reg  ps2_data_out;      
@@ -48,7 +47,7 @@ reg [15:0] clk_counter;
 wire clk_pulldown_100ms;
 reg [3:0] curr_state, next_state;
 reg ps2_clk_sig_q;
-reg [7:0] received_cmd,debug;
+reg [7:0] received_cmd;
 reg received_cmd_en;
 reg received_parity;
 assign ps2_data_in = ps2_data;
@@ -77,11 +76,6 @@ always @(posedge clk or negedge reset)
 	if (~reset) ps2_clk_sig_q <= 1'b0;
 	else ps2_clk_sig_q <= ps2_clk_sig;
 
-always @(posedge clk)begin
-	debug[3:0]<=curr_state;
-	debug[7:4]<=0;
-end
-
 assign negedge_ps2_clk_sig = ~ps2_clk_sig & ps2_clk_sig_q;
 assign posedge_ps2_clk_sig = ps2_clk_sig & ~ps2_clk_sig_q;
 
@@ -98,12 +92,13 @@ localparam	IDLE		= 4'h0,
 				PARITY	= 4'hA,
 				STOP   	= 4'hB,
 				ACK		= 4'hC,
-				FINISH   = 4'hD,
-				DEBUG		= 4'hE;
+				FINISH   = 4'hD;
 
 always @(posedge clk or negedge reset)
 	if (~reset) curr_state <= IDLE;
 	else curr_state <= next_state;
+	
+always @(posedge clk)debug<=curr_state;
 		
 always @(curr_state, negedge_ps2_clk_sig, posedge_ps2_clk_sig, clk_pulldown_100ms,ps2_data_in)
 begin
@@ -118,7 +113,6 @@ begin
 			ps2_clock_en = 1'b0;	
 			received_cmd = 8'b0;
 			received_cmd_en = 1'b0;
-			status<=1'b1;
 			if (clk_pulldown_100ms && ~ps2_data_in) next_state = START;
 			else next_state = IDLE;
 		end
@@ -225,19 +219,9 @@ begin
 			ps2_clock_en = 1'b1;	
 			ps2_data_out = 1'b0;
 			received_cmd_en = 1'b0;
-			if (negedge_ps2_clk_sig) next_state = DEBUG;
+			if (negedge_ps2_clk_sig) next_state = IDLE;
 			else next_state = FINISH;
 		end
-		
-	DEBUG:begin
-			ps2_data_en = 1'b0;
-			ps2_clock_en = 1'b0;	
-			status<=1'b0;
-			if (pushbtn) next_state = IDLE;
-			else next_state = DEBUG;
-	end
-	
-	4'hf:next_state=DEBUG;
 		
 	default:
 		begin
