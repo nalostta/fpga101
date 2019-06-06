@@ -36,15 +36,28 @@ output[7:0]	led;
 inout[3:0]	datalink;
 
 wire[7:0] garbage,received_cmd;
+<<<<<<< HEAD
 wire CLK16,CLK0,Locked,received_cmd_en,pushbtn0,pushbtn1,status1,status2,timeout;
+=======
+wire CLK16,CLK0,Locked,received_cmd_en,pushbtn0,pushbtn1,status1,status2;
+wire[3:0] debug_tx,debug_rx;
+
+assign RedLed = !status1;
+assign BlueLed = status2;
+assign GreenLed = 1'b1;
+assign led = {debug_rx,debug_tx};
+<<<<<<< HEAD
+>>>>>>> test
+=======
+>>>>>>> test
 
 clkgen ClkGen_1(
-    .CLKIN_IN(clk), 
-    .RST_IN(1'b0), 
-    .CLKFX_OUT(CLK16), 
-    .CLKIN_IBUFG_OUT(), 
-    .CLK0_OUT(CLK0), 
-    .LOCKED_OUT(Locked)
+		 .CLKIN_IN(clk), 
+		 .RST_IN(1'b0), 
+		 .CLKFX_OUT(CLK16), 
+		 .CLKIN_IBUFG_OUT(), 
+		 .CLK0_OUT(CLK0), 
+		 .LOCKED_OUT(Locked)
     );
 
 
@@ -58,11 +71,22 @@ fsm_cmd_out command_module(
 		.ps2_data(datalink[1]),
 		.command_was_sent(),
 		.error_comm_timed_out(),
+<<<<<<< HEAD
+<<<<<<< HEAD
 		.debug(led[3:0]),
 		.pushbtn(pushbtn1)
+=======
+=======
+>>>>>>> test
+		.debug(debug_tx),
+		.pushbtn(pushbtn1),
+		.status(status1)
+>>>>>>> test
     );
 
 bfm_ps2_command_in RX_module(
+<<<<<<< HEAD
+<<<<<<< HEAD
 	.clk(CLK0),
 	.reset(Locked),
 	.ps2_data(datalink[3]),
@@ -71,16 +95,32 @@ bfm_ps2_command_in RX_module(
 	.received_cmd_en(received_cmd_en),
 	.debug(led[7:4]),
 	.pushbtn(pushbtn1)
+=======
+=======
+>>>>>>> test
+		.clk(CLK0),
+		.reset(Locked),
+		.ps2_data(datalink[3]),
+		.ps2_clock(datalink[2]),
+		.received_cmd(),
+		.received_cmd_en(),
+		.debug(debug_rx),
+		.pushbtn(pushbtn1),
+		.status(status2)
+<<<<<<< HEAD
+>>>>>>> test
+=======
+>>>>>>> test
     );
 
 debouncer pushbtn_0(
-		.clk(CLK16),
+		.clk(CLK0),
 		.pushbtn(!pushbtn[0]),
 		.trigger_out(pushbtn0)
     );
 	 
 debouncer pushbtn_1(
-		.clk(CLK16),
+		.clk(CLK0),
 		.pushbtn(!pushbtn[1]),
 		.trigger_out(pushbtn1)
     );

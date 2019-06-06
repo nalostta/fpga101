@@ -1,0 +1,5 @@
+// SevenSegment connection
+NET "datadisp" LOC = P24  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 12;
+
+// Enable line for SevenSegment Display array
+NET "DigCh" LOC = P12  | IOSTANDARD = LVCMOS33 | SLEW = SLOW | DRIVE = 12;

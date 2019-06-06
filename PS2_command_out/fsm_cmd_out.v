@@ -39,16 +39,32 @@ ps2_clk_posedge,		//received Ack is captured at posedge of ps2clk
 input[7:0]	the_command;
 input			clk,reset,send_command,pushbtn;
 output[3:0] debug;
+<<<<<<< HEAD
+<<<<<<< HEAD
 output		command_was_sent,error_comm_timed_out;
+=======
+=======
+>>>>>>> test
+output		command_was_sent,error_comm_timed_out,status;
+>>>>>>> test
 inout			ps2_clk,ps2_data;
 
 reg[19:0]	timeout_count_15;
 reg[15:0]	timeout_count_2;
 reg[11:0]	hold_count;
 reg[9:0] 	dataframe;
+<<<<<<< HEAD
+<<<<<<< HEAD
 reg[3:0]		debug;
 reg[3:0]		state;
 reg 			hold_clock_en,timeout_en,data_write_buf,clk_write_buf,data_write_en,clk_write_en;
+=======
+=======
+>>>>>>> test
+reg[3:0] 	state,next_state;
+reg 			hold_clock_en,ack_received,clk_write_en,data_write_en,clk_write_buf,data_write_buf,negedge_ps2_temp_q;
+reg 			ps2clk_q,ps2data_q,status;
+>>>>>>> test
 
 reg			posedge_ps2_temp,negedge_ps2_temp,timeout,status;
 
@@ -100,13 +116,364 @@ assign hold_100us = hold_count==12'h9c5; //(redundant now)9b0 tested to give a d
 assign ack_received = ((state==WAIT_FOR_ACK)&&(!_ps2data)&&(posedge_ps2_clk));
 
 //---------------------debug----------------------------
+<<<<<<< HEAD
+<<<<<<< HEAD
 always @(posedge clk)debug<=state;
+=======
+assign debug = state;
+>>>>>>> test
+=======
+assign debug = state;
+>>>>>>> test
 //---------------------debug----------------------------
 //assign timeout_15 = timeout_count==20'h5b8d8;
 
 always @(posedge clk or posedge reset)begin
+<<<<<<< HEAD
+<<<<<<< HEAD
 	if(reset)begin
 		case(state)
+=======
+=======
+>>>>>>> test
+	if(reset)state<=next_state;
+	else state<=IDLE;
+end
+
+always @(send_command, hold_100us, negedge_ps2_clk, posedge_ps2_clk, _ps2data, pushbtn, state)begin
+	
+	next_state=IDLE;
+	hold_clock_en=1'b0;
+	clk_write_en=1'b0;
+	data_write_en=1'b0;
+	
+<<<<<<< HEAD
+=======
+	case(state)
+	
+	IDLE:
+	begin
+		status=1'b1;
+		clk_write_en=1'b0;
+		data_write_en=1'b0;
+		if(send_command)next_state=HOLD_CLOCK;
+		else next_state=IDLE;
+	end
+	
+	HOLD_CLOCK:
+	begin
+		hold_clock_en=1'b1;
+		clk_write_en=1'b1;
+		clk_write_buf=1'b0;  
+		data_write_en=1'b0;
+		if(hold_100us)next_state=START_BIT;
+		else next_state=HOLD_CLOCK;
+	end
+		
+	START_BIT:
+	begin
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_en=1'b1;
+		data_write_buf=1'b0;
+		if(negedge_ps2_clk)next_state=DATA0;
+		else next_state=START_BIT;
+	end
+	
+	DATA0:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[0];
+		if(negedge_ps2_clk)next_state=DATA1;
+		else next_state=DATA0;
+	end
+	
+	DATA1:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[1];
+		if(negedge_ps2_clk)next_state=DATA2;
+		else next_state=DATA1;
+	end
+	
+	DATA2:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[2];
+		if(negedge_ps2_clk)next_state=DATA3;
+		else next_state=DATA2;
+	end
+	
+	DATA3:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[3];
+		if(negedge_ps2_clk)next_state=DATA4;
+		else next_state=DATA3;
+	end
+	
+	DATA4:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[4];
+		if(negedge_ps2_clk)next_state=DATA5;
+		else next_state=DATA4;
+	end
+	
+	DATA5:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[5];
+		if(negedge_ps2_clk)next_state=DATA6;
+		else next_state=DATA5;
+	end
+	
+	DATA6:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[6];
+		if(negedge_ps2_clk)next_state=DATA7;
+		else next_state=DATA6;
+	end
+	
+	DATA7:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[7];
+		if(negedge_ps2_clk)next_state=PARITY;
+		else next_state=DATA7;
+	end
+	
+	PARITY:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=(the_command[0]^the_command[1]^the_command[2]^the_command[3]^the_command[4]^the_command[5]^the_command[6]^the_command[7]^1'b1);
+		if(negedge_ps2_clk)next_state=STOP;
+		else next_state=PARITY;
+	end
+	
+	STOP:
+	begin
+		data_write_en=1'b1;
+		data_write_buf=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		if(negedge_ps2_clk)next_state=WAIT_FOR_ACK;
+		else next_state=STOP;
+	end
+	
+	WAIT_FOR_ACK:
+	begin
+		data_write_en=1'b0;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		if(posedge_ps2_clk&&!_ps2data)next_state=TX_END;
+		else next_state=WAIT_FOR_ACK;
+	end
+	
+	TX_END:begin
+		status=1'b0;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_en=1'b0;
+		if(pushbtn)next_state=IDLE;
+		else next_state=TX_END;
+	end
+	
+	default next_state=IDLE;
+	endcase
+end
+endmodule
+
+/*
+always @(posedge clk)begin
+>>>>>>> test
+	case(state)
+	
+	IDLE:
+	begin
+		status=1'b1;
+		clk_write_en=1'b0;
+		data_write_en=1'b0;
+		if(send_command)next_state=HOLD_CLOCK;
+		else next_state=IDLE;
+	end
+	
+	HOLD_CLOCK:
+	begin
+		hold_clock_en=1'b1;
+		clk_write_en=1'b1;
+		clk_write_buf=1'b0;  
+		data_write_en=1'b0;
+		if(hold_100us)next_state=START_BIT;
+		else next_state=HOLD_CLOCK;
+	end
+		
+	START_BIT:
+	begin
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_en=1'b1;
+		data_write_buf=1'b0;
+		if(negedge_ps2_clk)next_state=DATA0;
+		else next_state=START_BIT;
+	end
+	
+	DATA0:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[0];
+		if(negedge_ps2_clk)next_state=DATA1;
+		else next_state=DATA0;
+	end
+	
+	DATA1:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[1];
+		if(negedge_ps2_clk)next_state=DATA2;
+		else next_state=DATA1;
+	end
+	
+	DATA2:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[2];
+		if(negedge_ps2_clk)next_state=DATA3;
+		else next_state=DATA2;
+	end
+	
+	DATA3:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[3];
+		if(negedge_ps2_clk)next_state=DATA4;
+		else next_state=DATA3;
+	end
+	
+	DATA4:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[4];
+		if(negedge_ps2_clk)next_state=DATA5;
+		else next_state=DATA4;
+	end
+	
+	DATA5:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[5];
+		if(negedge_ps2_clk)next_state=DATA6;
+		else next_state=DATA5;
+	end
+	
+	DATA6:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[6];
+		if(negedge_ps2_clk)next_state=DATA7;
+		else next_state=DATA6;
+	end
+	
+	DATA7:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=the_command[7];
+		if(negedge_ps2_clk)next_state=PARITY;
+		else next_state=DATA7;
+	end
+	
+	PARITY:
+	begin
+		data_write_en=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_buf=(the_command[0]^the_command[1]^the_command[2]^the_command[3]^the_command[4]^the_command[5]^the_command[6]^the_command[7]^1'b1);
+		if(negedge_ps2_clk)next_state=STOP;
+		else next_state=PARITY;
+	end
+	
+	STOP:
+	begin
+		data_write_en=1'b1;
+		data_write_buf=1'b1;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		if(negedge_ps2_clk)next_state=WAIT_FOR_ACK;
+		else next_state=STOP;
+	end
+	
+	WAIT_FOR_ACK:
+	begin
+		data_write_en=1'b0;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		if(posedge_ps2_clk&&!_ps2data)next_state=TX_END;
+		else next_state=WAIT_FOR_ACK;
+	end
+	
+	TX_END:begin
+		status=1'b0;
+		hold_clock_en=1'b0;
+		clk_write_en=1'b0;
+		data_write_en=1'b0;
+		if(pushbtn)next_state=IDLE;
+		else next_state=TX_END;
+	end
+	
+	default next_state=IDLE;
+	endcase
+<<<<<<< HEAD
+end
+endmodule
+
+/*
+always @(posedge clk)begin
+	case(state)
+	
+	IDLE:begin
+		hold_clock_en<=1'b0;
+		clk_write_en<=1'b0;
+		data_write_en<=1'b0;
+		status<=1'b1;
+		if(send_command)state<=HOLD_CLOCK;
+		else state<=IDLE;
+	end
+>>>>>>> test
 		
 		IDLE:begin
 			hold_clock_en<=1'b0;
@@ -255,6 +622,16 @@ always @(posedge clk or posedge reset)begin
 	end else begin
 		state<=IDLE;
 	end
+<<<<<<< HEAD
 end
 endmodule
 
+=======
+	
+	default : state<=IDLE;
+	endcase
+end*/
+>>>>>>> test
+=======
+end*/
+>>>>>>> test

@@ -1,0 +1,352 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.12 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.12 secs
+ 
+--> Reading design: falling_edge_detector.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "falling_edge_detector.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "falling_edge_detector"
+Output Format                      : NGC
+Target Device                      : xc3s50a-4-tq144
+
+---- Source Options
+Top Module Name                    : falling_edge_detector
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "falling_edge_detector.v" in library work
+Module <falling_edge_detector> compiled
+No errors in compilation
+Analysis of file <"falling_edge_detector.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <falling_edge_detector> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <falling_edge_detector>.
+Module <falling_edge_detector> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <falling_edge_detector>.
+    Related source file is "falling_edge_detector.v".
+    Found 1-bit register for signal <f_instream_reg>.
+    Found 8-bit register for signal <filter_reg>.
+    Summary:
+	inferred   9 D-type flip-flop(s).
+Unit <falling_edge_detector> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Registers                                            : 9
+ 1-bit register                                        : 9
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Registers                                            : 9
+ Flip-Flops                                            : 9
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <falling_edge_detector> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block falling_edge_detector, actual ratio is 3.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 9
+ Flip-Flops                                            : 9
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : falling_edge_detector.ngr
+Top Level Output File Name         : falling_edge_detector
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 4
+
+Cell Usage :
+# BELS                             : 26
+#      GND                         : 1
+#      LUT2                        : 19
+#      LUT4                        : 6
+# FlipFlops/Latches                : 9
+#      FDCP                        : 9
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 3
+#      IBUF                        : 2
+#      OBUF                        : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50atq144-4 
+
+ Number of Slices:                       23  out of    704     3%  
+ Number of Slice Flip Flops:              9  out of   1408     0%  
+ Number of 4 input LUTs:                 25  out of   1408     1%  
+ Number of IOs:                           4
+ Number of bonded IOBs:                   4  out of    108     3%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 9     |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-------------------------------------------------+------------------------+-------+
+Control Signal                                   | Buffer(FF name)        | Load  |
+-------------------------------------------------+------------------------+-------+
+f_instream_reg_and0000(f_instream_reg_and00001:O)| NONE(f_instream_reg)   | 1     |
+f_instream_reg_and0001(f_instream_reg_and00011:O)| NONE(f_instream_reg)   | 1     |
+filter_reg_0_and0000(filter_reg_0_and00001:O)    | NONE(filter_reg_0)     | 1     |
+filter_reg_0_and0001(filter_reg_0_and00011:O)    | NONE(filter_reg_0)     | 1     |
+filter_reg_1_and0000(filter_reg_1_and00001:O)    | NONE(filter_reg_1)     | 1     |
+filter_reg_1_and0001(filter_reg_1_and00011:O)    | NONE(filter_reg_1)     | 1     |
+filter_reg_2_and0000(filter_reg_2_and00001:O)    | NONE(filter_reg_2)     | 1     |
+filter_reg_2_and0001(filter_reg_2_and00011:O)    | NONE(filter_reg_2)     | 1     |
+filter_reg_3_and0000(filter_reg_3_and00001:O)    | NONE(filter_reg_3)     | 1     |
+filter_reg_3_and0001(filter_reg_3_and00011:O)    | NONE(filter_reg_3)     | 1     |
+filter_reg_4_and0000(filter_reg_4_and00001:O)    | NONE(filter_reg_4)     | 1     |
+filter_reg_4_and0001(filter_reg_4_and00011:O)    | NONE(filter_reg_4)     | 1     |
+filter_reg_5_and0000(filter_reg_5_and00001:O)    | NONE(filter_reg_5)     | 1     |
+filter_reg_5_and0001(filter_reg_5_and00011:O)    | NONE(filter_reg_5)     | 1     |
+filter_reg_6_and0000(filter_reg_6_and00001:O)    | NONE(filter_reg_6)     | 1     |
+filter_reg_6_and0001(filter_reg_6_and00011:O)    | NONE(filter_reg_6)     | 1     |
+filter_reg_7_and0000(filter_reg_7_and00001:O)    | NONE(filter_reg_7)     | 1     |
+filter_reg_7_and0001(filter_reg_7_and00011:O)    | NONE(filter_reg_7)     | 1     |
+-------------------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 9.179ns
+   Maximum combinational path delay: 8.141ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 16 / 1
+-------------------------------------------------------------------------
+Offset:              9.179ns (Levels of Logic = 4)
+  Source:            filter_reg_1 (FF)
+  Destination:       f_edge (PAD)
+  Source Clock:      clk rising
+
+  Data Path: filter_reg_1 to f_edge
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCP:C->Q             4   0.591   0.667  filter_reg_1 (filter_reg_1)
+     LUT4:I1->O            1   0.643   0.563  f_instream_next29 (f_instream_next29)
+     LUT2:I0->O            2   0.648   0.479  f_instream_next35 (f_instream_next35)
+     LUT4:I2->O            1   0.648   0.420  f_edge1 (f_edge_OBUF)
+     OBUF:I->O                 4.520          f_edge_OBUF (f_edge)
+    ----------------------------------------
+    Total                      9.179ns (7.050ns logic, 2.129ns route)
+                                       (76.8% logic, 23.2% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               8.141ns (Levels of Logic = 4)
+  Source:            instream (PAD)
+  Destination:       f_edge (PAD)
+
+  Data Path: instream to f_edge
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.849   0.534  instream_IBUF (instream_IBUF)
+     LUT4:I3->O            2   0.648   0.527  f_instream_next4 (f_instream_next4)
+     LUT4:I1->O            1   0.643   0.420  f_edge1 (f_edge_OBUF)
+     OBUF:I->O                 4.520          f_edge_OBUF (f_edge)
+    ----------------------------------------
+    Total                      8.141ns (6.660ns logic, 1.481ns route)
+                                       (81.8% logic, 18.2% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 4.89 secs
+ 
+--> 
+
+Total memory usage is 4535760 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

@@ -25,24 +25,16 @@ module bfm_ps2_command_in(
 	ps2_clock,
 	received_cmd,
 	received_cmd_en,
-	debug,
-	pushbtn
+	debug_rx
     );
 
-input clk, reset,pushbtn;
+input clk, reset;
 inout ps2_data, ps2_clock;
 output [7:0] received_cmd;
-output [3:0] debug;
-<<<<<<< HEAD
-<<<<<<< HEAD
 output received_cmd_en;
-=======
-=======
->>>>>>> test
-output received_cmd_en,status;
->>>>>>> test
 reg [11:0] clk_pulldown_ctr;
-reg [3:0] debug;
+
+output [3:0] debug_rx;
 
 reg  ps2_data_en;
 reg  ps2_clock_en;
@@ -60,6 +52,9 @@ reg received_cmd_en;
 reg received_parity;
 assign ps2_data_in = ps2_data;
 assign ps2_data = ps2_data_en ? ps2_data_out : 1'bz;
+
+
+assign debug_rx = curr_state;
 
 assign ps2_clock_in = ps2_clock;
 assign ps2_clock = ps2_clock_en ? ps2_clock_out : 1'bz;
@@ -84,14 +79,6 @@ always @(posedge clk or negedge reset)
 	if (~reset) ps2_clk_sig_q <= 1'b0;
 	else ps2_clk_sig_q <= ps2_clk_sig;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> test
-assign debug = curr_state;
-
->>>>>>> test
 assign negedge_ps2_clk_sig = ~ps2_clk_sig & ps2_clk_sig_q;
 assign posedge_ps2_clk_sig = ps2_clk_sig & ~ps2_clk_sig_q;
 
@@ -108,14 +95,11 @@ localparam	IDLE		= 4'h0,
 				PARITY	= 4'hA,
 				STOP   	= 4'hB,
 				ACK		= 4'hC,
-				FINISH   = 4'hD,
-				DEBUG		= 4'hE;
+				FINISH   = 4'hD;
 
 always @(posedge clk or negedge reset)
 	if (~reset) curr_state <= IDLE;
 	else curr_state <= next_state;
-	
-always @(posedge clk)debug<=curr_state;
 		
 always @(curr_state, negedge_ps2_clk_sig, posedge_ps2_clk_sig, clk_pulldown_100ms,ps2_data_in)
 begin
@@ -237,13 +221,7 @@ begin
 			ps2_data_out = 1'b0;
 			received_cmd_en = 1'b0;
 			if (negedge_ps2_clk_sig) next_state = IDLE;
-			else next_state = DEBUG;
-		end
-		
-	DEBUG:
-		begin
-			if(pushbtn)next_state=IDLE;
-			else next_state=DEBUG;
+			else next_state = FINISH;
 		end
 		
 	default:

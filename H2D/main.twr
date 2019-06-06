@@ -1,0 +1,536 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+-n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
+constraint_switch.ucf -ucf constraint_led.ucf -ucf constraint_clk.ucf -ucf
+constraint_datalink.ucf -ucf constraint_pushbtn.ucf
+
+Design file:              main.ncd
+Physical constraint file: main.pcf
+Device,package,speed:     xc3s50a,tq144,-4 (PRODUCTION 1.42 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  10.000ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: instance_name/DCM_SP_INST/CLKIN
+  Logical resource: instance_name/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: instance_name/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 40.000ns
+  High pulse: 20.000ns
+  High pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: instance_name/DCM_SP_INST/CLKIN
+  Logical resource: instance_name/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: instance_name/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpc)
+  Physical resource: instance_name/DCM_SP_INST/CLKIN
+  Logical resource: instance_name/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: instance_name/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PERIOD analysis for net "instance_name/CLK0_BUF" derived 
+from  NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;  duty cycle 
+corrected to 40 nS  HIGH 20 nS  
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 1050 paths analyzed, 286 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   5.258ns.
+--------------------------------------------------------------------------------
+
+Paths for end point deb1/d_count_4 (SLICE_X1Y6.CE), 15 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     34.742ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_3 (FF)
+  Destination:          deb1/d_count_4 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.246ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.012ns (0.038 - 0.050)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_3 to deb1/d_count_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y5.YQ        Tcko                  0.580   deb1/d_count<2>
+                                                       deb1/d_count_3
+    SLICE_X0Y4.F3        net (fanout=2)        1.302   deb1/d_count<3>
+    SLICE_X0Y4.X         Tilo                  0.692   deb1/count_done44
+                                                       deb1/count_done44
+    SLICE_X0Y7.F2        net (fanout=2)        0.441   deb1/count_done44
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y6.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y6.CLK       Tceck                 0.311   deb1/d_count<4>
+                                                       deb1/d_count_4
+    -------------------------------------------------  ---------------------------
+    Total                                      5.246ns (2.275ns logic, 2.971ns route)
+                                                       (43.4% logic, 56.6% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.906ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_1 (FF)
+  Destination:          deb1/d_count_4 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.082ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.012ns (0.038 - 0.050)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_1 to deb1/d_count_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y4.YQ        Tcko                  0.580   deb1/d_count<0>
+                                                       deb1/d_count_1
+    SLICE_X0Y9.F4        net (fanout=2)        0.699   deb1/d_count<1>
+    SLICE_X0Y9.X         Tilo                  0.692   deb1/count_done52
+                                                       deb1/count_done52
+    SLICE_X0Y7.F1        net (fanout=2)        0.880   deb1/count_done52
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y6.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y6.CLK       Tceck                 0.311   deb1/d_count<4>
+                                                       deb1/d_count_4
+    -------------------------------------------------  ---------------------------
+    Total                                      5.082ns (2.275ns logic, 2.807ns route)
+                                                       (44.8% logic, 55.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.925ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_14 (FF)
+  Destination:          deb1/d_count_4 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.086ns (Levels of Logic = 2)
+  Clock Path Skew:      0.011ns (0.038 - 0.027)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_14 to deb1/d_count_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y11.XQ       Tcko                  0.591   deb1/d_count<14>
+                                                       deb1/d_count_14
+    SLICE_X0Y9.F3        net (fanout=2)        0.692   deb1/d_count<14>
+    SLICE_X0Y9.X         Tilo                  0.692   deb1/count_done52
+                                                       deb1/count_done52
+    SLICE_X0Y7.F1        net (fanout=2)        0.880   deb1/count_done52
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y6.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y6.CLK       Tceck                 0.311   deb1/d_count<4>
+                                                       deb1/d_count_4
+    -------------------------------------------------  ---------------------------
+    Total                                      5.086ns (2.286ns logic, 2.800ns route)
+                                                       (44.9% logic, 55.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point deb1/d_count_5 (SLICE_X1Y6.CE), 15 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     34.742ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_3 (FF)
+  Destination:          deb1/d_count_5 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.246ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.012ns (0.038 - 0.050)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_3 to deb1/d_count_5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y5.YQ        Tcko                  0.580   deb1/d_count<2>
+                                                       deb1/d_count_3
+    SLICE_X0Y4.F3        net (fanout=2)        1.302   deb1/d_count<3>
+    SLICE_X0Y4.X         Tilo                  0.692   deb1/count_done44
+                                                       deb1/count_done44
+    SLICE_X0Y7.F2        net (fanout=2)        0.441   deb1/count_done44
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y6.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y6.CLK       Tceck                 0.311   deb1/d_count<4>
+                                                       deb1/d_count_5
+    -------------------------------------------------  ---------------------------
+    Total                                      5.246ns (2.275ns logic, 2.971ns route)
+                                                       (43.4% logic, 56.6% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.906ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_1 (FF)
+  Destination:          deb1/d_count_5 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.082ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.012ns (0.038 - 0.050)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_1 to deb1/d_count_5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y4.YQ        Tcko                  0.580   deb1/d_count<0>
+                                                       deb1/d_count_1
+    SLICE_X0Y9.F4        net (fanout=2)        0.699   deb1/d_count<1>
+    SLICE_X0Y9.X         Tilo                  0.692   deb1/count_done52
+                                                       deb1/count_done52
+    SLICE_X0Y7.F1        net (fanout=2)        0.880   deb1/count_done52
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y6.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y6.CLK       Tceck                 0.311   deb1/d_count<4>
+                                                       deb1/d_count_5
+    -------------------------------------------------  ---------------------------
+    Total                                      5.082ns (2.275ns logic, 2.807ns route)
+                                                       (44.8% logic, 55.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.925ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_14 (FF)
+  Destination:          deb1/d_count_5 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.086ns (Levels of Logic = 2)
+  Clock Path Skew:      0.011ns (0.038 - 0.027)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_14 to deb1/d_count_5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y11.XQ       Tcko                  0.591   deb1/d_count<14>
+                                                       deb1/d_count_14
+    SLICE_X0Y9.F3        net (fanout=2)        0.692   deb1/d_count<14>
+    SLICE_X0Y9.X         Tilo                  0.692   deb1/count_done52
+                                                       deb1/count_done52
+    SLICE_X0Y7.F1        net (fanout=2)        0.880   deb1/count_done52
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y6.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y6.CLK       Tceck                 0.311   deb1/d_count<4>
+                                                       deb1/d_count_5
+    -------------------------------------------------  ---------------------------
+    Total                                      5.086ns (2.286ns logic, 2.800ns route)
+                                                       (44.9% logic, 55.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point deb1/d_count_6 (SLICE_X1Y7.CE), 15 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     34.742ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_3 (FF)
+  Destination:          deb1/d_count_6 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.246ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.012ns (0.038 - 0.050)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_3 to deb1/d_count_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y5.YQ        Tcko                  0.580   deb1/d_count<2>
+                                                       deb1/d_count_3
+    SLICE_X0Y4.F3        net (fanout=2)        1.302   deb1/d_count<3>
+    SLICE_X0Y4.X         Tilo                  0.692   deb1/count_done44
+                                                       deb1/count_done44
+    SLICE_X0Y7.F2        net (fanout=2)        0.441   deb1/count_done44
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y7.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y7.CLK       Tceck                 0.311   deb1/d_count<6>
+                                                       deb1/d_count_6
+    -------------------------------------------------  ---------------------------
+    Total                                      5.246ns (2.275ns logic, 2.971ns route)
+                                                       (43.4% logic, 56.6% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.906ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_1 (FF)
+  Destination:          deb1/d_count_6 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.082ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.012ns (0.038 - 0.050)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_1 to deb1/d_count_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y4.YQ        Tcko                  0.580   deb1/d_count<0>
+                                                       deb1/d_count_1
+    SLICE_X0Y9.F4        net (fanout=2)        0.699   deb1/d_count<1>
+    SLICE_X0Y9.X         Tilo                  0.692   deb1/count_done52
+                                                       deb1/count_done52
+    SLICE_X0Y7.F1        net (fanout=2)        0.880   deb1/count_done52
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y7.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y7.CLK       Tceck                 0.311   deb1/d_count<6>
+                                                       deb1/d_count_6
+    -------------------------------------------------  ---------------------------
+    Total                                      5.082ns (2.275ns logic, 2.807ns route)
+                                                       (44.8% logic, 55.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.925ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               deb1/d_count_14 (FF)
+  Destination:          deb1/d_count_6 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.086ns (Levels of Logic = 2)
+  Clock Path Skew:      0.011ns (0.038 - 0.027)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: deb1/d_count_14 to deb1/d_count_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y11.XQ       Tcko                  0.591   deb1/d_count<14>
+                                                       deb1/d_count_14
+    SLICE_X0Y9.F3        net (fanout=2)        0.692   deb1/d_count<14>
+    SLICE_X0Y9.X         Tilo                  0.692   deb1/count_done52
+                                                       deb1/count_done52
+    SLICE_X0Y7.F1        net (fanout=2)        0.880   deb1/count_done52
+    SLICE_X0Y7.X         Tilo                  0.692   deb1/d_count_not0001
+                                                       deb1/d_count_not00011
+    SLICE_X1Y7.CE        net (fanout=8)        1.228   deb1/d_count_not0001
+    SLICE_X1Y7.CLK       Tceck                 0.311   deb1/d_count<6>
+                                                       deb1/d_count_6
+    -------------------------------------------------  ---------------------------
+    Total                                      5.086ns (2.286ns logic, 2.800ns route)
+                                                       (44.9% logic, 55.1% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: PERIOD analysis for net "instance_name/CLK0_BUF" derived from
+ NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ duty cycle corrected to 40 nS  HIGH 20 nS 
+
+--------------------------------------------------------------------------------
+
+Paths for end point CMD_OUT/curr_state_FSM_FFd12 (SLICE_X8Y17.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.081ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               CMD_OUT/curr_state_FSM_FFd13 (FF)
+  Destination:          CMD_OUT/curr_state_FSM_FFd12 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.078ns (Levels of Logic = 0)
+  Clock Path Skew:      -0.003ns (0.004 - 0.007)
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: CMD_OUT/curr_state_FSM_FFd13 to CMD_OUT/curr_state_FSM_FFd12
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X8Y19.YQ       Tcko                  0.541   CMD_OUT/curr_state_FSM_FFd13
+                                                       CMD_OUT/curr_state_FSM_FFd13
+    SLICE_X8Y17.BX       net (fanout=4)        0.399   CMD_OUT/curr_state_FSM_FFd13
+    SLICE_X8Y17.CLK      Tckdi       (-Th)    -0.138   CMD_OUT/curr_state_FSM_FFd12
+                                                       CMD_OUT/curr_state_FSM_FFd12
+    -------------------------------------------------  ---------------------------
+    Total                                      1.078ns (0.679ns logic, 0.399ns route)
+                                                       (63.0% logic, 37.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point CMD_OUT/curr_state_FSM_FFd11 (SLICE_X8Y17.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.104ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               CMD_OUT/curr_state_FSM_FFd12 (FF)
+  Destination:          CMD_OUT/curr_state_FSM_FFd11 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.104ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: CMD_OUT/curr_state_FSM_FFd12 to CMD_OUT/curr_state_FSM_FFd11
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X8Y17.XQ       Tcko                  0.505   CMD_OUT/curr_state_FSM_FFd12
+                                                       CMD_OUT/curr_state_FSM_FFd12
+    SLICE_X8Y17.BY       net (fanout=6)        0.426   CMD_OUT/curr_state_FSM_FFd12
+    SLICE_X8Y17.CLK      Tckdi       (-Th)    -0.173   CMD_OUT/curr_state_FSM_FFd12
+                                                       CMD_OUT/curr_state_FSM_FFd11
+    -------------------------------------------------  ---------------------------
+    Total                                      1.104ns (0.678ns logic, 0.426ns route)
+                                                       (61.4% logic, 38.6% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point deb1/trig_out (SLICE_X4Y19.CE), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.105ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               deb1/curr_state_FSM_FFd2 (FF)
+  Destination:          deb1/trig_out (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.107ns (Levels of Logic = 0)
+  Clock Path Skew:      0.002ns (0.013 - 0.011)
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: deb1/curr_state_FSM_FFd2 to deb1/trig_out
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y18.YQ       Tcko                  0.541   deb1/curr_state_FSM_FFd2
+                                                       deb1/curr_state_FSM_FFd2
+    SLICE_X4Y19.CE       net (fanout=3)        0.566   deb1/curr_state_FSM_FFd2
+    SLICE_X4Y19.CLK      Tckce       (-Th)     0.000   deb1/trig_out
+                                                       deb1/trig_out
+    -------------------------------------------------  ---------------------------
+    Total                                      1.107ns (0.541ns logic, 0.566ns route)
+                                                       (48.9% logic, 51.1% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: PERIOD analysis for net "instance_name/CLK0_BUF" derived from
+ NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ duty cycle corrected to 40 nS  HIGH 20 nS 
+
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpco)
+  Physical resource: instance_name/DCM_SP_INST/CLK0
+  Logical resource: instance_name/DCM_SP_INST/CLK0
+  Location pin: DCM_X1Y0.CLK0
+  Clock network: instance_name/CLK0_BUF
+--------------------------------------------------------------------------------
+Slack: 38.398ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 0.801ns (Tcl)
+  Physical resource: CMD_IN/curr_state_FSM_FFd1/CLK
+  Logical resource: CMD_IN/curr_state_FSM_FFd1/CK
+  Location pin: SLICE_X16Y18.CLK
+  Clock network: CLK0
+--------------------------------------------------------------------------------
+Slack: 38.398ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 40.000ns
+  High pulse: 20.000ns
+  High pulse limit: 0.801ns (Tch)
+  Physical resource: CMD_IN/curr_state_FSM_FFd1/CLK
+  Logical resource: CMD_IN/curr_state_FSM_FFd1/CK
+  Location pin: SLICE_X16Y18.CLK
+  Clock network: CLK0
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for instance_name/CLKIN_IBUFG
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|instance_name/CLKIN_IBUFG      |     40.000ns|     10.000ns|      5.258ns|            0|            0|            0|         1050|
+| instance_name/CLK0_BUF        |     40.000ns|      5.258ns|          N/A|            0|            0|         1050|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    5.258|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 1050 paths, 0 nets, and 333 connections
+
+Design statistics:
+   Minimum period:  10.000ns{1}   (Maximum frequency: 100.000MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Fri May 31 19:09:08 2019 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 4524 MB
+
+
+
