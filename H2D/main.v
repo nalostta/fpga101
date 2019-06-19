@@ -24,27 +24,21 @@ module main(
 	clocklink,
 	datalink,
 	led,
-	pushbtn,
-	debug_tx,
-	debug_rx
+	pushbtn
     );
 	 
 input clk,pushbtn;
 input [7:0] switch;
 output[7:0] led;
-//output datadisp,DigCh,Red,Green,Blue;
 
-/*output f_edge,r_edge;*/
-output [3:0]	debug_tx,debug_rx;
-
-inout [1:0] clocklink,datalink;
+inout clocklink,datalink;
 
 wire Locked,CLK0,received_cmd_en,send_cmd;
 wire[3:0] debug_tx,debug_rx;
 wire [7:0] received_cmd;
 
-reg [7:0] led;
-//assign led=received_cmd;//{debug_rx,debug_tx};
+assign led[1:0] = {clocklink,datalink};
+assign led[7:2]=0;
 
 ckgen instance_name (
     .CLKIN_IN(clk), 
@@ -61,29 +55,35 @@ ckgen instance_name (
 	.trig_out(send_cmd)
     );*/
 	 
+PS2MOUSE_HOST CMD_OUT(
+	.clk(CLK0),
+	.reset(Locked),
+	.ps2clock(clocklink),
+	.ps2data(datalink),
+	.data_to_send(8'hf4),
+	.data_sent(),
+	.trig_send(!pushbtn),
+	.line_idle(),
+	.debug_tx(),
+	.f_edge(),
+	.r_edge()
+    );
+/*	 
 MouseTransmitter CMD_OUT(
     .RESET(!Locked), 
     .CLK(CLK0), 
-    .PS2CLK(clocklink[0]), 
-    .PS2DATA(clocklink[1]), 
+    .PS2CLK(clocklink), 
+    .PS2DATA(datalink), 
     .SEND_BYTE(!pushbtn), 
-    .BYTE_TO_SEND(switch), 
-    .BYTE_SENT()
-    );
-	 
-bfm_ps2_command_in CMD_IN(
-	.clk(CLK0),
-	.reset(Locked),
-	.ps2_data(datalink[1]),
-	.ps2_clock(clocklink[1]),
-	.received_cmd(received_cmd),
-	.received_cmd_en(received_cmd_en),
-	.debug_rx(debug_rx)
-    );
-	 
-always @(posedge CLK0)
+    .BYTE_TO_SEND(8'hF4), 
+    .BYTE_SENT(),
+	 .debug(debug_tx)
+    );*/
+
+//not working	
+/*always @(posedge CLK0)
 if(received_cmd_en)led<=received_cmd;
 else if(Locked)led<=led;
-else led<=0;
+else led<=8'hff;*/
 
 endmodule

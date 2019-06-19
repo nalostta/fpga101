@@ -104,13 +104,11 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling verilog file "MouseTransmitter.v" in library work
+Compiling verilog file "PS2MOUSE_HOST.v" in library work
 Compiling verilog file "ckgen.v" in library work
-Module <MouseTransmitter> compiled
-Compiling verilog file "bfm_ps2_command_in.v" in library work
-Module <ckgen> compiled
+Module <PS2MOUSE_HOST> compiled
 Compiling verilog file "main.v" in library work
-Module <bfm_ps2_command_in> compiled
+Module <ckgen> compiled
 Module <main> compiled
 No errors in compilation
 Analysis of file <"main.prj"> succeeded.
@@ -123,23 +121,23 @@ Analyzing hierarchy for module <main> in library <work>.
 
 Analyzing hierarchy for module <ckgen> in library <work>.
 
-Analyzing hierarchy for module <MouseTransmitter> in library <work>.
-
-Analyzing hierarchy for module <bfm_ps2_command_in> in library <work> with parameters.
-	ACK = "1100"
-	DATA0 = "0010"
-	DATA1 = "0011"
-	DATA2 = "0100"
-	DATA3 = "0101"
-	DATA4 = "0110"
-	DATA5 = "0111"
-	DATA6 = "1000"
-	DATA7 = "1001"
-	FINISH = "1101"
+Analyzing hierarchy for module <PS2MOUSE_HOST> in library <work> with parameters.
+	DATA0 = "0100"
+	DATA1 = "0101"
+	DATA2 = "0110"
+	DATA3 = "0111"
+	DATA4 = "1000"
+	DATA5 = "1001"
+	DATA6 = "1010"
+	DATA7 = "1011"
+	HOLD_CLK = "0001"
 	IDLE = "0000"
-	PARITY = "1010"
-	START = "0001"
-	STOP = "1011"
+	PARITY = "1100"
+	START_BIT1 = "0010"
+	START_BIT2 = "0011"
+	STOP = "1101"
+	TX_END = "1111"
+	WAIT_FOR_ACK = "1110"
 
 
 =========================================================================
@@ -170,27 +168,24 @@ Module <ckgen> is correct for synthesis.
     Set user-defined property "FACTORY_JF =  C080" for instance <DCM_SP_INST> in unit <ckgen>.
     Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_SP_INST> in unit <ckgen>.
     Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_SP_INST> in unit <ckgen>.
-Analyzing module <MouseTransmitter> in library <work>.
-Module <MouseTransmitter> is correct for synthesis.
- 
-Analyzing module <bfm_ps2_command_in> in library <work>.
-	ACK = 4'b1100
-	DATA0 = 4'b0010
-	DATA1 = 4'b0011
-	DATA2 = 4'b0100
-	DATA3 = 4'b0101
-	DATA4 = 4'b0110
-	DATA5 = 4'b0111
-	DATA6 = 4'b1000
-	DATA7 = 4'b1001
-	FINISH = 4'b1101
+Analyzing module <PS2MOUSE_HOST> in library <work>.
+	DATA0 = 4'b0100
+	DATA1 = 4'b0101
+	DATA2 = 4'b0110
+	DATA3 = 4'b0111
+	DATA4 = 4'b1000
+	DATA5 = 4'b1001
+	DATA6 = 4'b1010
+	DATA7 = 4'b1011
+	HOLD_CLK = 4'b0001
 	IDLE = 4'b0000
-	PARITY = 4'b1010
-	START = 4'b0001
-	STOP = 4'b1011
-WARNING:Xst:905 - "bfm_ps2_command_in.v" line 105: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <received_cmd>, <received_parity>
-Module <bfm_ps2_command_in> is correct for synthesis.
+	PARITY = 4'b1100
+	START_BIT1 = 4'b0010
+	START_BIT2 = 4'b0011
+	STOP = 4'b1101
+	TX_END = 4'b1111
+	WAIT_FOR_ACK = 4'b1110
+Module <PS2MOUSE_HOST> is correct for synthesis.
  
 
 =========================================================================
@@ -199,52 +194,14 @@ Module <bfm_ps2_command_in> is correct for synthesis.
 
 Performing bidirectional port resolution...
 
-Synthesizing Unit <MouseTransmitter>.
-    Related source file is "MouseTransmitter.v".
-    Found finite state machine <FSM_0> for signal <Curr_State>.
+Synthesizing Unit <PS2MOUSE_HOST>.
+    Related source file is "PS2MOUSE_HOST.v".
+    Found finite state machine <FSM_0> for signal <curr_state>.
     -----------------------------------------------------------------------
-    | States             | 11                                             |
-    | Transitions        | 26                                             |
-    | Inputs             | 6                                              |
-    | Outputs            | 8                                              |
-    | Clock              | CLK                       (rising_edge)        |
-    | Reset              | RESET                     (positive)           |
-    | Reset type         | synchronous                                    |
-    | Reset State        | 0000                                           |
-    | Encoding           | automatic                                      |
-    | Implementation     | LUT                                            |
-    -----------------------------------------------------------------------
-    Found 1-bit tristate buffer for signal <PS2DATA>.
-    Found 1-bit tristate buffer for signal <PS2CLK>.
-    Found 1-bit register for signal <ClkMouseInDly>.
-    Found 1-bit register for signal <Curr_ByteSent>.
-    Found 8-bit register for signal <Curr_ByteToSend>.
-    Found 1-bit register for signal <Curr_MouseClkOutWE>.
-    Found 1-bit register for signal <Curr_MouseDataOut>.
-    Found 1-bit register for signal <Curr_MouseDataOutWE>.
-    Found 16-bit register for signal <Curr_SendCounter>.
-    Found 16-bit comparator greatequal for signal <Curr_State$cmp_ge0000> created at line 112.
-    Found 1-bit xor8 for signal <Next_MouseDataOut$xor0000>.
-    Found 16-bit adder for signal <Next_SendCounter$share0000> created at line 98.
-    Summary:
-	inferred   1 Finite State Machine(s).
-	inferred  29 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
-	inferred   1 Comparator(s).
-	inferred   1 Multiplexer(s).
-	inferred   1 Xor(s).
-	inferred   2 Tristate(s).
-Unit <MouseTransmitter> synthesized.
-
-
-Synthesizing Unit <bfm_ps2_command_in>.
-    Related source file is "bfm_ps2_command_in.v".
-    Found finite state machine <FSM_1> for signal <curr_state>.
-    -----------------------------------------------------------------------
-    | States             | 14                                             |
-    | Transitions        | 34                                             |
+    | States             | 16                                             |
+    | Transitions        | 32                                             |
     | Inputs             | 5                                              |
-    | Outputs            | 16                                             |
+    | Outputs            | 32                                             |
     | Clock              | clk                       (rising_edge)        |
     | Reset              | reset                     (negative)           |
     | Reset type         | asynchronous                                   |
@@ -252,38 +209,17 @@ Synthesizing Unit <bfm_ps2_command_in>.
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-WARNING:Xst:737 - Found 1-bit latch for signal <received_parity>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_en>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <received_cmd_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 1-bit tristate buffer for signal <ps2_data>.
-    Found 1-bit tristate buffer for signal <ps2_clock>.
-    Found 16-bit up counter for signal <clk_counter>.
-    Found 12-bit up counter for signal <clk_pulldown_ctr>.
-    Found 1-bit xor9 for signal <curr_state$xor0000> created at line 203.
-    Found 1-bit register for signal <ps2_clk_sig_q>.
+    Found 1-bit tristate buffer for signal <ps2clock>.
+    Found 1-bit tristate buffer for signal <ps2data>.
+    Found 12-bit up counter for signal <hold_count>.
+    Found 1-bit register for signal <ps2clk_in>.
+    Found 1-bit register for signal <ps2data_in>.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred   2 Counter(s).
-	inferred   1 D-type flip-flop(s).
-	inferred   1 Xor(s).
+	inferred   1 Counter(s).
+	inferred   2 D-type flip-flop(s).
 	inferred   2 Tristate(s).
-Unit <bfm_ps2_command_in> synthesized.
+Unit <PS2MOUSE_HOST> synthesized.
 
 
 Synthesizing Unit <ckgen>.
@@ -293,40 +229,25 @@ Unit <ckgen> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:2565 - Inout <datalink<0>> is never assigned.
-WARNING:Xst:1306 - Output <debug_tx> is never assigned.
+WARNING:Xst:647 - Input <switch> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1780 - Signal <send_cmd> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-    Found 8-bit register for signal <led>.
-    Summary:
-	inferred   8 D-type flip-flop(s).
+WARNING:Xst:1780 - Signal <received_cmd_en> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <received_cmd> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <debug_tx> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <debug_rx> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 Unit <main> synthesized.
 
-INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 1
- 16-bit adder                                          : 1
-# Counters                                             : 2
+# Counters                                             : 1
  12-bit up counter                                     : 1
- 16-bit up counter                                     : 1
-# Registers                                            : 9
- 1-bit register                                        : 6
- 16-bit register                                       : 1
- 8-bit register                                        : 2
-# Latches                                              : 10
- 1-bit latch                                           : 10
-# Comparators                                          : 1
- 16-bit comparator greatequal                          : 1
-# Multiplexers                                         : 1
- 1-bit 8-to-1 multiplexer                              : 1
-# Tristates                                            : 4
- 1-bit tristate buffer                                 : 4
-# Xors                                                 : 2
- 1-bit xor8                                            : 1
- 1-bit xor9                                            : 1
+# Registers                                            : 2
+ 1-bit register                                        : 2
+# Tristates                                            : 2
+ 1-bit tristate buffer                                 : 2
 
 =========================================================================
 
@@ -334,84 +255,50 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Analyzing FSM <FSM_1> for best encoding.
-Optimizing FSM <CMD_IN/curr_state/FSM> on signal <curr_state[1:14]> with one-hot encoding.
--------------------------
- State | Encoding
--------------------------
- 0000  | 00000000000001
- 0001  | 00000000000010
- 0010  | 00000000000100
- 0011  | 00000000001000
- 0100  | 00000000010000
- 0101  | 00000000100000
- 0110  | 00000001000000
- 0111  | 00000010000000
- 1000  | 00000100000000
- 1001  | 00001000000000
- 1010  | 00010000000000
- 1011  | 00100000000000
- 1100  | 01000000000000
- 1101  | 10000000000000
--------------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <CMD_OUT/Curr_State/FSM> on signal <Curr_State[1:11]> with one-hot encoding.
-----------------------
+Optimizing FSM <CMD_OUT/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
+---------------------------
  State | Encoding
-----------------------
- 0000  | 00000000001
- 0001  | 00000000010
- 0010  | 00000000100
- 0011  | 00000001000
- 0100  | 00000010000
- 0101  | 00000100000
- 0110  | 00001000000
- 0111  | 00010000000
- 1000  | 00100000000
- 1001  | 01000000000
- 1010  | 10000000000
-----------------------
+---------------------------
+ 0000  | 0000000000000001
+ 0001  | 0000000000000010
+ 0010  | 0000000000000100
+ 0011  | 0000000000001000
+ 0100  | 0000000000010000
+ 0101  | 0000000000100000
+ 0110  | 0000000001000000
+ 0111  | 0000000010000000
+ 1000  | 0000000100000000
+ 1001  | 0000001000000000
+ 1010  | 0000010000000000
+ 1011  | 0000100000000000
+ 1100  | 0001000000000000
+ 1101  | 0010000000000000
+ 1110  | 0100000000000000
+ 1111  | 1000000000000000
+---------------------------
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 2
-# Adders/Subtractors                                   : 1
- 16-bit adder                                          : 1
-# Counters                                             : 2
+# FSMs                                                 : 1
+# Counters                                             : 1
  12-bit up counter                                     : 1
- 16-bit up counter                                     : 1
-# Registers                                            : 38
- Flip-Flops                                            : 38
-# Latches                                              : 10
- 1-bit latch                                           : 10
-# Comparators                                          : 1
- 16-bit comparator greatequal                          : 1
-# Multiplexers                                         : 1
- 1-bit 8-to-1 multiplexer                              : 1
-# Xors                                                 : 2
- 1-bit xor8                                            : 1
- 1-bit xor9                                            : 1
+# Registers                                            : 2
+ Flip-Flops                                            : 2
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:2677 - Node <clk_counter_11> of sequential type is unconnected in block <bfm_ps2_command_in>.
-WARNING:Xst:2677 - Node <clk_counter_12> of sequential type is unconnected in block <bfm_ps2_command_in>.
-WARNING:Xst:2677 - Node <clk_counter_13> of sequential type is unconnected in block <bfm_ps2_command_in>.
-WARNING:Xst:2677 - Node <clk_counter_14> of sequential type is unconnected in block <bfm_ps2_command_in>.
-WARNING:Xst:2677 - Node <clk_counter_15> of sequential type is unconnected in block <bfm_ps2_command_in>.
-WARNING:Xst:2677 - Node <CMD_OUT/Curr_ByteSent> of sequential type is unconnected in block <main>.
-WARNING:Xst:2039 - Unit main: 1 multi-source signal is replaced by logic (pull-up yes): clocklink<1>_MLTSRCEDGE.
 
 Optimizing unit <main> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 13.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 3.
 
 Final Macro Processing ...
 
@@ -419,8 +306,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 85
- Flip-Flops                                            : 85
+# Registers                                            : 30
+ Flip-Flops                                            : 30
 
 =========================================================================
 
@@ -446,41 +333,34 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 30
+# IOs                              : 20
 
 Cell Usage :
-# BELS                             : 258
+# BELS                             : 69
 #      GND                         : 1
-#      INV                         : 6
-#      LUT1                        : 28
-#      LUT2                        : 32
-#      LUT3                        : 31
+#      INV                         : 3
+#      LUT1                        : 11
+#      LUT2                        : 1
+#      LUT2_L                      : 2
+#      LUT3                        : 4
 #      LUT3_D                      : 1
-#      LUT4                        : 64
-#      LUT4_D                      : 3
-#      LUT4_L                      : 2
-#      MUXCY                       : 44
-#      MUXF5                       : 5
-#      MUXF6                       : 1
+#      LUT4                        : 20
+#      LUT4_D                      : 1
+#      MUXCY                       : 11
+#      MUXF5                       : 1
 #      VCC                         : 1
-#      XORCY                       : 39
-# FlipFlops/Latches                : 95
-#      FD                          : 1
-#      FDC                         : 25
-#      FDCE                        : 12
-#      FDE                         : 8
+#      XORCY                       : 12
+# FlipFlops/Latches                : 30
+#      FDC                         : 17
 #      FDP                         : 1
-#      FDR                         : 33
-#      FDRS                        : 4
-#      FDS                         : 1
-#      LD                          : 10
+#      FDRE                        : 12
 # Clock Buffers                    : 1
 #      BUFG                        : 1
-# IO Buffers                       : 25
-#      IBUF                        : 9
+# IO Buffers                       : 12
+#      IBUF                        : 1
 #      IBUFG                       : 1
-#      IOBUF                       : 3
-#      OBUF                        : 12
+#      IOBUF                       : 2
+#      OBUF                        : 8
 # DCMs                             : 1
 #      DCM_SP                      : 1
 =========================================================================
@@ -490,12 +370,11 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       89  out of    704    12%  
- Number of Slice Flip Flops:             87  out of   1408     6%  
- Number of 4 input LUTs:                167  out of   1408    11%  
- Number of IOs:                          30
- Number of bonded IOBs:                  25  out of    108    23%  
-    IOB Flip Flops:                       8
+ Number of Slices:                       22  out of    704     3%  
+ Number of Slice Flip Flops:             30  out of   1408     2%  
+ Number of 4 input LUTs:                 43  out of   1408     3%  
+ Number of IOs:                          20
+ Number of bonded IOBs:                  12  out of    108    11%  
  Number of GCLKs:                         1  out of     24     4%  
  Number of DCMs:                          1  out of      2    50%  
 
@@ -517,42 +396,28 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
----------------------------------------------------------------+--------------------------------+-------+
-Clock Signal                                                   | Clock buffer(FF name)          | Load  |
----------------------------------------------------------------+--------------------------------+-------+
-clk                                                            | instance_name/DCM_SP_INST:CLK0 | 85    |
-CMD_IN/curr_state_FSM_FFd4                                     | NONE(CMD_IN/received_parity)   | 1     |
-CMD_IN/received_cmd_en_or0000(CMD_IN/received_cmd_en_or00001:O)| NONE(*)(CMD_IN/received_cmd_en)| 1     |
-CMD_IN/received_cmd_0_or0000(CMD_IN/received_cmd_0_or00001:O)  | NONE(*)(CMD_IN/received_cmd_0) | 1     |
-CMD_IN/received_cmd_1_or0000(CMD_IN/received_cmd_1_or00001:O)  | NONE(*)(CMD_IN/received_cmd_1) | 1     |
-CMD_IN/received_cmd_2_or0000(CMD_IN/received_cmd_2_or00001:O)  | NONE(*)(CMD_IN/received_cmd_2) | 1     |
-CMD_IN/received_cmd_3_or0000(CMD_IN/received_cmd_3_or00001:O)  | NONE(*)(CMD_IN/received_cmd_3) | 1     |
-CMD_IN/received_cmd_4_or0000(CMD_IN/received_cmd_4_or00001:O)  | NONE(*)(CMD_IN/received_cmd_4) | 1     |
-CMD_IN/received_cmd_5_or0000(CMD_IN/received_cmd_5_or00001:O)  | NONE(*)(CMD_IN/received_cmd_5) | 1     |
-CMD_IN/received_cmd_6_or0000(CMD_IN/received_cmd_6_or00001:O)  | NONE(*)(CMD_IN/received_cmd_6) | 1     |
-CMD_IN/received_cmd_7_or0000(CMD_IN/received_cmd_7_or00001:O)  | NONE(*)(CMD_IN/received_cmd_7) | 1     |
----------------------------------------------------------------+--------------------------------+-------+
-(*) These 9 clock signal(s) are generated by combinatorial logic,
-and XST is not able to identify which are the primary clock signals.
-Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
-INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+-----------------------------------+-------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)         | Load  |
+-----------------------------------+-------------------------------+-------+
+clk                                | instance_name/DCM_SP_INST:CLK0| 30    |
+-----------------------------------+-------------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
--------------------------------------------------------------------------------+---------------------------+-------+
-Control Signal                                                                 | Buffer(FF name)           | Load  |
--------------------------------------------------------------------------------+---------------------------+-------+
-CMD_IN/curr_state_FSM_Acst_FSM_inv(CMD_IN/curr_state_FSM_Acst_FSM_inv1_INV_0:O)| NONE(CMD_IN/clk_counter_0)| 38    |
--------------------------------------------------------------------------------+---------------------------+-------+
+---------------------------------------------------------------------------------+----------------------------------+-------+
+Control Signal                                                                   | Buffer(FF name)                  | Load  |
+---------------------------------------------------------------------------------+----------------------------------+-------+
+CMD_OUT/curr_state_FSM_Acst_FSM_inv(CMD_OUT/curr_state_FSM_Acst_FSM_inv1_INV_0:O)| NONE(CMD_OUT/curr_state_FSM_FFd1)| 18    |
+---------------------------------------------------------------------------------+----------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 6.532ns (Maximum Frequency: 153.092MHz)
-   Minimum input arrival time before clock: 5.568ns
-   Maximum output required time after clock: 8.062ns
-   Maximum combinational path delay: No path found
+   Minimum period: 4.363ns (Maximum Frequency: 229.200MHz)
+   Minimum input arrival time before clock: 3.723ns
+   Maximum output required time after clock: 9.024ns
+   Maximum combinational path delay: 6.420ns
 
 Timing Detail:
 --------------
@@ -560,269 +425,100 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 6.532ns (frequency: 153.092MHz)
-  Total number of paths / destination ports: 1269 / 92
+  Clock period: 4.363ns (frequency: 229.200MHz)
+  Total number of paths / destination ports: 306 / 52
 -------------------------------------------------------------------------
-Delay:               6.532ns (Levels of Logic = 11)
-  Source:            CMD_OUT/Curr_SendCounter_0 (FF)
-  Destination:       CMD_OUT/Curr_SendCounter_15 (FF)
+Delay:               4.363ns (Levels of Logic = 3)
+  Source:            CMD_OUT/hold_count_1 (FF)
+  Destination:       CMD_OUT/curr_state_FSM_FFd14 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: CMD_OUT/Curr_SendCounter_0 to CMD_OUT/Curr_SendCounter_15
+  Data Path: CMD_OUT/hold_count_1 to CMD_OUT/curr_state_FSM_FFd14
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              8   0.591   0.900  CMD_OUT/Curr_SendCounter_0 (CMD_OUT/Curr_SendCounter_0)
-     LUT1:I0->O            1   0.648   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<0>_rt (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<0>_rt)
-     MUXCY:S->O            1   0.632   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<0> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<0>)
-     MUXCY:CI->O           1   0.065   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<1> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<1>)
-     MUXCY:CI->O           1   0.065   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<2> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<2>)
-     MUXCY:CI->O           1   0.065   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<3> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<3>)
-     MUXCY:CI->O           1   0.065   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<4> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<4>)
-     MUXCY:CI->O           1   0.065   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<5> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<5>)
-     MUXCY:CI->O           1   0.065   0.000  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<6> (CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<6>)
-     MUXCY:CI->O           3   0.269   0.534  CMD_OUT/Mcompar_Curr_State_cmp_ge0000_cy<7> (CMD_OUT/Curr_State_cmp_ge0000)
-     LUT4_D:I3->O         15   0.648   1.020  CMD_OUT/Next_SendCounter<0>1 (N01)
-     LUT4:I3->O            1   0.648   0.000  CMD_OUT/Next_SendCounter<5>1 (CMD_OUT/Next_SendCounter<5>)
-     FDR:D                     0.252          CMD_OUT/Curr_SendCounter_5
+     FDRE:C->Q             2   0.591   0.590  CMD_OUT/hold_count_1 (CMD_OUT/hold_count_1)
+     LUT4_D:I0->O          1   0.648   0.563  CMD_OUT/elapsed_100us10 (CMD_OUT/elapsed_100us10)
+     LUT3_D:I0->O          1   0.648   0.423  CMD_OUT/elapsed_100us42 (CMD_OUT/elapsed_100us)
+     LUT4:I3->O            1   0.648   0.000  CMD_OUT/curr_state_FSM_FFd14-In1 (CMD_OUT/curr_state_cmp_eq0028)
+     FDC:D                     0.252          CMD_OUT/curr_state_FSM_FFd14
     ----------------------------------------
-    Total                      6.532ns (4.078ns logic, 2.454ns route)
-                                       (62.4% logic, 37.6% route)
+    Total                      4.363ns (2.787ns logic, 1.576ns route)
+                                       (63.9% logic, 36.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 171 / 63
+  Total number of paths / destination ports: 19 / 18
 -------------------------------------------------------------------------
-Offset:              5.568ns (Levels of Logic = 4)
-  Source:            clocklink<0> (PAD)
-  Destination:       CMD_OUT/Curr_SendCounter_15 (FF)
+Offset:              3.723ns (Levels of Logic = 3)
+  Source:            clocklink (PAD)
+  Destination:       CMD_OUT/curr_state_FSM_FFd14 (FF)
   Destination Clock: clk rising
 
-  Data Path: clocklink<0> to CMD_OUT/Curr_SendCounter_15
+  Data Path: clocklink to CMD_OUT/curr_state_FSM_FFd14
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IOBUF:IO->O          11   0.849   1.013  clocklink_0_IOBUF (N28)
-     LUT3:I1->O            1   0.643   0.500  CMD_OUT/Next_SendCounter<0>1_SW0 (N24)
-     LUT4_D:I1->O         15   0.643   1.020  CMD_OUT/Next_SendCounter<0>1 (N01)
-     LUT4:I3->O            1   0.648   0.000  CMD_OUT/Next_SendCounter<5>1 (CMD_OUT/Next_SendCounter<5>)
-     FDR:D                     0.252          CMD_OUT/Curr_SendCounter_5
+     IOBUF:IO->O          17   0.849   1.194  clocklink_IOBUF (led_1_OBUF)
+     LUT2_L:I0->LO         1   0.648   0.132  CMD_OUT/curr_state_FSM_FFd3-In11 (N2)
+     LUT4:I2->O            1   0.648   0.000  CMD_OUT/curr_state_FSM_FFd14-In1 (CMD_OUT/curr_state_cmp_eq0028)
+     FDC:D                     0.252          CMD_OUT/curr_state_FSM_FFd14
     ----------------------------------------
-    Total                      5.568ns (3.035ns logic, 2.533ns route)
-                                       (54.5% logic, 45.5% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/curr_state_FSM_FFd4'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.084ns (Levels of Logic = 1)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_parity (LATCH)
-  Destination Clock: CMD_IN/curr_state_FSM_FFd4 falling
-
-  Data Path: datalink<1> to CMD_IN/received_parity
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   0.983  datalink_1_IOBUF (N26)
-     LD:D                      0.252          CMD_IN/received_parity
-    ----------------------------------------
-    Total                      2.084ns (1.101ns logic, 0.983ns route)
-                                       (52.8% logic, 47.2% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_0_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_0 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_0_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_0
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_0_mux00001 (CMD_IN/received_cmd_0_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_0
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_1_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_1 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_1_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_1
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_1_mux00001 (CMD_IN/received_cmd_1_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_1
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_2_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_2 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_2_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_2
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_2_mux00001 (CMD_IN/received_cmd_2_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_2
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_3_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_3 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_3_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_3
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_3_mux00001 (CMD_IN/received_cmd_3_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_3
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_4_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_4 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_4_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_4
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_4_mux00001 (CMD_IN/received_cmd_4_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_4
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_5_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_5 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_5_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_5
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_5_mux00001 (CMD_IN/received_cmd_5_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_5
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_6_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_6 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_6_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_6
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_6_mux00001 (CMD_IN/received_cmd_6_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_6
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'CMD_IN/received_cmd_7_or0000'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              2.807ns (Levels of Logic = 2)
-  Source:            datalink<1> (PAD)
-  Destination:       CMD_IN/received_cmd_7 (LATCH)
-  Destination Clock: CMD_IN/received_cmd_7_or0000 falling
-
-  Data Path: datalink<1> to CMD_IN/received_cmd_7
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IOBUF:IO->O          13   0.849   1.063  datalink_1_IOBUF (N26)
-     LUT2:I1->O            1   0.643   0.000  CMD_IN/received_cmd_7_mux00001 (CMD_IN/received_cmd_7_mux0000)
-     LD:D                      0.252          CMD_IN/received_cmd_7
-    ----------------------------------------
-    Total                      2.807ns (1.744ns logic, 1.063ns route)
-                                       (62.1% logic, 37.9% route)
+    Total                      3.723ns (2.397ns logic, 1.326ns route)
+                                       (64.4% logic, 35.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 42 / 15
+  Total number of paths / destination ports: 18 / 2
 -------------------------------------------------------------------------
-Offset:              8.062ns (Levels of Logic = 3)
-  Source:            CMD_IN/curr_state_FSM_FFd9 (FF)
-  Destination:       debug_rx<0> (PAD)
+Offset:              9.024ns (Levels of Logic = 4)
+  Source:            CMD_OUT/curr_state_FSM_FFd11 (FF)
+  Destination:       datalink (PAD)
   Source Clock:      clk rising
 
-  Data Path: CMD_IN/curr_state_FSM_FFd9 to debug_rx<0>
+  Data Path: CMD_OUT/curr_state_FSM_FFd11 to datalink
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              6   0.591   0.812  CMD_IN/curr_state_FSM_FFd9 (CMD_IN/curr_state_FSM_FFd9)
-     LUT4:I0->O            1   0.648   0.423  CMD_IN/curr_state_or0003_SW0 (N6)
-     LUT4:I3->O            1   0.648   0.420  CMD_IN/curr_state_or0003 (debug_rx_0_OBUF)
-     OBUF:I->O                 4.520          debug_rx_0_OBUF (debug_rx<0>)
+     FDC:C->Q              3   0.591   0.674  CMD_OUT/curr_state_FSM_FFd11 (CMD_OUT/curr_state_FSM_FFd11)
+     LUT4:I0->O            1   0.648   0.452  CMD_OUT/ps2data_out23 (CMD_OUT/ps2data_out23)
+     LUT3:I2->O            1   0.648   0.423  CMD_OUT/ps2data_out38_SW0 (N12)
+     LUT4:I3->O            1   0.648   0.420  CMD_OUT/ps2data_out38 (CMD_OUT/ps2data_out)
+     IOBUF:I->IO               4.520          datalink_IOBUF (datalink)
     ----------------------------------------
-    Total                      8.062ns (6.407ns logic, 1.655ns route)
-                                       (79.5% logic, 20.5% route)
+    Total                      9.024ns (7.055ns logic, 1.969ns route)
+                                       (78.2% logic, 21.8% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Delay:               6.420ns (Levels of Logic = 2)
+  Source:            clocklink (PAD)
+  Destination:       led<1> (PAD)
+
+  Data Path: clocklink to led<1>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O          17   0.849   1.051  clocklink_IOBUF (led_1_OBUF)
+     OBUF:I->O                 4.520          led_1_OBUF (led<1>)
+    ----------------------------------------
+    Total                      6.420ns (5.369ns logic, 1.051ns route)
+                                       (83.6% logic, 16.4% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 6.31 secs
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 5.20 secs
  
 --> 
 
-Total memory usage is 4568100 kilobytes
+Total memory usage is 4551884 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   21 (   0 filtered)
-Number of infos    :   11 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 

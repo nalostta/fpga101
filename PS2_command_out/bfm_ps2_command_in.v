@@ -33,16 +33,9 @@ input clk, reset,pushbtn;
 inout ps2_data, ps2_clock;
 output [7:0] received_cmd;
 output [3:0] debug;
-<<<<<<< HEAD
-<<<<<<< HEAD
 output received_cmd_en;
-=======
-=======
->>>>>>> test
-output received_cmd_en,status;
->>>>>>> test
+
 reg [11:0] clk_pulldown_ctr;
-reg [3:0] debug;
 
 reg  ps2_data_en;
 reg  ps2_clock_en;
@@ -84,14 +77,8 @@ always @(posedge clk or negedge reset)
 	if (~reset) ps2_clk_sig_q <= 1'b0;
 	else ps2_clk_sig_q <= ps2_clk_sig;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> test
 assign debug = curr_state;
 
->>>>>>> test
 assign negedge_ps2_clk_sig = ~ps2_clk_sig & ps2_clk_sig_q;
 assign posedge_ps2_clk_sig = ps2_clk_sig & ~ps2_clk_sig_q;
 
@@ -115,8 +102,6 @@ always @(posedge clk or negedge reset)
 	if (~reset) curr_state <= IDLE;
 	else curr_state <= next_state;
 	
-always @(posedge clk)debug<=curr_state;
-		
 always @(curr_state, negedge_ps2_clk_sig, posedge_ps2_clk_sig, clk_pulldown_100ms,ps2_data_in)
 begin
 	next_state = IDLE;

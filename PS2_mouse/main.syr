@@ -68,7 +68,7 @@ Automatic Register Balancing       : No
 
 ---- Target Options
 Add IO Buffers                     : YES
-Global Maximum Fanout              : 500
+Global Maximum Fanout              : 100000
 Add Generic Clock Buffer(BUFG)     : 24
 Register Duplication               : YES
 Slice Packing                      : YES
@@ -104,7 +104,13 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
+Compiling verilog file "stage2.v" in library work
+Compiling verilog file "RX_stage1.v" in library work
+Module <stage2> compiled
+Compiling verilog file "clkgen.v" in library work
+Module <RX_stage1> compiled
 Compiling verilog file "main.v" in library work
+Module <clkgen> compiled
 Module <main> compiled
 No errors in compilation
 Analysis of file <"main.prj"> succeeded.
@@ -113,14 +119,116 @@ Analysis of file <"main.prj"> succeeded.
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for module <main> in library <work>.
+Analyzing hierarchy for module <main> in library <work> with parameters.
+	IDLE = "000"
+	RX_BYTE1 = "010"
+	RX_BYTE2 = "011"
+	RX_BYTE3 = "100"
+	TX_EN = "001"
+
+Analyzing hierarchy for module <clkgen> in library <work>.
+
+Analyzing hierarchy for module <stage2> in library <work> with parameters.
+	ACK_CLK_LOW = "1110"
+	ACK_DATA_LOW = "1101"
+	DATA0 = "0011"
+	DATA1 = "0100"
+	DATA2 = "0101"
+	DATA3 = "0110"
+	DATA4 = "0111"
+	DATA5 = "1000"
+	DATA6 = "1001"
+	DATA7 = "1010"
+	HOLD_CLK = "0001"
+	IDLE = "0000"
+	PARITY = "1011"
+	START_BIT = "0010"
+	STOP = "1100"
+	TX_END = "1111"
+
+Analyzing hierarchy for module <RX_stage1> in library <work> with parameters.
+	CLK_LOW = "0010"
+	DATA0 = "0011"
+	DATA1 = "0100"
+	DATA2 = "0101"
+	DATA3 = "0110"
+	DATA4 = "0111"
+	DATA5 = "1000"
+	DATA6 = "1001"
+	DATA7 = "1010"
+	DATA_LOW = "0001"
+	IDLE = "0000"
+	PARITY = "1011"
+	STOP = "1100"
 
 
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing top module <main>.
+	IDLE = 3'b000
+	RX_BYTE1 = 3'b010
+	RX_BYTE2 = 3'b011
+	RX_BYTE3 = 3'b100
+	TX_EN = 3'b001
 Module <main> is correct for synthesis.
+ 
+Analyzing module <clkgen> in library <work>.
+Module <clkgen> is correct for synthesis.
+ 
+    Set user-defined property "CAPACITANCE =  DONT_CARE" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "IBUF_DELAY_VALUE =  0" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "IBUF_LOW_PWR =  TRUE" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "IOSTANDARD =  DEFAULT" for instance <CLKIN_IBUFG_INST> in unit <clkgen>.
+    Set user-defined property "CLKDV_DIVIDE =  2.000000" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKFX_DIVIDE =  1" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKFX_MULTIPLY =  4" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKIN_PERIOD =  40.000000" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "CLK_FEEDBACK =  1X" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_SP_INST> in unit <clkgen>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_SP_INST> in unit <clkgen>.
+Analyzing module <stage2> in library <work>.
+	ACK_CLK_LOW = 4'b1110
+	ACK_DATA_LOW = 4'b1101
+	DATA0 = 4'b0011
+	DATA1 = 4'b0100
+	DATA2 = 4'b0101
+	DATA3 = 4'b0110
+	DATA4 = 4'b0111
+	DATA5 = 4'b1000
+	DATA6 = 4'b1001
+	DATA7 = 4'b1010
+	HOLD_CLK = 4'b0001
+	IDLE = 4'b0000
+	PARITY = 4'b1011
+	START_BIT = 4'b0010
+	STOP = 4'b1100
+	TX_END = 4'b1111
+Module <stage2> is correct for synthesis.
+ 
+Analyzing module <RX_stage1> in library <work>.
+	CLK_LOW = 4'b0010
+	DATA0 = 4'b0011
+	DATA1 = 4'b0100
+	DATA2 = 4'b0101
+	DATA3 = 4'b0110
+	DATA4 = 4'b0111
+	DATA5 = 4'b1000
+	DATA6 = 4'b1001
+	DATA7 = 4'b1010
+	DATA_LOW = 4'b0001
+	IDLE = 4'b0000
+	PARITY = 4'b1011
+	STOP = 4'b1100
+Module <RX_stage1> is correct for synthesis.
  
 
 =========================================================================
@@ -129,44 +237,197 @@ Module <main> is correct for synthesis.
 
 Performing bidirectional port resolution...
 
+Synthesizing Unit <stage2>.
+    Related source file is "stage2.v".
+    Found finite state machine <FSM_0> for signal <curr_state>.
+    -----------------------------------------------------------------------
+    | States             | 16                                             |
+    | Transitions        | 33                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 17                                             |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | locked                    (negative)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 0000                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit tristate buffer for signal <ps2data>.
+    Found 1-bit tristate buffer for signal <ps2clk>.
+    Found 1-bit register for signal <curr_data_sent>.
+    Found 8-bit register for signal <curr_data_to_send>.
+    Found 1-bit register for signal <curr_dout>.
+    Found 1-bit register for signal <curr_hold_ps2clk_en>.
+    Found 1-bit register for signal <curr_ps2clk_en>.
+    Found 1-bit register for signal <curr_ps2data_en>.
+    Found 12-bit up counter for signal <hold_count>.
+    Found 1-bit xor8 for signal <next_dout$xor0000>.
+    Found 1-bit register for signal <ps2clk_in>.
+    Found 1-bit register for signal <ps2data_in>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
+	inferred  15 D-type flip-flop(s).
+	inferred   1 Xor(s).
+	inferred   2 Tristate(s).
+Unit <stage2> synthesized.
+
+
+Synthesizing Unit <RX_stage1>.
+    Related source file is "RX_stage1.v".
+WARNING:Xst:646 - Signal <parity> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <error_code> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <received_data_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 1-bit register for signal <curr_rx_complete>.
+    Found 4-bit register for signal <curr_state>.
+    Found 1-bit register for signal <ps2clk_in>.
+    Found 1-bit register for signal <ps2data_in>.
+    Summary:
+	inferred   7 D-type flip-flop(s).
+Unit <RX_stage1> synthesized.
+
+
+Synthesizing Unit <clkgen>.
+    Related source file is "clkgen.v".
+Unit <clkgen> synthesized.
+
+
 Synthesizing Unit <main>.
     Related source file is "main.v".
+WARNING:Xst:1780 - Signal <display_byte> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <debug> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_1> for signal <curr_state>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 10                                             |
+    | Inputs             | 3                                              |
+    | Outputs            | 5                                              |
+    | Clock              | CLK0                      (rising_edge)        |
+    | Reset              | Locked                    (negative)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit register for signal <ByteX>.
+    Found 8-bit register for signal <ByteY>.
+    Found 8-bit register for signal <ByteZ>.
+    Found 1-bit register for signal <rx_en>.
+    Found 1-bit register for signal <trig_send>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  26 D-type flip-flop(s).
 Unit <main> synthesized.
 
 
 =========================================================================
 HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# Counters                                             : 1
+ 12-bit up counter                                     : 1
+# Registers                                            : 18
+ 1-bit register                                        : 16
+ 8-bit register                                        : 2
+# Latches                                              : 8
+ 1-bit latch                                           : 8
+# Tristates                                            : 2
+ 1-bit tristate buffer                                 : 2
+# Xors                                                 : 1
+ 1-bit xor8                                            : 1
+
 =========================================================================
 
 =========================================================================
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <curr_state/FSM> on signal <curr_state[1:3]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 000
+ 001   | 001
+ 010   | 011
+ 011   | 010
+ 100   | 110
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <S2/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
+---------------------------
+ State | Encoding
+---------------------------
+ 0000  | 0000000000000001
+ 0001  | 0000000000000010
+ 0010  | 0000000000000100
+ 0011  | 0000000000001000
+ 0100  | 0000000000010000
+ 0101  | 0000000000100000
+ 0110  | 0000000001000000
+ 0111  | 0000000010000000
+ 1000  | 0000000100000000
+ 1001  | 0000001000000000
+ 1010  | 0000010000000000
+ 1011  | 0000100000000000
+ 1100  | 0001000000000000
+ 1101  | 0010000000000000
+ 1110  | 0100000000000000
+ 1111  | 1000000000000000
+---------------------------
+INFO:Xst:2261 - The FF/Latch <curr_hold_ps2clk_en> in Unit <S2> is equivalent to the following FF/Latch, which will be removed : <curr_ps2clk_en> 
+WARNING:Xst:1710 - FF/Latch <curr_data_to_send_0> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <curr_data_to_send_1> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <curr_data_to_send_3> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
-Found no macro
+Macro Statistics
+# FSMs                                                 : 2
+# Counters                                             : 1
+ 12-bit up counter                                     : 1
+# Registers                                            : 32
+ Flip-Flops                                            : 32
+# Latches                                              : 8
+ 1-bit latch                                           : 8
+# Xors                                                 : 1
+ 1-bit xor8                                            : 1
+
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1710 - FF/Latch <curr_data_to_send_0> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_1> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_3> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <curr_ps2clk_en> in Unit <stage2> is equivalent to the following FF/Latch, which will be removed : <curr_hold_ps2clk_en> 
 
 Optimizing unit <main> ...
 
+Optimizing unit <RX_stage1> ...
+
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 0.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 8.
 
 Final Macro Processing ...
 
 =========================================================================
 Final Register Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 59
+ Flip-Flops                                            : 59
+
 =========================================================================
 
 =========================================================================
@@ -194,12 +455,38 @@ Design Statistics
 # IOs                              : 12
 
 Cell Usage :
-# BELS                             : 2
+# BELS                             : 125
 #      GND                         : 1
+#      INV                         : 5
+#      LUT1                        : 11
+#      LUT2                        : 11
+#      LUT2_D                      : 1
+#      LUT2_L                      : 2
+#      LUT3                        : 8
+#      LUT3_D                      : 1
+#      LUT3_L                      : 2
+#      LUT4                        : 55
+#      LUT4_D                      : 1
+#      MUXCY                       : 11
+#      MUXF5                       : 3
 #      VCC                         : 1
+#      XORCY                       : 12
+# FlipFlops/Latches                : 67
+#      FDCP                        : 5
+#      FDR                         : 34
+#      FDRE                        : 12
+#      FDRS                        : 7
+#      FDS                         : 1
+#      LD                          : 8
+# Clock Buffers                    : 1
+#      BUFG                        : 1
 # IO Buffers                       : 12
-#      IBUF                        : 2
-#      OBUF                        : 10
+#      IBUF                        : 1
+#      IBUFG                       : 1
+#      IOBUF                       : 2
+#      OBUF                        : 8
+# DCMs                             : 1
+#      DCM_SP                      : 1
 =========================================================================
 
 Device utilization summary:
@@ -207,9 +494,13 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                        0  out of    704     0%  
+ Number of Slices:                       55  out of    704     7%  
+ Number of Slice Flip Flops:             67  out of   1408     4%  
+ Number of 4 input LUTs:                 97  out of   1408     6%  
  Number of IOs:                          12
  Number of bonded IOBs:                  12  out of    108    11%  
+ Number of GCLKs:                         1  out of     24     4%  
+ Number of DCMs:                          1  out of      2    50%  
 
 ---------------------------
 Partition Resource Summary:
@@ -229,54 +520,130 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
-No clock signals found in this design
+---------------------------------------------------------------+----------------------------+-------+
+Clock Signal                                                   | Clock buffer(FF name)      | Load  |
+---------------------------------------------------------------+----------------------------+-------+
+clk                                                            | SYS_CLK/DCM_SP_INST:CLK0   | 59    |
+R1/received_data_0_cmp_eq0000(R1/received_data_0_cmp_eq00001:O)| NONE(*)(R1/received_data_0)| 1     |
+R1/received_data_1_cmp_eq0000(R1/received_data_1_cmp_eq00001:O)| NONE(*)(R1/received_data_1)| 1     |
+R1/received_data_2_cmp_eq0000(R1/received_data_2_cmp_eq00001:O)| NONE(*)(R1/received_data_2)| 1     |
+R1/received_data_3_cmp_eq0000(R1/received_data_3_cmp_eq00001:O)| NONE(*)(R1/received_data_3)| 1     |
+R1/received_data_4_cmp_eq0000(R1/received_data_4_cmp_eq00001:O)| NONE(*)(R1/received_data_4)| 1     |
+R1/received_data_5_cmp_eq0000(R1/received_data_5_cmp_eq00001:O)| NONE(*)(R1/received_data_5)| 1     |
+R1/received_data_6_cmp_eq0000(R1/received_data_6_cmp_eq00001:O)| NONE(*)(R1/received_data_6)| 1     |
+R1/received_data_7_cmp_eq0000(R1/received_data_7_cmp_eq00001:O)| NONE(*)(R1/received_data_7)| 1     |
+---------------------------------------------------------------+----------------------------+-------+
+(*) These 8 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-No asynchronous control signals found in this design
+----------------------------------------------------------+--------------------------+-------+
+Control Signal                                            | Buffer(FF name)          | Load  |
+----------------------------------------------------------+--------------------------+-------+
+R1/curr_rx_complete_and0000(R1/curr_rx_complete_and0000:O)| NONE(R1/curr_rx_complete)| 1     |
+R1/curr_rx_complete_and0001(R1/curr_rx_complete_and0001:O)| NONE(R1/curr_rx_complete)| 1     |
+R1/curr_state_0_and0000(R1/curr_state_0_and00001:O)       | NONE(R1/curr_state_0)    | 1     |
+R1/curr_state_0_and0001(R1/curr_state_0_and00012:O)       | NONE(R1/curr_state_0)    | 1     |
+R1/curr_state_1_and0000(R1/curr_state_1_and00001:O)       | NONE(R1/curr_state_1)    | 1     |
+R1/curr_state_1_and0001(R1/curr_state_1_and00012:O)       | NONE(R1/curr_state_1)    | 1     |
+R1/curr_state_2_and0000(R1/curr_state_2_and0000:O)        | NONE(R1/curr_state_2)    | 1     |
+R1/curr_state_2_and0001(R1/curr_state_2_and0001:O)        | NONE(R1/curr_state_2)    | 1     |
+R1/curr_state_3_and0000(R1/curr_state_3_and00002:O)       | NONE(R1/curr_state_3)    | 1     |
+R1/curr_state_3_and0001(R1/curr_state_3_and00011:O)       | NONE(R1/curr_state_3)    | 1     |
+----------------------------------------------------------+--------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: No path found
-   Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: No path found
-   Maximum combinational path delay: 5.789ns
+   Minimum period: 4.363ns (Maximum Frequency: 229.200MHz)
+   Minimum input arrival time before clock: 4.065ns
+   Maximum output required time after clock: 6.937ns
+   Maximum combinational path delay: No path found
 
 Timing Detail:
 --------------
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 2 / 2
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 4.363ns (frequency: 229.200MHz)
+  Total number of paths / destination ports: 397 / 83
 -------------------------------------------------------------------------
-Delay:               5.789ns (Levels of Logic = 2)
-  Source:            PS2_CLK (PAD)
-  Destination:       datalink1 (PAD)
+Delay:               4.363ns (Levels of Logic = 3)
+  Source:            S2/hold_count_0 (FF)
+  Destination:       S2/curr_state_FSM_FFd14 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
 
-  Data Path: PS2_CLK to datalink1
+  Data Path: S2/hold_count_0 to S2/curr_state_FSM_FFd14
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             1   0.849   0.420  PS2_CLK_IBUF (datalink1_OBUF)
-     OBUF:I->O                 4.520          datalink1_OBUF (datalink1)
+     FDRE:C->Q             2   0.591   0.590  S2/hold_count_0 (S2/hold_count_0)
+     LUT4_D:I0->O          1   0.648   0.563  S2/elapsed_100us10 (S2/elapsed_100us10)
+     LUT3_D:I0->O          1   0.648   0.423  S2/elapsed_100us42 (S2/elapsed_100us)
+     LUT4:I3->O            1   0.648   0.000  S2/curr_state_FSM_FFd14-In1 (S2/curr_state_FSM_FFd14-In)
+     FDR:D                     0.252          S2/curr_state_FSM_FFd14
     ----------------------------------------
-    Total                      5.789ns (5.369ns logic, 0.420ns route)
-                                       (92.7% logic, 7.3% route)
+    Total                      4.363ns (2.787ns logic, 1.576ns route)
+                                       (63.9% logic, 36.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 17 / 17
+-------------------------------------------------------------------------
+Offset:              4.065ns (Levels of Logic = 3)
+  Source:            PS2_CLK (PAD)
+  Destination:       S2/curr_state_FSM_FFd3 (FF)
+  Destination Clock: clk rising
+
+  Data Path: PS2_CLK to S2/curr_state_FSM_FFd3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O          20   0.849   1.245  PS2_CLK_IOBUF (N25)
+     LUT2_D:I0->O          1   0.648   0.423  S2/curr_state_FSM_FFd10-In11 (N01)
+     LUT4:I3->O            1   0.648   0.000  S2/curr_state_FSM_FFd3-In1 (S2/curr_state_FSM_FFd3-In)
+     FDR:D                     0.252          S2/curr_state_FSM_FFd3
+    ----------------------------------------
+    Total                      4.065ns (2.397ns logic, 1.668ns route)
+                                       (59.0% logic, 41.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 11 / 10
+-------------------------------------------------------------------------
+Offset:              6.937ns (Levels of Logic = 2)
+  Source:            S2/curr_ps2clk_en (FF)
+  Destination:       PS2_CLK (PAD)
+  Source Clock:      clk rising
+
+  Data Path: S2/curr_ps2clk_en to PS2_CLK
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              1   0.591   0.420  S2/curr_ps2clk_en (S2/curr_ps2clk_en)
+     INV:I->O             13   0.648   0.983  S2/curr_hold_ps2clk_en_inv1_INV_0 (S2/curr_hold_ps2clk_en_inv)
+     IOBUF:T->IO               4.295          PS2_CLK_IOBUF (PS2_CLK)
+    ----------------------------------------
+    Total                      6.937ns (5.534ns logic, 1.403ns route)
+                                       (79.8% logic, 20.2% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.58 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.08 secs
  
 --> 
 
-Total memory usage is 4535692 kilobytes
+Total memory usage is 4568064 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    0 (   0 filtered)
-Number of infos    :    0 (   0 filtered)
+Number of warnings :   18 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
 

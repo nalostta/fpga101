@@ -23,106 +23,51 @@ module main(
 		switch,
 		pushbtn,
 		led,
-		datalink/*,
-		debug_state_tx,
-		debug_state_rx*/
+		datalink,
+		clocklink
 		);
 
 input[7:0]	switch;
-input[1:0]	pushbtn;
+input	pushbtn;
 input 		clk;
 output[7:0]	led;
-//output[3:0] debug_state_tx,debug_state_rx;
-inout[3:0]	datalink;
+inout	datalink,clocklink;
 
-wire[7:0] garbage,received_cmd;
-<<<<<<< HEAD
-wire CLK16,CLK0,Locked,received_cmd_en,pushbtn0,pushbtn1,status1,status2,timeout;
-=======
-wire CLK16,CLK0,Locked,received_cmd_en,pushbtn0,pushbtn1,status1,status2;
+wire[7:0] received_cmd;
+wire Locked,received_cmd_en,send_cmd;
 wire[3:0] debug_tx,debug_rx;
 
-assign RedLed = !status1;
-assign BlueLed = status2;
-assign GreenLed = 1'b1;
-assign led = {debug_rx,debug_tx};
-<<<<<<< HEAD
->>>>>>> test
-=======
->>>>>>> test
+assign led[1:0] = {clocklink,datalink};//{debug_rx,debug_tx};
+assign led[7:3]	=	0;
 
 clkgen ClkGen_1(
 		 .CLKIN_IN(clk), 
 		 .RST_IN(1'b0), 
-		 .CLKFX_OUT(CLK16), 
+		 .CLKFX_OUT(), 
 		 .CLKIN_IBUFG_OUT(), 
 		 .CLK0_OUT(CLK0), 
 		 .LOCKED_OUT(Locked)
     );
 
-
-
-fsm_cmd_out command_module(
-		.clk(CLK0),						
-		.reset(Locked),					
-		.the_command(switch),			
-		.send_command(pushbtn0),	
-		.ps2_clk(datalink[0]),
-		.ps2_data(datalink[1]),
-		.command_was_sent(),
-		.error_comm_timed_out(),
-<<<<<<< HEAD
-<<<<<<< HEAD
-		.debug(led[3:0]),
-		.pushbtn(pushbtn1)
-=======
-=======
->>>>>>> test
-		.debug(debug_tx),
-		.pushbtn(pushbtn1),
-		.status(status1)
->>>>>>> test
-    );
-
-bfm_ps2_command_in RX_module(
-<<<<<<< HEAD
-<<<<<<< HEAD
-	.clk(CLK0),
-	.reset(Locked),
-	.ps2_data(datalink[3]),
-	.ps2_clock(datalink[2]),
-	.received_cmd(),
-	.received_cmd_en(received_cmd_en),
-	.debug(led[7:4]),
-	.pushbtn(pushbtn1)
-=======
-=======
->>>>>>> test
+fsm_cmd_out CMDOUT(
 		.clk(CLK0),
 		.reset(Locked),
-		.ps2_data(datalink[3]),
-		.ps2_clock(datalink[2]),
-		.received_cmd(),
-		.received_cmd_en(),
-		.debug(debug_rx),
-		.pushbtn(pushbtn1),
-		.status(status2)
-<<<<<<< HEAD
->>>>>>> test
-=======
->>>>>>> test
+		.the_command(switch),
+		.send_command(!pushbtn),
+		.ps2_clk(clocklink),
+		.ps2_data(datalink),
+		.command_was_sent(led[2]),
+		.error_comm_timed_out(),
+		.debug(),
+		.pushbtn()
     );
 
+/*
 debouncer pushbtn_0(
 		.clk(CLK0),
-		.pushbtn(!pushbtn[0]),
-		.trigger_out(pushbtn0)
-    );
-	 
-debouncer pushbtn_1(
-		.clk(CLK0),
-		.pushbtn(!pushbtn[1]),
-		.trigger_out(pushbtn1)
-    );
+		.pushbtn(!pushbtn),
+		.trigger_out(send_cmd)
+    );*/
+
 endmodule
 

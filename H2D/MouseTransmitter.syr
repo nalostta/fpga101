@@ -136,7 +136,7 @@ Synthesizing Unit <MouseTransmitter>.
     | States             | 11                                             |
     | Transitions        | 26                                             |
     | Inputs             | 6                                              |
-    | Outputs            | 8                                              |
+    | Outputs            | 11                                             |
     | Clock              | CLK                       (rising_edge)        |
     | Reset              | RESET                     (positive)           |
     | Reset type         | synchronous                                    |
@@ -153,12 +153,14 @@ Synthesizing Unit <MouseTransmitter>.
     Found 1-bit register for signal <Curr_MouseDataOut>.
     Found 1-bit register for signal <Curr_MouseDataOutWE>.
     Found 16-bit register for signal <Curr_SendCounter>.
+    Found 16-bit comparator greatequal for signal <Curr_State$cmp_ge0000> created at line 116.
     Found 1-bit xor8 for signal <Next_MouseDataOut$xor0000>.
-    Found 16-bit adder for signal <Next_SendCounter$share0000> created at line 98.
+    Found 16-bit adder for signal <Next_SendCounter$share0000> created at line 102.
     Summary:
 	inferred   1 Finite State Machine(s).
 	inferred  29 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
 	inferred   1 Multiplexer(s).
 	inferred   1 Xor(s).
 	inferred   2 Tristate(s).
@@ -176,6 +178,8 @@ Macro Statistics
  1-bit register                                        : 5
  16-bit register                                       : 1
  8-bit register                                        : 1
+# Comparators                                          : 1
+ 16-bit comparator greatequal                          : 1
 # Multiplexers                                         : 1
  1-bit 8-to-1 multiplexer                              : 1
 # Tristates                                            : 2
@@ -216,6 +220,8 @@ Macro Statistics
  16-bit adder                                          : 1
 # Registers                                            : 29
  Flip-Flops                                            : 29
+# Comparators                                          : 1
+ 16-bit comparator greatequal                          : 1
 # Multiplexers                                         : 1
  1-bit 8-to-1 multiplexer                              : 1
 # Xors                                                 : 1
@@ -231,7 +237,7 @@ Optimizing unit <MouseTransmitter> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block MouseTransmitter, actual ratio is 5.
+Found area constraint ratio of 100 (+ 5) on block MouseTransmitter, actual ratio is 6.
 
 Final Macro Processing ...
 
@@ -266,22 +272,20 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 14
+# IOs                              : 18
 
 Cell Usage :
-# BELS                             : 111
+# BELS                             : 129
 #      GND                         : 1
-#      INV                         : 3
-#      LUT1                        : 15
-#      LUT2                        : 3
-#      LUT3                        : 14
-#      LUT3_D                      : 1
-#      LUT3_L                      : 1
-#      LUT4                        : 36
-#      LUT4_D                      : 1
-#      LUT4_L                      : 1
-#      MUXCY                       : 15
-#      MUXF5                       : 2
+#      INV                         : 4
+#      LUT1                        : 18
+#      LUT2                        : 4
+#      LUT3                        : 15
+#      LUT4                        : 38
+#      LUT4_D                      : 2
+#      LUT4_L                      : 2
+#      MUXCY                       : 23
+#      MUXF5                       : 4
 #      MUXF6                       : 1
 #      VCC                         : 1
 #      XORCY                       : 16
@@ -292,10 +296,10 @@ Cell Usage :
 #      FDS                         : 1
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 13
+# IO Buffers                       : 17
 #      IBUF                        : 10
 #      IOBUF                       : 2
-#      OBUF                        : 1
+#      OBUF                        : 5
 =========================================================================
 
 Device utilization summary:
@@ -303,11 +307,11 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       40  out of    704     5%  
+ Number of Slices:                       45  out of    704     6%  
  Number of Slice Flip Flops:             40  out of   1408     2%  
- Number of 4 input LUTs:                 75  out of   1408     5%  
- Number of IOs:                          14
- Number of bonded IOBs:                  14  out of    108    12%  
+ Number of 4 input LUTs:                 83  out of   1408     5%  
+ Number of IOs:                          18
+ Number of bonded IOBs:                  18  out of    108    16%  
  Number of GCLKs:                         1  out of     24     4%  
 
 ---------------------------
@@ -342,9 +346,9 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 7.297ns (Maximum Frequency: 137.043MHz)
-   Minimum input arrival time before clock: 5.517ns
-   Maximum output required time after clock: 6.401ns
+   Minimum period: 6.532ns (Maximum Frequency: 153.092MHz)
+   Minimum input arrival time before clock: 5.585ns
+   Maximum output required time after clock: 7.267ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -353,35 +357,41 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
-  Clock period: 7.297ns (frequency: 137.043MHz)
+  Clock period: 6.532ns (frequency: 153.092MHz)
   Total number of paths / destination ports: 897 / 43
 -------------------------------------------------------------------------
-Delay:               7.297ns (Levels of Logic = 5)
-  Source:            Curr_SendCounter_5 (FF)
+Delay:               6.532ns (Levels of Logic = 11)
+  Source:            Curr_SendCounter_0 (FF)
   Destination:       Curr_SendCounter_0 (FF)
   Source Clock:      CLK rising
   Destination Clock: CLK rising
 
-  Data Path: Curr_SendCounter_5 to Curr_SendCounter_0
+  Data Path: Curr_SendCounter_0 to Curr_SendCounter_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              3   0.591   0.674  Curr_SendCounter_5 (Curr_SendCounter_5)
-     LUT4:I0->O            1   0.648   0.563  Curr_State_cmp_eq0000142 (Curr_State_cmp_eq0000142)
-     LUT3_D:I0->O          1   0.648   0.423  Curr_State_cmp_eq0000144 (N3)
-     LUT4:I3->O            3   0.648   0.534  Curr_State_cmp_eq0000 (Curr_State_cmp_eq0000)
+     FDR:C->Q              8   0.591   0.900  Curr_SendCounter_0 (Curr_SendCounter_0)
+     LUT1:I0->O            1   0.648   0.000  Mcompar_Curr_State_cmp_ge0000_cy<0>_rt (Mcompar_Curr_State_cmp_ge0000_cy<0>_rt)
+     MUXCY:S->O            1   0.632   0.000  Mcompar_Curr_State_cmp_ge0000_cy<0> (Mcompar_Curr_State_cmp_ge0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  Mcompar_Curr_State_cmp_ge0000_cy<1> (Mcompar_Curr_State_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  Mcompar_Curr_State_cmp_ge0000_cy<2> (Mcompar_Curr_State_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  Mcompar_Curr_State_cmp_ge0000_cy<3> (Mcompar_Curr_State_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  Mcompar_Curr_State_cmp_ge0000_cy<4> (Mcompar_Curr_State_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  Mcompar_Curr_State_cmp_ge0000_cy<5> (Mcompar_Curr_State_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  Mcompar_Curr_State_cmp_ge0000_cy<6> (Mcompar_Curr_State_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           3   0.269   0.534  Mcompar_Curr_State_cmp_ge0000_cy<7> (Curr_State_cmp_ge0000)
      LUT4_D:I3->O         15   0.648   1.020  Next_SendCounter<0>1 (N01)
-     LUT4:I3->O            1   0.648   0.000  Next_SendCounter<7>1 (Next_SendCounter<7>)
-     FDR:D                     0.252          Curr_SendCounter_7
+     LUT4:I3->O            1   0.648   0.000  Next_SendCounter<5>1 (Next_SendCounter<5>)
+     FDR:D                     0.252          Curr_SendCounter_5
     ----------------------------------------
-    Total                      7.297ns (4.083ns logic, 3.214ns route)
-                                       (56.0% logic, 44.0% route)
+    Total                      6.532ns (4.078ns logic, 2.454ns route)
+                                       (62.4% logic, 37.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
   Total number of paths / destination ports: 104 / 75
 -------------------------------------------------------------------------
-Offset:              5.517ns (Levels of Logic = 4)
+Offset:              5.585ns (Levels of Logic = 4)
   Source:            PS2CLK (PAD)
   Destination:       Curr_SendCounter_0 (FF)
   Destination Clock: CLK rising
@@ -390,44 +400,45 @@ Offset:              5.517ns (Levels of Logic = 4)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IOBUF:IO->O          10   0.849   0.962  PS2CLK_IOBUF (N111)
-     LUT3:I1->O            1   0.643   0.500  Next_SendCounter<0>1_SW0 (N4)
+     IOBUF:IO->O          10   0.849   1.025  PS2CLK_IOBUF (N11)
+     LUT3:I0->O            1   0.648   0.500  Next_SendCounter<0>1_SW0 (N8)
      LUT4_D:I1->O         15   0.643   1.020  Next_SendCounter<0>1 (N01)
-     LUT4:I3->O            1   0.648   0.000  Next_SendCounter<7>1 (Next_SendCounter<7>)
-     FDR:D                     0.252          Curr_SendCounter_7
+     LUT4:I3->O            1   0.648   0.000  Next_SendCounter<5>1 (Next_SendCounter<5>)
+     FDR:D                     0.252          Curr_SendCounter_5
     ----------------------------------------
-    Total                      5.517ns (3.035ns logic, 2.482ns route)
-                                       (55.0% logic, 45.0% route)
+    Total                      5.585ns (3.040ns logic, 2.545ns route)
+                                       (54.4% logic, 45.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
-  Total number of paths / destination ports: 4 / 3
+  Total number of paths / destination ports: 21 / 7
 -------------------------------------------------------------------------
-Offset:              6.401ns (Levels of Logic = 2)
-  Source:            Curr_MouseDataOutWE (FF)
-  Destination:       PS2DATA (PAD)
+Offset:              7.267ns (Levels of Logic = 3)
+  Source:            Curr_State_FSM_FFd10 (FF)
+  Destination:       debug<0> (PAD)
   Source Clock:      CLK rising
 
-  Data Path: Curr_MouseDataOutWE to PS2DATA
+  Data Path: Curr_State_FSM_FFd10 to debug<0>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRS:C->Q             2   0.591   0.447  Curr_MouseDataOutWE (Curr_MouseDataOutWE)
-     INV:I->O              1   0.648   0.420  Curr_MouseDataOutWE_inv1_INV_0 (Curr_MouseDataOutWE_inv)
-     IOBUF:T->IO               4.295          PS2DATA_IOBUF (PS2DATA)
+     FDR:C->Q              6   0.591   0.812  Curr_State_FSM_FFd10 (Curr_State_FSM_FFd10)
+     LUT4:I0->O            1   0.648   0.000  Curr_State_or00031 (Curr_State_or0003)
+     MUXF5:I0->O           1   0.276   0.420  Curr_State_or0003_f5 (debug_0_OBUF)
+     OBUF:I->O                 4.520          debug_0_OBUF (debug<0>)
     ----------------------------------------
-    Total                      6.401ns (5.534ns logic, 0.867ns route)
-                                       (86.5% logic, 13.5% route)
+    Total                      7.267ns (6.035ns logic, 1.232ns route)
+                                       (83.0% logic, 17.0% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.76 secs
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 5.49 secs
  
 --> 
 
-Total memory usage is 4551908 kilobytes
+Total memory usage is 4551904 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

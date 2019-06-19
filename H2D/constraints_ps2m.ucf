@@ -1,0 +1,2 @@
+NET "clocklink"	LOC = "P48"	|	PULLUP	|	SLEW = SLOW	|	IOSTANDARD = LVCMOS33	|	DRIVE = 12		;
+NET "datalink"		LOC = "P47"	|	PULLUP	|	SLEW = SLOW	|	IOSTANDARD = LVCMOS33	|	DRIVE = 12		;

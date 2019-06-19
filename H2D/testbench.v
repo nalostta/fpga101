@@ -26,17 +26,19 @@ reg clk,pushbtn;
 
 wire clklink,datalink;//,f_edge,r_edge;
 wire [7:0] led;
-//wire [3:0] debug_tx;//debug_rx,
 	 
+reg clk_en,data_en,clkout,dout;;
+
+assign clklink = clk_en?	clkout:1'bz;
+assign datalink	=	data_en?	dout:1'bz;
+
 main DUT(
 	.clk(clk),
 	.switch(switch),
-	.clocklink({clklink,clklink}),
-	.datalink({datalink,datalink}),
+	.clocklink(clklink),
+	.datalink(datalink),
 	.led(led),
-	.pushbtn(pushbtn),
-	.debug_tx(),
-	.debug_rx()
+	.pushbtn(pushbtn)
     );
 	 
 always #20 clk=!clk;
@@ -46,10 +48,42 @@ pullup(clklink);
 
 initial begin
 	clk=1'b1;
+	clk_en=1'b0;
+	clkout=1'b0;
+	dout=1'b0;
+	data_en=1'b0;
 	pushbtn=1'b1;
 	switch=8'hf4;
 	#10000 pushbtn=1'b0;
 	#1000 pushbtn=1'b1;
+	#198000	clkout = 1'b0;
+	clk_en=1'b1;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#190000	clkout = 1'b1;
+	#190000	clkout = 1'b0;
+	#198000	clkout = 1'b1;
+	dout	 =	1'b0;
+	data_en=1'b1;
+	#198000	clkout = 1'b0;
+	data_en=1'b0;
+	#198000	clkout = 1'b1;
 	#990000 $stop;
 end
 endmodule
