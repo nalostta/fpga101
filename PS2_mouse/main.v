@@ -30,22 +30,45 @@ input clk,pushbtn;
 output [7:0] led;
 inout PS2_CLK,PS2_DAT;
 
-wire Locked,CLK0;
-wire [3:0] debug;
+wire Locked,CLK0,rx_complete,rx_en,data_sent;
+wire clear_trig,clear_rx_trig;
 wire [7:0] received_data;
+wire [7:0] debug;
+reg  [7:0] rx_buf,next_buf;
+reg  data_sent_trig,rx_complete_in;
 
-reg [2:0] curr_state,next_state;
-reg rx_en,next_rx_en;
-reg [7:0] display_byte,rx_byte1,rx_byte2,rx_byte3,ByteX,ByteY,ByteZ;
-reg trig_send,next_trig_send;
 
-assign led = ByteY;
+//reg [7:0] led;
+assign led = debug;
+/*
+always @(posedge CLK0)
+if(Locked)rx_buf<=next_buf;
+else rx_buf<=8'h55;
 
-localparam 	IDLE		=	3'h0,
-				TX_EN		=	3'h1,
-				RX_BYTE1	=	3'h2,
-				RX_BYTE2	=	3'h3,
-				RX_BYTE3	=	3'h4;
+always @(*)
+begin
+	if(rx_complete)next_buf=received_data;
+	else next_buf=rx_buf;
+end
+
+always @(posedge CLK0)
+if(data_sent)data_sent_trig<=1'b1;
+else if(clear_trig)data_sent_trig<=1'b0;
+else	data_sent_trig<=data_sent_trig;
+
+always @(posedge CLK0)
+if(rx_complete)begin
+	rx_complete_in<=1'b1;
+	//led<=received_data;
+end
+else if(clear_rx_trig)begin
+	rx_complete_in<=1'b0;
+	//led<=0;
+end
+else	begin
+	rx_complete_in<=rx_complete_in;
+	
+end
 
 clkgen SYS_CLK (
     .CLKIN_IN(clk), 
@@ -54,12 +77,27 @@ clkgen SYS_CLK (
     .CLK0_OUT(CLK0), 
     .LOCKED_OUT(Locked)
     );
+	 
+MOUSE_FSM_CMD CMD_FSM(
+	.clk(CLK0),
+	.reset(!Locked),
+	.enable_fsm(!pushbtn),
+	.command_byte(cmd_to_be_sent),
+	.trig_send(trig_send),
+	.cmd_sent(data_sent_trig),
+	.clear_trig(clear_trig),
+	.rx_en(rx_en),
+	.data_received(rx_complete_in),
+	.clear_rx_trig(clear_rx_trig),
+	.received_byte(received_data),
+	.debug(debug)
+	);
 
 stage2 S2(
 	.clk(CLK0),
 	.locked(Locked),
 	.trig_send(trig_send),
-	.data_to_send(8'hF4),
+	.data_to_send(cmd_to_be_sent),
 	.data_sent(data_sent),
 	.ps2clk(PS2_CLK),
 	.ps2data(PS2_DAT),
@@ -69,92 +107,17 @@ stage2 S2(
 
 RX_stage1 R1(
 	.clk(CLK0),
+	.Locked(Locked),
 	.en(rx_en),
 	.ps2clk(PS2_CLK),
 	.ps2data(PS2_DAT),
 	.rx_complete(rx_complete),
 	.received_data(received_data),
-	.debug(debug)
-   );
+	.debug()
+   );*/
 
-/*assign CLK_MOUSE_IN = PS2_CLK;
-assign DATA_MOUSE_IN = PS2_DAT;
-	
-MouseReceiver TEST(
-	.RESET(1'b0),
-	.CLK(CLK0),
-	.CLK_MOUSE_IN(CLK_MOUSE_IN),
-	.DATA_MOUSE_IN(PS2_DAT),
-	.READ_ENABLE(rx_en),
-	.BYTE_READ(received_data),
-	.BYTE_ERROR_CODE(),
-	.BYTE_READY(rx_complete)
-);*/
-	
-always @(posedge CLK0)
-if(Locked)begin
-	curr_state<=next_state;
-	trig_send<=next_trig_send;
-	rx_en<=next_rx_en;
-	ByteX<=rx_byte2;
-	ByteY<=rx_byte3;
-	ByteZ<=rx_byte1;
-end else begin
-	trig_send<=0;
-	rx_en<=0;
-	curr_state<=0;
-	ByteX<=0;
-	ByteY<=0;
-	ByteZ<=0;
-end
-	
-always @(*)
-begin
-	next_trig_send=0;
-	next_rx_en=1'b0;
-	next_state=curr_state;
-	rx_byte1=ByteZ;
-	rx_byte2=ByteX;
-	rx_byte3=ByteY;
-	
-	case(curr_state)
-		IDLE:
-		begin
-			if(!pushbtn)next_state=TX_EN;
-		end
-		
-		TX_EN:
-		begin
-			next_trig_send=1'b1;
-			if(data_sent)next_state=RX_BYTE1;
-		end
-		
-		RX_BYTE1:
-		begin
-			next_rx_en=1'b1;
-			if(rx_complete)begin
-				rx_byte1=received_data;
-				next_state=RX_BYTE2;
-				end
-		end
-		
-		RX_BYTE2:
-		begin
-			next_rx_en=1'b1;
-			if(rx_complete)begin
-				rx_byte2=received_data;
-				next_state=RX_BYTE3;
-				end
-		end
-		
-		RX_BYTE3:
-		begin
-			next_rx_en=1'b1;
-			if(rx_complete)begin
-				rx_byte3=received_data;
-				next_state=RX_BYTE1;
-				end
-		end
-	endcase
-end
+//assign CLK_MOUSE_IN = PS2_CLK;
+//assign DATA_MOUSE_IN = PS2_DAT;
+
+
 endmodule

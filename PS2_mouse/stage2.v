@@ -242,6 +242,7 @@ begin
 		
 		ACK_CLK_LOW:
 		begin
+			
 			if(!ps2clk_in)next_state=TX_END;
 			else next_state=ACK_CLK_LOW;
 		end
@@ -250,7 +251,7 @@ begin
 		begin
 			next_ps2data_en=1'b0;
 			next_ps2clk_en=1'b0;
-			next_data_sent=1'b1;
+			next_data_sent=1'b1;		
 			if(ps2clk_in&&ps2data_in)next_state=IDLE;
 			else next_state=TX_END;
 		end

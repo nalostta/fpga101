@@ -20,149 +20,146 @@
 //////////////////////////////////////////////////////////////////////////////////
 module RX_stage1(
 	clk,
-	en,
+	Locked,
+	rx_en,
 	ps2clk,
 	ps2data,
 	rx_complete,
 	received_data,
+	ByteErrorCode,
 	debug
    );
 
-input clk,en,ps2clk,ps2data;
-output [7:0] received_data;
-//output [1:0] error_code;
+input clk,rx_en,Locked;
+input ps2clk,ps2data;
 output rx_complete;
-output [3:0] debug;
+output [7:0] received_data;
+output [12:0] debug;
+output [1:0] ByteErrorCode;
 
-reg ps2clk_in,ps2data_in;
+reg [7:0] rx_buf,temp_buf;
 reg curr_rx_complete,next_rx_complete;
-reg [3:0] curr_state,next_state;
-reg [7:0] received_data;
-reg parity;
+reg curr_state,next_state;
+reg ps2clk_in,ps2data_in;
+reg curr_parity,next_parity;
+reg [3:0] curr_bitcount,next_bitcount;
+reg [1:0] curr_error_code,next_error_code;
+reg [20:0] curr_timeoutcount,next_timeoutcount;
 
-assign error_code=0;
-assign debug = curr_state;
-
-//--------clk edge detection & syncing-------
-always @(posedge clk)
-if(en)begin
-	ps2clk_in<=ps2clk;
-	ps2data_in<=ps2data;
-end else begin
-	ps2data_in<=1'b0;
-	ps2clk_in<=1'b0;
-end
-
-assign negedge_ps2_clk = ~ps2clk	& ps2clk_in;
-//--------------------------------------------
+localparam	IDLE			=	4'h0,
+				RX_DATA		=	4'h1,
+				RX_PARITY	=	4'h2,
+				RX_STOP		=	4'h3,
+				RX_END		=	4'h4;
+				
+assign negedge_ps2_clk = ps2clk_in & ~ps2clk;
+assign ByteErrorCode	=	curr_error_code;
+assign debug = {curr_state,next_state,curr_bitcount,negedge_ps2_clk};
+assign received_data	=	rx_buf;
 assign rx_complete = curr_rx_complete;
 
-localparam 	IDLE		=	4'h0,
-				DATA_LOW	=	4'h1,
-				CLK_LOW	=	4'h2,
-				DATA0		=	4'h3,
-				DATA1		=	4'h4,
-				DATA2		=	4'h5,
-				DATA3		=	4'h6,
-				DATA4		=	4'h7,
-				DATA5		=	4'h8,
-				DATA6		=	4'h9,
-				DATA7		=	4'hA,
-				PARITY	=	4'hB,
-				STOP		=	4'hC;
-
-always @(posedge clk or posedge en)
-if(en)begin
+always @(posedge clk)
+if(Locked)begin
+	ps2clk_in<=ps2clk;
+	ps2data_in<=ps2data;
 	curr_state<=next_state;
+	rx_buf<=temp_buf;
 	curr_rx_complete<=next_rx_complete;
+	curr_bitcount<=next_bitcount;
+	curr_parity<=next_parity;
+	curr_error_code<=next_error_code;
+	curr_timeoutcount<=next_timeoutcount;
 end else begin
+	ps2clk_in<=0;
+	ps2data_in<=0;
 	curr_state<=0;
+	rx_buf<=0;
 	curr_rx_complete<=0;
+	curr_bitcount<=0;
+	curr_parity<=0;
+	curr_error_code<=0;
+	curr_timeoutcount<=0;
 end
 
-//FSM
 always @(*)
 begin
-	next_state=curr_state;
-	next_rx_complete=1'b0;
-	
+	temp_buf=rx_buf;
+	next_bitcount=curr_bitcount;
+	next_rx_complete=0;
+	next_state=0;
+	next_error_code=curr_error_code;
+	next_timeoutcount=curr_timeoutcount+1'b1;
+		
 	case(curr_state)
-		IDLE:
+		
+		0:
 		begin
-			if(!ps2data_in)next_state=DATA_LOW;
+			if(rx_en)next_state=1;
+			else next_state=0;
 		end
 		
-		DATA_LOW:
+		1:
 		begin
-			if(!ps2clk_in)next_state=CLK_LOW;
+			next_state=1;
 		end
 		
-		CLK_LOW:
-		begin
-			if(negedge_ps2_clk)next_state=DATA0;
-		end
-		
-		DATA0:
-		begin
-			received_data[0]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA1;
-		end
-		
-		DATA1:
-		begin
-			received_data[1]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA2;
-		end
-		
-		DATA2:
-		begin
-			received_data[2]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA3;
-		end
-		
-		DATA3:
-		begin
-			received_data[3]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA4;
-		end
-		
-		DATA4:
-		begin
-			received_data[4]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA5;
-		end
-		
-		DATA5:
-		begin
-			received_data[5]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA6;
-		end
-		
-		DATA6:
-		begin
-			received_data[6]=ps2data_in;
-			if(negedge_ps2_clk)next_state=DATA7;
-		end
-		
-		DATA7:
-		begin
-			received_data[7]=ps2data_in;
-			if(negedge_ps2_clk)next_state=PARITY;
-		end
-		
-		PARITY:
-		begin
-			parity=ps2data_in;
-			if(ps2data_in&ps2clk_in)next_state=STOP;
-		end
-		
-		STOP:
-		begin
-			next_rx_complete=1'b1;
-			next_state=IDLE;
-		end
-		
-		default : next_state=IDLE;
 	endcase
 end
 endmodule
+
+/*
+0:
+		begin
+			next_bitcount=0;
+			next_error_code=2'b0;
+			if(rx_en && negedge_ps2_clk && !ps2data_in)next_state=1;
+			else next_state=0;
+		end
+		
+		1:
+		begin
+			if(curr_timeoutcount==50000)next_state=0;
+			else if(curr_bitcount==8)
+			begin
+				next_bitcount=0;
+				next_state=2;
+			end else if(negedge_ps2_clk)
+			begin
+				next_bitcount=curr_bitcount+1'b1;
+				next_timeoutcount=0;
+				temp_buf[6:0]=rx_buf[7:1];
+				temp_buf[7]=ps2data_in;
+			end
+		end
+		
+		2:
+		begin
+			if(curr_timeoutcount == 50000)next_state=0;
+			else if(negedge_ps2_clk)
+			begin
+				if(ps2data_in != ~^rx_buf[7:0])next_error_code[0]=1'b1;
+				
+				next_bitcount=0;
+				next_state=3;
+				next_timeoutcount=0;
+			end
+		end
+		
+		3: 
+		begin
+			if(curr_timeoutcount == 100000)next_state=0;
+			else if(negedge_ps2_clk) 
+			begin
+				if (ps2data_in)next_error_code[1]= 1'b0;
+				else	next_error_code[1]= 1'b1;
+				next_state = 4;
+				next_timeoutcount=0;
+			end
+		end
+		
+		4:
+		begin
+			next_rx_complete=1'b1;
+			next_state=0;
+		end
+*/

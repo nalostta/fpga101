@@ -31,7 +31,9 @@ module MouseReceiver(
 	input 				READ_ENABLE,
 	output [7:0] 		BYTE_READ,
 	output [1:0] 		BYTE_ERROR_CODE,
-	output 				BYTE_READY
+	output 				BYTE_READY,
+	output [3:0]		debug,
+	output 				negedge_clk
 );
 
 	//////////////////////////////////////////////////////////
@@ -49,6 +51,8 @@ module MouseReceiver(
 	reg [1:0] 			Curr_MSCodeStatus, Next_MSCodeStatus;
 	reg [15:0] 			Curr_TimeoutCounter, Next_TimeoutCounter;
 	
+	assign debug = Curr_State;
+	assign negedge_clk = ClkMouseInDly & ~CLK_MOUSE_IN;
 	//Sequential
 	always@(posedge CLK) 
 		begin
@@ -89,11 +93,10 @@ module MouseReceiver(
 					begin
 						//Falling edge of Mouse clock and MouseData is low i.e. start bit
 						if(READ_ENABLE & ClkMouseInDly & ~CLK_MOUSE_IN & ~DATA_MOUSE_IN) 
-							begin
-								Next_State 						= 1;
-								Next_MSCodeStatus 			= 2'b00;
-							end
-							
+						begin
+							Next_State 						= 1;
+							Next_MSCodeStatus 			= 2'b00;
+						end
 						Next_BitCounter 					= 0;
 					end
 				
