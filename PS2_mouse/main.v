@@ -30,45 +30,9 @@ input clk,pushbtn;
 output [7:0] led;
 inout PS2_CLK,PS2_DAT;
 
-wire Locked,CLK0,rx_complete,rx_en,data_sent;
-wire clear_trig,clear_rx_trig;
-wire [7:0] received_data;
-wire [7:0] debug;
-reg  [7:0] rx_buf,next_buf;
+wire Locked,CLK0,rx_complete,rx_en,data_sent,trig_send;
+wire [7:0] cmd_to_be_sent,received_data;
 reg  data_sent_trig,rx_complete_in;
-
-
-//reg [7:0] led;
-assign led = debug;
-/*
-always @(posedge CLK0)
-if(Locked)rx_buf<=next_buf;
-else rx_buf<=8'h55;
-
-always @(*)
-begin
-	if(rx_complete)next_buf=received_data;
-	else next_buf=rx_buf;
-end
-
-always @(posedge CLK0)
-if(data_sent)data_sent_trig<=1'b1;
-else if(clear_trig)data_sent_trig<=1'b0;
-else	data_sent_trig<=data_sent_trig;
-
-always @(posedge CLK0)
-if(rx_complete)begin
-	rx_complete_in<=1'b1;
-	//led<=received_data;
-end
-else if(clear_rx_trig)begin
-	rx_complete_in<=1'b0;
-	//led<=0;
-end
-else	begin
-	rx_complete_in<=rx_complete_in;
-	
-end
 
 clkgen SYS_CLK (
     .CLKIN_IN(clk), 
@@ -78,21 +42,20 @@ clkgen SYS_CLK (
     .LOCKED_OUT(Locked)
     );
 	 
-MOUSE_FSM_CMD CMD_FSM(
+MOUSE_FSM_CMD FSM_TEST(
 	.clk(CLK0),
-	.reset(!Locked),
-	.enable_fsm(!pushbtn),
-	.command_byte(cmd_to_be_sent),
+	.reset(!pushbtn),
 	.trig_send(trig_send),
-	.cmd_sent(data_sent_trig),
-	.clear_trig(clear_trig),
+	.cmd_to_send(cmd_to_be_sent),
+	.cmd_sent(data_sent),
 	.rx_en(rx_en),
-	.data_received(rx_complete_in),
-	.clear_rx_trig(clear_rx_trig),
+	.byte_ready(rx_complete),
 	.received_byte(received_data),
-	.debug(debug)
+	.debug_curr_state(),
+	.debug_rx_buf(led),
+	.error_codes(error_codes)
 	);
-
+	
 stage2 S2(
 	.clk(CLK0),
 	.locked(Locked),
@@ -104,17 +67,17 @@ stage2 S2(
 	.line_idle(),
 	.debug()
     );
-
-RX_stage1 R1(
+	 
+RX_V2 V2(
 	.clk(CLK0),
 	.Locked(Locked),
-	.en(rx_en),
+	.rx_en(rx_en),
 	.ps2clk(PS2_CLK),
 	.ps2data(PS2_DAT),
 	.rx_complete(rx_complete),
 	.received_data(received_data),
-	.debug()
-   );*/
+	.ByteErrorCode(error_codes)
+   );
 
 //assign CLK_MOUSE_IN = PS2_CLK;
 //assign DATA_MOUSE_IN = PS2_DAT;

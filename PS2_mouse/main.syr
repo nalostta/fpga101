@@ -105,12 +105,12 @@ Slice Utilization Ratio Delta      : 5
 *                          HDL Compilation                              *
 =========================================================================
 Compiling verilog file "stage2.v" in library work
-Compiling verilog file "MOUSE_FSM_CMD.v" in library work
+Compiling verilog file "RX_STAGE1_V2.v" in library work
 Module <stage2> compiled
-Compiling verilog file "MouseReceiver.v" in library work
-Module <MOUSE_FSM_CMD> compiled
+Compiling verilog file "MOUSE_FSM_CMD.v" in library work
+Module <RX_V2> compiled
 Compiling verilog file "clkgen.v" in library work
-Module <MouseReceiver> compiled
+Module <MOUSE_FSM_CMD> compiled
 Compiling verilog file "main.v" in library work
 Module <clkgen> compiled
 Module <main> compiled
@@ -145,7 +145,7 @@ Analyzing hierarchy for module <stage2> in library <work> with parameters.
 	STOP = "1100"
 	TX_END = "1111"
 
-Analyzing hierarchy for module <MouseReceiver> in library <work>.
+Analyzing hierarchy for module <RX_V2> in library <work>.
 
 
 =========================================================================
@@ -198,8 +198,8 @@ Analyzing module <stage2> in library <work>.
 	TX_END = 4'b1111
 Module <stage2> is correct for synthesis.
  
-Analyzing module <MouseReceiver> in library <work>.
-Module <MouseReceiver> is correct for synthesis.
+Analyzing module <RX_V2> in library <work>.
+Module <RX_V2> is correct for synthesis.
  
 
 =========================================================================
@@ -207,20 +207,15 @@ Module <MouseReceiver> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
-INFO:Xst:2679 - Register <next_rx_en> in unit <MOUSE_FSM_CMD> has a constant value of 1 during circuit operation. The register is replaced by logic.
-INFO:Xst:2679 - Register <next_clear_rx_trig> in unit <MOUSE_FSM_CMD> has a constant value of 0 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <MOUSE_FSM_CMD>.
     Related source file is "MOUSE_FSM_CMD.v".
-WARNING:Xst:647 - Input <clear_rx_trig> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <rx_buffer> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <curr_clear_rx_trig> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found finite state machine <FSM_0> for signal <curr_state>.
     -----------------------------------------------------------------------
-    | States             | 4                                              |
-    | Transitions        | 7                                              |
-    | Inputs             | 3                                              |
-    | Outputs            | 3                                              |
+    | States             | 10                                             |
+    | Transitions        | 28                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 12                                             |
     | Clock              | clk                       (rising_edge)        |
     | Reset              | reset                     (positive)           |
     | Reset type         | synchronous                                    |
@@ -228,12 +223,19 @@ WARNING:Xst:646 - Signal <curr_clear_rx_trig> is assigned but never used. This u
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 1-bit register for signal <curr_clear_trig>.
+    Found 8-bit register for signal <curr_cmd_buf>.
+    Found 1-bit register for signal <curr_rx_buf>.
     Found 1-bit register for signal <curr_rx_en>.
     Found 1-bit register for signal <curr_trig_send>.
+    Found 16-bit register for signal <curr_wait_count>.
+    Found 8-bit register for signal <curr_Xbuf>.
+    Found 8-bit register for signal <curr_Ybuf>.
+    Found 8-bit register for signal <curr_Zbuf>.
+    Found 16-bit adder for signal <next_wait_count$addsub0000> created at line 97.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred   3 D-type flip-flop(s).
+	inferred  51 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
 Unit <MOUSE_FSM_CMD> synthesized.
 
 
@@ -273,81 +275,37 @@ Synthesizing Unit <stage2>.
 Unit <stage2> synthesized.
 
 
-Synthesizing Unit <MouseReceiver>.
-    Related source file is "MouseReceiver.v".
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-    Using one-hot encoding for signal <Curr_State>.
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-INFO:Xst:2117 - HDL ADVISOR - Mux Selector <Curr_State> of Case statement line 87 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
-   	- add an 'INIT' attribute on signal <Curr_State> (optimization is then done without any risk)
-   	- use the attribute 'signal_encoding user' to avoid onehot optimization
-   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
-    Found 1-bit register for signal <ClkMouseInDly>.
-    Found 4-bit register for signal <Curr_BitCounter>.
-    Found 4-bit adder for signal <Curr_BitCounter$addsub0000> created at line 114.
-    Found 1-bit register for signal <Curr_ByteReceived>.
-    Found 8-bit register for signal <Curr_MSCodeShiftReg>.
-    Found 2-bit register for signal <Curr_MSCodeStatus>.
-    Found 5-bit register for signal <Curr_State>.
-    Found 16-bit register for signal <Curr_TimeoutCounter>.
-    Found 1-bit xor8 for signal <Next_MSCodeStatus_0$xor0000>.
-    Found 1-bit xor2 for signal <Next_MSCodeStatus_0$xor0001> created at line 127.
-    Found 16-bit adder for signal <old_Next_TimeoutCounter_6$add0000> created at line 84.
+Synthesizing Unit <RX_V2>.
+    Related source file is "RX_STAGE1_V2.v".
+    Found finite state machine <FSM_2> for signal <curr_state>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 13                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 9                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | Locked                    (negative)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit register for signal <curr_bitcount>.
+    Found 2-bit register for signal <curr_errorcode>.
+    Found 1-bit register for signal <curr_rx_complete>.
+    Found 8-bit register for signal <curr_rxbuf>.
+    Found 16-bit register for signal <curr_timeoutcount>.
+    Found 4-bit adder for signal <next_bitcount$addsub0000> created at line 117.
+    Found 1-bit xor8 for signal <next_errorcode_0$xor0000>.
+    Found 1-bit xor2 for signal <next_errorcode_0$xor0001> created at line 127.
+    Found 1-bit register for signal <ps2clk_in>.
+    Found 1-bit register for signal <ps2data_in>.
     Summary:
-	inferred  37 D-type flip-flop(s).
+	inferred   1 Finite State Machine(s).
+	inferred  33 D-type flip-flop(s).
 	inferred   2 Adder/Subtractor(s).
 	inferred   1 Xor(s).
-Unit <MouseReceiver> synthesized.
+Unit <RX_V2> synthesized.
 
 
 Synthesizing Unit <clkgen>.
@@ -357,13 +315,8 @@ Unit <clkgen> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:653 - Signal <clear_rx_trig> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <DATA_MOUSE_IN> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 1-bit register for signal <data_sent_trig>.
-    Found 8-bit register for signal <rx_buf>.
-    Found 1-bit register for signal <rx_complete_in>.
-    Summary:
-	inferred  10 D-type flip-flop(s).
+WARNING:Xst:1780 - Signal <rx_complete_in> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <data_sent_trig> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 Unit <main> synthesized.
 
 
@@ -371,18 +324,17 @@ Unit <main> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 2
- 16-bit adder                                          : 1
+# Adders/Subtractors                                   : 3
+ 16-bit adder                                          : 2
  4-bit adder                                           : 1
 # Counters                                             : 1
  12-bit up counter                                     : 1
 # Registers                                            : 20
- 1-bit register                                        : 14
- 16-bit register                                       : 1
+ 1-bit register                                        : 12
+ 16-bit register                                       : 2
  2-bit register                                        : 1
  4-bit register                                        : 1
- 5-bit register                                        : 1
- 8-bit register                                        : 2
+ 8-bit register                                        : 4
 # Tristates                                            : 2
  1-bit tristate buffer                                 : 2
 # Xors                                                 : 3
@@ -395,6 +347,17 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Analyzing FSM <FSM_2> for best encoding.
+Optimizing FSM <V2/curr_state/FSM> on signal <curr_state[1:3]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 000
+ 001   | 001
+ 010   | 011
+ 011   | 010
+ 100   | 110
+-------------------
 Analyzing FSM <FSM_1> for best encoding.
 Optimizing FSM <S2/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
 ---------------------------
@@ -418,38 +381,36 @@ Optimizing FSM <S2/curr_state/FSM> on signal <curr_state[1:16]> with one-hot enc
  1111  | 1000000000000000
 ---------------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <CMD_FSM/curr_state/FSM> on signal <curr_state[1:2]> with gray encoding.
+Optimizing FSM <FSM_TEST/curr_state/FSM> on signal <curr_state[1:4]> with user encoding.
 -------------------
  State | Encoding
 -------------------
- 0000  | 00
- 0001  | 01
- 0010  | 11
- 0011  | 10
+ 0000  | 0000
+ 0001  | 0001
+ 0010  | 0010
+ 0011  | 0011
+ 0100  | 0100
+ 0101  | 0101
+ 0110  | 0110
+ 0111  | 0111
+ 1000  | 1000
+ 1001  | 1001
 -------------------
 INFO:Xst:2261 - The FF/Latch <curr_hold_ps2clk_en> in Unit <S2> is equivalent to the following FF/Latch, which will be removed : <curr_ps2clk_en> 
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_1> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_2> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_3> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_4> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_5> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_6> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_7> (without init value) has a constant value of 0 in block <S2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <rx_complete_in> (without init value) has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1898 - Due to constant pushing, FF/Latch <Curr_ByteReceived> is unconnected in block <TEST>.
+WARNING:Xst:2677 - Node <curr_errorcode_1> of sequential type is unconnected in block <V2>.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 2
-# Adders/Subtractors                                   : 2
- 16-bit adder                                          : 1
+# FSMs                                                 : 3
+# Adders/Subtractors                                   : 3
+ 16-bit adder                                          : 2
  4-bit adder                                           : 1
 # Counters                                             : 1
  12-bit up counter                                     : 1
-# Registers                                            : 57
- Flip-Flops                                            : 57
+# Registers                                            : 82
+ Flip-Flops                                            : 82
 # Xors                                                 : 3
  1-bit xor2                                            : 1
  1-bit xor8                                            : 2
@@ -459,61 +420,21 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1710 - FF/Latch <rx_complete_in> (without init value) has a constant value of 1 in block <main>. This FF/Latch will be trimmed during the optimization process.
 INFO:Xst:2261 - The FF/Latch <curr_ps2clk_en> in Unit <stage2> is equivalent to the following FF/Latch, which will be removed : <curr_hold_ps2clk_en> 
-WARNING:Xst:1710 - FF/Latch <curr_data_to_send_1> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_2> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_3> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_4> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_5> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_6> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_data_to_send_7> (without init value) has a constant value of 0 in block <stage2>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <main> ...
 
-Optimizing unit <MouseReceiver> ...
-WARNING:Xst:2677 - Node <CMD_FSM/curr_rx_en> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_ByteReceived> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_15> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_14> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_13> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_12> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_11> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_10> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_9> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_8> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_7> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_6> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_5> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_4> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_3> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_2> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_TimeoutCounter_0> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_BitCounter_3> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_BitCounter_2> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_BitCounter_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_BitCounter_0> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeStatus_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeStatus_0> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_State_4> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_State_3> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_State_2> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_State_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_State_0> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/ClkMouseInDly> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_7> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_6> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_5> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_4> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_3> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_2> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <TEST/Curr_MSCodeShiftReg_0> of sequential type is unconnected in block <main>.
+Optimizing unit <MOUSE_FSM_CMD> ...
+
+Optimizing unit <RX_V2> ...
+WARNING:Xst:2677 - Node <V2/curr_errorcode_1> of sequential type is unconnected in block <main>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 4.
+INFO:Xst:2261 - The FF/Latch <S2/ps2clk_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <V2/ps2clk_in> 
+INFO:Xst:2261 - The FF/Latch <S2/ps2data_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <V2/ps2data_in> 
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 17.
+FlipFlop S2/ps2clk_in has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -521,8 +442,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 40
- Flip-Flops                                            : 40
+# Registers                                            : 114
+ Flip-Flops                                            : 114
 
 =========================================================================
 
@@ -551,28 +472,28 @@ Design Statistics
 # IOs                              : 12
 
 Cell Usage :
-# BELS                             : 78
+# BELS                             : 315
 #      GND                         : 1
-#      INV                         : 4
-#      LUT1                        : 11
-#      LUT2                        : 4
-#      LUT2_D                      : 1
+#      INV                         : 7
+#      LUT1                        : 41
+#      LUT2                        : 41
+#      LUT2_D                      : 2
 #      LUT2_L                      : 1
-#      LUT3                        : 6
-#      LUT3_D                      : 1
+#      LUT3                        : 24
+#      LUT3_D                      : 2
 #      LUT3_L                      : 1
-#      LUT4                        : 22
-#      LUT4_D                      : 1
-#      MUXCY                       : 11
-#      MUXF5                       : 1
+#      LUT4                        : 84
+#      LUT4_D                      : 11
+#      LUT4_L                      : 8
+#      MUXCY                       : 41
+#      MUXF5                       : 6
 #      VCC                         : 1
-#      XORCY                       : 12
-# FlipFlops/Latches                : 40
-#      FDR                         : 25
-#      FDRE                        : 12
-#      FDRS                        : 1
+#      XORCY                       : 44
+# FlipFlops/Latches                : 114
+#      FDR                         : 78
+#      FDRE                        : 13
+#      FDRS                        : 22
 #      FDS                         : 1
-#      FDSE                        : 1
 # Clock Buffers                    : 1
 #      BUFG                        : 1
 # IO Buffers                       : 12
@@ -589,9 +510,9 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                       26  out of    704     3%  
- Number of Slice Flip Flops:             40  out of   1408     2%  
- Number of 4 input LUTs:                 52  out of   1408     3%  
+ Number of Slices:                      117  out of    704    16%  
+ Number of Slice Flip Flops:            114  out of   1408     8%  
+ Number of 4 input LUTs:                222  out of   1408    15%  
  Number of IOs:                          12
  Number of bonded IOBs:                  12  out of    108    11%  
  Number of GCLKs:                         1  out of     24     4%  
@@ -618,7 +539,7 @@ Clock Information:
 -----------------------------------+-------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)   | Load  |
 -----------------------------------+-------------------------+-------+
-clk                                | SYS_CLK/DCM_SP_INST:CLK0| 40    |
+clk                                | SYS_CLK/DCM_SP_INST:CLK0| 114   |
 -----------------------------------+-------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -629,9 +550,9 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 4.408ns (Maximum Frequency: 226.860MHz)
-   Minimum input arrival time before clock: 3.924ns
-   Maximum output required time after clock: 6.991ns
+   Minimum period: 6.341ns (Maximum Frequency: 157.704MHz)
+   Minimum input arrival time before clock: 6.994ns
+   Maximum output required time after clock: 6.937ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -640,80 +561,83 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 4.408ns (frequency: 226.860MHz)
-  Total number of paths / destination ports: 353 / 64
+  Clock period: 6.341ns (frequency: 157.704MHz)
+  Total number of paths / destination ports: 2100 / 158
 -------------------------------------------------------------------------
-Delay:               4.408ns (Levels of Logic = 3)
-  Source:            S2/curr_state_FSM_FFd10 (FF)
-  Destination:       S2/curr_dout (FF)
+Delay:               6.341ns (Levels of Logic = 4)
+  Source:            V2/curr_timeoutcount_14 (FF)
+  Destination:       V2/curr_bitcount_3 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: S2/curr_state_FSM_FFd10 to S2/curr_dout
+  Data Path: V2/curr_timeoutcount_14 to V2/curr_bitcount_3
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              3   0.591   0.674  S2/curr_state_FSM_FFd10 (S2/curr_state_FSM_FFd10)
-     LUT4:I0->O            1   0.648   0.500  S2/next_dout32 (S2/next_dout32)
-     LUT3:I1->O            1   0.643   0.452  S2/next_dout57 (S2/next_dout57)
-     LUT3:I2->O            1   0.648   0.000  S2/next_dout731 (S2/next_dout73)
-     FDRS:D                    0.252          S2/curr_dout
+     FDRS:C->Q             2   0.591   0.590  V2/curr_timeoutcount_14 (V2/curr_timeoutcount_14)
+     LUT4:I0->O            1   0.648   0.500  V2/curr_state_cmp_eq000017 (V2/curr_state_cmp_eq000017)
+     LUT4:I1->O           10   0.643   0.885  V2/curr_state_cmp_eq000064 (V2/curr_state_cmp_eq0000)
+     LUT4_D:I3->O         11   0.648   0.936  V2/next_bitcount<0>21 (V2/N20)
+     LUT4:I3->O            1   0.648   0.000  V2/next_rxbuf_7_mux00001 (V2/next_rxbuf<7>)
+     FDR:D                     0.252          V2/curr_rxbuf_7
     ----------------------------------------
-    Total                      4.408ns (2.782ns logic, 1.626ns route)
-                                       (63.1% logic, 36.9% route)
+    Total                      6.341ns (3.430ns logic, 2.911ns route)
+                                       (54.1% logic, 45.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 15 / 15
+  Total number of paths / destination ports: 109 / 85
 -------------------------------------------------------------------------
-Offset:              3.924ns (Levels of Logic = 3)
+Offset:              6.994ns (Levels of Logic = 5)
   Source:            PS2_CLK (PAD)
-  Destination:       S2/curr_state_FSM_FFd3 (FF)
+  Destination:       V2/curr_timeoutcount_13 (FF)
   Destination Clock: clk rising
 
-  Data Path: PS2_CLK to S2/curr_state_FSM_FFd3
+  Data Path: PS2_CLK to V2/curr_timeoutcount_13
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IOBUF:IO->O          12   0.849   1.104  PS2_CLK_IOBUF (N11)
-     LUT2_D:I0->O          1   0.648   0.423  S2/curr_state_FSM_FFd10-In11 (N01)
-     LUT4:I3->O            1   0.648   0.000  S2/curr_state_FSM_FFd3-In1 (S2/curr_state_FSM_FFd3-In)
-     FDR:D                     0.252          S2/curr_state_FSM_FFd3
+     IOBUF:IO->O          19   0.849   1.228  PS2_CLK_IOBUF (N27)
+     LUT2_D:I0->O          8   0.648   0.789  V2/negedge_ps2_clk1 (V2/negedge_ps2_clk)
+     LUT4:I2->O            1   0.648   0.452  V2/next_timeoutcount<10>1_SW1 (N46)
+     LUT4_D:I2->O          8   0.648   0.837  V2/next_timeoutcount<10>1 (V2/N01)
+     LUT2:I1->O            1   0.643   0.000  V2/next_timeoutcount<5>1 (V2/next_timeoutcount<5>)
+     FDR:D                     0.252          V2/curr_timeoutcount_5
     ----------------------------------------
-    Total                      3.924ns (2.397ns logic, 1.527ns route)
-                                       (61.1% logic, 38.9% route)
+    Total                      6.994ns (3.688ns logic, 3.306ns route)
+                                       (52.7% logic, 47.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 6 / 4
+  Total number of paths / destination ports: 11 / 10
 -------------------------------------------------------------------------
-Offset:              6.991ns (Levels of Logic = 2)
-  Source:            CMD_FSM/curr_state_FSM_FFd1 (FF)
-  Destination:       led<0> (PAD)
+Offset:              6.937ns (Levels of Logic = 2)
+  Source:            S2/curr_ps2clk_en (FF)
+  Destination:       PS2_CLK (PAD)
   Source Clock:      clk rising
 
-  Data Path: CMD_FSM/curr_state_FSM_FFd1 to led<0>
+  Data Path: S2/curr_ps2clk_en to PS2_CLK
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              6   0.591   0.812  CMD_FSM/curr_state_FSM_FFd1 (CMD_FSM/curr_state_FSM_FFd1)
-     LUT2:I0->O            1   0.648   0.420  CMD_FSM/curr_state_or00011 (led_0_OBUF)
-     OBUF:I->O                 4.520          led_0_OBUF (led<0>)
+     FDR:C->Q              1   0.591   0.420  S2/curr_ps2clk_en (S2/curr_ps2clk_en)
+     INV:I->O             13   0.648   0.983  S2/curr_hold_ps2clk_en_inv1_INV_0 (S2/curr_hold_ps2clk_en_inv)
+     IOBUF:T->IO               4.295          PS2_CLK_IOBUF (PS2_CLK)
     ----------------------------------------
-    Total                      6.991ns (5.759ns logic, 1.232ns route)
-                                       (82.4% logic, 17.6% route)
+    Total                      6.937ns (5.534ns logic, 1.403ns route)
+                                       (79.8% logic, 20.2% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.84 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.52 secs
  
 --> 
 
-Total memory usage is 4568080 kilobytes
+Total memory usage is 4568044 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   62 (   0 filtered)
-Number of infos    :   18 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
 

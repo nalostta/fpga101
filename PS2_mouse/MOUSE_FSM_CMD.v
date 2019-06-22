@@ -21,91 +21,187 @@
 module MOUSE_FSM_CMD(
 	clk,
 	reset,
-	enable_fsm,
-	command_byte,
 	trig_send,
+	cmd_to_send,
 	cmd_sent,
-	clear_trig,
 	rx_en,
-	data_received,
-	clear_rx_trig,
+	byte_ready,
 	received_byte,
-	debug
+	error_codes,
+	debug_curr_state,
+	debug_rx_buf
 	);
-	
-input clk,reset,enable_fsm;
-input cmd_sent;
-input data_received;
-input clear_rx_trig;
-input [7:0] received_byte;
-output trig_send;
-output rx_en;
-output clear_trig;
-output [7:0] command_byte;
-output [7:0] debug;
 
-reg [3:0] curr_state,next_state;
-reg curr_trig_send,next_trig_send;
-reg curr_rx_en,next_rx_en;
-reg [7:0] rx_buffer,tx_buffer;
-reg curr_clear_trig,next_clear_trig;
-reg curr_clear_rx_trig,next_clear_rx_trig;
+input 			clk,reset,cmd_sent,byte_ready;
+input		[7:0]	received_byte;
+input		[1:0]	error_codes;
+output 			trig_send,rx_en;
+output 	[7:0] cmd_to_send,debug_rx_buf;
+output	[3:0]	debug_curr_state;
 
-assign trig_send 		= 	curr_trig_send;
-assign rx_en			=	curr_rx_en;
-assign command_byte	=	tx_buffer;
-assign debug			=	curr_state;
-assign clear_trig		=	curr_clear_trig;
+reg 		[3:0]	curr_state,next_state;
+reg				curr_trig_send,next_trig_send;
+reg				curr_rx_en,next_rx_en;
+reg		[7:0]	curr_cmd_buf,next_cmd_buf;
+reg		[7:0]	curr_rx_buf,next_rx_buf;
+reg		[15:0]curr_wait_count,next_wait_count;
+reg		[7:0]	next_Xbuf,curr_Xbuf;
+reg		[7:0]	next_Ybuf,curr_Ybuf;
+reg		[7:0]	next_Zbuf,curr_Zbuf;
 
-always @(posedge clk)
-if(data_received)rx_buffer<=received_byte;
-else if(reset)rx_buffer<=0;
-else rx_buffer<=rx_buffer;
+assign	debug_curr_state	=	curr_state;
+assign	cmd_to_send			=	curr_cmd_buf;
+assign	rx_en					=	curr_rx_en;
+assign	trig_send			=	curr_trig_send;
+assign	debug_rx_buf		=	curr_Xbuf;
 
 always @(posedge clk)
-if(!reset)begin
-	curr_state<=next_state;
-	curr_trig_send<=next_trig_send;
-	curr_rx_en<=next_rx_en;
-	curr_clear_trig<=next_clear_trig;
-	curr_clear_rx_trig<=next_clear_rx_trig;
-end else begin
+if(reset)
+begin
 	curr_state<=0;
 	curr_trig_send<=0;
 	curr_rx_en<=0;
-	curr_clear_trig<=0;
-	curr_clear_rx_trig<=0;
+	curr_cmd_buf<=0;
+	curr_rx_buf<=0;
+	curr_wait_count<=0;
+	curr_Xbuf<=0;
+	curr_Ybuf<=0;
+	curr_Zbuf<=0;
+end else begin
+	curr_wait_count<=next_wait_count;
+	curr_state<=next_state;
+	curr_trig_send<=next_trig_send;
+	curr_rx_en<=next_rx_en;
+	curr_cmd_buf<=next_cmd_buf;
+	curr_rx_buf<=next_rx_buf;
+	curr_Xbuf<=next_Xbuf;
+	curr_Ybuf<=next_Ybuf;
+	curr_Zbuf<=next_Zbuf;
 end
 
-always @(*)
+always @*
 begin
 	next_state=curr_state;
+	next_cmd_buf=curr_cmd_buf;
+	next_rx_buf=curr_rx_buf;
 	next_trig_send=1'b0;
-	tx_buffer=0;
-	next_clear_trig<=0;
+	next_rx_en=1'b0;
+	next_wait_count=0;
+	next_Xbuf=curr_Xbuf;
+	next_Ybuf=curr_Ybuf;
+	next_Zbuf=curr_Zbuf;
 	
 	case(curr_state)
-		0:begin
-			if(enable_fsm)next_state=1;
+		0:
+		begin
+			next_wait_count=curr_wait_count+1'b1;
+			if(curr_wait_count==60000)next_state=1;
 		end
 		
-		1:begin
-			tx_buffer=8'hFF;  //reset mouse
+		1:
+		begin
+			next_cmd_buf=8'hFF;
 			next_trig_send=1'b1;
 			if(cmd_sent)next_state=2;
 		end
 		
-		2:begin
-			next_clear_trig<=1;
+		2:
+		begin
 			next_rx_en=1'b1;
-			if(data_received)next_state=3;
+			if(byte_ready)
+			begin
+				if(received_byte==8'hFA && error_codes==2'b00)
+				begin
+					next_state=3;
+				end else next_state=0;
+			end
 		end
 		
-		3:begin
-			next_clear_rx_trig=1'b0;
-			next_state=0;
+		3:
+		begin
+			next_rx_en=1'b1;
+			if(byte_ready)
+			begin
+				if(received_byte==8'hAA && error_codes==2'b00)
+				begin
+					next_state=4;
+				end else next_state=0;
+			end
 		end
-	default : next_state=0;
+		
+		4:
+		begin
+			next_rx_en=1'b1;
+			if(byte_ready)
+			begin
+				if(received_byte==8'h00 && error_codes==2'b00)
+				begin
+					next_state=5;
+				end else next_state=0;
+			end
+		end
+		
+		5:
+		begin
+			next_cmd_buf=8'hF4;
+			next_trig_send=1'b1;
+			if(cmd_sent)next_state=6;
+		end
+		
+		6:
+		begin
+			next_rx_en=1'b1;
+			if(byte_ready)
+			begin
+				if(received_byte==8'hFA && error_codes==2'b00)
+				begin
+					next_state=7;
+				end else next_state=5;
+			end
+		end
+		
+		7:
+		begin
+			next_rx_en=1'b1;
+			if(byte_ready)
+			begin
+				if(error_codes==2'b00)next_Zbuf=received_byte;
+				next_state=8;
+			end
+		end
+		
+		8:
+		begin
+			next_rx_en=1'b1;
+			if(byte_ready)
+			begin
+				if(error_codes==2'b00)next_Xbuf=received_byte;
+				next_state=9;
+			end
+		end
+		
+		9:
+		begin
+			next_rx_en=1'b1;
+			if(byte_ready)
+			begin
+				if(error_codes==2'b00)next_Ybuf=received_byte;
+				next_state=7;
+			end
+		end
+		
+		default:
+		begin
+			next_wait_count=0;
+			next_state=0;
+			next_trig_send=0;
+			next_rx_en=0;
+			next_cmd_buf=0;
+			next_rx_buf=0;
+			next_Xbuf=0;
+			next_Ybuf=0;
+			next_Zbuf=0;
+		end
 	endcase
 end
 endmodule 

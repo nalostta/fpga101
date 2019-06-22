@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-NALOSTTA::  Thu Jun 20 17:37:26 2019
+NALOSTTA::  Sun Jun 23 04:05:21 2019
 
 par -w -intstyle ise -ol high -t 1 main_map.ncd main.ncd main.pcf 
 
@@ -41,7 +41,7 @@ Design Summary Report:
 
    Number of BUFGMUXs                        1 out of 24      4%
    Number of DCMs                            1 out of 2      50%
-   Number of Slices                         32 out of 704     4%
+   Number of Slices                        129 out of 704    18%
       Number of SLICEMs                      0 out of 352     0%
 
 
@@ -60,40 +60,40 @@ Total REAL time at the beginning of Placer: 1 secs
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:5560694) REAL time: 2 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:337b2bce) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:5560694) REAL time: 2 secs 
+Phase 2.7  Design Feasibility Check (Checksum:337b2bce) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:5560694) REAL time: 2 secs 
+Phase 3.31  Local Placement Optimization (Checksum:337b2bce) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 
-Phase 4.2  Initial Clock and IO Placement (Checksum:714316f) REAL time: 3 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:3d98a2f7) REAL time: 2 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:714316f) REAL time: 3 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:3d98a2f7) REAL time: 2 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:714316f) REAL time: 3 secs 
+Phase 6.36  Local Placement Optimization (Checksum:3d98a2f7) REAL time: 2 secs 
 
 Phase 7.8  Global Placement
-..
-..
-Phase 7.8  Global Placement (Checksum:21bf6379) REAL time: 3 secs 
+.............
+......
+Phase 7.8  Global Placement (Checksum:a50a422b) REAL time: 2 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:21bf6379) REAL time: 3 secs 
+Phase 8.5  Local Placement Optimization (Checksum:a50a422b) REAL time: 2 secs 
 
 Phase 9.18  Placement Optimization
-Phase 9.18  Placement Optimization (Checksum:21378478) REAL time: 3 secs 
+Phase 9.18  Placement Optimization (Checksum:aca61034) REAL time: 2 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:21378478) REAL time: 3 secs 
+Phase 10.5  Local Placement Optimization (Checksum:aca61034) REAL time: 2 secs 
 
-Total REAL time to Placer completion: 3 secs 
-Total CPU  time to Placer completion: 3 secs 
+Total REAL time to Placer completion: 2 secs 
+Total CPU  time to Placer completion: 2 secs 
 Writing design to file main.ncd
 
 
@@ -101,26 +101,26 @@ Writing design to file main.ncd
 Starting Router
 
 
-Phase  1  : 233 unrouted;      REAL time: 4 secs 
+Phase  1  : 864 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 203 unrouted;      REAL time: 4 secs 
+Phase  2  : 781 unrouted;      REAL time: 3 secs 
 
-Phase  3  : 29 unrouted;      REAL time: 4 secs 
+Phase  3  : 128 unrouted;      REAL time: 3 secs 
 
-Phase  4  : 29 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Phase  4  : 128 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
 Updating file: main.ncd with current fully routed design.
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
-Total REAL time to Router completion: 4 secs 
-Total CPU time to Router completion: 4 secs 
+Total REAL time to Router completion: 3 secs 
+Total CPU time to Router completion: 3 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -138,7 +138,7 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|                CLK0 | BUFGMUX_X1Y10| No   |   27 |  0.056     |  0.525      |
+|                CLK0 | BUFGMUX_X1Y10| No   |   79 |  0.098     |  0.560      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -163,8 +163,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   NET "SYS_CLK/CLKIN_IBUFG" PERIOD = 40 ns  | MINLOWPULSE |    30.000ns|    10.000ns|       0|           0
   HIGH 50%                                  |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
-  PERIOD analysis for net "SYS_CLK/CLK0_BUF | SETUP       |    34.808ns|     5.192ns|       0|           0
-  " derived from  NET "SYS_CLK/CLKIN_IBUFG" | HOLD        |     1.007ns|            |       0|           0
+  PERIOD analysis for net "SYS_CLK/CLK0_BUF | SETUP       |    31.887ns|     8.113ns|       0|           0
+  " derived from  NET "SYS_CLK/CLKIN_IBUFG" | HOLD        |     1.107ns|            |       0|           0
    PERIOD = 40 ns HIGH 50%                  |             |            |            |        |            
 ----------------------------------------------------------------------------------------------------------
 
@@ -179,8 +179,8 @@ Derived Constraints for SYS_CLK/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|SYS_CLK/CLKIN_IBUFG            |     40.000ns|     10.000ns|      5.192ns|            0|            0|            0|          353|
-| SYS_CLK/CLK0_BUF              |     40.000ns|      5.192ns|          N/A|            0|            0|          353|            0|
+|SYS_CLK/CLKIN_IBUFG            |     40.000ns|     10.000ns|      8.113ns|            0|            0|            0|         2100|
+| SYS_CLK/CLK0_BUF              |     40.000ns|      8.113ns|          N/A|            0|            0|         2100|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.

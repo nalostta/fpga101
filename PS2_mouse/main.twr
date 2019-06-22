@@ -4,8 +4,8 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
 -n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
-constraints.ucf -ucf constraint_led.ucf -ucf constraint_clk.ucf -ucf
-constraint_pushbtn.ucf
+constraints.ucf -ucf constraint_clk.ucf -ucf constraint_pushbtn.ucf -ucf
+constraint_led.ucf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -78,287 +78,323 @@ Timing constraint: PERIOD analysis for net "SYS_CLK/CLK0_BUF" derived from  NET
 HIGH 20 nS  
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 353 paths analyzed, 135 endpoints analyzed, 0 failing endpoints
+ 2100 paths analyzed, 383 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   5.192ns.
+ Minimum period is   8.113ns.
 --------------------------------------------------------------------------------
 
-Paths for end point S2/hold_count_0 (SLICE_X13Y15.CE), 12 paths
+Paths for end point V2/curr_rxbuf_6 (SLICE_X16Y8.G1), 24 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     34.808ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_2 (FF)
-  Destination:          S2/hold_count_0 (FF)
+Slack (setup path):     31.887ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_5 (FF)
+  Destination:          V2/curr_rxbuf_6 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      5.162ns (Levels of Logic = 2)
-  Clock Path Skew:      -0.030ns (0.210 - 0.240)
+  Data Path Delay:      8.054ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.059ns (0.261 - 0.320)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_2 to S2/hold_count_0
+  Maximum Data Path: V2/curr_timeoutcount_5 to V2/curr_rxbuf_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y16.XQ      Tcko                  0.591   S2/hold_count<2>
-                                                       S2/hold_count_2
-    SLICE_X13Y14.G3      net (fanout=2)        0.831   S2/hold_count<2>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y15.CE      net (fanout=6)        1.341   S2/hold_count_not0001
-    SLICE_X13Y15.CLK     Tceck                 0.311   S2/hold_count<0>
-                                                       S2/hold_count_0
+    SLICE_X18Y26.XQ      Tcko                  0.631   V2/curr_timeoutcount<5>
+                                                       V2/curr_timeoutcount_5
+    SLICE_X18Y27.F1      net (fanout=2)        1.035   V2/curr_timeoutcount<5>
+    SLICE_X18Y27.X       Tilo                  0.692   V2/curr_state_cmp_eq000037
+                                                       V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.F4      net (fanout=1)        0.660   V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y13.G4      net (fanout=10)       1.462   V2/curr_state_cmp_eq0000
+    SLICE_X17Y13.Y       Tilo                  0.648   V2/curr_rxbuf<7>
+                                                       V2/next_rxbuf_0_mux000011
+    SLICE_X16Y8.G1       net (fanout=8)        1.417   V2/N2
+    SLICE_X16Y8.CLK      Tgck                  0.817   V2/curr_rxbuf<6>
+                                                       V2/next_rxbuf_6_mux00001
+                                                       V2/curr_rxbuf_6
     -------------------------------------------------  ---------------------------
-    Total                                      5.162ns (2.193ns logic, 2.969ns route)
-                                                       (42.5% logic, 57.5% route)
+    Total                                      8.054ns (3.480ns logic, 4.574ns route)
+                                                       (43.2% logic, 56.8% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     34.823ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_3 (FF)
-  Destination:          S2/hold_count_0 (FF)
+Slack (setup path):     31.931ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_9 (FF)
+  Destination:          V2/curr_rxbuf_6 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      5.147ns (Levels of Logic = 2)
-  Clock Path Skew:      -0.030ns (0.210 - 0.240)
+  Data Path Delay:      7.999ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.070ns (0.261 - 0.331)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_3 to S2/hold_count_0
+  Maximum Data Path: V2/curr_timeoutcount_9 to V2/curr_rxbuf_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y16.YQ      Tcko                  0.580   S2/hold_count<2>
-                                                       S2/hold_count_3
-    SLICE_X13Y14.G4      net (fanout=2)        0.827   S2/hold_count<3>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y15.CE      net (fanout=6)        1.341   S2/hold_count_not0001
-    SLICE_X13Y15.CLK     Tceck                 0.311   S2/hold_count<0>
-                                                       S2/hold_count_0
+    SLICE_X18Y30.XQ      Tcko                  0.631   V2/curr_timeoutcount<9>
+                                                       V2/curr_timeoutcount_9
+    SLICE_X20Y28.G2      net (fanout=2)        1.007   V2/curr_timeoutcount<9>
+    SLICE_X20Y28.Y       Tilo                  0.707   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq00008
+    SLICE_X20Y28.F3      net (fanout=1)        0.618   V2/curr_state_cmp_eq00008/O
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y13.G4      net (fanout=10)       1.462   V2/curr_state_cmp_eq0000
+    SLICE_X17Y13.Y       Tilo                  0.648   V2/curr_rxbuf<7>
+                                                       V2/next_rxbuf_0_mux000011
+    SLICE_X16Y8.G1       net (fanout=8)        1.417   V2/N2
+    SLICE_X16Y8.CLK      Tgck                  0.817   V2/curr_rxbuf<6>
+                                                       V2/next_rxbuf_6_mux00001
+                                                       V2/curr_rxbuf_6
     -------------------------------------------------  ---------------------------
-    Total                                      5.147ns (2.182ns logic, 2.965ns route)
-                                                       (42.4% logic, 57.6% route)
+    Total                                      7.999ns (3.495ns logic, 4.504ns route)
+                                                       (43.7% logic, 56.3% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     35.099ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_1 (FF)
-  Destination:          S2/hold_count_0 (FF)
+Slack (setup path):     32.272ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_6 (FF)
+  Destination:          V2/curr_rxbuf_6 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      4.901ns (Levels of Logic = 2)
-  Clock Path Skew:      0.000ns
+  Data Path Delay:      7.658ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.070ns (0.261 - 0.331)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_1 to S2/hold_count_0
+  Maximum Data Path: V2/curr_timeoutcount_6 to V2/curr_rxbuf_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y15.YQ      Tcko                  0.580   S2/hold_count<0>
-                                                       S2/hold_count_1
-    SLICE_X13Y14.G2      net (fanout=2)        0.581   S2/hold_count<1>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y15.CE      net (fanout=6)        1.341   S2/hold_count_not0001
-    SLICE_X13Y15.CLK     Tceck                 0.311   S2/hold_count<0>
-                                                       S2/hold_count_0
+    SLICE_X18Y31.YQ      Tcko                  0.676   V2/curr_timeoutcount<14>
+                                                       V2/curr_timeoutcount_6
+    SLICE_X18Y27.F4      net (fanout=2)        0.594   V2/curr_timeoutcount<6>
+    SLICE_X18Y27.X       Tilo                  0.692   V2/curr_state_cmp_eq000037
+                                                       V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.F4      net (fanout=1)        0.660   V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y13.G4      net (fanout=10)       1.462   V2/curr_state_cmp_eq0000
+    SLICE_X17Y13.Y       Tilo                  0.648   V2/curr_rxbuf<7>
+                                                       V2/next_rxbuf_0_mux000011
+    SLICE_X16Y8.G1       net (fanout=8)        1.417   V2/N2
+    SLICE_X16Y8.CLK      Tgck                  0.817   V2/curr_rxbuf<6>
+                                                       V2/next_rxbuf_6_mux00001
+                                                       V2/curr_rxbuf_6
     -------------------------------------------------  ---------------------------
-    Total                                      4.901ns (2.182ns logic, 2.719ns route)
-                                                       (44.5% logic, 55.5% route)
+    Total                                      7.658ns (3.525ns logic, 4.133ns route)
+                                                       (46.0% logic, 54.0% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point S2/hold_count_1 (SLICE_X13Y15.CE), 12 paths
+Paths for end point V2/curr_rxbuf_0 (SLICE_X21Y5.G3), 23 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     34.808ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_2 (FF)
-  Destination:          S2/hold_count_1 (FF)
+Slack (setup path):     32.076ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_5 (FF)
+  Destination:          V2/curr_rxbuf_0 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      5.162ns (Levels of Logic = 2)
-  Clock Path Skew:      -0.030ns (0.210 - 0.240)
+  Data Path Delay:      7.835ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.089ns (0.231 - 0.320)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_2 to S2/hold_count_1
+  Maximum Data Path: V2/curr_timeoutcount_5 to V2/curr_rxbuf_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y16.XQ      Tcko                  0.591   S2/hold_count<2>
-                                                       S2/hold_count_2
-    SLICE_X13Y14.G3      net (fanout=2)        0.831   S2/hold_count<2>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y15.CE      net (fanout=6)        1.341   S2/hold_count_not0001
-    SLICE_X13Y15.CLK     Tceck                 0.311   S2/hold_count<0>
-                                                       S2/hold_count_1
+    SLICE_X18Y26.XQ      Tcko                  0.631   V2/curr_timeoutcount<5>
+                                                       V2/curr_timeoutcount_5
+    SLICE_X18Y27.F1      net (fanout=2)        1.035   V2/curr_timeoutcount<5>
+    SLICE_X18Y27.X       Tilo                  0.692   V2/curr_state_cmp_eq000037
+                                                       V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.F4      net (fanout=1)        0.660   V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y21.G4      net (fanout=10)       0.885   V2/curr_state_cmp_eq0000
+    SLICE_X17Y21.Y       Tilo                  0.648   V2/curr_bitcount<0>
+                                                       V2/next_bitcount<0>21
+    SLICE_X21Y5.G3       net (fanout=12)       1.865   V2/N20
+    SLICE_X21Y5.CLK      Tgck                  0.727   V2/curr_rxbuf<1>
+                                                       V2/next_rxbuf_0_mux00001
+                                                       V2/curr_rxbuf_0
     -------------------------------------------------  ---------------------------
-    Total                                      5.162ns (2.193ns logic, 2.969ns route)
-                                                       (42.5% logic, 57.5% route)
+    Total                                      7.835ns (3.390ns logic, 4.445ns route)
+                                                       (43.3% logic, 56.7% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     34.823ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_3 (FF)
-  Destination:          S2/hold_count_1 (FF)
+Slack (setup path):     32.120ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_9 (FF)
+  Destination:          V2/curr_rxbuf_0 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      5.147ns (Levels of Logic = 2)
-  Clock Path Skew:      -0.030ns (0.210 - 0.240)
+  Data Path Delay:      7.780ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.100ns (0.231 - 0.331)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_3 to S2/hold_count_1
+  Maximum Data Path: V2/curr_timeoutcount_9 to V2/curr_rxbuf_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y16.YQ      Tcko                  0.580   S2/hold_count<2>
-                                                       S2/hold_count_3
-    SLICE_X13Y14.G4      net (fanout=2)        0.827   S2/hold_count<3>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y15.CE      net (fanout=6)        1.341   S2/hold_count_not0001
-    SLICE_X13Y15.CLK     Tceck                 0.311   S2/hold_count<0>
-                                                       S2/hold_count_1
+    SLICE_X18Y30.XQ      Tcko                  0.631   V2/curr_timeoutcount<9>
+                                                       V2/curr_timeoutcount_9
+    SLICE_X20Y28.G2      net (fanout=2)        1.007   V2/curr_timeoutcount<9>
+    SLICE_X20Y28.Y       Tilo                  0.707   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq00008
+    SLICE_X20Y28.F3      net (fanout=1)        0.618   V2/curr_state_cmp_eq00008/O
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y21.G4      net (fanout=10)       0.885   V2/curr_state_cmp_eq0000
+    SLICE_X17Y21.Y       Tilo                  0.648   V2/curr_bitcount<0>
+                                                       V2/next_bitcount<0>21
+    SLICE_X21Y5.G3       net (fanout=12)       1.865   V2/N20
+    SLICE_X21Y5.CLK      Tgck                  0.727   V2/curr_rxbuf<1>
+                                                       V2/next_rxbuf_0_mux00001
+                                                       V2/curr_rxbuf_0
     -------------------------------------------------  ---------------------------
-    Total                                      5.147ns (2.182ns logic, 2.965ns route)
-                                                       (42.4% logic, 57.6% route)
+    Total                                      7.780ns (3.405ns logic, 4.375ns route)
+                                                       (43.8% logic, 56.2% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     35.099ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_1 (FF)
-  Destination:          S2/hold_count_1 (FF)
+Slack (setup path):     32.461ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_6 (FF)
+  Destination:          V2/curr_rxbuf_0 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      4.901ns (Levels of Logic = 2)
-  Clock Path Skew:      0.000ns
+  Data Path Delay:      7.439ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.100ns (0.231 - 0.331)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_1 to S2/hold_count_1
+  Maximum Data Path: V2/curr_timeoutcount_6 to V2/curr_rxbuf_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y15.YQ      Tcko                  0.580   S2/hold_count<0>
-                                                       S2/hold_count_1
-    SLICE_X13Y14.G2      net (fanout=2)        0.581   S2/hold_count<1>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y15.CE      net (fanout=6)        1.341   S2/hold_count_not0001
-    SLICE_X13Y15.CLK     Tceck                 0.311   S2/hold_count<0>
-                                                       S2/hold_count_1
+    SLICE_X18Y31.YQ      Tcko                  0.676   V2/curr_timeoutcount<14>
+                                                       V2/curr_timeoutcount_6
+    SLICE_X18Y27.F4      net (fanout=2)        0.594   V2/curr_timeoutcount<6>
+    SLICE_X18Y27.X       Tilo                  0.692   V2/curr_state_cmp_eq000037
+                                                       V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.F4      net (fanout=1)        0.660   V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y21.G4      net (fanout=10)       0.885   V2/curr_state_cmp_eq0000
+    SLICE_X17Y21.Y       Tilo                  0.648   V2/curr_bitcount<0>
+                                                       V2/next_bitcount<0>21
+    SLICE_X21Y5.G3       net (fanout=12)       1.865   V2/N20
+    SLICE_X21Y5.CLK      Tgck                  0.727   V2/curr_rxbuf<1>
+                                                       V2/next_rxbuf_0_mux00001
+                                                       V2/curr_rxbuf_0
     -------------------------------------------------  ---------------------------
-    Total                                      4.901ns (2.182ns logic, 2.719ns route)
-                                                       (44.5% logic, 55.5% route)
+    Total                                      7.439ns (3.435ns logic, 4.004ns route)
+                                                       (46.2% logic, 53.8% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point S2/hold_count_6 (SLICE_X13Y18.CE), 12 paths
+Paths for end point V2/curr_rxbuf_1 (SLICE_X21Y5.F3), 23 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     35.180ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_2 (FF)
-  Destination:          S2/hold_count_6 (FF)
+Slack (setup path):     32.113ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_5 (FF)
+  Destination:          V2/curr_rxbuf_1 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      4.824ns (Levels of Logic = 2)
-  Clock Path Skew:      0.004ns (0.008 - 0.004)
+  Data Path Delay:      7.798ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.089ns (0.231 - 0.320)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_2 to S2/hold_count_6
+  Maximum Data Path: V2/curr_timeoutcount_5 to V2/curr_rxbuf_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y16.XQ      Tcko                  0.591   S2/hold_count<2>
-                                                       S2/hold_count_2
-    SLICE_X13Y14.G3      net (fanout=2)        0.831   S2/hold_count<2>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y18.CE      net (fanout=6)        1.003   S2/hold_count_not0001
-    SLICE_X13Y18.CLK     Tceck                 0.311   S2/hold_count<6>
-                                                       S2/hold_count_6
+    SLICE_X18Y26.XQ      Tcko                  0.631   V2/curr_timeoutcount<5>
+                                                       V2/curr_timeoutcount_5
+    SLICE_X18Y27.F1      net (fanout=2)        1.035   V2/curr_timeoutcount<5>
+    SLICE_X18Y27.X       Tilo                  0.692   V2/curr_state_cmp_eq000037
+                                                       V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.F4      net (fanout=1)        0.660   V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y21.G4      net (fanout=10)       0.885   V2/curr_state_cmp_eq0000
+    SLICE_X17Y21.Y       Tilo                  0.648   V2/curr_bitcount<0>
+                                                       V2/next_bitcount<0>21
+    SLICE_X21Y5.F3       net (fanout=12)       1.833   V2/N20
+    SLICE_X21Y5.CLK      Tfck                  0.722   V2/curr_rxbuf<1>
+                                                       V2/next_rxbuf_1_mux00001
+                                                       V2/curr_rxbuf_1
     -------------------------------------------------  ---------------------------
-    Total                                      4.824ns (2.193ns logic, 2.631ns route)
-                                                       (45.5% logic, 54.5% route)
+    Total                                      7.798ns (3.385ns logic, 4.413ns route)
+                                                       (43.4% logic, 56.6% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     35.195ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_3 (FF)
-  Destination:          S2/hold_count_6 (FF)
+Slack (setup path):     32.157ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_9 (FF)
+  Destination:          V2/curr_rxbuf_1 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      4.809ns (Levels of Logic = 2)
-  Clock Path Skew:      0.004ns (0.008 - 0.004)
+  Data Path Delay:      7.743ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.100ns (0.231 - 0.331)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_3 to S2/hold_count_6
+  Maximum Data Path: V2/curr_timeoutcount_9 to V2/curr_rxbuf_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y16.YQ      Tcko                  0.580   S2/hold_count<2>
-                                                       S2/hold_count_3
-    SLICE_X13Y14.G4      net (fanout=2)        0.827   S2/hold_count<3>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y18.CE      net (fanout=6)        1.003   S2/hold_count_not0001
-    SLICE_X13Y18.CLK     Tceck                 0.311   S2/hold_count<6>
-                                                       S2/hold_count_6
+    SLICE_X18Y30.XQ      Tcko                  0.631   V2/curr_timeoutcount<9>
+                                                       V2/curr_timeoutcount_9
+    SLICE_X20Y28.G2      net (fanout=2)        1.007   V2/curr_timeoutcount<9>
+    SLICE_X20Y28.Y       Tilo                  0.707   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq00008
+    SLICE_X20Y28.F3      net (fanout=1)        0.618   V2/curr_state_cmp_eq00008/O
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y21.G4      net (fanout=10)       0.885   V2/curr_state_cmp_eq0000
+    SLICE_X17Y21.Y       Tilo                  0.648   V2/curr_bitcount<0>
+                                                       V2/next_bitcount<0>21
+    SLICE_X21Y5.F3       net (fanout=12)       1.833   V2/N20
+    SLICE_X21Y5.CLK      Tfck                  0.722   V2/curr_rxbuf<1>
+                                                       V2/next_rxbuf_1_mux00001
+                                                       V2/curr_rxbuf_1
     -------------------------------------------------  ---------------------------
-    Total                                      4.809ns (2.182ns logic, 2.627ns route)
-                                                       (45.4% logic, 54.6% route)
+    Total                                      7.743ns (3.400ns logic, 4.343ns route)
+                                                       (43.9% logic, 56.1% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     35.398ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               S2/hold_count_1 (FF)
-  Destination:          S2/hold_count_6 (FF)
+Slack (setup path):     32.498ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               V2/curr_timeoutcount_6 (FF)
+  Destination:          V2/curr_rxbuf_1 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      4.563ns (Levels of Logic = 2)
-  Clock Path Skew:      -0.039ns (0.209 - 0.248)
+  Data Path Delay:      7.402ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.100ns (0.231 - 0.331)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: S2/hold_count_1 to S2/hold_count_6
+  Maximum Data Path: V2/curr_timeoutcount_6 to V2/curr_rxbuf_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y15.YQ      Tcko                  0.580   S2/hold_count<0>
-                                                       S2/hold_count_1
-    SLICE_X13Y14.G2      net (fanout=2)        0.581   S2/hold_count<1>
-    SLICE_X13Y14.Y       Tilo                  0.648   S2/hold_count_not0001
-                                                       S2/elapsed_100us10
-    SLICE_X13Y14.F1      net (fanout=2)        0.797   S2/elapsed_100us10
-    SLICE_X13Y14.X       Tilo                  0.643   S2/hold_count_not0001
-                                                       S2/hold_count_not00011
-    SLICE_X13Y18.CE      net (fanout=6)        1.003   S2/hold_count_not0001
-    SLICE_X13Y18.CLK     Tceck                 0.311   S2/hold_count<6>
-                                                       S2/hold_count_6
+    SLICE_X18Y31.YQ      Tcko                  0.676   V2/curr_timeoutcount<14>
+                                                       V2/curr_timeoutcount_6
+    SLICE_X18Y27.F4      net (fanout=2)        0.594   V2/curr_timeoutcount<6>
+    SLICE_X18Y27.X       Tilo                  0.692   V2/curr_state_cmp_eq000037
+                                                       V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.F4      net (fanout=1)        0.660   V2/curr_state_cmp_eq000037
+    SLICE_X20Y28.X       Tilo                  0.692   V2/curr_state_cmp_eq0000
+                                                       V2/curr_state_cmp_eq000064
+    SLICE_X17Y21.G4      net (fanout=10)       0.885   V2/curr_state_cmp_eq0000
+    SLICE_X17Y21.Y       Tilo                  0.648   V2/curr_bitcount<0>
+                                                       V2/next_bitcount<0>21
+    SLICE_X21Y5.F3       net (fanout=12)       1.833   V2/N20
+    SLICE_X21Y5.CLK      Tfck                  0.722   V2/curr_rxbuf<1>
+                                                       V2/next_rxbuf_1_mux00001
+                                                       V2/curr_rxbuf_1
     -------------------------------------------------  ---------------------------
-    Total                                      4.563ns (2.182ns logic, 2.381ns route)
-                                                       (47.8% logic, 52.2% route)
+    Total                                      7.402ns (3.430ns logic, 3.972ns route)
+                                                       (46.3% logic, 53.7% route)
 
 --------------------------------------------------------------------------------
 
@@ -368,14 +404,14 @@ Hold Paths: PERIOD analysis for net "SYS_CLK/CLK0_BUF" derived from
 
 --------------------------------------------------------------------------------
 
-Paths for end point S2/curr_data_sent (SLICE_X13Y8.BY), 1 path
+Paths for end point S2/curr_data_sent (SLICE_X10Y9.BY), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      1.007ns (requirement - (clock path skew + uncertainty - data path))
+Slack (hold path):      1.107ns (requirement - (clock path skew + uncertainty - data path))
   Source:               S2/curr_state_FSM_FFd1 (FF)
   Destination:          S2/curr_data_sent (FF)
   Requirement:          0.000ns
-  Data Path Delay:      1.023ns (Levels of Logic = 0)
-  Clock Path Skew:      0.016ns (0.051 - 0.035)
+  Data Path Delay:      1.113ns (Levels of Logic = 0)
+  Clock Path Skew:      0.006ns (0.024 - 0.018)
   Source Clock:         CLK0 rising at 40.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
@@ -384,69 +420,70 @@ Slack (hold path):      1.007ns (requirement - (clock path skew + uncertainty - 
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X13Y10.YQ      Tcko                  0.464   S2/curr_state_FSM_FFd2
+    SLICE_X10Y11.YQ      Tcko                  0.541   S2/curr_state_FSM_FFd2
                                                        S2/curr_state_FSM_FFd1
-    SLICE_X13Y8.BY       net (fanout=4)        0.419   S2/curr_state_FSM_FFd1
-    SLICE_X13Y8.CLK      Tckdi       (-Th)    -0.140   S2/curr_data_sent
+    SLICE_X10Y9.BY       net (fanout=4)        0.399   S2/curr_state_FSM_FFd1
+    SLICE_X10Y9.CLK      Tckdi       (-Th)    -0.173   S2/curr_data_sent
                                                        S2/curr_data_sent
     -------------------------------------------------  ---------------------------
-    Total                                      1.023ns (0.604ns logic, 0.419ns route)
-                                                       (59.0% logic, 41.0% route)
+    Total                                      1.113ns (0.714ns logic, 0.399ns route)
+                                                       (64.2% logic, 35.8% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point data_sent_trig (SLICE_X12Y9.CE), 1 path
+Paths for end point S2/curr_data_to_send_0 (SLICE_X5Y14.G4), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      1.236ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               CMD_FSM/curr_clear_trig (FF)
-  Destination:          data_sent_trig (FF)
+Slack (hold path):      1.240ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               S2/curr_data_to_send_0 (FF)
+  Destination:          S2/curr_data_to_send_0 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      1.240ns (Levels of Logic = 0)
-  Clock Path Skew:      0.004ns (0.051 - 0.047)
-  Source Clock:         CLK0 rising at 40.000ns
-  Destination Clock:    CLK0 rising at 40.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path: CMD_FSM/curr_clear_trig to data_sent_trig
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X12Y6.YQ       Tcko                  0.541   CMD_FSM/curr_clear_trig
-                                                       CMD_FSM/curr_clear_trig
-    SLICE_X12Y9.CE       net (fanout=1)        0.699   CMD_FSM/curr_clear_trig
-    SLICE_X12Y9.CLK      Tckce       (-Th)     0.000   data_sent_trig
-                                                       data_sent_trig
-    -------------------------------------------------  ---------------------------
-    Total                                      1.240ns (0.541ns logic, 0.699ns route)
-                                                       (43.6% logic, 56.4% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point S2/curr_state_FSM_FFd13 (SLICE_X11Y12.G4), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      1.280ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               S2/curr_state_FSM_FFd13 (FF)
-  Destination:          S2/curr_state_FSM_FFd13 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      1.280ns (Levels of Logic = 1)
+  Data Path Delay:      1.240ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK0 rising at 40.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: S2/curr_state_FSM_FFd13 to S2/curr_state_FSM_FFd13
+  Minimum Data Path: S2/curr_data_to_send_0 to S2/curr_data_to_send_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X11Y12.YQ      Tcko                  0.464   S2/curr_state_FSM_FFd13
-                                                       S2/curr_state_FSM_FFd13
-    SLICE_X11Y12.G4      net (fanout=4)        0.346   S2/curr_state_FSM_FFd13
-    SLICE_X11Y12.CLK     Tckg        (-Th)    -0.470   S2/curr_state_FSM_FFd13
-                                                       S2/curr_state_FSM_FFd13-In1
-                                                       S2/curr_state_FSM_FFd13
+    SLICE_X5Y14.YQ       Tcko                  0.464   S2/curr_data_to_send<1>
+                                                       S2/curr_data_to_send_0
+    SLICE_X5Y14.G4       net (fanout=2)        0.306   S2/curr_data_to_send<0>
+    SLICE_X5Y14.CLK      Tckg        (-Th)    -0.470   S2/curr_data_to_send<1>
+                                                       S2/next_data_to_send<0>1
+                                                       S2/curr_data_to_send_0
     -------------------------------------------------  ---------------------------
-    Total                                      1.280ns (0.934ns logic, 0.346ns route)
-                                                       (73.0% logic, 27.0% route)
+    Total                                      1.240ns (0.934ns logic, 0.306ns route)
+                                                       (75.3% logic, 24.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point FSM_TEST/curr_cmd_buf_3 (SLICE_X11Y11.G4), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.242ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               FSM_TEST/curr_cmd_buf_3 (FF)
+  Destination:          FSM_TEST/curr_cmd_buf_3 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.242ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: FSM_TEST/curr_cmd_buf_3 to FSM_TEST/curr_cmd_buf_3
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X11Y11.YQ      Tcko                  0.464   FSM_TEST/curr_cmd_buf<3>
+                                                       FSM_TEST/curr_cmd_buf_3
+    SLICE_X11Y11.G4      net (fanout=3)        0.308   FSM_TEST/curr_cmd_buf<3>
+    SLICE_X11Y11.CLK     Tckg        (-Th)    -0.470   FSM_TEST/curr_cmd_buf<3>
+                                                       FSM_TEST/next_cmd_buf<3>11
+                                                       FSM_TEST/curr_cmd_buf_3
+    -------------------------------------------------  ---------------------------
+    Total                                      1.242ns (0.934ns logic, 0.308ns route)
+                                                       (75.2% logic, 24.8% route)
 
 --------------------------------------------------------------------------------
 
@@ -467,18 +504,18 @@ Slack: 38.398ns (period - (min low pulse limit / (low pulse / period)))
   Period: 40.000ns
   Low pulse: 20.000ns
   Low pulse limit: 0.801ns (Tcl)
-  Physical resource: S2/curr_state_FSM_FFd16/CLK
-  Logical resource: S2/curr_state_FSM_FFd16/CK
-  Location pin: SLICE_X12Y11.CLK
+  Physical resource: V2/curr_timeoutcount<5>/CLK
+  Logical resource: V2/curr_timeoutcount_5/CK
+  Location pin: SLICE_X18Y26.CLK
   Clock network: CLK0
 --------------------------------------------------------------------------------
 Slack: 38.398ns (period - (min high pulse limit / (high pulse / period)))
   Period: 40.000ns
   High pulse: 20.000ns
   High pulse limit: 0.801ns (Tch)
-  Physical resource: S2/curr_state_FSM_FFd16/CLK
-  Logical resource: S2/curr_state_FSM_FFd16/CK
-  Location pin: SLICE_X12Y11.CLK
+  Physical resource: V2/curr_timeoutcount<5>/CLK
+  Logical resource: V2/curr_timeoutcount_5/CK
+  Location pin: SLICE_X18Y26.CLK
   Clock network: CLK0
 --------------------------------------------------------------------------------
 
@@ -490,8 +527,8 @@ Derived Constraints for SYS_CLK/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|SYS_CLK/CLKIN_IBUFG            |     40.000ns|     10.000ns|      5.192ns|            0|            0|            0|          353|
-| SYS_CLK/CLK0_BUF              |     40.000ns|      5.192ns|          N/A|            0|            0|          353|            0|
+|SYS_CLK/CLKIN_IBUFG            |     40.000ns|     10.000ns|      8.113ns|            0|            0|            0|         2100|
+| SYS_CLK/CLK0_BUF              |     40.000ns|      8.113ns|          N/A|            0|            0|         2100|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -506,7 +543,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    5.192|         |         |         |
+clk            |    8.113|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -515,7 +552,7 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 353 paths, 0 nets, and 179 connections
+Constraints cover 2100 paths, 0 nets, and 752 connections
 
 Design statistics:
    Minimum period:  10.000ns{1}   (Maximum frequency: 100.000MHz)
@@ -524,7 +561,7 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Thu Jun 20 17:37:35 2019 
+Analysis completed Sun Jun 23 04:05:30 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:
