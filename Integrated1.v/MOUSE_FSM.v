@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    21:49:29 06/19/2019 
+// Create Date:    11:25:41 06/25/2019 
 // Design Name: 
-// Module Name:    MOUSE_FSM_CMD 
+// Module Name:    MOUSE_FSM 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -46,7 +46,8 @@ output	[7:0]	XByte,YByte,ZByte;
 
 reg 		[3:0]	curr_state,next_state;
 reg				curr_trig_send,next_trig_send;
-reg				curr_rx_en,next_rx_en,curr_packet_complete,next_packet_complete;
+reg				curr_rx_en,next_rx_en;
+reg				curr_packet_complete,next_packet_complete;
 reg		[7:0]	curr_cmd_buf,next_cmd_buf;
 reg		[7:0]	curr_rx_buf,next_rx_buf;
 reg		[15:0]curr_wait_count,next_wait_count;
@@ -62,7 +63,7 @@ assign	debug_rx_buf		=	curr_Xbuf;
 assign	XByte					=	curr_Xbuf;
 assign	YByte					=	curr_Ybuf;
 assign	ZByte					=	curr_Zbuf;
-assign	packet_complete	=	curr_packet_complete;
+assign 	packet_complete	=	curr_packet_complete;
 
 always @(posedge clk)
 if(reset)
@@ -101,7 +102,7 @@ begin
 	next_Xbuf=curr_Xbuf;
 	next_Ybuf=curr_Ybuf;
 	next_Zbuf=curr_Zbuf;
-	next_packet_complete=0;
+	next_packet_complete=1'b0;
 	
 	case(curr_state)
 		0:
@@ -178,6 +179,7 @@ begin
 			if(byte_ready)
 			begin
 				if(error_codes==2'b00)next_Zbuf=received_byte;
+				else next_state=0;
 				next_state=8;
 			end
 		end
@@ -188,6 +190,7 @@ begin
 			if(byte_ready)
 			begin
 				if(error_codes==2'b00)next_Xbuf=received_byte;
+				else next_state=0;
 				next_state=9;
 			end
 		end
@@ -198,8 +201,9 @@ begin
 			if(byte_ready)
 			begin
 				if(error_codes==2'b00)next_Ybuf=received_byte;
+				else next_state=0;
 				next_state=7;
-				next_packet_complete=1;
+				next_packet_complete=1'b1;
 			end
 		end
 		
@@ -214,6 +218,9 @@ begin
 			next_Xbuf=0;
 			next_Ybuf=0;
 			next_Zbuf=0;
+			next_packet_complete=1'b0;
 		end
 	endcase
 end
+
+endmodule 

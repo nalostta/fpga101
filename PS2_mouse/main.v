@@ -23,15 +23,19 @@ module main(
 	led,
 	pushbtn,
 	PS2_CLK,
-	PS2_DAT	
+	PS2_DAT,
+	SSDArray,
+	DigCh
     );
 	 
 input clk,pushbtn;
-output [7:0] led;
+output [7:0] led,SSDArray;
+output [2:0] DigCh;
 inout PS2_CLK,PS2_DAT;
 
 wire Locked,CLK0,rx_complete,rx_en,data_sent,trig_send;
 wire [7:0] cmd_to_be_sent,received_data;
+wire [7:0]	XByte,YByte,ZByte;
 reg  data_sent_trig,rx_complete_in;
 
 clkgen SYS_CLK (
@@ -51,9 +55,12 @@ MOUSE_FSM_CMD FSM_TEST(
 	.rx_en(rx_en),
 	.byte_ready(rx_complete),
 	.received_byte(received_data),
-	.debug_curr_state(),
-	.debug_rx_buf(led),
-	.error_codes(error_codes)
+	.debug_curr_state(led),
+	.debug_rx_buf(),
+	.error_codes(error_codes),
+	.XByte(XByte),
+	.YByte(YByte),
+	.ZByte(ZByte)
 	);
 	
 stage2 S2(
@@ -79,8 +86,21 @@ RX_V2 V2(
 	.ByteErrorCode(error_codes)
    );
 
-//assign CLK_MOUSE_IN = PS2_CLK;
-//assign DATA_MOUSE_IN = PS2_DAT;
+assign DigCh[2]=1'b1;
+reg [10:0]	dig;
 
+always @(posedge CLK0)
+if(Locked)dig<=dig+1'b1;
+else dig<=0;
+
+assign sign = 8'hFD;
+assign SSDArray=count_value;//:(X_count[4]?	sign:8'hff);
+assign DigCh[0]=1'b0;
+assign DigCh[1]=1'b1;
+
+bintoseg bin_to_hex(
+    .ssdarray(count_value),
+    .bin(X_count)
+    );
 
 endmodule
