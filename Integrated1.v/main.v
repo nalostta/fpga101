@@ -47,7 +47,7 @@ reg [2:0] ring_buf;
 reg [11:0]	clk_divider;
 
 wire	[20:0]	count_next;
-wire	[9:0]		Hposn;
+wire	[9:0]		Hposn,Vposn;
 wire	[9:0]		Hcounter,Vcounter,Hcen,Vcen,Xwire,Ywire,Zwire;
 wire	[7:0]		PixData,zbyte,xbyte,ybyte;
 wire	[7:0]		cmd_to_be_sent,received_data;
@@ -55,7 +55,7 @@ wire	[3:0]		debug_fsm_state;
 wire	[7:0]		MouseDxRaw,MouseDyRaw,MouseStatusRaw;
 wire 				Locked,CLK0,rx_complete,rx_en,data_sent,trig_send;
 
-assign led=Hposn;
+assign led=Vposn;
 assign slow_clk=clk_divider[11];
 assign DigCh=ring_buf;
 
@@ -75,16 +75,17 @@ reg [7:0] 	MouseX,MouseY,MouseStatus;
 
 //assign bin_input	=	debug_fsm_state;//debug_fsm_state;//(!ring_buf[0])?	zbyte[7:4]:(!ring_buf[1])?	zbyte[3:0]:ybyte;
 
-/*reg [7:0] MouseClkFilter;
+reg [7:0] MouseClkFilter;
+reg ClkMouseIn;
 	
-always@(posedge CLK) begin
-	if(!RESET)
+always@(posedge CLK0) begin
+	if(!Locked)
 		ClkMouseIn <= 1'b0;
 	else 
 		begin
 			//A simple shift register
 			MouseClkFilter[7:1] <= MouseClkFilter[6:0];
-			MouseClkFilter[0] <= CLK_MOUSE;
+			MouseClkFilter[0] <= PS2_CLK;
 			
 			//falling edge
 			if(ClkMouseIn & (MouseClkFilter == 8'h00))			
@@ -94,7 +95,7 @@ always@(posedge CLK) begin
 			else if(~ClkMouseIn & (MouseClkFilter == 8'hFF))
 				ClkMouseIn <= 1'b1;
 		end
-end*/
+end
 
 //----------filter-----------
 reg	[7:0]	ClkFilter;
@@ -123,6 +124,8 @@ else begin
 	ring_buf[2:1]<=ring_buf[1:0];
 	ring_buf[0]<=ring_buf[2];
 end
+//----------------------------------
+
 
 clkgen SYS_CLK (
     .CLKIN_IN(clk), 
@@ -131,17 +134,32 @@ clkgen SYS_CLK (
     .CLK0_OUT(CLK0), 
     .LOCKED_OUT(Locked)
     );
+//----------------------------------
+
+wire DataMouseOutEnTrans,ClkMouseOutEnTrans,DataMouseOutTrans;
+
+assign PS2_CLK = ClkMouseOutEnTrans ? 1'b0 : 1'bz;
+
+//Clk Input
+assign DataMouseIn = PS2_DAT;
 	
-stage2 S2(
+//Clk Output - can be driven by host or device
+assign PS2_DAT = DataMouseOutEnTrans ? DataMouseOutTrans : 1'bz;
+
+	
+stage2 MouseTransmitter(
 	.clk(CLK0),
 	.locked(Locked),
 	.trig_send(trig_send),
 	.data_to_send(cmd_to_be_sent),
 	.data_sent(data_sent),
-	.ps2clk(PS2_CLK),
-	.ps2data(PS2_DAT),
+	.ps2clk(ClkMouseIn),
+	.ps2data(DataMouseIn),
 	.line_idle(),
-	.debug()
+	.debug(),
+	.curr_ps2data_en(DataMouseOutEnTrans),
+	.curr_ps2clk_en(ClkMouseOutEn),
+	.curr_dout(DataMouseOutTrans)
     );
 	 
 MOUSE_FSM_CMD control_module(
@@ -166,7 +184,7 @@ PS2_RxModule V2(
 	.clk(CLK0),
 	.Locked(Locked),
 	.rx_en(rx_en),
-	.ps2clk(PS2_CLK),
+	.ps2clk(ClkMouseIn),
 	.ps2data(PS2_DAT),
 	.rx_complete(rx_complete),
 	.received_data(received_data),
@@ -193,8 +211,8 @@ VGAcontroller VGA_1(
 	
 mouse_posn mouse_coordinates(
 	.clk(CLK0),
-	.en(packet_complete),
-	.reset(!Locked),
+	.Locked(Locked),
+	.trig_en(packet_complete),
 	.XByte(MouseDxRaw),
 	.YByte(MouseDyRaw),
 	.StatusByte(MouseStatusRaw),

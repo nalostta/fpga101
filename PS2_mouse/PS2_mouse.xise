@@ -47,10 +47,6 @@
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="2"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
-    <file xil_pn:name="MOUSE_FSM_CMD.v" xil_pn:type="FILE_VERILOG">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="1"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="3"/>
-    </file>
     <file xil_pn:name="constraints.ucf" xil_pn:type="FILE_UCF">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
@@ -73,6 +69,10 @@
     <file xil_pn:name="mouse_posn.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="145"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="145"/>
+    </file>
+    <file xil_pn:name="PS2_Mouse_Controller.v" xil_pn:type="FILE_VERILOG">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="148"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="148"/>
     </file>
   </files>
 

@@ -27,14 +27,17 @@ module stage2(
 	ps2clk,
 	ps2data,
 	line_idle,
-	debug
+	debug,
+	curr_ps2data_en,
+	curr_ps2clk_en,
+	curr_dout
     );
 	 
 input clk,locked,trig_send;
-output line_idle,data_sent;
+output line_idle,data_sent,curr_ps2clk_en,curr_ps2data_en,curr_dout;
 input	[7:0]	data_to_send;
 output	[3:0]	debug;
-inout ps2clk,ps2data;
+input ps2clk,ps2data;
 
 reg [11:0] hold_count;
 
@@ -69,8 +72,8 @@ localparam 	IDLE				=	4'h0,
 
 assign ps2clk_in_q=ps2clk;
 assign ps2data_in_q=ps2data;
-assign ps2clk 	= 	curr_ps2clk_en?	1'b0:1'bz;
-assign ps2data	=	curr_ps2data_en?	curr_dout:1'bz;
+//assign ps2clk 	= 	curr_ps2clk_en?	1'b0:1'bz;
+//assign ps2data	=	curr_ps2data_en?	curr_dout:1'bz;
 
 always @(posedge clk)
 if(locked)
@@ -242,7 +245,6 @@ begin
 		
 		ACK_CLK_LOW:
 		begin
-			
 			if(!ps2clk_in)next_state=TX_END;
 			else next_state=ACK_CLK_LOW;
 		end
@@ -251,7 +253,7 @@ begin
 		begin
 			next_ps2data_en=1'b0;
 			next_ps2clk_en=1'b0;
-			next_data_sent=1'b1;		
+			next_data_sent=1'b1;
 			if(ps2clk_in&&ps2data_in)next_state=IDLE;
 			else next_state=TX_END;
 		end

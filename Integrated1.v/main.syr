@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Reading design: main.prj
 
@@ -232,8 +232,6 @@ Analyzing module <VGAcontroller> in library <work>.
 Module <VGAcontroller> is correct for synthesis.
  
 Analyzing module <mouse_posn> in library <work>.
-WARNING:Xst:905 - "mouse_posn.v" line 67: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <reset>, <en>, <next_Xposn>, <next_Yposn>
 Module <mouse_posn> is correct for synthesis.
  
 Analyzing module <rectangle> in library <work>.
@@ -264,14 +262,12 @@ Synthesizing Unit <stage2>.
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 1-bit tristate buffer for signal <ps2data>.
-    Found 1-bit tristate buffer for signal <ps2clk>.
+    Found 1-bit register for signal <curr_ps2data_en>.
+    Found 1-bit register for signal <curr_ps2clk_en>.
+    Found 1-bit register for signal <curr_dout>.
     Found 1-bit register for signal <curr_data_sent>.
     Found 8-bit register for signal <curr_data_to_send>.
-    Found 1-bit register for signal <curr_dout>.
     Found 1-bit register for signal <curr_hold_ps2clk_en>.
-    Found 1-bit register for signal <curr_ps2clk_en>.
-    Found 1-bit register for signal <curr_ps2data_en>.
     Found 12-bit up counter for signal <hold_count>.
     Found 1-bit xor8 for signal <next_dout$xor0000>.
     Found 1-bit register for signal <ps2clk_in>.
@@ -281,7 +277,6 @@ Synthesizing Unit <stage2>.
 	inferred   1 Counter(s).
 	inferred  15 D-type flip-flop(s).
 	inferred   1 Xor(s).
-	inferred   2 Tristate(s).
 Unit <stage2> synthesized.
 
 
@@ -289,10 +284,10 @@ Synthesizing Unit <MOUSE_FSM_CMD>.
     Related source file is "MOUSE_FSM.v".
     Found finite state machine <FSM_1> for signal <curr_state>.
     -----------------------------------------------------------------------
-    | States             | 10                                             |
-    | Transitions        | 28                                             |
+    | States             | 11                                             |
+    | Transitions        | 32                                             |
     | Inputs             | 7                                              |
-    | Outputs            | 12                                             |
+    | Outputs            | 13                                             |
     | Clock              | clk                       (rising_edge)        |
     | Reset              | reset                     (positive)           |
     | Reset type         | synchronous                                    |
@@ -387,38 +382,37 @@ Unit <VGAcontroller> synthesized.
 
 Synthesizing Unit <mouse_posn>.
     Related source file is "mouse_posn.v".
-WARNING:Xst:646 - Signal <ybuf> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <xbuf<5:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <x_mag> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <slow_clk> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <sbuf<7>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <sbuf<5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <sbuf<3:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <Yposn_raw> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <Xposn_raw> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:737 - Found 10-bit latch for signal <Xposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-WARNING:Xst:737 - Found 10-bit latch for signal <Yposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-    Found 8-bit up counter for signal <clk_divider>.
-    Found 10-bit comparator greater for signal <next_Xposn$cmp_gt0000> created at line 46.
-    Found 10-bit comparator less for signal <next_Xposn$cmp_lt0000> created at line 46.
-    Found 8-bit register for signal <sbuf>.
-    Found 10-bit addsub for signal <x_mag2>.
+WARNING:Xst:647 - Input <StatusByte<3:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:737 - Found 10-bit latch for signal <next_Xposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 10-bit latch for signal <next_Yposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 10-bit register for signal <Xposn>.
+    Found 10-bit register for signal <Yposn>.
+    Found 10-bit adder for signal <next_Xposn$addsub0000> created at line 59.
+    Found 10-bit comparator greater for signal <next_Xposn$cmp_gt0000> created at line 57.
+    Found 10-bit comparator less for signal <next_Xposn$cmp_lt0000> created at line 58.
+    Found 10-bit subtractor for signal <next_Yposn$addsub0000> created at line 65.
+    Found 10-bit comparator greater for signal <next_Yposn$cmp_gt0000> created at line 63.
+    Found 10-bit comparator less for signal <next_Yposn$cmp_lt0000> created at line 64.
     Summary:
-	inferred   1 Counter(s).
-	inferred   8 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
-	inferred   2 Comparator(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
 Unit <mouse_posn> synthesized.
 
 
 Synthesizing Unit <rectangle>.
     Related source file is "rectangle.v".
-WARNING:Xst:647 - Input <Vcounter> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <Vcenter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <Hcenter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 10-bit comparator greater for signal <PixData$cmp_gt0000> created at line 49.
+    Found 10-bit adder carry out for signal <add0000$addsub0000> created at line 47.
+    Found 10-bit adder carry out for signal <add0001$addsub0000> created at line 47.
+    Found 11-bit comparator greater for signal <PixData$cmp_gt0000> created at line 47.
+    Found 11-bit comparator greater for signal <PixData$cmp_gt0001> created at line 47.
+    Found 12-bit comparator less for signal <PixData$cmp_lt0000> created at line 47.
+    Found 12-bit comparator less for signal <PixData$cmp_lt0001> created at line 47.
+    Found 12-bit subtractor for signal <PixData$sub0000> created at line 47.
+    Found 12-bit subtractor for signal <PixData$sub0001> created at line 47.
     Summary:
-	inferred   1 Comparator(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
 Unit <rectangle> synthesized.
 
 
@@ -459,14 +453,20 @@ WARNING:Xst:1780 - Signal <MouseDz> is never used or assigned. This unconnected 
 WARNING:Xst:1780 - Signal <MouseDy> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <MouseDx> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <Hcen> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <ClkMouseOutEnTrans> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <ClkMouseOutEn> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit tristate buffer for signal <PS2_CLK>.
+    Found 1-bit tristate buffer for signal <PS2_DAT>.
     Found 12-bit up counter for signal <clk_divider>.
+    Found 1-bit register for signal <ClkMouseIn>.
+    Found 8-bit register for signal <MouseClkFilter>.
     Found 3-bit register for signal <ring_buf>.
     Summary:
 	inferred   1 Counter(s).
-	inferred   3 D-type flip-flop(s).
+	inferred  12 D-type flip-flop(s).
+	inferred   2 Tristate(s).
 Unit <main> synthesized.
 
-INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 HDL Synthesis Report
@@ -474,27 +474,31 @@ HDL Synthesis Report
 Macro Statistics
 # ROMs                                                 : 1
  16x8-bit ROM                                          : 1
-# Adders/Subtractors                                   : 6
- 10-bit adder                                          : 2
- 10-bit addsub                                         : 1
+# Adders/Subtractors                                   : 11
+ 10-bit adder                                          : 3
+ 10-bit adder carry out                                : 2
+ 10-bit subtractor                                     : 1
+ 12-bit subtractor                                     : 2
  16-bit adder                                          : 2
  4-bit adder                                           : 1
 # Counters                                             : 2
  12-bit up counter                                     : 2
-# Registers                                            : 35
- 1-bit register                                        : 19
- 10-bit register                                       : 2
+# Registers                                            : 45
+ 1-bit register                                        : 28
+ 10-bit register                                       : 4
  16-bit register                                       : 2
  2-bit register                                        : 2
  3-bit register                                        : 2
  4-bit register                                        : 1
- 8-bit register                                        : 7
+ 8-bit register                                        : 6
 # Latches                                              : 2
  10-bit latch                                          : 2
-# Comparators                                          : 10
+# Comparators                                          : 15
  10-bit comparator greatequal                          : 2
  10-bit comparator greater                             : 2
- 10-bit comparator less                                : 6
+ 10-bit comparator less                                : 7
+ 11-bit comparator greater                             : 2
+ 12-bit comparator less                                : 2
 # Tristates                                            : 2
  1-bit tristate buffer                                 : 2
 # Xors                                                 : 3
@@ -519,23 +523,24 @@ Optimizing FSM <V2/curr_state/FSM> on signal <curr_state[1:3]> with gray encodin
  100   | 110
 -------------------
 Analyzing FSM <FSM_1> for best encoding.
-Optimizing FSM <control_module/curr_state/FSM> on signal <curr_state[1:4]> with user encoding.
--------------------
+Optimizing FSM <control_module/curr_state/FSM> on signal <curr_state[1:11]> with one-hot encoding.
+----------------------
  State | Encoding
--------------------
- 0000  | 0000
- 0001  | 0001
- 0010  | 0010
- 0011  | 0011
- 0100  | 0100
- 0101  | 0101
- 0110  | 0110
- 0111  | 0111
- 1000  | 1000
- 1001  | 1001
--------------------
+----------------------
+ 0000  | 00000000001
+ 0001  | 00000000010
+ 0010  | 00000000100
+ 0011  | 00000001000
+ 0100  | 00000010000
+ 0101  | 00000100000
+ 0110  | 00001000000
+ 0111  | 00010000000
+ 1000  | 00100000000
+ 1001  | 01000000000
+ 1010  | 10000000000
+----------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <S2/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
+Optimizing FSM <MouseTransmitter/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
 ---------------------------
  State | Encoding
 ---------------------------
@@ -556,28 +561,13 @@ Optimizing FSM <S2/curr_state/FSM> on signal <curr_state[1:16]> with one-hot enc
  1110  | 0100000000000000
  1111  | 1000000000000000
 ---------------------------
-INFO:Xst:2261 - The FF/Latch <curr_hold_ps2clk_en> in Unit <S2> is equivalent to the following FF/Latch, which will be removed : <curr_ps2clk_en> 
 WARNING:Xst:1710 - FF/Latch <Blue_0> (without init value) has a constant value of 0 in block <image_handler>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <Blue_1> (without init value) has a constant value of 0 in block <image_handler>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <curr_Zbuf_0> of sequential type is unconnected in block <control_module>.
 WARNING:Xst:2677 - Node <curr_Zbuf_1> of sequential type is unconnected in block <control_module>.
 WARNING:Xst:2677 - Node <curr_Zbuf_2> of sequential type is unconnected in block <control_module>.
 WARNING:Xst:2677 - Node <curr_Zbuf_3> of sequential type is unconnected in block <control_module>.
-WARNING:Xst:2677 - Node <curr_Zbuf_5> of sequential type is unconnected in block <control_module>.
-WARNING:Xst:2677 - Node <curr_Zbuf_7> of sequential type is unconnected in block <control_module>.
 WARNING:Xst:2677 - Node <curr_errorcode_1> of sequential type is unconnected in block <V2>.
-WARNING:Xst:2677 - Node <sbuf_0> of sequential type is unconnected in block <mouse_coordinates>.
-WARNING:Xst:2677 - Node <sbuf_1> of sequential type is unconnected in block <mouse_coordinates>.
-WARNING:Xst:2677 - Node <sbuf_2> of sequential type is unconnected in block <mouse_coordinates>.
-WARNING:Xst:2677 - Node <sbuf_3> of sequential type is unconnected in block <mouse_coordinates>.
-WARNING:Xst:2677 - Node <sbuf_5> of sequential type is unconnected in block <mouse_coordinates>.
-WARNING:Xst:2677 - Node <sbuf_7> of sequential type is unconnected in block <mouse_coordinates>.
-WARNING:Xst:2677 - Node <sbuf_0> of sequential type is unconnected in block <mouse_posn>.
-WARNING:Xst:2677 - Node <sbuf_1> of sequential type is unconnected in block <mouse_posn>.
-WARNING:Xst:2677 - Node <sbuf_2> of sequential type is unconnected in block <mouse_posn>.
-WARNING:Xst:2677 - Node <sbuf_3> of sequential type is unconnected in block <mouse_posn>.
-WARNING:Xst:2677 - Node <sbuf_5> of sequential type is unconnected in block <mouse_posn>.
-WARNING:Xst:2677 - Node <sbuf_7> of sequential type is unconnected in block <mouse_posn>.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -586,21 +576,25 @@ Macro Statistics
 # FSMs                                                 : 3
 # ROMs                                                 : 1
  16x8-bit ROM                                          : 1
-# Adders/Subtractors                                   : 6
- 10-bit adder                                          : 2
- 10-bit addsub                                         : 1
+# Adders/Subtractors                                   : 11
+ 10-bit adder                                          : 3
+ 10-bit adder carry out                                : 2
+ 10-bit subtractor                                     : 1
+ 12-bit subtractor                                     : 2
  16-bit adder                                          : 2
  4-bit adder                                           : 1
 # Counters                                             : 2
  12-bit up counter                                     : 2
-# Registers                                            : 135
- Flip-Flops                                            : 135
+# Registers                                            : 162
+ Flip-Flops                                            : 162
 # Latches                                              : 2
  10-bit latch                                          : 2
-# Comparators                                          : 10
+# Comparators                                          : 15
  10-bit comparator greatequal                          : 2
  10-bit comparator greater                             : 2
- 10-bit comparator less                                : 6
+ 10-bit comparator less                                : 7
+ 11-bit comparator greater                             : 2
+ 12-bit comparator less                                : 2
 # Xors                                                 : 3
  1-bit xor2                                            : 1
  1-bit xor8                                            : 2
@@ -611,55 +605,48 @@ Macro Statistics
 *                         Low Level Synthesis                           *
 =========================================================================
 INFO:Xst:2261 - The FF/Latch <curr_ps2clk_en> in Unit <stage2> is equivalent to the following FF/Latch, which will be removed : <curr_hold_ps2clk_en> 
-INFO:Xst:2261 - The FF/Latch <8> in Unit <LPM_LATCH_4> is equivalent to the following FF/Latch, which will be removed : <6> 
-INFO:Xst:2261 - The FF/Latch <9> in Unit <LPM_LATCH_4> is equivalent to the following 7 FFs/Latches, which will be removed : <7> <5> <4> <3> <2> <1> <0> 
-INFO:Xst:2261 - The FF/Latch <Red_0> in Unit <pix_Controller> is equivalent to the following 2 FFs/Latches, which will be removed : <Red_1> <Red_2> 
-INFO:Xst:2261 - The FF/Latch <Green_0> in Unit <pix_Controller> is equivalent to the following 2 FFs/Latches, which will be removed : <Green_1> <Green_2> 
-INFO:Xst:2261 - The FF/Latch <Blue_0> in Unit <pix_Controller> is equivalent to the following FF/Latch, which will be removed : <Blue_1> 
-WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <LPM_LATCH_4>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <Blue_0> (without init value) has a constant value of 0 in block <pix_Controller>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <main> ...
+
+Optimizing unit <stage2> ...
 
 Optimizing unit <MOUSE_FSM_CMD> ...
 
 Optimizing unit <PS2_RxModule> ...
 
+Optimizing unit <pix_Controller> ...
+
 Optimizing unit <VGAcontroller> ...
 
+Optimizing unit <rectangle> ...
+
 Optimizing unit <mouse_posn> ...
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_7> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_6> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_5> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_4> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_3> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_2> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Ybuf_0> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_7> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_6> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_5> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_4> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_3> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_2> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Xbuf_0> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Zbuf_7> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <control_module/curr_Zbuf_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:1710 - FF/Latch <image_handler/Blue_1> (without init value) has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <image_handler/Blue_0> (without init value) has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <control_module/curr_Zbuf_3> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <control_module/curr_Zbuf_2> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <control_module/curr_Zbuf_1> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <control_module/curr_Zbuf_0> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <V2/curr_errorcode_1> of sequential type is unconnected in block <main>.
-WARNING:Xst:2677 - Node <mouse_coordinates/Yposn_8> of sequential type is unconnected in block <main>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-INFO:Xst:2261 - The FF/Latch <S2/ps2data_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <V2/ps2data_q> 
-INFO:Xst:2261 - The FF/Latch <S2/ps2clk_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <V2/ps2clk_in> 
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 26.
-FlipFlop image_handler/Green_0 has been replicated 2 time(s) to handle iob=true attribute.
-FlipFlop image_handler/Red_0 has been replicated 2 time(s) to handle iob=true attribute.
+INFO:Xst:2261 - The FF/Latch <image_handler/Red_2> in Unit <main> is equivalent to the following 2 FFs/Latches, which will be removed : <image_handler/Red_1> <image_handler/Red_0> 
+INFO:Xst:2261 - The FF/Latch <image_handler/Green_2> in Unit <main> is equivalent to the following 2 FFs/Latches, which will be removed : <image_handler/Green_1> <image_handler/Green_0> 
+INFO:Xst:2261 - The FF/Latch <MouseTransmitter/ps2data_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <V2/ps2data_q> 
+INFO:Xst:2261 - The FF/Latch <MouseTransmitter/ps2clk_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <V2/ps2clk_in> 
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 41.
+FlipFlop MouseTransmitter/ps2clk_in has been replicated 1 time(s)
+FlipFlop image_handler/Green_2 has been replicated 2 time(s) to handle iob=true attribute.
+FlipFlop image_handler/Red_2 has been replicated 2 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_7 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_6 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_5 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_4 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_3 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_2 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_1 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop mouse_coordinates/Yposn_0 has been replicated 1 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
 
@@ -667,8 +654,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 154
- Flip-Flops                                            : 154
+# Registers                                            : 215
+ Flip-Flops                                            : 215
 
 =========================================================================
 
@@ -697,36 +684,36 @@ Design Statistics
 # IOs                              : 41
 
 Cell Usage :
-# BELS                             : 518
+# BELS                             : 817
 #      GND                         : 1
-#      INV                         : 11
-#      LUT1                        : 70
-#      LUT2                        : 76
-#      LUT2_D                      : 2
-#      LUT2_L                      : 5
-#      LUT3                        : 32
-#      LUT3_D                      : 1
-#      LUT3_L                      : 3
-#      LUT4                        : 117
-#      LUT4_D                      : 9
-#      LUT4_L                      : 6
-#      MUXCY                       : 89
+#      INV                         : 32
+#      LUT1                        : 90
+#      LUT2                        : 126
+#      LUT2_D                      : 1
+#      LUT2_L                      : 3
+#      LUT3                        : 31
+#      LUT3_D                      : 2
+#      LUT3_L                      : 5
+#      LUT4                        : 175
+#      LUT4_D                      : 15
+#      LUT4_L                      : 12
+#      MUXCY                       : 174
 #      MUXF5                       : 9
 #      VCC                         : 1
-#      XORCY                       : 86
-# FlipFlops/Latches                : 164
-#      FD                          : 12
+#      XORCY                       : 140
+# FlipFlops/Latches                : 235
+#      FD                          : 30
 #      FDC                         : 12
 #      FDCE                        : 10
-#      FDR                         : 82
-#      FDRE                        : 13
-#      FDRS                        : 22
-#      FDS                         : 3
-#      LDC                         : 2
-#      LDCE                        : 6
-#      LDPE                        : 2
-# Clock Buffers                    : 1
-#      BUFG                        : 1
+#      FDE                         : 8
+#      FDR                         : 104
+#      FDRE                        : 12
+#      FDRS                        : 23
+#      FDRSE                       : 2
+#      FDS                         : 14
+#      LD                          : 20
+# Clock Buffers                    : 2
+#      BUFG                        : 2
 # IO Buffers                       : 33
 #      IBUF                        : 1
 #      IBUFG                       : 1
@@ -741,13 +728,13 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                      173  out of    704    24%  
- Number of Slice Flip Flops:            158  out of   1408    11%  
- Number of 4 input LUTs:                332  out of   1408    23%  
+ Number of Slices:                      264  out of    704    37%  
+ Number of Slice Flip Flops:            221  out of   1408    15%  
+ Number of 4 input LUTs:                492  out of   1408    34%  
  Number of IOs:                          41
  Number of bonded IOBs:                  33  out of    108    30%  
-    IOB Flip Flops:                       6
- Number of GCLKs:                         1  out of     24     4%  
+    IOB Flip Flops:                      14
+ Number of GCLKs:                         2  out of     24     8%  
  Number of DCMs:                          1  out of      2    50%  
 
 ---------------------------
@@ -768,14 +755,14 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+--------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)          | Load  |
------------------------------------+--------------------------------+-------+
-clk_divider_11                     | NONE(ring_buf_0)               | 3     |
-clk                                | SYS_CLK/DCM_SP_INST:CLK0       | 145   |
-VGA_1/Hcounter_0                   | NONE(image_handler/Green_0)    | 6     |
-control_module/curr_packet_complete| NONE(mouse_coordinates/Xposn_7)| 10    |
------------------------------------+--------------------------------+-------+
+------------------------------------+----------------------------+-------+
+Clock Signal                        | Clock buffer(FF name)      | Load  |
+------------------------------------+----------------------------+-------+
+clk                                 | SYS_CLK/DCM_SP_INST:CLK0   | 206   |
+clk_divider_11                      | NONE(ring_buf_0)           | 3     |
+VGA_1/Hcounter_0                    | NONE(image_handler/Green_2)| 6     |
+control_module/curr_packet_complete1| BUFG                       | 20    |
+------------------------------------+----------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
@@ -783,21 +770,46 @@ Asynchronous Control Signals Information:
 -------------------------------------+------------------------+-------+
 Control Signal                       | Buffer(FF name)        | Load  |
 -------------------------------------+------------------------+-------+
-Locked_inv(VGA_1/Locked_inv1_INV_0:O)| NONE(VGA_1/Hcounter_0) | 32    |
+Locked_inv(VGA_1/Locked_inv1_INV_0:O)| NONE(VGA_1/Hcounter_0) | 22    |
 -------------------------------------+------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 8.112ns (Maximum Frequency: 123.274MHz)
-   Minimum input arrival time before clock: 6.423ns
-   Maximum output required time after clock: 7.574ns
+   Minimum period: 6.341ns (Maximum Frequency: 157.704MHz)
+   Minimum input arrival time before clock: 4.056ns
+   Maximum output required time after clock: 8.979ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
 --------------
 All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 6.341ns (frequency: 157.704MHz)
+  Total number of paths / destination ports: 3031 / 235
+-------------------------------------------------------------------------
+Delay:               6.341ns (Levels of Logic = 4)
+  Source:            V2/curr_timeoutcount_15 (FF)
+  Destination:       V2/curr_bitcount_3 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: V2/curr_timeoutcount_15 to V2/curr_bitcount_3
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRS:C->Q             2   0.591   0.590  V2/curr_timeoutcount_15 (V2/curr_timeoutcount_15)
+     LUT4:I0->O            1   0.648   0.500  V2/curr_state_cmp_eq000017 (V2/curr_state_cmp_eq000017)
+     LUT4:I1->O           10   0.643   0.885  V2/curr_state_cmp_eq000064 (V2/curr_state_cmp_eq0000)
+     LUT4_D:I3->O         11   0.648   0.936  V2/next_bitcount<0>21 (V2/N20)
+     LUT4:I3->O            1   0.648   0.000  V2/next_rxbuf_7_mux00001 (V2/next_rxbuf<7>)
+     FDR:D                     0.252          V2/curr_rxbuf_7
+    ----------------------------------------
+    Total                      6.341ns (3.430ns logic, 2.911ns route)
+                                       (54.1% logic, 45.9% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk_divider_11'
@@ -821,121 +833,61 @@ Delay:               1.290ns (Levels of Logic = 0)
                                        (65.3% logic, 34.7% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 8.112ns (frequency: 123.274MHz)
-  Total number of paths / destination ports: 2640 / 200
--------------------------------------------------------------------------
-Delay:               8.112ns (Levels of Logic = 5)
-  Source:            V2/curr_timeoutcount_14 (FF)
-  Destination:       V2/curr_bitcount_1 (FF)
-  Source Clock:      clk rising
-  Destination Clock: clk rising
-
-  Data Path: V2/curr_timeoutcount_14 to V2/curr_bitcount_1
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDRS:C->Q             2   0.591   0.590  V2/curr_timeoutcount_14 (V2/curr_timeoutcount_14)
-     LUT4:I0->O            1   0.648   0.500  V2/curr_state_cmp_eq000017 (V2/curr_state_cmp_eq000017)
-     LUT4:I1->O            8   0.643   0.760  V2/curr_state_cmp_eq000064 (V2/curr_state_cmp_eq0000)
-     LUT4_D:I3->LO         1   0.648   0.132  V2/next_bitcount<1>11 (N113)
-     LUT3:I2->O           13   0.648   1.015  V2/next_bitcount<0>21 (V2/N20)
-     LUT3:I2->O            1   0.648   0.420  V2/next_bitcount<1>64 (V2/next_bitcount<1>64)
-     FDRS:S                    0.869          V2/curr_bitcount_1
-    ----------------------------------------
-    Total                      8.112ns (4.695ns logic, 3.417ns route)
-                                       (57.9% logic, 42.1% route)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'control_module/curr_packet_complete'
-  Clock period: 7.721ns (frequency: 129.517MHz)
-  Total number of paths / destination ports: 1172 / 10
--------------------------------------------------------------------------
-Delay:               7.721ns (Levels of Logic = 13)
-  Source:            mouse_coordinates/Xposn_0 (LATCH)
-  Destination:       mouse_coordinates/Xposn_7 (LATCH)
-  Source Clock:      control_module/curr_packet_complete falling
-  Destination Clock: control_module/curr_packet_complete falling
-
-  Data Path: mouse_coordinates/Xposn_0 to mouse_coordinates/Xposn_7
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     LDC:G->Q              5   0.728   0.713  mouse_coordinates/Xposn_0 (mouse_coordinates/Xposn_0)
-     LUT2:I1->O            1   0.643   0.000  mouse_coordinates/Maddsub_x_mag2_lut<0> (mouse_coordinates/Maddsub_x_mag2_lut<0>)
-     MUXCY:S->O            1   0.632   0.000  mouse_coordinates/Maddsub_x_mag2_cy<0> (mouse_coordinates/Maddsub_x_mag2_cy<0>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<1> (mouse_coordinates/Maddsub_x_mag2_cy<1>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<2> (mouse_coordinates/Maddsub_x_mag2_cy<2>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<3> (mouse_coordinates/Maddsub_x_mag2_cy<3>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<4> (mouse_coordinates/Maddsub_x_mag2_cy<4>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<5> (mouse_coordinates/Maddsub_x_mag2_cy<5>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<6> (mouse_coordinates/Maddsub_x_mag2_cy<6>)
-     MUXCY:CI->O           1   0.065   0.000  mouse_coordinates/Maddsub_x_mag2_cy<7> (mouse_coordinates/Maddsub_x_mag2_cy<7>)
-     XORCY:CI->O          10   0.844   0.962  mouse_coordinates/Maddsub_x_mag2_xor<8> (mouse_coordinates/x_mag2<8>)
-     LUT2_D:I1->LO         1   0.643   0.103  mouse_coordinates/next_Xposn_cmp_gt000020 (N112)
-     LUT4:I3->O            2   0.648   0.450  mouse_coordinates/next_Xposn_cmp_gt0000226 (mouse_coordinates/next_Xposn_cmp_gt0000)
-     LUT4:I3->O            1   0.648   0.000  mouse_coordinates/next_Xposn<7>1 (mouse_coordinates/next_Xposn<7>)
-     LDC:D                     0.252          mouse_coordinates/Xposn_7
-    ----------------------------------------
-    Total                      7.721ns (5.493ns logic, 2.228ns route)
-                                       (71.1% logic, 28.9% route)
-
-=========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 93 / 79
+  Total number of paths / destination ports: 60 / 60
 -------------------------------------------------------------------------
-Offset:              6.423ns (Levels of Logic = 4)
-  Source:            PS2_CLK (PAD)
-  Destination:       V2/curr_bitcount_1 (FF)
+Offset:              4.056ns (Levels of Logic = 2)
+  Source:            pushbtn (PAD)
+  Destination:       control_module/curr_state_FSM_FFd11 (FF)
   Destination Clock: clk rising
 
-  Data Path: PS2_CLK to V2/curr_bitcount_1
+  Data Path: pushbtn to control_module/curr_state_FSM_FFd11
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IOBUF:IO->O          17   0.849   1.194  PS2_CLK_IOBUF (N48)
-     LUT4_D:I0->LO         1   0.648   0.132  V2/next_bitcount<1>11 (N113)
-     LUT3:I2->O           13   0.648   1.015  V2/next_bitcount<0>21 (V2/N20)
-     LUT3:I2->O            1   0.648   0.420  V2/next_bitcount<1>64 (V2/next_bitcount<1>64)
-     FDRS:S                    0.869          V2/curr_bitcount_1
+     IBUF:I->O             1   0.849   0.420  pushbtn_IBUF (pushbtn_IBUF)
+     INV:I->O             58   0.648   1.270  control_module_not00001_INV_0 (control_module_not0000)
+     FDR:R                     0.869          control_module/curr_wait_count_0
     ----------------------------------------
-    Total                      6.423ns (3.662ns logic, 2.761ns route)
-                                       (57.0% logic, 43.0% route)
+    Total                      4.056ns (2.366ns logic, 1.690ns route)
+                                       (58.3% logic, 41.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 33 / 11
+  Total number of paths / destination ports: 131 / 18
 -------------------------------------------------------------------------
-Offset:              7.574ns (Levels of Logic = 2)
-  Source:            control_module/curr_state_FSM_FFd3 (FF)
+Offset:              8.979ns (Levels of Logic = 4)
+  Source:            control_module/curr_state_FSM_FFd4 (FF)
   Destination:       SSD<7> (PAD)
   Source Clock:      clk rising
 
-  Data Path: control_module/curr_state_FSM_FFd3 to SSD<7>
+  Data Path: control_module/curr_state_FSM_FFd4 to SSD<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRS:C->Q            24   0.591   1.395  control_module/curr_state_FSM_FFd3 (control_module/curr_state_FSM_FFd3)
-     LUT4:I0->O            1   0.648   0.420  bin_to_hex/Mrom_ssdarray51 (SSD_5_OBUF)
-     OBUF:I->O                 4.520          SSD_5_OBUF (SSD<5>)
+     FDRS:C->Q            10   0.591   1.025  control_module/curr_state_FSM_FFd4 (control_module/curr_state_FSM_FFd4)
+     LUT4:I0->O            1   0.648   0.000  control_module/curr_state_or00031 (control_module/curr_state_or0003)
+     MUXF5:I0->O           7   0.276   0.851  control_module/curr_state_or0003_f5 (debug_fsm_state<0>)
+     LUT4:I0->O            1   0.648   0.420  bin_to_hex/Mrom_ssdarray41 (SSD_4_OBUF)
+     OBUF:I->O                 4.520          SSD_4_OBUF (SSD<4>)
     ----------------------------------------
-    Total                      7.574ns (5.759ns logic, 1.815ns route)
-                                       (76.0% logic, 24.0% route)
+    Total                      8.979ns (6.683ns logic, 2.296ns route)
+                                       (74.4% logic, 25.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'VGA_1/Hcounter_0'
   Total number of paths / destination ports: 6 / 6
 -------------------------------------------------------------------------
 Offset:              5.531ns (Levels of Logic = 1)
-  Source:            image_handler/Green_0_1 (FF)
+  Source:            image_handler/Green_2_1 (FF)
   Destination:       Green<2> (PAD)
   Source Clock:      VGA_1/Hcounter_0 rising
 
-  Data Path: image_handler/Green_0_1 to Green<2>
+  Data Path: image_handler/Green_2_1 to Green<2>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              1   0.591   0.420  image_handler/Green_0_1 (image_handler/Green_0_1)
+     FDR:C->Q              1   0.591   0.420  image_handler/Green_2_1 (image_handler/Green_2_1)
      OBUF:I->O                 4.520          Green_2_OBUF (Green<2>)
     ----------------------------------------
     Total                      5.531ns (5.111ns logic, 0.420ns route)
@@ -961,35 +913,16 @@ Offset:              5.558ns (Levels of Logic = 1)
                                        (92.0% logic, 8.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'control_module/curr_packet_complete'
-  Total number of paths / destination ports: 8 / 8
--------------------------------------------------------------------------
-Offset:              5.881ns (Levels of Logic = 1)
-  Source:            mouse_coordinates/Xposn_7 (LATCH)
-  Destination:       led<7> (PAD)
-  Source Clock:      control_module/curr_packet_complete falling
-
-  Data Path: mouse_coordinates/Xposn_7 to led<7>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     LDC:G->Q              5   0.728   0.633  mouse_coordinates/Xposn_7 (mouse_coordinates/Xposn_7)
-     OBUF:I->O                 4.520          led_7_OBUF (led<7>)
-    ----------------------------------------
-    Total                      5.881ns (5.248ns logic, 0.633ns route)
-                                       (89.2% logic, 10.8% route)
-
-=========================================================================
 
 
 Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.99 secs
+Total CPU time to Xst completion: 7.39 secs
  
 --> 
 
-Total memory usage is 4568112 kilobytes
+Total memory usage is 4568052 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   89 (   0 filtered)
-Number of infos    :   11 (   0 filtered)
+Number of warnings :   44 (   0 filtered)
+Number of infos    :    6 (   0 filtered)
 

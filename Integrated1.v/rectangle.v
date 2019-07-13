@@ -44,7 +44,6 @@ input[9:0] Hcounter,Vcounter,Hcen,Vcen;
 //outputs:
 output[7:0] PixData;
 
-assign Hcenter = (Hcen>540)?	540:(Hcen<100)?	100:Hcen;
-assign Vcenter	= (Vcen>430)?	430:(Vcen<50)?		50:Vcen;
-assign PixData = (Hcounter>Hcen)?	`RED:`GREEN;
+assign PixData = ((Hcounter>(Hcen+5))||(Hcounter<(Hcen-5))||(Vcounter<(Vcen-5))||(Vcounter>(Vcen+5)))?	`RED:`GREEN;
+
 endmodule

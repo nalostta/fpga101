@@ -46,7 +46,7 @@ clkgen SYS_CLK (
     .LOCKED_OUT(Locked)
     );
 	 
-MOUSE_FSM_CMD FSM_TEST(
+PS2_Mouse_Controller  FSM_TEST(
 	.clk(CLK0),
 	.reset(!pushbtn),
 	.trig_send(trig_send),
