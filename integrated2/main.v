@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    05:07:05 06/23/2019 
+// Create Date:    04:37:47 07/14/2019 
 // Design Name: 
 // Module Name:    main 
 // Project Name: 
@@ -28,16 +28,13 @@ module main(
 	Green,
 	Blue,
 	Hsync,
-	Vsync,
-	SSD,
-	DigCh,
-	switch
+	Vsync
     );
 	 
 input  clk,pushbtn;
-input	 [7:0] switch;
-output [7:0] led,SSD;
-output [2:0] Red,Green,DigCh;
+//input	 [7:0] switch;
+output [7:0] led;//,SSD;
+output [2:0] Red,Green;//,DigCh;
 output [1:0] Blue;
 output Hsync,Vsync;
 inout  PS2_CLK,PS2_DAT;
@@ -55,25 +52,10 @@ wire	[3:0]		debug_fsm_state;
 wire	[7:0]		MouseDxRaw,MouseDyRaw,MouseStatusRaw;
 wire 				Locked,CLK0,rx_complete,rx_en,data_sent,trig_send;
 
-assign led=Vposn;
+assign led=Hposn;
 assign slow_clk=clk_divider[11];
 assign DigCh=ring_buf;
 
-//------------------------------------------------------
-parameter [7:0] MouseLimitX = 320;
-parameter [7:0] MouseLimitY = 240;
-
-wire signed [9:0] MouseDx;
-wire signed [9:0] MouseDy;
-wire signed [9:0] MouseNewX;
-wire signed [9:0] MouseNewY;
-wire signed [9:0] MouseDz;
-wire signed [9:0] MouseNewZ;
-
-reg [7:0] 	MouseX,MouseY,MouseStatus;
-//------------------------------------------------------
-
-//assign bin_input	=	debug_fsm_state;//debug_fsm_state;//(!ring_buf[0])?	zbyte[7:4]:(!ring_buf[1])?	zbyte[3:0]:ybyte;
 
 reg [7:0] MouseClkFilter;
 reg ClkMouseIn;
@@ -97,7 +79,25 @@ always@(posedge CLK0) begin
 		end
 end
 
-//---------------------------------
+//----------filter-----------
+reg	[7:0]	ClkFilter;
+reg	filtered_clk;
+
+always @(posedge CLK0)
+if(Locked)
+begin
+	ClkFilter[7:1]<=ClkFilter[6:0];
+	ClkFilter[0]<=PS2_CLK;
+	
+	if(ClkFilter==8'hff)filtered_clk<=1'b1;
+	else if(ClkFilter==8'h00)filtered_clk<=1'b0;
+	else filtered_clk<=filtered_clk;
+end else begin
+	ClkFilter<=0;
+	filtered_clk<=0;
+end
+//----------filter-----------
+
 always @(posedge CLK0)clk_divider<=clk_divider+1'b1;
 
 always @(posedge slow_clk)
@@ -121,7 +121,11 @@ clkgen SYS_CLK (
 wire DataMouseOutEnTrans,ClkMouseOutEnTrans,DataMouseOutTrans;
 
 assign PS2_CLK = ClkMouseOutEnTrans ? 1'b0 : 1'bz;
+
+//Clk Input
 assign DataMouseIn = PS2_DAT;
+	
+//Clk Output - can be driven by host or device
 assign PS2_DAT = DataMouseOutEnTrans ? DataMouseOutTrans : 1'bz;
 
 	
@@ -198,18 +202,25 @@ mouse_posn mouse_coordinates(
 	.Yposn(Vposn)
     );
 	
-rectangle object1(
+wire [9:0] Hcentre,Vcentre;
+	
+circle object(
 		.Hcounter(Hcounter),
 		.Vcounter(Vcounter),
-		.Hcen(Hposn),
-		.Vcen(Vposn),
-		.PixData(PixData)
+		.PixData(PixData),
+		.Hcentre(Hcentre),
+		.Vcentre(Vcentre),
+		.HWall(Hposn)
     );
 	 
-bintoseg bin_to_hex(
-    .ssdarray(SSD),
-    .bin(debug_fsm_state)
+Ball_engine motion_control(
+		.PixClk(CLK0),
+		.Hcounter(Hcounter),
+		.Vcounter(Vcounter),
+		.enable(pushbtn),
+		.Hcen(Hcentre),
+		.Vcen(Vcentre),
+		.HWall(Hposn)
     );
-	
+	 
 endmodule
-
