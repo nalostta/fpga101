@@ -4,7 +4,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
 -n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
-constraints_ps2m.ucf -ucf constraint_led.ucf -ucf constraint_clk.ucf -ucf
+constraints_ps2m.ucf -ucf constraint_clk.ucf -ucf constraint_led.ucf -ucf
 constraint_pushbtn.ucf -ucf constraint_VGA.ucf
 
 Design file:              main.ncd
@@ -568,7 +568,7 @@ Design statistics:
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Sun Jul 14 05:29:09 2019 
+Analysis completed Mon Jul 15 02:34:35 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

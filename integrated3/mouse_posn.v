@@ -54,8 +54,8 @@ else Yposn<=240;
 
 always @(*)
 if(trig_en)
-if(Xposn>560)next_Xposn=559;
-else if(Xposn<80)next_Xposn=81;
+if(Xposn>520)next_Xposn=519;
+else if(Xposn<120)next_Xposn=121;
 else next_Xposn=Xposn+Xbuf;
 
 always @(*)

@@ -31,13 +31,14 @@ module main(
 	led,
 	SSD,
 	DigCh,
-	pushbtn
+	pushbtn,
+	Buzzer
     );
 
 input 	clk,pushbtn;
 input 	[7:0]	switch;
 
-output 	Hsync,Vsync;
+output 	Hsync,Vsync,Buzzer;
 output	[7:0]	led,SSD;
 output	[2:0]	Red,Green,DigCh;
 output	[1:0]	Blue;
@@ -46,13 +47,21 @@ inout		PS2_DAT,PS2_CLK;
 
 wire		[11:0]CharAddr;
 wire		[9:0]	Hcounter,Vcounter;
-wire		[9:0]	PaddleCentreX;
 wire		[7:0]	PixData,TextData;
-wire		[7:0]	debug_PS2Mouse;
+
+wire	[3:0]	HitScore,MissScore;
+wire			PaddleHit;
+
+wire	[9:0]	PaddleCentreX,BallCentreX,BallCentreY;
+wire	[7:0]	cmd_to_send,received_byte;
+wire	[3:0]	debug_PS2Mouse;
+wire	[7:0]	XByteRaw,YByteRaw,StatusByteRaw;
+wire			rx_complete,rx_en,cmd_sent,trig_send,packet_complete;
+wire	[1:0]	error_codes;
 
 //
 
-assign led	=	PaddleCentreX;
+assign led	=	HitScore;
 
 bintoseg debug_display(
     .ssdarray(SSD),
@@ -89,16 +98,49 @@ text_gen	GameTitleBar(
 		.PixData(TextData),
 		.CharAddr(CharAddr),
 		.Bin(CharBit),
-		.HitScore(switch),
-		.MissScore(0)
+		.HitScore(HitScore),
+		.MissScore(MissScore)
     );
 	 
-CharBank CharactarBank(
+CharBank CharacterBank(
   .clka(CLK0), // input clka
   .addra(CharAddr), // input [11 : 0] addra
   .douta(CharBit) // output [0 : 0] douta
 );
-	
+
+//-------------------------------------------------
+ScoreTracker ScoreTrackerModule(
+	.clk(CLK0),
+	.Locked(Locked),
+	.reset_score(!PushBtn),
+	.BallCentreX(BallCentreX),
+	.BallCentreY(BallCentreY),
+	.PaddleCentreX(PaddleCentreX),
+	.PaddleHit(PaddleHit),
+	.HitScore(HitScore),
+	.MissScore(MissScore),
+	.TrigSound()
+    );
+
+Ball_engine BallMotionControl(
+	.PixClk(CLK0),
+	.Hcounter(Hcounter),
+	.Vcounter(Vcounter),
+	.enable(pushbtn),
+	.Hcen(BallCentreX),
+	.Vcen(BallCentreY),
+	.PaddleHit(PaddleHit),
+	.trig_sound(NormalHitSound)
+    );
+	 
+SoundGen	BoomBox(
+	.clk(CLK0),
+	.Locked(Locked),
+	.PaddleHit(PaddleHit),
+	.NormalHit(NormalHitSound),
+	.Buzzer(Buzzer)
+    );
+//------------------------------------------------
 
 //----------------------------------------------------------------------------------------
 ImageGen	FrameConstructor(
@@ -106,6 +148,8 @@ ImageGen	FrameConstructor(
 	.Vcounter(Vcounter),
 	.PixData(PixData),
 	.PaddleCentreX(PaddleCentreX),
+	.BallCentreX(BallCentreX),
+	.BallCentreY(BallCentreY),
 	.TextConstructor(TextData)
     );
 //----------------------------------------------------------------------------------------
@@ -144,13 +188,13 @@ always@(posedge CLK0) begin
 		end
 end
 
+wire		TxDataOut,TxClkEn,TxDataEn;
+	
+assign	PS2_CLK		=	TxClkEn?		1'b0:1'bz;
+assign	PS2_DAT		=	TxDataEn?	TxDataOut:1'bz;
+assign	DataMouseIn	=	PS2_DAT;
 
-wire	[7:0]	XByteRaw,YByteRaw,StatusByteRaw;
-wire	[7:0]	received_byte,cmd_to_send;
-wire	[1:0]	error_codes;
-wire			trig_send,rx_en,rx_complete,packet_complete,cmd_sent;
-
-MOUSE_FSM_CMD	PS2_interface_controller(
+PS2MouseController	PS2_interface_controller(
 	.clk(CLK0),
 	.reset(!pushbtn),
 	.trig_send(trig_send),
@@ -168,13 +212,7 @@ MOUSE_FSM_CMD	PS2_interface_controller(
 	.packet_complete(packet_complete)
 	);
 	
-wire		TxDataOut,TxClkEn,TxDataEn;
-	
-assign	PS2_CLK		=	TxClkEn?		1'b0:1'bz;
-assign	PS2_DAT		=	TxDataEn?	TxDataOut:1'bz;
-assign	DataMouseIn	=	PS2_DAT;
-	
-stage2 PS2_interface_tx(
+PS2MouseTransmitter PS2_interface_tx(
 	.clk(CLK0),
 	.locked(Locked),
 	.trig_send(trig_send),
@@ -189,14 +227,14 @@ stage2 PS2_interface_tx(
 	.curr_dout(TxDataOut)
     );
 	 
-PS2_RxModule	PS2_interface_rx(
+PS2MouseReceiver	PS2_interface_rx(
 	.clk(CLK0),
 	.Locked(Locked),
 	.rx_en(rx_en),
 	.ps2clk(ClkMouseIn),
 	.ps2data(PS2_DAT),
 	.rx_complete(rx_complete),
-	.received_data(received_data),
+	.received_data(received_byte),
 	.ByteErrorCode(error_codes)
    );
 	

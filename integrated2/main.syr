@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total CPU time to Xst completion: 0.16 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total CPU time to Xst completion: 0.17 secs
  
 --> Reading design: main.prj
 
@@ -135,6 +135,8 @@ Analyzing hierarchy for module <main> in library <work>.
 
 Analyzing hierarchy for module <clkgen> in library <work>.
 
+Analyzing hierarchy for module <MOUSE_FSM_CMD> in library <work>.
+
 Analyzing hierarchy for module <stage2> in library <work> with parameters.
 	ACK_CLK_LOW = "1110"
 	ACK_DATA_LOW = "1101"
@@ -153,15 +155,13 @@ Analyzing hierarchy for module <stage2> in library <work> with parameters.
 	STOP = "1100"
 	TX_END = "1111"
 
-Analyzing hierarchy for module <MOUSE_FSM_CMD> in library <work>.
-
 Analyzing hierarchy for module <PS2_RxModule> in library <work>.
+
+Analyzing hierarchy for module <mouse_posn> in library <work>.
 
 Analyzing hierarchy for module <pix_Controller> in library <work>.
 
 Analyzing hierarchy for module <VGAcontroller> in library <work>.
-
-Analyzing hierarchy for module <mouse_posn> in library <work>.
 
 Analyzing hierarchy for module <circle> in library <work>.
 
@@ -196,6 +196,9 @@ Module <clkgen> is correct for synthesis.
     Set user-defined property "FACTORY_JF =  C080" for instance <DCM_SP_INST> in unit <clkgen>.
     Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_SP_INST> in unit <clkgen>.
     Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_SP_INST> in unit <clkgen>.
+Analyzing module <MOUSE_FSM_CMD> in library <work>.
+Module <MOUSE_FSM_CMD> is correct for synthesis.
+ 
 Analyzing module <stage2> in library <work>.
 	ACK_CLK_LOW = 4'b1110
 	ACK_DATA_LOW = 4'b1101
@@ -215,20 +218,17 @@ Analyzing module <stage2> in library <work>.
 	TX_END = 4'b1111
 Module <stage2> is correct for synthesis.
  
-Analyzing module <MOUSE_FSM_CMD> in library <work>.
-Module <MOUSE_FSM_CMD> is correct for synthesis.
- 
 Analyzing module <PS2_RxModule> in library <work>.
 Module <PS2_RxModule> is correct for synthesis.
+ 
+Analyzing module <mouse_posn> in library <work>.
+Module <mouse_posn> is correct for synthesis.
  
 Analyzing module <pix_Controller> in library <work>.
 Module <pix_Controller> is correct for synthesis.
  
 Analyzing module <VGAcontroller> in library <work>.
 Module <VGAcontroller> is correct for synthesis.
- 
-Analyzing module <mouse_posn> in library <work>.
-Module <mouse_posn> is correct for synthesis.
  
 Analyzing module <circle> in library <work>.
 Module <circle> is correct for synthesis.
@@ -245,9 +245,41 @@ Performing bidirectional port resolution...
 INFO:Xst:2679 - Register <Hsp> in unit <Ball_engine> has a constant value of 0000000100 during circuit operation. The register is replaced by logic.
 INFO:Xst:2679 - Register <Vsp> in unit <Ball_engine> has a constant value of 0000000100 during circuit operation. The register is replaced by logic.
 
+Synthesizing Unit <MOUSE_FSM_CMD>.
+    Related source file is "MOUSE_FSM.v".
+    Found finite state machine <FSM_0> for signal <curr_state>.
+    -----------------------------------------------------------------------
+    | States             | 11                                             |
+    | Transitions        | 32                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 13                                             |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | reset                     (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 0000                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit register for signal <curr_cmd_buf>.
+    Found 1-bit register for signal <curr_packet_complete>.
+    Found 1-bit register for signal <curr_rx_buf>.
+    Found 1-bit register for signal <curr_rx_en>.
+    Found 1-bit register for signal <curr_trig_send>.
+    Found 16-bit register for signal <curr_wait_count>.
+    Found 8-bit register for signal <curr_Xbuf>.
+    Found 8-bit register for signal <curr_Ybuf>.
+    Found 8-bit register for signal <curr_Zbuf>.
+    Found 16-bit adder for signal <next_wait_count$addsub0000> created at line 110.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  52 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <MOUSE_FSM_CMD> synthesized.
+
+
 Synthesizing Unit <stage2>.
     Related source file is "stage2.v".
-    Found finite state machine <FSM_0> for signal <curr_state>.
+    Found finite state machine <FSM_1> for signal <curr_state>.
     -----------------------------------------------------------------------
     | States             | 16                                             |
     | Transitions        | 33                                             |
@@ -276,38 +308,6 @@ Synthesizing Unit <stage2>.
 	inferred  15 D-type flip-flop(s).
 	inferred   1 Xor(s).
 Unit <stage2> synthesized.
-
-
-Synthesizing Unit <MOUSE_FSM_CMD>.
-    Related source file is "MOUSE_FSM.v".
-    Found finite state machine <FSM_1> for signal <curr_state>.
-    -----------------------------------------------------------------------
-    | States             | 11                                             |
-    | Transitions        | 32                                             |
-    | Inputs             | 7                                              |
-    | Outputs            | 13                                             |
-    | Clock              | clk                       (rising_edge)        |
-    | Reset              | reset                     (positive)           |
-    | Reset type         | synchronous                                    |
-    | Reset State        | 0000                                           |
-    | Encoding           | automatic                                      |
-    | Implementation     | LUT                                            |
-    -----------------------------------------------------------------------
-    Found 8-bit register for signal <curr_cmd_buf>.
-    Found 1-bit register for signal <curr_packet_complete>.
-    Found 1-bit register for signal <curr_rx_buf>.
-    Found 1-bit register for signal <curr_rx_en>.
-    Found 1-bit register for signal <curr_trig_send>.
-    Found 16-bit register for signal <curr_wait_count>.
-    Found 8-bit register for signal <curr_Xbuf>.
-    Found 8-bit register for signal <curr_Ybuf>.
-    Found 8-bit register for signal <curr_Zbuf>.
-    Found 16-bit adder for signal <next_wait_count$addsub0000> created at line 110.
-    Summary:
-	inferred   1 Finite State Machine(s).
-	inferred  52 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
-Unit <MOUSE_FSM_CMD> synthesized.
 
 
 Synthesizing Unit <PS2_RxModule>.
@@ -344,6 +344,26 @@ Synthesizing Unit <PS2_RxModule>.
 Unit <PS2_RxModule> synthesized.
 
 
+Synthesizing Unit <mouse_posn>.
+    Related source file is "mouse_posn.v".
+WARNING:Xst:647 - Input <StatusByte<3:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:737 - Found 10-bit latch for signal <next_Xposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 10-bit latch for signal <next_Yposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 10-bit register for signal <Xposn>.
+    Found 10-bit register for signal <Yposn>.
+    Found 10-bit adder for signal <next_Xposn$addsub0000> created at line 59.
+    Found 10-bit comparator greater for signal <next_Xposn$cmp_gt0000> created at line 57.
+    Found 10-bit comparator less for signal <next_Xposn$cmp_lt0000> created at line 58.
+    Found 10-bit subtractor for signal <next_Yposn$addsub0000> created at line 65.
+    Found 10-bit comparator greater for signal <next_Yposn$cmp_gt0000> created at line 63.
+    Found 10-bit comparator less for signal <next_Yposn$cmp_lt0000> created at line 64.
+    Summary:
+	inferred  20 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <mouse_posn> synthesized.
+
+
 Synthesizing Unit <pix_Controller>.
     Related source file is "pix_Controller.v".
 WARNING:Xst:647 - Input <Vcounter> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -376,26 +396,6 @@ Synthesizing Unit <VGAcontroller>.
 	inferred   2 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
 Unit <VGAcontroller> synthesized.
-
-
-Synthesizing Unit <mouse_posn>.
-    Related source file is "mouse_posn.v".
-WARNING:Xst:647 - Input <StatusByte<3:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:737 - Found 10-bit latch for signal <next_Xposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-WARNING:Xst:737 - Found 10-bit latch for signal <next_Yposn>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-    Found 10-bit register for signal <Xposn>.
-    Found 10-bit register for signal <Yposn>.
-    Found 10-bit adder for signal <next_Xposn$addsub0000> created at line 59.
-    Found 10-bit comparator greater for signal <next_Xposn$cmp_gt0000> created at line 57.
-    Found 10-bit comparator less for signal <next_Xposn$cmp_lt0000> created at line 58.
-    Found 10-bit subtractor for signal <next_Yposn$addsub0000> created at line 65.
-    Found 10-bit comparator greater for signal <next_Yposn$cmp_gt0000> created at line 63.
-    Found 10-bit comparator less for signal <next_Yposn$cmp_lt0000> created at line 64.
-    Summary:
-	inferred  20 D-type flip-flop(s).
-	inferred   2 Adder/Subtractor(s).
-	inferred   4 Comparator(s).
-Unit <mouse_posn> synthesized.
 
 
 Synthesizing Unit <circle>.
@@ -457,32 +457,18 @@ Unit <clkgen> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:1780 - Signal <zbyte> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <ybyte> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <xbyte> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <rx_complete_in> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <filtered_clk> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <debug_fsm_state> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <data_sent_trig> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <count_next> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <Zwire> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <Ywire> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <Xwire> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <Vposn> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <Vcen> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <Hcen> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <DigCh> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <ClkMouseOutEnTrans> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:646 - Signal <ClkMouseOutEn> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit tristate buffer for signal <PS2_CLK>.
     Found 1-bit tristate buffer for signal <PS2_DAT>.
-    Found 12-bit up counter for signal <clk_divider>.
     Found 1-bit register for signal <ClkMouseIn>.
     Found 8-bit register for signal <MouseClkFilter>.
-    Found 3-bit register for signal <ring_buf>.
     Summary:
-	inferred   1 Counter(s).
-	inferred  12 D-type flip-flop(s).
+	inferred   9 D-type flip-flop(s).
 	inferred   2 Tristate(s).
 Unit <main> synthesized.
 
@@ -502,10 +488,10 @@ Macro Statistics
  18-bit adder carry out                                : 1
  20-bit adder                                          : 1
  4-bit adder                                           : 1
-# Counters                                             : 2
- 12-bit up counter                                     : 2
-# Registers                                            : 50
- 1-bit register                                        : 30
+# Counters                                             : 1
+ 12-bit up counter                                     : 1
+# Registers                                            : 47
+ 1-bit register                                        : 27
  10-bit register                                       : 6
  16-bit register                                       : 2
  18-bit register                                       : 1
@@ -549,23 +535,6 @@ Optimizing FSM <V2/curr_state/FSM> on signal <curr_state[1:3]> with gray encodin
  100   | 110
 -------------------
 Analyzing FSM <FSM_1> for best encoding.
-Optimizing FSM <control_module/curr_state/FSM> on signal <curr_state[1:11]> with one-hot encoding.
-----------------------
- State | Encoding
-----------------------
- 0000  | 00000000001
- 0001  | 00000000010
- 0010  | 00000000100
- 0011  | 00000001000
- 0100  | 00000010000
- 0101  | 00000100000
- 0110  | 00001000000
- 0111  | 00010000000
- 1000  | 00100000000
- 1001  | 01000000000
- 1010  | 10000000000
-----------------------
-Analyzing FSM <FSM_0> for best encoding.
 Optimizing FSM <MouseTransmitter/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
 ---------------------------
  State | Encoding
@@ -587,6 +556,23 @@ Optimizing FSM <MouseTransmitter/curr_state/FSM> on signal <curr_state[1:16]> wi
  1110  | 0100000000000000
  1111  | 1000000000000000
 ---------------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <control_module/curr_state/FSM> on signal <curr_state[1:11]> with one-hot encoding.
+----------------------
+ State | Encoding
+----------------------
+ 0000  | 00000000001
+ 0001  | 00000000010
+ 0010  | 00000000100
+ 0011  | 00000001000
+ 0100  | 00000010000
+ 0101  | 00000100000
+ 0110  | 00001000000
+ 0111  | 00010000000
+ 1000  | 00100000000
+ 1001  | 01000000000
+ 1010  | 10000000000
+----------------------
 WARNING:Xst:1710 - FF/Latch <Blue_0> (without init value) has a constant value of 0 in block <image_handler>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <Blue_1> (without init value) has a constant value of 0 in block <image_handler>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <curr_Zbuf_0> of sequential type is unconnected in block <control_module>.
@@ -645,9 +631,9 @@ WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <Hcen_0> has a const
 
 Optimizing unit <main> ...
 
-Optimizing unit <stage2> ...
-
 Optimizing unit <MOUSE_FSM_CMD> ...
+
+Optimizing unit <stage2> ...
 
 Optimizing unit <PS2_RxModule> ...
 
@@ -946,13 +932,13 @@ Offset:              5.531ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.85 secs
+Total CPU time to Xst completion: 9.06 secs
  
 --> 
 
-Total memory usage is 4568088 kilobytes
+Total memory usage is 4568072 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   79 (   0 filtered)
+Number of warnings :   68 (   0 filtered)
 Number of infos    :    8 (   0 filtered)
 

@@ -6,7 +6,7 @@ C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
 -n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
 constraint_clk.ucf -ucf constraint_VGA.ucf -ucf constraint_led.ucf -ucf
 constraints_ps2m.ucf -ucf constraint_switch.ucf -ucf constraint_pushbtn.ucf
--ucf constraint_7seg.ucf
+-ucf constraint_buzzer.ucf -ucf constraint_7seg.ucf
 
 Design file:              main.ncd
 Physical constraint file: main.pcf
@@ -79,347 +79,341 @@ NET "SysClock/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;  duty cycle corrected to 40
 nS  HIGH 20 nS  
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 3276 paths analyzed, 491 endpoints analyzed, 0 failing endpoints
+ 8144 paths analyzed, 876 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  10.357ns.
+ Minimum period is  10.691ns.
 --------------------------------------------------------------------------------
 
-Paths for end point PS2_interface_rx/curr_timeoutcount_2 (SLICE_X18Y25.G2), 42 paths
+Paths for end point GameTitleBar/counter_2 (SLICE_X15Y2.SR), 96 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     29.643ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               PS2_interface_rx/curr_timeoutcount_9 (FF)
-  Destination:          PS2_interface_rx/curr_timeoutcount_2 (FF)
-  Requirement:          40.000ns
-  Data Path Delay:      10.318ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.039ns (0.254 - 0.293)
-  Source Clock:         CLK0 rising at 0.000ns
-  Destination Clock:    CLK0 rising at 40.000ns
-  Clock Uncertainty:    0.000ns
-
-  Maximum Data Path: PS2_interface_rx/curr_timeoutcount_9 to PS2_interface_rx/curr_timeoutcount_2
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X16Y29.XQ      Tcko                  0.631   PS2_interface_rx/curr_timeoutcount<9>
-                                                       PS2_interface_rx/curr_timeoutcount_9
-    SLICE_X17Y29.F1      net (fanout=2)        1.324   PS2_interface_rx/curr_timeoutcount<9>
-    SLICE_X17Y29.X       Tilo                  0.643   PS2_interface_rx/curr_state_cmp_eq00008
-                                                       PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.G1      net (fanout=1)        0.967   PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.Y       Tilo                  0.707   PS2_interface_rx/N4
-                                                       PS2_interface_rx/curr_state_cmp_eq000064
-    SLICE_X7Y28.F1       net (fanout=9)        1.906   PS2_interface_rx/curr_state_cmp_eq0000
-    SLICE_X7Y28.X        Tilo                  0.643   PS2_interface_rx/next_timeoutcount<10>114
-                                                       PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.G2      net (fanout=1)        0.705   PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.Y       Tilo                  0.648   PS2_interface_rx/curr_timeoutcount<7>
-                                                       PS2_interface_rx/next_timeoutcount<10>127
-    SLICE_X18Y25.G2      net (fanout=9)        1.327   PS2_interface_rx/N01
-    SLICE_X18Y25.CLK     Tgck                  0.817   PS2_interface_rx/curr_timeoutcount<3>
-                                                       PS2_interface_rx/next_timeoutcount<2>1
-                                                       PS2_interface_rx/curr_timeoutcount_2
-    -------------------------------------------------  ---------------------------
-    Total                                     10.318ns (4.089ns logic, 6.229ns route)
-                                                       (39.6% logic, 60.4% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     30.174ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               PS2_interface_rx/curr_timeoutcount_0 (FF)
-  Destination:          PS2_interface_rx/curr_timeoutcount_2 (FF)
-  Requirement:          40.000ns
-  Data Path Delay:      9.812ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.014ns (0.032 - 0.046)
-  Source Clock:         CLK0 rising at 0.000ns
-  Destination Clock:    CLK0 rising at 40.000ns
-  Clock Uncertainty:    0.000ns
-
-  Maximum Data Path: PS2_interface_rx/curr_timeoutcount_0 to PS2_interface_rx/curr_timeoutcount_2
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X18Y26.YQ      Tcko                  0.676   PS2_interface_rx/curr_timeoutcount<4>
-                                                       PS2_interface_rx/curr_timeoutcount_0
-    SLICE_X18Y24.F1      net (fanout=2)        1.021   PS2_interface_rx/curr_timeoutcount<0>
-    SLICE_X18Y24.X       Tilo                  0.692   PS2_interface_rx/curr_state_cmp_eq000050
-                                                       PS2_interface_rx/curr_state_cmp_eq000050
-    SLICE_X16Y28.G2      net (fanout=1)        0.670   PS2_interface_rx/curr_state_cmp_eq000050
-    SLICE_X16Y28.Y       Tilo                  0.707   PS2_interface_rx/N4
-                                                       PS2_interface_rx/curr_state_cmp_eq000064
-    SLICE_X7Y28.F1       net (fanout=9)        1.906   PS2_interface_rx/curr_state_cmp_eq0000
-    SLICE_X7Y28.X        Tilo                  0.643   PS2_interface_rx/next_timeoutcount<10>114
-                                                       PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.G2      net (fanout=1)        0.705   PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.Y       Tilo                  0.648   PS2_interface_rx/curr_timeoutcount<7>
-                                                       PS2_interface_rx/next_timeoutcount<10>127
-    SLICE_X18Y25.G2      net (fanout=9)        1.327   PS2_interface_rx/N01
-    SLICE_X18Y25.CLK     Tgck                  0.817   PS2_interface_rx/curr_timeoutcount<3>
-                                                       PS2_interface_rx/next_timeoutcount<2>1
-                                                       PS2_interface_rx/curr_timeoutcount_2
-    -------------------------------------------------  ---------------------------
-    Total                                      9.812ns (4.183ns logic, 5.629ns route)
-                                                       (42.6% logic, 57.4% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     30.260ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               PS2_interface_rx/curr_timeoutcount_8 (FF)
-  Destination:          PS2_interface_rx/curr_timeoutcount_2 (FF)
-  Requirement:          40.000ns
-  Data Path Delay:      9.701ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.039ns (0.254 - 0.293)
-  Source Clock:         CLK0 rising at 0.000ns
-  Destination Clock:    CLK0 rising at 40.000ns
-  Clock Uncertainty:    0.000ns
-
-  Maximum Data Path: PS2_interface_rx/curr_timeoutcount_8 to PS2_interface_rx/curr_timeoutcount_2
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X16Y29.YQ      Tcko                  0.676   PS2_interface_rx/curr_timeoutcount<9>
-                                                       PS2_interface_rx/curr_timeoutcount_8
-    SLICE_X17Y29.F3      net (fanout=2)        0.662   PS2_interface_rx/curr_timeoutcount<8>
-    SLICE_X17Y29.X       Tilo                  0.643   PS2_interface_rx/curr_state_cmp_eq00008
-                                                       PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.G1      net (fanout=1)        0.967   PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.Y       Tilo                  0.707   PS2_interface_rx/N4
-                                                       PS2_interface_rx/curr_state_cmp_eq000064
-    SLICE_X7Y28.F1       net (fanout=9)        1.906   PS2_interface_rx/curr_state_cmp_eq0000
-    SLICE_X7Y28.X        Tilo                  0.643   PS2_interface_rx/next_timeoutcount<10>114
-                                                       PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.G2      net (fanout=1)        0.705   PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.Y       Tilo                  0.648   PS2_interface_rx/curr_timeoutcount<7>
-                                                       PS2_interface_rx/next_timeoutcount<10>127
-    SLICE_X18Y25.G2      net (fanout=9)        1.327   PS2_interface_rx/N01
-    SLICE_X18Y25.CLK     Tgck                  0.817   PS2_interface_rx/curr_timeoutcount<3>
-                                                       PS2_interface_rx/next_timeoutcount<2>1
-                                                       PS2_interface_rx/curr_timeoutcount_2
-    -------------------------------------------------  ---------------------------
-    Total                                      9.701ns (4.134ns logic, 5.567ns route)
-                                                       (42.6% logic, 57.4% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAMB16_X0Y2.ADDRA13), 69 paths
---------------------------------------------------------------------------------
-Slack (setup path):     29.878ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     29.309ns (requirement - (data path - clock path skew + uncertainty))
   Source:               VGAControlModule/Hcounter_4 (FF)
-  Destination:          CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Destination:          GameTitleBar/counter_2 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      10.060ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.062ns (0.199 - 0.261)
+  Data Path Delay:      10.599ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: VGAControlModule/Hcounter_4 to CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+  Maximum Data Path: VGAControlModule/Hcounter_4 to GameTitleBar/counter_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X16Y16.YQ      Tcko                  0.676   VGAControlModule/Hcounter<5>
+    SLICE_X20Y15.YQ      Tcko                  0.676   VGAControlModule/Hcounter<5>
                                                        VGAControlModule/Hcounter_4
-    SLICE_X6Y0.G3        net (fanout=69)       3.114   VGAControlModule/Hcounter<4>
-    SLICE_X6Y0.Y         Tilo                  0.707   N124
-                                                       GameTitleBar/CharAddr<11>28_SW1
-    SLICE_X6Y0.F1        net (fanout=1)        0.450   GameTitleBar/CharAddr<11>28_SW1/O
-    SLICE_X6Y0.X         Tilo                  0.692   N124
-                                                       GameTitleBar/CharAddr<11>82_SW0
-    SLICE_X10Y9.G1       net (fanout=1)        1.286   N124
-    SLICE_X10Y9.Y        Tilo                  0.707   CharAddr<11>
-                                                       GameTitleBar/CharAddr<11>156
-    SLICE_X10Y9.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<11>156/O
-    SLICE_X10Y9.X        Tilo                  0.692   CharAddr<11>
-                                                       GameTitleBar/CharAddr<11>274
-    RAMB16_X0Y2.ADDRA13  net (fanout=1)        1.372   CharAddr<11>
-    RAMB16_X0Y2.CLKA     Trcck_ADDRA           0.321   CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
-                                                       CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    SLICE_X14Y0.G1       net (fanout=77)       2.839   VGAControlModule/Hcounter<4>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y2.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y2.CLK      Tsrck                 0.867   GameTitleBar/counter<2>
+                                                       GameTitleBar/counter_2
     -------------------------------------------------  ---------------------------
-    Total                                     10.060ns (3.795ns logic, 6.265ns route)
-                                                       (37.7% logic, 62.3% route)
+    Total                                     10.599ns (4.341ns logic, 6.258ns route)
+                                                       (41.0% logic, 59.0% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     29.914ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     29.615ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_7 (FF)
+  Destination:          GameTitleBar/counter_2 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      10.293ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_7 to GameTitleBar/counter_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X20Y14.XQ      Tcko                  0.631   VGAControlModule/Hcounter<7>
+                                                       VGAControlModule/Hcounter_7
+    SLICE_X14Y0.G3       net (fanout=39)       2.578   VGAControlModule/Hcounter<7>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y2.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y2.CLK      Tsrck                 0.867   GameTitleBar/counter<2>
+                                                       GameTitleBar/counter_2
+    -------------------------------------------------  ---------------------------
+    Total                                     10.293ns (4.296ns logic, 5.997ns route)
+                                                       (41.7% logic, 58.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     29.890ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_6 (FF)
+  Destination:          GameTitleBar/counter_2 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      10.018ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_6 to GameTitleBar/counter_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X20Y14.YQ      Tcko                  0.676   VGAControlModule/Hcounter<7>
+                                                       VGAControlModule/Hcounter_6
+    SLICE_X14Y0.G2       net (fanout=61)       2.258   VGAControlModule/Hcounter<6>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y2.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y2.CLK      Tsrck                 0.867   GameTitleBar/counter<2>
+                                                       GameTitleBar/counter_2
+    -------------------------------------------------  ---------------------------
+    Total                                     10.018ns (4.341ns logic, 5.677ns route)
+                                                       (43.3% logic, 56.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point GameTitleBar/counter_0 (SLICE_X15Y3.SR), 96 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     29.309ns (requirement - (data path - clock path skew + uncertainty))
   Source:               VGAControlModule/Hcounter_4 (FF)
-  Destination:          CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Destination:          GameTitleBar/counter_0 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      10.024ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.062ns (0.199 - 0.261)
+  Data Path Delay:      10.599ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: VGAControlModule/Hcounter_4 to CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+  Maximum Data Path: VGAControlModule/Hcounter_4 to GameTitleBar/counter_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X16Y16.YQ      Tcko                  0.676   VGAControlModule/Hcounter<5>
+    SLICE_X20Y15.YQ      Tcko                  0.676   VGAControlModule/Hcounter<5>
                                                        VGAControlModule/Hcounter_4
-    SLICE_X7Y1.F1        net (fanout=69)       3.532   VGAControlModule/Hcounter<4>
-    SLICE_X7Y1.X         Tilo                  0.643   GameTitleBar/CharAddr<11>46
-                                                       GameTitleBar/CharAddr<11>46
-    SLICE_X6Y0.F4        net (fanout=1)        0.060   GameTitleBar/CharAddr<11>46
-    SLICE_X6Y0.X         Tilo                  0.692   N124
-                                                       GameTitleBar/CharAddr<11>82_SW0
-    SLICE_X10Y9.G1       net (fanout=1)        1.286   N124
-    SLICE_X10Y9.Y        Tilo                  0.707   CharAddr<11>
-                                                       GameTitleBar/CharAddr<11>156
-    SLICE_X10Y9.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<11>156/O
-    SLICE_X10Y9.X        Tilo                  0.692   CharAddr<11>
-                                                       GameTitleBar/CharAddr<11>274
-    RAMB16_X0Y2.ADDRA13  net (fanout=1)        1.372   CharAddr<11>
-    RAMB16_X0Y2.CLKA     Trcck_ADDRA           0.321   CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
-                                                       CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    SLICE_X14Y0.G1       net (fanout=77)       2.839   VGAControlModule/Hcounter<4>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y3.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y3.CLK      Tsrck                 0.867   GameTitleBar/counter<0>
+                                                       GameTitleBar/counter_0
     -------------------------------------------------  ---------------------------
-    Total                                     10.024ns (3.731ns logic, 6.293ns route)
-                                                       (37.2% logic, 62.8% route)
+    Total                                     10.599ns (4.341ns logic, 6.258ns route)
+                                                       (41.0% logic, 59.0% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     30.412ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               VGAControlModule/Hcounter_1 (FF)
-  Destination:          CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+Slack (setup path):     29.615ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_7 (FF)
+  Destination:          GameTitleBar/counter_0 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      9.510ns (Levels of Logic = 4)
-  Clock Path Skew:      -0.078ns (0.199 - 0.277)
+  Data Path Delay:      10.293ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: VGAControlModule/Hcounter_1 to CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+  Maximum Data Path: VGAControlModule/Hcounter_7 to GameTitleBar/counter_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X17Y13.XQ      Tcko                  0.591   VGAControlModule/Hcounter<1>
-                                                       VGAControlModule/Hcounter_1
-    SLICE_X6Y0.G1        net (fanout=46)       2.649   VGAControlModule/Hcounter<1>
-    SLICE_X6Y0.Y         Tilo                  0.707   N124
-                                                       GameTitleBar/CharAddr<11>28_SW1
-    SLICE_X6Y0.F1        net (fanout=1)        0.450   GameTitleBar/CharAddr<11>28_SW1/O
-    SLICE_X6Y0.X         Tilo                  0.692   N124
-                                                       GameTitleBar/CharAddr<11>82_SW0
-    SLICE_X10Y9.G1       net (fanout=1)        1.286   N124
-    SLICE_X10Y9.Y        Tilo                  0.707   CharAddr<11>
-                                                       GameTitleBar/CharAddr<11>156
-    SLICE_X10Y9.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<11>156/O
-    SLICE_X10Y9.X        Tilo                  0.692   CharAddr<11>
-                                                       GameTitleBar/CharAddr<11>274
-    RAMB16_X0Y2.ADDRA13  net (fanout=1)        1.372   CharAddr<11>
-    RAMB16_X0Y2.CLKA     Trcck_ADDRA           0.321   CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
-                                                       CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    SLICE_X20Y14.XQ      Tcko                  0.631   VGAControlModule/Hcounter<7>
+                                                       VGAControlModule/Hcounter_7
+    SLICE_X14Y0.G3       net (fanout=39)       2.578   VGAControlModule/Hcounter<7>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y3.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y3.CLK      Tsrck                 0.867   GameTitleBar/counter<0>
+                                                       GameTitleBar/counter_0
     -------------------------------------------------  ---------------------------
-    Total                                      9.510ns (3.710ns logic, 5.800ns route)
-                                                       (39.0% logic, 61.0% route)
+    Total                                     10.293ns (4.296ns logic, 5.997ns route)
+                                                       (41.7% logic, 58.3% route)
 
 --------------------------------------------------------------------------------
-
-Paths for end point PS2_interface_rx/curr_timeoutcount_12 (SLICE_X18Y31.G1), 42 paths
---------------------------------------------------------------------------------
-Slack (setup path):     29.892ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               PS2_interface_rx/curr_timeoutcount_9 (FF)
-  Destination:          PS2_interface_rx/curr_timeoutcount_12 (FF)
+Slack (setup path):     29.890ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_6 (FF)
+  Destination:          GameTitleBar/counter_0 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      10.085ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.023ns (0.270 - 0.293)
+  Data Path Delay:      10.018ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: PS2_interface_rx/curr_timeoutcount_9 to PS2_interface_rx/curr_timeoutcount_12
+  Maximum Data Path: VGAControlModule/Hcounter_6 to GameTitleBar/counter_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X16Y29.XQ      Tcko                  0.631   PS2_interface_rx/curr_timeoutcount<9>
-                                                       PS2_interface_rx/curr_timeoutcount_9
-    SLICE_X17Y29.F1      net (fanout=2)        1.324   PS2_interface_rx/curr_timeoutcount<9>
-    SLICE_X17Y29.X       Tilo                  0.643   PS2_interface_rx/curr_state_cmp_eq00008
-                                                       PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.G1      net (fanout=1)        0.967   PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.Y       Tilo                  0.707   PS2_interface_rx/N4
-                                                       PS2_interface_rx/curr_state_cmp_eq000064
-    SLICE_X7Y28.F1       net (fanout=9)        1.906   PS2_interface_rx/curr_state_cmp_eq0000
-    SLICE_X7Y28.X        Tilo                  0.643   PS2_interface_rx/next_timeoutcount<10>114
-                                                       PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.G2      net (fanout=1)        0.705   PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.Y       Tilo                  0.648   PS2_interface_rx/curr_timeoutcount<7>
-                                                       PS2_interface_rx/next_timeoutcount<10>127
-    SLICE_X18Y31.G1      net (fanout=9)        1.094   PS2_interface_rx/N01
-    SLICE_X18Y31.CLK     Tgck                  0.817   PS2_interface_rx/curr_timeoutcount<13>
-                                                       PS2_interface_rx/next_timeoutcount<12>1
-                                                       PS2_interface_rx/curr_timeoutcount_12
+    SLICE_X20Y14.YQ      Tcko                  0.676   VGAControlModule/Hcounter<7>
+                                                       VGAControlModule/Hcounter_6
+    SLICE_X14Y0.G2       net (fanout=61)       2.258   VGAControlModule/Hcounter<6>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y3.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y3.CLK      Tsrck                 0.867   GameTitleBar/counter<0>
+                                                       GameTitleBar/counter_0
     -------------------------------------------------  ---------------------------
-    Total                                     10.085ns (4.089ns logic, 5.996ns route)
-                                                       (40.5% logic, 59.5% route)
+    Total                                     10.018ns (4.341ns logic, 5.677ns route)
+                                                       (43.3% logic, 56.7% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     30.423ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               PS2_interface_rx/curr_timeoutcount_0 (FF)
-  Destination:          PS2_interface_rx/curr_timeoutcount_12 (FF)
+
+Paths for end point GameTitleBar/counter_1 (SLICE_X15Y3.SR), 96 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     29.309ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_4 (FF)
+  Destination:          GameTitleBar/counter_1 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      9.579ns (Levels of Logic = 5)
-  Clock Path Skew:      0.002ns (0.048 - 0.046)
+  Data Path Delay:      10.599ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: PS2_interface_rx/curr_timeoutcount_0 to PS2_interface_rx/curr_timeoutcount_12
+  Maximum Data Path: VGAControlModule/Hcounter_4 to GameTitleBar/counter_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X18Y26.YQ      Tcko                  0.676   PS2_interface_rx/curr_timeoutcount<4>
-                                                       PS2_interface_rx/curr_timeoutcount_0
-    SLICE_X18Y24.F1      net (fanout=2)        1.021   PS2_interface_rx/curr_timeoutcount<0>
-    SLICE_X18Y24.X       Tilo                  0.692   PS2_interface_rx/curr_state_cmp_eq000050
-                                                       PS2_interface_rx/curr_state_cmp_eq000050
-    SLICE_X16Y28.G2      net (fanout=1)        0.670   PS2_interface_rx/curr_state_cmp_eq000050
-    SLICE_X16Y28.Y       Tilo                  0.707   PS2_interface_rx/N4
-                                                       PS2_interface_rx/curr_state_cmp_eq000064
-    SLICE_X7Y28.F1       net (fanout=9)        1.906   PS2_interface_rx/curr_state_cmp_eq0000
-    SLICE_X7Y28.X        Tilo                  0.643   PS2_interface_rx/next_timeoutcount<10>114
-                                                       PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.G2      net (fanout=1)        0.705   PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.Y       Tilo                  0.648   PS2_interface_rx/curr_timeoutcount<7>
-                                                       PS2_interface_rx/next_timeoutcount<10>127
-    SLICE_X18Y31.G1      net (fanout=9)        1.094   PS2_interface_rx/N01
-    SLICE_X18Y31.CLK     Tgck                  0.817   PS2_interface_rx/curr_timeoutcount<13>
-                                                       PS2_interface_rx/next_timeoutcount<12>1
-                                                       PS2_interface_rx/curr_timeoutcount_12
+    SLICE_X20Y15.YQ      Tcko                  0.676   VGAControlModule/Hcounter<5>
+                                                       VGAControlModule/Hcounter_4
+    SLICE_X14Y0.G1       net (fanout=77)       2.839   VGAControlModule/Hcounter<4>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y3.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y3.CLK      Tsrck                 0.867   GameTitleBar/counter<0>
+                                                       GameTitleBar/counter_1
     -------------------------------------------------  ---------------------------
-    Total                                      9.579ns (4.183ns logic, 5.396ns route)
-                                                       (43.7% logic, 56.3% route)
+    Total                                     10.599ns (4.341ns logic, 6.258ns route)
+                                                       (41.0% logic, 59.0% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     30.509ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               PS2_interface_rx/curr_timeoutcount_8 (FF)
-  Destination:          PS2_interface_rx/curr_timeoutcount_12 (FF)
+Slack (setup path):     29.615ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_7 (FF)
+  Destination:          GameTitleBar/counter_1 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      9.468ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.023ns (0.270 - 0.293)
+  Data Path Delay:      10.293ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
   Source Clock:         CLK0 rising at 0.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: PS2_interface_rx/curr_timeoutcount_8 to PS2_interface_rx/curr_timeoutcount_12
+  Maximum Data Path: VGAControlModule/Hcounter_7 to GameTitleBar/counter_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X16Y29.YQ      Tcko                  0.676   PS2_interface_rx/curr_timeoutcount<9>
-                                                       PS2_interface_rx/curr_timeoutcount_8
-    SLICE_X17Y29.F3      net (fanout=2)        0.662   PS2_interface_rx/curr_timeoutcount<8>
-    SLICE_X17Y29.X       Tilo                  0.643   PS2_interface_rx/curr_state_cmp_eq00008
-                                                       PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.G1      net (fanout=1)        0.967   PS2_interface_rx/curr_state_cmp_eq00008
-    SLICE_X16Y28.Y       Tilo                  0.707   PS2_interface_rx/N4
-                                                       PS2_interface_rx/curr_state_cmp_eq000064
-    SLICE_X7Y28.F1       net (fanout=9)        1.906   PS2_interface_rx/curr_state_cmp_eq0000
-    SLICE_X7Y28.X        Tilo                  0.643   PS2_interface_rx/next_timeoutcount<10>114
-                                                       PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.G2      net (fanout=1)        0.705   PS2_interface_rx/next_timeoutcount<10>114
-    SLICE_X17Y28.Y       Tilo                  0.648   PS2_interface_rx/curr_timeoutcount<7>
-                                                       PS2_interface_rx/next_timeoutcount<10>127
-    SLICE_X18Y31.G1      net (fanout=9)        1.094   PS2_interface_rx/N01
-    SLICE_X18Y31.CLK     Tgck                  0.817   PS2_interface_rx/curr_timeoutcount<13>
-                                                       PS2_interface_rx/next_timeoutcount<12>1
-                                                       PS2_interface_rx/curr_timeoutcount_12
+    SLICE_X20Y14.XQ      Tcko                  0.631   VGAControlModule/Hcounter<7>
+                                                       VGAControlModule/Hcounter_7
+    SLICE_X14Y0.G3       net (fanout=39)       2.578   VGAControlModule/Hcounter<7>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y3.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y3.CLK      Tsrck                 0.867   GameTitleBar/counter<0>
+                                                       GameTitleBar/counter_1
     -------------------------------------------------  ---------------------------
-    Total                                      9.468ns (4.134ns logic, 5.334ns route)
-                                                       (43.7% logic, 56.3% route)
+    Total                                     10.293ns (4.296ns logic, 5.997ns route)
+                                                       (41.7% logic, 58.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     29.890ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_6 (FF)
+  Destination:          GameTitleBar/counter_1 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      10.018ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.092ns (0.405 - 0.497)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_6 to GameTitleBar/counter_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X20Y14.YQ      Tcko                  0.676   VGAControlModule/Hcounter<7>
+                                                       VGAControlModule/Hcounter_6
+    SLICE_X14Y0.G2       net (fanout=61)       2.258   VGAControlModule/Hcounter<6>
+    SLICE_X14Y0.Y        Tilo                  0.707   N132
+                                                       GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.G1       net (fanout=3)        1.448   GameTitleBar/CharAddr<10>2315
+    SLICE_X16Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<10>2384
+    SLICE_X16Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<10>2384/O
+    SLICE_X16Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<10>5
+                                                       GameTitleBar/CharAddr<11>5
+    SLICE_X14Y3.F1       net (fanout=3)        1.573   GameTitleBar/CharAddr<10>5
+    SLICE_X14Y3.X        Tilo                  0.692   GameTitleBar/counter_cmp_eq0000
+                                                       GameTitleBar/counter_cmp_eq00001382
+    SLICE_X15Y3.SR       net (fanout=2)        0.355   GameTitleBar/counter_cmp_eq0000
+    SLICE_X15Y3.CLK      Tsrck                 0.867   GameTitleBar/counter<0>
+                                                       GameTitleBar/counter_1
+    -------------------------------------------------  ---------------------------
+    Total                                     10.018ns (4.341ns logic, 5.677ns route)
+                                                       (43.3% logic, 56.7% route)
 
 --------------------------------------------------------------------------------
 
@@ -429,84 +423,84 @@ Hold Paths: PERIOD analysis for net "SysClock/CLK0_BUF" derived from
 
 --------------------------------------------------------------------------------
 
-Paths for end point PS2_interface_controller/curr_state_FSM_FFd4 (SLICE_X3Y14.CE), 1 path
+Paths for end point BoomBox/Locked_inv_shift4 (SLICE_X19Y31.BX), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      1.048ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               PS2_interface_rx/curr_rx_complete (FF)
-  Destination:          PS2_interface_controller/curr_state_FSM_FFd4 (FF)
+Slack (hold path):      0.896ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               BoomBox/Locked_inv_shift3 (FF)
+  Destination:          BoomBox/Locked_inv_shift4 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      1.079ns (Levels of Logic = 0)
-  Clock Path Skew:      0.031ns (0.267 - 0.236)
-  Source Clock:         CLK0 rising at 40.000ns
-  Destination Clock:    CLK0 rising at 40.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path: PS2_interface_rx/curr_rx_complete to PS2_interface_controller/curr_state_FSM_FFd4
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X3Y18.YQ       Tcko                  0.464   PS2_interface_rx/curr_rx_complete
-                                                       PS2_interface_rx/curr_rx_complete
-    SLICE_X3Y14.CE       net (fanout=9)        0.615   PS2_interface_rx/curr_rx_complete
-    SLICE_X3Y14.CLK      Tckce       (-Th)     0.000   PS2_interface_controller/curr_state_FSM_FFd4
-                                                       PS2_interface_controller/curr_state_FSM_FFd4
-    -------------------------------------------------  ---------------------------
-    Total                                      1.079ns (0.464ns logic, 0.615ns route)
-                                                       (43.0% logic, 57.0% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point MouseClkFilter_6 (SLICE_X13Y18.BY), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      1.059ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               MouseClkFilter_5 (FF)
-  Destination:          MouseClkFilter_6 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      1.060ns (Levels of Logic = 0)
-  Clock Path Skew:      0.001ns (0.009 - 0.008)
-  Source Clock:         CLK0 rising at 40.000ns
-  Destination Clock:    CLK0 rising at 40.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path: MouseClkFilter_5 to MouseClkFilter_6
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X12Y18.XQ      Tcko                  0.505   MouseClkFilter<5>
-                                                       MouseClkFilter_5
-    SLICE_X13Y18.BY      net (fanout=3)        0.415   MouseClkFilter<5>
-    SLICE_X13Y18.CLK     Tckdi       (-Th)    -0.140   MouseClkFilter<7>
-                                                       MouseClkFilter_6
-    -------------------------------------------------  ---------------------------
-    Total                                      1.060ns (0.645ns logic, 0.415ns route)
-                                                       (60.8% logic, 39.2% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point MouseClkFilter_5 (SLICE_X12Y18.BX), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      1.099ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               MouseClkFilter_4 (FF)
-  Destination:          MouseClkFilter_5 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      1.099ns (Levels of Logic = 0)
+  Data Path Delay:      0.896ns (Levels of Logic = 0)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK0 rising at 40.000ns
   Destination Clock:    CLK0 rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: MouseClkFilter_4 to MouseClkFilter_5
+  Minimum Data Path: BoomBox/Locked_inv_shift3 to BoomBox/Locked_inv_shift4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X12Y18.YQ      Tcko                  0.541   MouseClkFilter<5>
-                                                       MouseClkFilter_4
-    SLICE_X12Y18.BX      net (fanout=3)        0.420   MouseClkFilter<4>
-    SLICE_X12Y18.CLK     Tckdi       (-Th)    -0.138   MouseClkFilter<5>
-                                                       MouseClkFilter_5
+    SLICE_X19Y31.YQ      Tcko                  0.464   BoomBox/Locked_inv_shift4
+                                                       BoomBox/Locked_inv_shift3
+    SLICE_X19Y31.BX      net (fanout=1)        0.343   BoomBox/Locked_inv_shift3
+    SLICE_X19Y31.CLK     Tckdi       (-Th)    -0.089   BoomBox/Locked_inv_shift4
+                                                       BoomBox/Locked_inv_shift4
     -------------------------------------------------  ---------------------------
-    Total                                      1.099ns (0.679ns logic, 0.420ns route)
-                                                       (61.8% logic, 38.2% route)
+    Total                                      0.896ns (0.553ns logic, 0.343ns route)
+                                                       (61.7% logic, 38.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point MouseClkFilter_7 (SLICE_X5Y9.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.911ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               MouseClkFilter_6 (FF)
+  Destination:          MouseClkFilter_7 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.911ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: MouseClkFilter_6 to MouseClkFilter_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X5Y9.YQ        Tcko                  0.464   MouseClkFilter<7>
+                                                       MouseClkFilter_6
+    SLICE_X5Y9.BX        net (fanout=3)        0.358   MouseClkFilter<6>
+    SLICE_X5Y9.CLK       Tckdi       (-Th)    -0.089   MouseClkFilter<7>
+                                                       MouseClkFilter_7
+    -------------------------------------------------  ---------------------------
+    Total                                      0.911ns (0.553ns logic, 0.358ns route)
+                                                       (60.7% logic, 39.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point BoomBox/Locked_inv_shift3 (SLICE_X19Y31.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.000ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               BoomBox/Locked_inv_shift2 (FF)
+  Destination:          BoomBox/Locked_inv_shift3 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.006ns (Levels of Logic = 0)
+  Clock Path Skew:      0.006ns (0.040 - 0.034)
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: BoomBox/Locked_inv_shift2 to BoomBox/Locked_inv_shift3
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y30.XQ      Tcko                  0.505   BoomBox/Locked_inv_shift2
+                                                       BoomBox/Locked_inv_shift2
+    SLICE_X19Y31.BY      net (fanout=1)        0.361   BoomBox/Locked_inv_shift2
+    SLICE_X19Y31.CLK     Tckdi       (-Th)    -0.140   BoomBox/Locked_inv_shift4
+                                                       BoomBox/Locked_inv_shift3
+    -------------------------------------------------  ---------------------------
+    Total                                      1.006ns (0.645ns logic, 0.361ns route)
+                                                       (64.1% logic, 35.9% route)
 
 --------------------------------------------------------------------------------
 
@@ -526,18 +520,18 @@ Slack: 36.001ns (period - min period limit)
 Slack: 36.824ns (period - min period limit)
   Period: 40.000ns
   Min period limit: 3.176ns (314.861MHz) (Trper_CLKA)
-  Physical resource: CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram/CLKA
-  Logical resource: CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram/CLKA
-  Location pin: RAMB16_X0Y2.CLKA
+  Physical resource: CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram/CLKA
+  Logical resource: CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram/CLKA
+  Location pin: RAMB16_X0Y1.CLKA
   Clock network: CLK0
 --------------------------------------------------------------------------------
 Slack: 38.398ns (period - (min low pulse limit / (low pulse / period)))
   Period: 40.000ns
   Low pulse: 20.000ns
   Low pulse limit: 0.801ns (Tcl)
-  Physical resource: PS2_interface_tx/curr_state_FSM_FFd16/CLK
-  Logical resource: PS2_interface_tx/curr_state_FSM_FFd16/CK
-  Location pin: SLICE_X8Y15.CLK
+  Physical resource: PS2_interface_tx/curr_ps2data_en/CLK
+  Logical resource: PS2_interface_tx/curr_ps2data_en/CK
+  Location pin: SLICE_X8Y2.CLK
   Clock network: CLK0
 --------------------------------------------------------------------------------
 
@@ -549,8 +543,8 @@ Derived Constraints for SysClock/CLKIN_IBUFG
 |           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
 |                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
-|SysClock/CLKIN_IBUFG           |     40.000ns|     10.000ns|     10.357ns|            0|            0|            0|         3276|
-| SysClock/CLK0_BUF             |     40.000ns|     10.357ns|          N/A|            0|            0|         3276|            0|
+|SysClock/CLKIN_IBUFG           |     40.000ns|     10.000ns|     10.691ns|            0|            0|            0|         8144|
+| SysClock/CLK0_BUF             |     40.000ns|     10.691ns|          N/A|            0|            0|         8144|            0|
 +-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
 
 All constraints were met.
@@ -565,7 +559,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |   10.357|         |         |         |
+clk            |   10.691|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -574,16 +568,16 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 3276 paths, 0 nets, and 1397 connections
+Constraints cover 8144 paths, 0 nets, and 2533 connections
 
 Design statistics:
-   Minimum period:  10.357ns{1}   (Maximum frequency:  96.553MHz)
+   Minimum period:  10.691ns{1}   (Maximum frequency:  93.537MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Mon Jul 15 02:17:17 2019 
+Analysis completed Mon Jul 15 07:49:42 2019 
 --------------------------------------------------------------------------------
 
 Trace Settings:

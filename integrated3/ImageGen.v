@@ -21,6 +21,7 @@
 `define	RED 8'b11100000
 `define	GREEN 8'b00011100
 `define	BLUE 8'b00000011
+`define	BLYAN 8'b00011110
 `define	CYAN 8'b00011111
 `define	PINK 8'b11100011
 `define	WHITE 8'b11111111
@@ -32,11 +33,14 @@ module ImageGen(
 	Vcounter,
 	PixData,
 	PaddleCentreX,
-	TextConstructor
+	TextConstructor,
+	BallCentreX,
+	BallCentreY
     );
 
 input		[9:0] Hcounter,Vcounter;
 input		[9:0] PaddleCentreX;
+input		[9:0]	BallCentreX,BallCentreY;
 input		[7:0]	TextConstructor;
 output	[7:0] PixData;
 
@@ -62,11 +66,24 @@ wire		PaddleGen;
 assign PaddleGen	=	((Hcounter>=PaddleCentreX-40)&&(Hcounter<=PaddleCentreX+40))?	1'b1:1'b0;
 //------------------------------------------------------
 
+//-----------------ball constructor---------------------
+wire signed [9:0] Hdiff,Vdiff;
+wire signed [19:0] Hsq,Vsq,Dst;
+//
+assign Hdiff=Hcounter-BallCentreX;
+assign Vdiff=Vcounter-BallCentreY;
+assign Hsq=Hdiff*Hdiff;
+assign Vsq=Vdiff*Vdiff;
+assign Dst=Hsq+Vsq;
+assign BallGen	=	(Dst<=256)?	1'b1:1'b0;
+//------------------------------------------------------
+
 always @(*)
 begin
 	if(Vcounter<16&&Hcounter>=160&&Hcounter<512)PixData=TextConstructor;
-	else if(Hcounter>80&&Hcounter<560&&Vcounter>160)begin
-		if(Vcounter>=460&&PaddleGen)	PixData=`WHITE;
+	else if(Hcounter>=80&&Hcounter<=560&&Vcounter>160)begin
+		if(BallGen)	PixData	=	`BLYAN;
+		else if((Vcounter>=464&&PaddleGen))	PixData=`RED;
 		else PixData=`BLACK;
 	end else PixData=WallConstructor;
 end

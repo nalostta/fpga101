@@ -110,26 +110,32 @@ Cores Search Directories           : {"ipcore_dir"  }
 Compiling verilog file "VGA_controller.v" in library work
 Compiling verilog file "text_gen.v" in library work
 Module <VGAcontroller> compiled
-Compiling verilog file "stage2.v" in library work
+Compiling verilog file "SoundGen.v" in library work
 Module <text_gen> compiled
-Compiling verilog file "PS2_RxModule.v" in library work
-Module <stage2> compiled
+Compiling verilog file "ScoreTracker.v" in library work
+Module <SoundGen> compiled
+Compiling verilog file "PS2MouseTransmitter.v" in library work
+Module <ScoreTracker> compiled
+Compiling verilog file "PS2MouseReceiver.v" in library work
+Module <PS2MouseTransmitter> compiled
+Compiling verilog file "PS2MouseController.v" in library work
+Module <PS2MouseReceiver> compiled
 Compiling verilog file "pix_Controller.v" in library work
-Module <PS2_RxModule> compiled
+Module <PS2MouseController> compiled
 Compiling verilog file "mouse_posn.v" in library work
 Module <pix_Controller> compiled
-Compiling verilog file "MOUSE_FSM.v" in library work
-Module <mouse_posn> compiled
 Compiling verilog file "clkgen.v" in library work
-Module <MOUSE_FSM_CMD> compiled
+Module <mouse_posn> compiled
 Compiling verilog file "ipcore_dir/CharBank.v" in library work
 Module <clkgen> compiled
 Compiling verilog file "ImageGen.v" in library work
 Module <CharBank> compiled
 Compiling verilog file "bintoseg.v" in library work
 Module <ImageGen> compiled
-Compiling verilog file "main.v" in library work
+Compiling verilog file "Ball_engine.v" in library work
 Module <bintoseg> compiled
+Compiling verilog file "main.v" in library work
+Module <Ball_engine> compiled
 Module <main> compiled
 No errors in compilation
 Analysis of file <"main.prj"> succeeded.
@@ -148,15 +154,25 @@ Analyzing hierarchy for module <VGAcontroller> in library <work>.
 
 Analyzing hierarchy for module <text_gen> in library <work>.
 
+Analyzing hierarchy for module <ScoreTracker> in library <work>.
+
+Analyzing hierarchy for module <Ball_engine> in library <work> with parameters.
+	Hmax = "00000000000000000000001000100000"
+	Hmin = "00000000000000000000000001100000"
+	Vmax = "00000000000000000000000111010000"
+	Vmin = "00000000000000000000000010110000"
+
+Analyzing hierarchy for module <SoundGen> in library <work>.
+
 Analyzing hierarchy for module <ImageGen> in library <work> with parameters.
 	height = "00000000000000000000000000010000"
 	width = "00000000000000000000000000100000"
 
 Analyzing hierarchy for module <pix_Controller> in library <work>.
 
-Analyzing hierarchy for module <MOUSE_FSM_CMD> in library <work>.
+Analyzing hierarchy for module <PS2MouseController> in library <work>.
 
-Analyzing hierarchy for module <stage2> in library <work> with parameters.
+Analyzing hierarchy for module <PS2MouseTransmitter> in library <work> with parameters.
 	ACK_CLK_LOW = "1110"
 	ACK_DATA_LOW = "1101"
 	DATA0 = "0011"
@@ -174,7 +190,7 @@ Analyzing hierarchy for module <stage2> in library <work> with parameters.
 	STOP = "1100"
 	TX_END = "1111"
 
-Analyzing hierarchy for module <PS2_RxModule> in library <work>.
+Analyzing hierarchy for module <PS2MouseReceiver> in library <work>.
 
 Analyzing hierarchy for module <mouse_posn> in library <work>.
 
@@ -183,7 +199,8 @@ Analyzing hierarchy for module <mouse_posn> in library <work>.
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing top module <main>.
-WARNING:Xst:2211 - "ipcore_dir/CharBank.v" line 96: Instantiating black box module <CharBank>.
+WARNING:Xst:863 - "main.v" line 38: Name conflict (<PushBtn> and <pushbtn>, renaming PushBtn as pushbtn_rnm0).
+WARNING:Xst:2211 - "ipcore_dir/CharBank.v" line 105: Instantiating black box module <CharBank>.
 Module <main> is correct for synthesis.
  
 Analyzing module <bintoseg> in library <work>.
@@ -217,6 +234,19 @@ Module <VGAcontroller> is correct for synthesis.
 Analyzing module <text_gen> in library <work>.
 Module <text_gen> is correct for synthesis.
  
+Analyzing module <ScoreTracker> in library <work>.
+Module <ScoreTracker> is correct for synthesis.
+ 
+Analyzing module <Ball_engine> in library <work>.
+	Hmax = 32'sb00000000000000000000001000100000
+	Hmin = 32'sb00000000000000000000000001100000
+	Vmax = 32'sb00000000000000000000000111010000
+	Vmin = 32'sb00000000000000000000000010110000
+Module <Ball_engine> is correct for synthesis.
+ 
+Analyzing module <SoundGen> in library <work>.
+Module <SoundGen> is correct for synthesis.
+ 
 Analyzing module <ImageGen> in library <work>.
 	height = 32'sb00000000000000000000000000010000
 	width = 32'sb00000000000000000000000000100000
@@ -225,10 +255,10 @@ Module <ImageGen> is correct for synthesis.
 Analyzing module <pix_Controller> in library <work>.
 Module <pix_Controller> is correct for synthesis.
  
-Analyzing module <MOUSE_FSM_CMD> in library <work>.
-Module <MOUSE_FSM_CMD> is correct for synthesis.
+Analyzing module <PS2MouseController> in library <work>.
+Module <PS2MouseController> is correct for synthesis.
  
-Analyzing module <stage2> in library <work>.
+Analyzing module <PS2MouseTransmitter> in library <work>.
 	ACK_CLK_LOW = 4'b1110
 	ACK_DATA_LOW = 4'b1101
 	DATA0 = 4'b0011
@@ -245,10 +275,10 @@ Analyzing module <stage2> in library <work>.
 	START_BIT = 4'b0010
 	STOP = 4'b1100
 	TX_END = 4'b1111
-Module <stage2> is correct for synthesis.
+Module <PS2MouseTransmitter> is correct for synthesis.
  
-Analyzing module <PS2_RxModule> in library <work>.
-Module <PS2_RxModule> is correct for synthesis.
+Analyzing module <PS2MouseReceiver> in library <work>.
+Module <PS2MouseReceiver> is correct for synthesis.
  
 Analyzing module <mouse_posn> in library <work>.
 Module <mouse_posn> is correct for synthesis.
@@ -259,6 +289,8 @@ Module <mouse_posn> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <Hsp> in unit <Ball_engine> has a constant value of 0000000100 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <Vsp> in unit <Ball_engine> has a constant value of 0000000100 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <bintoseg>.
     Related source file is "bintoseg.v".
@@ -293,101 +325,202 @@ Synthesizing Unit <text_gen>.
     Related source file is "text_gen.v".
 WARNING:Xst:647 - Input <Vcounter<9:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <Locked> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-    Found 10-bit comparator greatequal for signal <CharAddr_10$cmp_ge0000> created at line 101.
-    Found 10-bit comparator greatequal for signal <CharAddr_10$cmp_ge0001> created at line 102.
-    Found 10-bit comparator less for signal <CharAddr_10$cmp_lt0000> created at line 101.
-    Found 10-bit comparator less for signal <CharAddr_10$cmp_lt0001> created at line 102.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0000> created at line 68.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0001> created at line 69.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0002> created at line 70.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0003> created at line 71.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0004> created at line 72.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0005> created at line 73.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0006> created at line 74.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0007> created at line 75.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0008> created at line 76.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0009> created at line 77.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0010> created at line 78.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0011> created at line 79.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0012> created at line 80.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0013> created at line 81.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0014> created at line 82.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0015> created at line 83.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0016> created at line 84.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0017> created at line 85.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0018> created at line 86.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0019> created at line 87.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0020> created at line 88.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0021> created at line 89.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0022> created at line 90.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0023> created at line 91.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0024> created at line 92.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0025> created at line 93.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0026> created at line 94.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0027> created at line 95.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0028> created at line 96.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0029> created at line 97.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0030> created at line 98.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0031> created at line 99.
-    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0032> created at line 100.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0000> created at line 68.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0001> created at line 69.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0002> created at line 70.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0003> created at line 71.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0004> created at line 72.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0005> created at line 73.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0006> created at line 74.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0007> created at line 75.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0008> created at line 76.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0009> created at line 77.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0010> created at line 78.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0011> created at line 79.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0012> created at line 80.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0013> created at line 81.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0014> created at line 82.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0015> created at line 83.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0016> created at line 84.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0017> created at line 85.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0018> created at line 86.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0019> created at line 87.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0020> created at line 88.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0021> created at line 89.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0022> created at line 90.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0023> created at line 91.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0024> created at line 92.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0025> created at line 93.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0026> created at line 94.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0027> created at line 95.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0028> created at line 96.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0029> created at line 97.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0030> created at line 98.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0031> created at line 99.
-    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0032> created at line 100.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0000> created at line 67.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0001> created at line 68.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0002> created at line 69.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0003> created at line 70.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0004> created at line 71.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0005> created at line 72.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0006> created at line 73.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0007> created at line 74.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0008> created at line 75.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0009> created at line 76.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0010> created at line 77.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0011> created at line 78.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0012> created at line 79.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0013> created at line 80.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0014> created at line 81.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0015> created at line 82.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0016> created at line 83.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0017> created at line 84.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0018> created at line 85.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0019> created at line 86.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0020> created at line 87.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0021> created at line 88.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0022> created at line 89.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0023> created at line 90.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0024> created at line 91.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0025> created at line 92.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0026> created at line 93.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0027> created at line 94.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0028> created at line 95.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0029> created at line 96.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0030> created at line 97.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0031> created at line 98.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0032> created at line 99.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0033> created at line 100.
+    Found 10-bit comparator greatequal for signal <CharAddr_11$cmp_ge0034> created at line 101.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0000> created at line 67.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0001> created at line 68.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0002> created at line 69.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0003> created at line 70.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0004> created at line 71.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0005> created at line 72.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0006> created at line 73.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0007> created at line 74.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0008> created at line 75.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0009> created at line 76.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0010> created at line 77.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0011> created at line 78.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0012> created at line 79.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0013> created at line 80.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0014> created at line 81.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0015> created at line 82.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0016> created at line 83.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0017> created at line 84.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0018> created at line 85.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0019> created at line 86.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0020> created at line 87.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0021> created at line 88.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0022> created at line 89.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0023> created at line 90.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0024> created at line 91.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0025> created at line 92.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0026> created at line 93.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0027> created at line 94.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0028> created at line 95.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0029> created at line 96.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0030> created at line 97.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0031> created at line 98.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0032> created at line 99.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0033> created at line 100.
+    Found 10-bit comparator less for signal <CharAddr_11$cmp_lt0034> created at line 101.
     Found 4-bit up counter for signal <counter>.
     Found 5-bit adder for signal <HitScoreChar>.
+    Found 5-bit adder for signal <MissScoreChar>.
     Summary:
 	inferred   1 Counter(s).
-	inferred   1 Adder/Subtractor(s).
+	inferred   2 Adder/Subtractor(s).
 	inferred  70 Comparator(s).
 Unit <text_gen> synthesized.
 
 
+Synthesizing Unit <ScoreTracker>.
+    Related source file is "ScoreTracker.v".
+WARNING:Xst:647 - Input <reset_score> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found finite state machine <FSM_0> for signal <curr_state>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | Locked                    (negative)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit register for signal <HitScore>.
+    Found 4-bit register for signal <MissScore>.
+    Found 10-bit adder carry out for signal <add0000$addsub0000> created at line 44.
+    Found 4-bit adder for signal <next_HitScore$addsub0000> created at line 75.
+    Found 4-bit adder for signal <next_MissScore$addsub0000> created at line 78.
+    Found 12-bit comparator greatequal for signal <PaddleHit$cmp_ge0000> created at line 44.
+    Found 10-bit comparator greatequal for signal <PaddleHit$cmp_ge0001> created at line 44.
+    Found 11-bit comparator lessequal for signal <PaddleHit$cmp_le0000> created at line 44.
+    Found 12-bit subtractor for signal <PaddleHit$sub0000> created at line 44.
+    Found 10-bit comparator greatequal for signal <PaddleMiss$cmp_ge0000> created at line 45.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   8 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <ScoreTracker> synthesized.
+
+
+Synthesizing Unit <Ball_engine>.
+    Related source file is "Ball_engine.v".
+WARNING:Xst:647 - Input <Hcounter> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <Vcounter> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <trig_sound>.
+    Found 10-bit register for signal <Hcen>.
+    Found 10-bit register for signal <Vcen>.
+    Found 20-bit up counter for signal <count>.
+    Found 1-bit register for signal <follower_Hst>.
+    Found 1-bit register for signal <follower_Vst>.
+    Found 1-bit xor2 for signal <follower_Vst$xor0000> created at line 81.
+    Found 1-bit xor2 for signal <follower_Vst$xor0001> created at line 81.
+    Found 10-bit adder for signal <Hcen_next$add0000> created at line 75.
+    Found 10-bit subtractor for signal <Hcen_next$addsub0000> created at line 75.
+    Found 1-bit register for signal <Hst>.
+    Found 10-bit comparator greater for signal <Hst$cmp_gt0000> created at line 99.
+    Found 10-bit comparator lessequal for signal <Hst$cmp_le0000> created at line 99.
+    Found 11-bit comparator less for signal <Hst$cmp_lt0000> created at line 102.
+    Found 10-bit adder for signal <Vcen_next$add0000> created at line 76.
+    Found 10-bit subtractor for signal <Vcen_next$addsub0000> created at line 76.
+    Found 1-bit register for signal <Vst>.
+    Found 10-bit comparator greater for signal <Vst$cmp_gt0000> created at line 108.
+    Found 10-bit comparator lessequal for signal <Vst$cmp_le0000> created at line 108.
+    Found 10-bit comparator less for signal <Vst$cmp_lt0000> created at line 111.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   5 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   6 Comparator(s).
+Unit <Ball_engine> synthesized.
+
+
+Synthesizing Unit <SoundGen>.
+    Related source file is "SoundGen.v".
+    Found finite state machine <FSM_1> for signal <curr_state>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 3                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | Locked                    (negative)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 16-bit up counter for signal <ClkDivider>.
+    Found 25-bit register for signal <count>.
+    Found 6-bit register for signal <delay_input>.
+    Found 25-bit adder for signal <next_count$addsub0000>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
+	inferred  31 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <SoundGen> synthesized.
+
+
 Synthesizing Unit <ImageGen>.
     Related source file is "ImageGen.v".
-    Found 10-bit adder carry out for signal <add0000$addsub0000> created at line 62.
-    Found 12-bit comparator greatequal for signal <PaddleGen$cmp_ge0000> created at line 62.
-    Found 11-bit comparator lessequal for signal <PaddleGen$cmp_le0000> created at line 62.
-    Found 12-bit subtractor for signal <PaddleGen$sub0000> created at line 62.
-    Found 10-bit comparator greatequal for signal <PixData$cmp_ge0000> created at line 67.
-    Found 10-bit comparator greatequal for signal <PixData$cmp_ge0001> created at line 69.
-    Found 10-bit comparator greater for signal <PixData$cmp_gt0000> created at line 68.
-    Found 10-bit comparator greater for signal <PixData$cmp_gt0001> created at line 68.
-    Found 10-bit comparator less for signal <PixData$cmp_lt0000> created at line 67.
-    Found 10-bit comparator less for signal <PixData$cmp_lt0001> created at line 67.
-    Found 10-bit comparator less for signal <PixData$cmp_lt0002> created at line 68.
+    Found 10-bit adder carry out for signal <add0000$addsub0000> created at line 66.
+    Found 21-bit comparator lessequal for signal <BallGen$cmp_le0000> created at line 78.
+    Found 20-bit adder for signal <Dst>.
+    Found 10-bit subtractor for signal <Hdiff>.
+    Found 10x10-bit multiplier for signal <Hsq>.
+    Found 12-bit comparator greatequal for signal <PaddleGen$cmp_ge0000> created at line 66.
+    Found 11-bit comparator lessequal for signal <PaddleGen$cmp_le0000> created at line 66.
+    Found 12-bit subtractor for signal <PaddleGen$sub0000> created at line 66.
+    Found 10-bit comparator greatequal for signal <PixData$cmp_ge0000> created at line 83.
+    Found 10-bit comparator greatequal for signal <PixData$cmp_ge0001> created at line 84.
+    Found 10-bit comparator greatequal for signal <PixData$cmp_ge0002> created at line 86.
+    Found 10-bit comparator greater for signal <PixData$cmp_gt0000> created at line 84.
+    Found 10-bit comparator lessequal for signal <PixData$cmp_le0000> created at line 84.
+    Found 10-bit comparator less for signal <PixData$cmp_lt0000> created at line 83.
+    Found 10-bit comparator less for signal <PixData$cmp_lt0001> created at line 83.
+    Found 10-bit subtractor for signal <Vdiff>.
+    Found 10x10-bit multiplier for signal <Vsq>.
     Summary:
-	inferred   2 Adder/Subtractor(s).
-	inferred   9 Comparator(s).
+	inferred   5 Adder/Subtractor(s).
+	inferred   2 Multiplier(s).
+	inferred  10 Comparator(s).
 Unit <ImageGen> synthesized.
 
 
@@ -404,9 +537,9 @@ WARNING:Xst:647 - Input <Vcounter> is never used. This port will be preserved an
 Unit <pix_Controller> synthesized.
 
 
-Synthesizing Unit <MOUSE_FSM_CMD>.
-    Related source file is "MOUSE_FSM.v".
-    Found finite state machine <FSM_0> for signal <curr_state>.
+Synthesizing Unit <PS2MouseController>.
+    Related source file is "PS2MouseController.v".
+    Found finite state machine <FSM_2> for signal <curr_state>.
     -----------------------------------------------------------------------
     | States             | 11                                             |
     | Transitions        | 32                                             |
@@ -433,12 +566,12 @@ Synthesizing Unit <MOUSE_FSM_CMD>.
 	inferred   1 Finite State Machine(s).
 	inferred  52 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
-Unit <MOUSE_FSM_CMD> synthesized.
+Unit <PS2MouseController> synthesized.
 
 
-Synthesizing Unit <stage2>.
-    Related source file is "stage2.v".
-    Found finite state machine <FSM_1> for signal <curr_state>.
+Synthesizing Unit <PS2MouseTransmitter>.
+    Related source file is "PS2MouseTransmitter.v".
+    Found finite state machine <FSM_3> for signal <curr_state>.
     -----------------------------------------------------------------------
     | States             | 16                                             |
     | Transitions        | 33                                             |
@@ -466,12 +599,12 @@ Synthesizing Unit <stage2>.
 	inferred   1 Counter(s).
 	inferred  15 D-type flip-flop(s).
 	inferred   1 Xor(s).
-Unit <stage2> synthesized.
+Unit <PS2MouseTransmitter> synthesized.
 
 
-Synthesizing Unit <PS2_RxModule>.
-    Related source file is "PS2_RxModule.v".
-    Found finite state machine <FSM_2> for signal <curr_state>.
+Synthesizing Unit <PS2MouseReceiver>.
+    Related source file is "PS2MouseReceiver.v".
+    Found finite state machine <FSM_4> for signal <curr_state>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
     | Transitions        | 13                                             |
@@ -500,7 +633,7 @@ Synthesizing Unit <PS2_RxModule>.
 	inferred  34 D-type flip-flop(s).
 	inferred   2 Adder/Subtractor(s).
 	inferred   1 Xor(s).
-Unit <PS2_RxModule> synthesized.
+Unit <PS2MouseReceiver> synthesized.
 
 
 Synthesizing Unit <mouse_posn>.
@@ -530,10 +663,8 @@ Unit <clkgen> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:647 - Input <switch<7:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:646 - Signal <received_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <received_byte> is used but never assigned. This sourceless signal will be automatically connected to value 00000000.
-WARNING:Xst:646 - Signal <debug_PS2Mouse<7:4>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:647 - Input <switch> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <pushbtn_rnm0> is used but never assigned. This sourceless signal will be automatically connected to value 0.
     Found 1-bit tristate buffer for signal <PS2_CLK>.
     Found 1-bit tristate buffer for signal <PS2_DAT>.
     Found 1-bit register for signal <ClkMouseIn>.
@@ -543,6 +674,7 @@ WARNING:Xst:646 - Signal <debug_PS2Mouse<7:4>> is assigned but never used. This 
 	inferred   2 Tristate(s).
 Unit <main> synthesized.
 
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 HDL Synthesis Report
@@ -550,37 +682,47 @@ HDL Synthesis Report
 Macro Statistics
 # ROMs                                                 : 1
  16x8-bit ROM                                          : 1
-# Adders/Subtractors                                   : 10
- 10-bit adder                                          : 3
- 10-bit adder carry out                                : 1
- 10-bit subtractor                                     : 1
- 12-bit subtractor                                     : 1
+# Multipliers                                          : 2
+ 10x10-bit multiplier                                  : 2
+# Adders/Subtractors                                   : 23
+ 10-bit adder                                          : 5
+ 10-bit adder carry out                                : 2
+ 10-bit subtractor                                     : 5
+ 12-bit subtractor                                     : 2
  16-bit adder                                          : 2
- 4-bit adder                                           : 1
- 5-bit adder                                           : 1
-# Counters                                             : 2
+ 20-bit adder                                          : 1
+ 25-bit adder                                          : 1
+ 4-bit adder                                           : 3
+ 5-bit adder                                           : 2
+# Counters                                             : 4
  12-bit up counter                                     : 1
+ 16-bit up counter                                     : 1
+ 20-bit up counter                                     : 1
  4-bit up counter                                      : 1
-# Registers                                            : 42
- 1-bit register                                        : 25
- 10-bit register                                       : 4
+# Registers                                            : 58
+ 1-bit register                                        : 36
+ 10-bit register                                       : 6
  16-bit register                                       : 2
  2-bit register                                        : 2
+ 25-bit register                                       : 1
  3-bit register                                        : 2
- 4-bit register                                        : 1
+ 4-bit register                                        : 3
  8-bit register                                        : 6
 # Latches                                              : 2
  10-bit latch                                          : 2
-# Comparators                                          : 90
- 10-bit comparator greatequal                          : 39
- 10-bit comparator greater                             : 4
+# Comparators                                          : 101
+ 10-bit comparator greatequal                          : 42
+ 10-bit comparator greater                             : 5
  10-bit comparator less                                : 45
- 11-bit comparator lessequal                           : 1
- 12-bit comparator greatequal                          : 1
+ 10-bit comparator lessequal                           : 3
+ 11-bit comparator less                                : 1
+ 11-bit comparator lessequal                           : 2
+ 12-bit comparator greatequal                          : 2
+ 21-bit comparator lessequal                           : 1
 # Tristates                                            : 2
  1-bit tristate buffer                                 : 2
-# Xors                                                 : 3
- 1-bit xor2                                            : 1
+# Xors                                                 : 5
+ 1-bit xor2                                            : 3
  1-bit xor8                                            : 2
 
 =========================================================================
@@ -589,7 +731,7 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Analyzing FSM <FSM_2> for best encoding.
+Analyzing FSM <FSM_4> for best encoding.
 Optimizing FSM <PS2_interface_rx/curr_state/FSM> on signal <curr_state[1:3]> with gray encoding.
 -------------------
  State | Encoding
@@ -600,7 +742,7 @@ Optimizing FSM <PS2_interface_rx/curr_state/FSM> on signal <curr_state[1:3]> wit
  011   | 010
  100   | 110
 -------------------
-Analyzing FSM <FSM_1> for best encoding.
+Analyzing FSM <FSM_3> for best encoding.
 Optimizing FSM <PS2_interface_tx/curr_state/FSM> on signal <curr_state[1:16]> with one-hot encoding.
 ---------------------------
  State | Encoding
@@ -622,7 +764,7 @@ Optimizing FSM <PS2_interface_tx/curr_state/FSM> on signal <curr_state[1:16]> wi
  1110  | 0100000000000000
  1111  | 1000000000000000
 ---------------------------
-Analyzing FSM <FSM_0> for best encoding.
+Analyzing FSM <FSM_2> for best encoding.
 Optimizing FSM <PS2_interface_controller/curr_state/FSM> on signal <curr_state[1:11]> with one-hot encoding.
 ----------------------
  State | Encoding
@@ -639,21 +781,27 @@ Optimizing FSM <PS2_interface_controller/curr_state/FSM> on signal <curr_state[1
  1001  | 01000000000
  1010  | 10000000000
 ----------------------
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <BoomBox/curr_state/FSM> on signal <curr_state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 10
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <ScoreTrackerModule/curr_state/FSM> on signal <curr_state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 10
+-------------------
 Reading core <ipcore_dir/CharBank.ngc>.
-Loading core <CharBank> for timing and area information for instance <CharactarBank>.
+Loading core <CharBank> for timing and area information for instance <CharacterBank>.
 INFO:Xst:2261 - The FF/Latch <curr_hold_ps2clk_en> in Unit <PS2_interface_tx> is equivalent to the following FF/Latch, which will be removed : <curr_ps2clk_en> 
-WARNING:Xst:1710 - FF/Latch <FFd7> (without init value) has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <FFd8> (without init value) has a constant value of 0 in block <FSM>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_0> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_1> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_2> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_3> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_4> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_5> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_6> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Xbuf_7> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Zbuf_4> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <curr_Zbuf_6> (without init value) has a constant value of 0 in block <PS2_interface_controller>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <curr_Zbuf_0> of sequential type is unconnected in block <PS2_interface_controller>.
 WARNING:Xst:2677 - Node <curr_Zbuf_1> of sequential type is unconnected in block <PS2_interface_controller>.
 WARNING:Xst:2677 - Node <curr_Zbuf_2> of sequential type is unconnected in block <PS2_interface_controller>.
@@ -665,32 +813,41 @@ WARNING:Xst:2677 - Node <curr_Zbuf_7> of sequential type is unconnected in block
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 3
+# FSMs                                                 : 5
 # ROMs                                                 : 1
  16x8-bit ROM                                          : 1
-# Adders/Subtractors                                   : 10
- 10-bit adder                                          : 3
- 10-bit adder carry out                                : 1
- 10-bit subtractor                                     : 1
- 12-bit subtractor                                     : 1
+# Multipliers                                          : 2
+ 10x10-bit multiplier                                  : 2
+# Adders/Subtractors                                   : 23
+ 10-bit adder                                          : 5
+ 10-bit adder carry out                                : 2
+ 10-bit subtractor                                     : 5
+ 12-bit subtractor                                     : 2
  16-bit adder                                          : 2
- 4-bit adder                                           : 1
- 5-bit adder                                           : 1
-# Counters                                             : 2
+ 20-bit adder                                          : 1
+ 25-bit adder                                          : 1
+ 4-bit adder                                           : 3
+ 5-bit adder                                           : 2
+# Counters                                             : 4
  12-bit up counter                                     : 1
+ 16-bit up counter                                     : 1
+ 20-bit up counter                                     : 1
  4-bit up counter                                      : 1
-# Registers                                            : 159
- Flip-Flops                                            : 159
+# Registers                                            : 223
+ Flip-Flops                                            : 223
 # Latches                                              : 2
  10-bit latch                                          : 2
-# Comparators                                          : 90
- 10-bit comparator greatequal                          : 39
- 10-bit comparator greater                             : 4
+# Comparators                                          : 101
+ 10-bit comparator greatequal                          : 42
+ 10-bit comparator greater                             : 5
  10-bit comparator less                                : 45
- 11-bit comparator lessequal                           : 1
- 12-bit comparator greatequal                          : 1
-# Xors                                                 : 3
- 1-bit xor2                                            : 1
+ 10-bit comparator lessequal                           : 3
+ 11-bit comparator less                                : 1
+ 11-bit comparator lessequal                           : 2
+ 12-bit comparator greatequal                          : 2
+ 21-bit comparator lessequal                           : 1
+# Xors                                                 : 5
+ 1-bit xor2                                            : 3
  1-bit xor8                                            : 2
 
 =========================================================================
@@ -698,34 +855,12 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <curr_ps2clk_en> in Unit <stage2> is equivalent to the following FF/Latch, which will be removed : <curr_hold_ps2clk_en> 
-WARNING:Xst:1710 - FF/Latch <curr_Ybuf_7> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_6> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_5> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_4> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_3> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_2> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_1> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Ybuf_0> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_7> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_6> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_5> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_4> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_3> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_2> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_1> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Xbuf_0> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_7> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_6> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_5> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_4> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_3> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_2> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_1> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_Zbuf_0> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <curr_ps2clk_en> in Unit <PS2MouseTransmitter> is equivalent to the following FF/Latch, which will be removed : <curr_hold_ps2clk_en> 
 WARNING:Xst:2677 - Node <counter_3> of sequential type is unconnected in block <text_gen>.
-WARNING:Xst:1710 - FF/Latch <curr_state_FSM_FFd7> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <curr_state_FSM_FFd8> (without init value) has a constant value of 0 in block <MOUSE_FSM_CMD>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <ClkDivider_15> of sequential type is unconnected in block <SoundGen>.
+WARNING:Xst:1293 - FF/Latch <Vcen_0> has a constant value of 0 in block <Ball_engine>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <Hcen_1> has a constant value of 0 in block <Ball_engine>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <Hcen_0> has a constant value of 0 in block <Ball_engine>. This FF/Latch will be trimmed during the optimization process.
 
 Optimizing unit <main> ...
 
@@ -733,17 +868,37 @@ Optimizing unit <VGAcontroller> ...
 
 Optimizing unit <text_gen> ...
 
+Optimizing unit <ScoreTracker> ...
+
+Optimizing unit <SoundGen> ...
+
 Optimizing unit <ImageGen> ...
 
 Optimizing unit <pix_Controller> ...
 
-Optimizing unit <MOUSE_FSM_CMD> ...
+Optimizing unit <PS2MouseController> ...
 
-Optimizing unit <stage2> ...
+Optimizing unit <PS2MouseTransmitter> ...
 
-Optimizing unit <PS2_RxModule> ...
+Optimizing unit <PS2MouseReceiver> ...
+
+Optimizing unit <Ball_engine> ...
 
 Optimizing unit <mouse_posn> ...
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_7> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_6> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_4> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_3> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_2> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_1> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Ybuf_0> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Zbuf_7> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Zbuf_5> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Zbuf_3> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Zbuf_2> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Zbuf_1> of sequential type is unconnected in block <main>.
+WARNING:Xst:2677 - Node <PS2_interface_controller/curr_Zbuf_0> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <PaddlePosition/next_Yposn_9> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <PaddlePosition/next_Yposn_8> of sequential type is unconnected in block <main>.
 WARNING:Xst:2677 - Node <PaddlePosition/next_Yposn_7> of sequential type is unconnected in block <main>.
@@ -767,33 +922,36 @@ WARNING:Xst:2677 - Node <PaddlePosition/Yposn_0> of sequential type is unconnect
 
 Mapping all equations...
 Building and optimizing final netlist ...
-INFO:Xst:2261 - The FF/Latch <PS2_interface_tx/ps2data_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <PS2_interface_rx/ps2data_q> 
-INFO:Xst:2261 - The FF/Latch <PixController/Blue_1> in Unit <main> is equivalent to the following 4 FFs/Latches, which will be removed : <PixController/Blue_0> <PixController/Green_2> <PixController/Green_1> <PixController/Green_0> 
+INFO:Xst:2261 - The FF/Latch <PixController/Blue_1> in Unit <main> is equivalent to the following 3 FFs/Latches, which will be removed : <PixController/Green_2> <PixController/Green_1> <PixController/Green_0> 
 INFO:Xst:2261 - The FF/Latch <PixController/Red_2> in Unit <main> is equivalent to the following 2 FFs/Latches, which will be removed : <PixController/Red_1> <PixController/Red_0> 
 INFO:Xst:2261 - The FF/Latch <PS2_interface_tx/ps2clk_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <PS2_interface_rx/ps2clk_in> 
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 42.
+INFO:Xst:2261 - The FF/Latch <PS2_interface_tx/ps2data_in> in Unit <main> is equivalent to the following FF/Latch, which will be removed : <PS2_interface_rx/ps2data_q> 
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 68.
+FlipFlop PaddlePosition/Xposn_3 has been replicated 1 time(s)
+FlipFlop PaddlePosition/Xposn_4 has been replicated 1 time(s)
+FlipFlop PaddlePosition/Xposn_5 has been replicated 1 time(s)
+FlipFlop PaddlePosition/Xposn_6 has been replicated 1 time(s)
 FlipFlop VGAControlModule/Hcounter_0 has been replicated 1 time(s)
 FlipFlop VGAControlModule/Hcounter_1 has been replicated 1 time(s)
+FlipFlop VGAControlModule/Hcounter_2 has been replicated 1 time(s)
 FlipFlop VGAControlModule/Hcounter_3 has been replicated 1 time(s)
-FlipFlop PixController/Blue_1 has been replicated 4 time(s) to handle iob=true attribute.
+FlipFlop PixController/Blue_1 has been replicated 3 time(s) to handle iob=true attribute.
 FlipFlop PixController/Red_2 has been replicated 2 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_7 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_6 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_5 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_4 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_3 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_2 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_1 has been replicated 1 time(s) to handle iob=true attribute.
-FlipFlop PaddlePosition/Xposn_0 has been replicated 1 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
+
+Processing Unit <main> :
+	Found 6-bit shift register for signal <BoomBox/delay_input_5>.
+Unit <main> processed.
 
 =========================================================================
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 176
- Flip-Flops                                            : 176
+# Registers                                            : 279
+ Flip-Flops                                            : 279
+# Shift Registers                                      : 1
+ 6-bit shift register                                  : 1
 
 =========================================================================
 
@@ -819,48 +977,53 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 41
+# IOs                              : 42
 
 Cell Usage :
-# BELS                             : 696
+# BELS                             : 1295
 #      GND                         : 2
-#      INV                         : 12
-#      LUT1                        : 69
-#      LUT2                        : 86
-#      LUT2_D                      : 5
-#      LUT2_L                      : 6
-#      LUT3                        : 72
-#      LUT3_D                      : 4
-#      LUT3_L                      : 5
-#      LUT4                        : 216
-#      LUT4_D                      : 12
-#      LUT4_L                      : 26
-#      MUXCY                       : 90
-#      MUXF5                       : 15
+#      INV                         : 27
+#      LUT1                        : 117
+#      LUT2                        : 147
+#      LUT2_D                      : 6
+#      LUT2_L                      : 9
+#      LUT3                        : 94
+#      LUT3_D                      : 11
+#      LUT3_L                      : 12
+#      LUT4                        : 379
+#      LUT4_D                      : 25
+#      LUT4_L                      : 32
+#      MUXCY                       : 225
+#      MUXF5                       : 33
 #      VCC                         : 2
-#      XORCY                       : 74
-# FlipFlops/Latches                : 186
-#      FD                          : 15
-#      FDC                         : 15
-#      FDCE                        : 10
-#      FDE                         : 8
-#      FDR                         : 80
+#      XORCY                       : 174
+# FlipFlops/Latches                : 296
+#      FD                          : 12
+#      FDC                         : 16
+#      FDCE                        : 21
+#      FDE                         : 32
+#      FDPE                        : 6
+#      FDR                         : 148
 #      FDRE                        : 12
-#      FDRS                        : 30
-#      FDRSE                       : 1
+#      FDRS                        : 32
+#      FDRSE                       : 2
 #      FDS                         : 5
 #      LD                          : 10
 # RAMS                             : 1
 #      RAMB16BWE                   : 1
+# Shift Registers                  : 1
+#      SRL16                       : 1
 # Clock Buffers                    : 1
 #      BUFG                        : 1
-# IO Buffers                       : 37
-#      IBUF                        : 5
+# IO Buffers                       : 34
+#      IBUF                        : 1
 #      IBUFG                       : 1
 #      IOBUF                       : 2
-#      OBUF                        : 29
+#      OBUF                        : 30
 # DCMs                             : 1
 #      DCM_SP                      : 1
+# MULTs                            : 2
+#      MULT18X18SIO                : 2
 =========================================================================
 
 Device utilization summary:
@@ -868,13 +1031,16 @@ Device utilization summary:
 
 Selected Device : 3s50atq144-4 
 
- Number of Slices:                      271  out of    704    38%  
- Number of Slice Flip Flops:            170  out of   1408    12%  
- Number of 4 input LUTs:                513  out of   1408    36%  
- Number of IOs:                          41
- Number of bonded IOBs:                  37  out of    108    34%  
-    IOB Flip Flops:                      16
+ Number of Slices:                      457  out of    704    64%  
+ Number of Slice Flip Flops:            288  out of   1408    20%  
+ Number of 4 input LUTs:                860  out of   1408    61%  
+    Number used as logic:               859
+    Number used as Shift registers:       1
+ Number of IOs:                          42
+ Number of bonded IOBs:                  34  out of    108    31%  
+    IOB Flip Flops:                       8
  Number of BRAMs:                         1  out of      3    33%  
+ Number of MULT18X18SIOs:                 2  out of      3    66%  
  Number of GCLKs:                         1  out of     24     4%  
  Number of DCMs:                          1  out of      2    50%  
 
@@ -899,28 +1065,29 @@ Clock Information:
 ---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+-------+
 Clock Signal                                 | Clock buffer(FF name)                                                                                                        | Load  |
 ---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+-------+
-clk                                          | SysClock/DCM_SP_INST:CLK0                                                                                                    | 169   |
-CharactarBank/N1                             | NONE(CharactarBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram)| 1     |
+clk                                          | SysClock/DCM_SP_INST:CLK0                                                                                                    | 280   |
+CharacterBank/N1                             | NONE(CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram)| 1     |
+VGAControlModule/Hcounter_0                  | NONE(PixController/Blue_0)                                                                                                   | 8     |
 PS2_interface_controller/curr_packet_complete| NONE(PaddlePosition/next_Xposn_9)                                                                                            | 10    |
-VGAControlModule/Hcounter_0                  | NONE(PixController/Blue_1)                                                                                                   | 8     |
 ---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-------------------------------------------------+----------------------------------+-------+
-Control Signal                                  | Buffer(FF name)                  | Load  |
-------------------------------------------------+----------------------------------+-------+
-Locked_inv(VGAControlModule/Locked_inv1_INV_0:O)| NONE(VGAControlModule/Hcounter_0)| 25    |
-------------------------------------------------+----------------------------------+-------+
+-------------------------------------------------------------------------+----------------------------------+-------+
+Control Signal                                                           | Buffer(FF name)                  | Load  |
+-------------------------------------------------------------------------+----------------------------------+-------+
+BoomBox/Locked_inv(VGAControlModule/Locked_inv1_INV_0:O)                 | NONE(VGAControlModule/Hcounter_0)| 26    |
+BallMotionControl/Hcen_Acst_inv(BallMotionControl/Hcen_Acst_inv1_INV_0:O)| NONE(BallMotionControl/Hcen_2)   | 17    |
+-------------------------------------------------------------------------+----------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 8.014ns (Maximum Frequency: 124.779MHz)
-   Minimum input arrival time before clock: 8.669ns
-   Maximum output required time after clock: 8.664ns
+   Minimum period: 8.112ns (Maximum Frequency: 123.274MHz)
+   Minimum input arrival time before clock: 4.891ns
+   Maximum output required time after clock: 8.957ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -929,61 +1096,55 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 8.014ns (frequency: 124.779MHz)
-  Total number of paths / destination ports: 3278 / 220
+  Clock period: 8.112ns (frequency: 123.274MHz)
+  Total number of paths / destination ports: 8145 / 359
 -------------------------------------------------------------------------
-Delay:               8.014ns (Levels of Logic = 6)
-  Source:            VGAControlModule/Hcounter_2 (FF)
-  Destination:       GameTitleBar/counter_2 (FF)
+Delay:               8.112ns (Levels of Logic = 5)
+  Source:            PS2_interface_rx/curr_timeoutcount_14 (FF)
+  Destination:       PS2_interface_rx/curr_bitcount_1 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: VGAControlModule/Hcounter_2 to GameTitleBar/counter_2
+  Data Path: PS2_interface_rx/curr_timeoutcount_14 to PS2_interface_rx/curr_bitcount_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             54   0.591   1.412  VGAControlModule/Hcounter_2 (VGAControlModule/Hcounter_2)
-     LUT4:I0->O            1   0.648   0.000  GameTitleBar/CharAddr<10>2144_G (N179)
-     MUXF5:I1->O           1   0.276   0.452  GameTitleBar/CharAddr<10>2144 (GameTitleBar/CharAddr<10>2144)
-     LUT3:I2->O            1   0.648   0.000  GameTitleBar/CharAddr<10>21173_G (N143)
-     MUXF5:I1->O           1   0.276   0.452  GameTitleBar/CharAddr<10>21173 (GameTitleBar/CharAddr<10>_bdd2)
-     LUT3:I2->O            3   0.648   0.563  GameTitleBar/CharAddr<11>4 (GameTitleBar/CharAddr<10>4)
-     LUT4:I2->O            3   0.648   0.531  GameTitleBar/counter_cmp_eq00001334 (GameTitleBar/counter_cmp_eq0000)
-     FDR:R                     0.869          GameTitleBar/counter_0
+     FDRS:C->Q             2   0.591   0.590  PS2_interface_rx/curr_timeoutcount_14 (PS2_interface_rx/curr_timeoutcount_14)
+     LUT4:I0->O            1   0.648   0.500  PS2_interface_rx/curr_state_cmp_eq000017 (PS2_interface_rx/curr_state_cmp_eq000017)
+     LUT4:I1->O            8   0.643   0.760  PS2_interface_rx/curr_state_cmp_eq000064 (PS2_interface_rx/curr_state_cmp_eq0000)
+     LUT4_D:I3->LO         1   0.648   0.132  PS2_interface_rx/next_bitcount<1>11 (N402)
+     LUT3:I2->O           13   0.648   1.015  PS2_interface_rx/next_bitcount<0>21 (PS2_interface_rx/N20)
+     LUT3:I2->O            1   0.648   0.420  PS2_interface_rx/next_bitcount<1>64 (PS2_interface_rx/next_bitcount<1>64)
+     FDRS:S                    0.869          PS2_interface_rx/curr_bitcount_1
     ----------------------------------------
-    Total                      8.014ns (4.604ns logic, 3.410ns route)
-                                       (57.4% logic, 42.6% route)
+    Total                      8.112ns (4.695ns logic, 3.417ns route)
+                                       (57.9% logic, 42.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 90 / 46
+  Total number of paths / destination ports: 73 / 72
 -------------------------------------------------------------------------
-Offset:              8.669ns (Levels of Logic = 7)
-  Source:            switch<0> (PAD)
-  Destination:       GameTitleBar/counter_2 (FF)
+Offset:              4.891ns (Levels of Logic = 2)
+  Source:            pushbtn (PAD)
+  Destination:       PS2_interface_controller/curr_state_FSM_FFd11 (FF)
   Destination Clock: clk rising
 
-  Data Path: switch<0> to GameTitleBar/counter_2
+  Data Path: pushbtn to PS2_interface_controller/curr_state_FSM_FFd11
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             8   0.849   0.789  switch_0_IBUF (switch_0_IBUF)
-     LUT4:I2->O            2   0.648   0.590  GameTitleBar/counter_cmp_eq000041 (GameTitleBar/counter_cmp_eq0000_bdd7)
-     LUT4_L:I0->LO         1   0.648   0.132  GameTitleBar/counter_cmp_eq0000180 (GameTitleBar/counter_cmp_eq0000180)
-     LUT3:I2->O            1   0.648   0.500  GameTitleBar/counter_cmp_eq0000192 (GameTitleBar/counter_cmp_eq0000192)
-     LUT4:I1->O            1   0.643   0.423  GameTitleBar/counter_cmp_eq00001195_SW0 (N49)
-     LUT4_L:I3->LO         1   0.648   0.103  GameTitleBar/counter_cmp_eq00001195 (GameTitleBar/counter_cmp_eq00001195)
-     LUT4:I3->O            3   0.648   0.531  GameTitleBar/counter_cmp_eq00001334 (GameTitleBar/counter_cmp_eq0000)
-     FDR:R                     0.869          GameTitleBar/counter_0
+     IBUF:I->O            24   0.849   1.252  pushbtn_IBUF (pushbtn_IBUF)
+     INV:I->O             65   0.648   1.273  BallMotionControl/Hcen_Acst_inv1_INV_0 (BallMotionControl/Hcen_Acst_inv)
+     FDR:R                     0.869          PS2_interface_controller/curr_wait_count_0
     ----------------------------------------
-    Total                      8.669ns (5.601ns logic, 3.068ns route)
-                                       (64.6% logic, 35.4% route)
+    Total                      4.891ns (2.366ns logic, 2.525ns route)
+                                       (48.4% logic, 51.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 111 / 19
+  Total number of paths / destination ports: 132 / 16
 -------------------------------------------------------------------------
-Offset:              8.664ns (Levels of Logic = 3)
+Offset:              8.957ns (Levels of Logic = 4)
   Source:            PS2_interface_controller/curr_state_FSM_FFd10 (FF)
   Destination:       SSD<4> (PAD)
   Source Clock:      clk rising
@@ -992,13 +1153,14 @@ Offset:              8.664ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q             13   0.591   0.986  PS2_interface_controller/curr_state_FSM_FFd10 (PS2_interface_controller/curr_state_FSM_FFd10)
-     LUT4:I3->O            7   0.648   0.851  PS2_interface_controller/curr_state_or00031 (debug_PS2Mouse<0>)
+     FDR:C->Q             14   0.591   1.003  PS2_interface_controller/curr_state_FSM_FFd10 (PS2_interface_controller/curr_state_FSM_FFd10)
+     LUT4:I3->O            1   0.648   0.000  PS2_interface_controller/curr_state_or00031 (PS2_interface_controller/curr_state_or0003)
+     MUXF5:I0->O           7   0.276   0.851  PS2_interface_controller/curr_state_or0003_f5 (debug_PS2Mouse<0>)
      LUT4:I0->O            1   0.648   0.420  debug_display/Mrom_ssdarray41 (SSD_4_OBUF)
      OBUF:I->O                 4.520          SSD_4_OBUF (SSD<4>)
     ----------------------------------------
-    Total                      8.664ns (6.407ns logic, 2.257ns route)
-                                       (73.9% logic, 26.1% route)
+    Total                      8.957ns (6.683ns logic, 2.274ns route)
+                                       (74.6% logic, 25.4% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'VGAControlModule/Hcounter_0'
@@ -1022,14 +1184,14 @@ Offset:              5.531ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 11.00 secs
-Total CPU time to Xst completion: 10.95 secs
+Total REAL time to Xst completion: 12.00 secs
+Total CPU time to Xst completion: 12.52 secs
  
 --> 
 
-Total memory usage is 4568112 kilobytes
+Total memory usage is 4584276 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   81 (   0 filtered)
-Number of infos    :    7 (   0 filtered)
+Number of warnings :   58 (   0 filtered)
+Number of infos    :   10 (   0 filtered)
 

@@ -21,44 +21,86 @@
 module ScoreTracker(
 	clk,
 	Locked,
+	reset_score,
 	BallCentreX,
 	BallCentreY,
-	BallYDir,
 	PaddleCentreX,
-	PaddleCentreY,
 	PaddleHit,
 	HitScore,
 	MissScore,
 	TrigSound
     );
 	 
-input		clk,Locked;
+input		clk,Locked,reset_score;
 input		[9:0]	BallCentreX,BallCentreY;
-input		[9:0]	PaddleCentreX,PaddleCentreY;
+input		[9:0]	PaddleCentreX;
 
 output	[3:0]	HitScore,MissScore;
 output	TrigSound,PaddleHit;
 
-reg		PaddleHit;
-reg		[3:0]	HitScore,next_HitScore;
+reg 		[1:0]	curr_state,next_state;
+reg		[3:0]	HitScore,next_HitScore,next_MissScore,MissScore;
 
-assign	PBDstY	=	BallCentreY-PaddleCentreY;
-assign	PBDstX	=	BallCentreX-PaddleCentreX;
+assign PaddleHit	=	(BallCentreX>=(PaddleCentreX-56))&&(BallCentreX<=(PaddleCentreX+56))&&(BallCentreY>=(448));
+assign PaddleMiss	=	((BallCentreY>=463)&&!PaddleHit);
+
+assign TrigSound	=	PaddleHit;
 
 always @(posedge clk)
-if(Locked)HitScore<=next_HitScore;
-else HitScore<=0;
+if(Locked)begin
+	curr_state<=next_state;
+end else begin
+	curr_state<=0;
+end
 
-always @(*)
-begin
-	if((PBDstY<=24)&&(PBDstX<=56))PaddleHit=1;
-	else PadlleHit=0;
+always @(posedge clk)
+if(Locked)begin
+HitScore<=next_HitScore;
+MissScore<=next_MissScore;
+end else begin
+HitScore<=0;
+MissScore<=0;
 end
 
 always @(*)
 begin
-	if(PaddleHit&&BallYDir==1)begin
-		next_HitScore=(HitScore==9)?	0:HitScore+1'b1;
-	end else next_HitScore=HitScore;
+	next_state=curr_state;
+	next_HitScore=HitScore;
+	next_MissScore=MissScore;
+	case(curr_state)
+		0:
+		begin
+			if(PaddleHit)begin
+				next_state=1;
+				next_HitScore=(HitScore==9)?	0:HitScore+1'b1;
+			end else if(PaddleMiss)begin
+				next_state=2;
+				next_MissScore=(MissScore==9)?	0:MissScore+1'b1;
+			end
+		end
+		
+		1:
+		begin
+			next_HitScore=HitScore;
+			if(!PaddleHit)begin
+				 next_state=0;
+			end
+		end
+		
+		2:
+		begin
+			next_MissScore=MissScore;
+			if(!PaddleMiss)begin
+				 next_state=0;
+			end
+		end
+		
+	default : 
+	begin
+	next_state=0;	
+	next_HitScore=0;
+	next_MissScore=0;
+	end
+	endcase
 end
 endmodule
