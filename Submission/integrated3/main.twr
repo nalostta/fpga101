@@ -1,0 +1,615 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+-n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
+constraint_clk.ucf -ucf constraint_VGA.ucf -ucf constraint_led.ucf -ucf
+constraints_ps2m.ucf -ucf constraint_switch.ucf -ucf constraint_pushbtn.ucf
+-ucf constraint_buzzer.ucf
+
+Design file:              main.ncd
+Physical constraint file: main.pcf
+Device,package,speed:     xc3s50a,tq144,-4 (PRODUCTION 1.42 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: NET "SysClock/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  10.000ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "SysClock/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: SysClock/DCM_SP_INST/CLKIN
+  Logical resource: SysClock/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: SysClock/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 40.000ns
+  High pulse: 20.000ns
+  High pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: SysClock/DCM_SP_INST/CLKIN
+  Logical resource: SysClock/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: SysClock/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpc)
+  Physical resource: SysClock/DCM_SP_INST/CLKIN
+  Logical resource: SysClock/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: SysClock/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PERIOD analysis for net "SysClock/CLK0_BUF" derived from  
+NET "SysClock/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;  duty cycle corrected to 40 
+nS  HIGH 20 nS  
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 8144 paths analyzed, 876 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  10.218ns.
+--------------------------------------------------------------------------------
+
+Paths for end point CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAMB16_X0Y1.ADDRA12), 135 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     29.782ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_3 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      10.150ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.068ns (0.195 - 0.263)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_3 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y14.XQ      Tcko                  0.591   VGAControlModule/Hcounter<3>
+                                                       VGAControlModule/Hcounter_3
+    SLICE_X20Y4.G4       net (fanout=64)       3.023   VGAControlModule/Hcounter<3>
+    SLICE_X20Y4.Y        Tilo                  0.707   N174
+                                                       GameTitleBar/CharAddr<10>404_SW0_SW1_SW0
+    SLICE_X20Y4.F4       net (fanout=1)        0.060   GameTitleBar/CharAddr<10>404_SW0_SW1_SW0/O
+    SLICE_X20Y4.X        Tilo                  0.692   N174
+                                                       GameTitleBar/CharAddr<10>404_SW0_SW1
+    SLICE_X21Y4.F4       net (fanout=1)        0.044   N174
+    SLICE_X21Y4.X        Tilo                  0.643   N91
+                                                       GameTitleBar/CharAddr<10>445_SW0
+    SLICE_X22Y3.F1       net (fanout=1)        0.738   N91
+    SLICE_X22Y3.X        Tilo                  0.692   GameTitleBar/CharAddr<10>456
+                                                       GameTitleBar/CharAddr<10>456
+    SLICE_X17Y2.F4       net (fanout=1)        0.622   GameTitleBar/CharAddr<10>456
+    SLICE_X17Y2.X        Tilo                  0.643   CharAddr<10>
+                                                       GameTitleBar/CharAddr<10>496
+    RAMB16_X0Y1.ADDRA12  net (fanout=1)        1.374   CharAddr<10>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                     10.150ns (4.289ns logic, 5.861ns route)
+                                                       (42.3% logic, 57.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     29.809ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_2 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      10.123ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.068ns (0.195 - 0.263)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_2 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y14.YQ      Tcko                  0.580   VGAControlModule/Hcounter<3>
+                                                       VGAControlModule/Hcounter_2
+    SLICE_X20Y5.G1       net (fanout=49)       2.259   VGAControlModule/Hcounter<2>
+    SLICE_X20Y5.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>366
+                                                       GameTitleBar/CharAddr<10>141
+    SLICE_X20Y5.F3       net (fanout=5)        0.154   GameTitleBar/CharAddr<10>_bdd31
+    SLICE_X20Y5.X        Tilo                  0.692   GameTitleBar/CharAddr<10>366
+                                                       GameTitleBar/CharAddr<10>366
+    SLICE_X21Y4.F2       net (fanout=1)        0.698   GameTitleBar/CharAddr<10>366
+    SLICE_X21Y4.X        Tilo                  0.643   N91
+                                                       GameTitleBar/CharAddr<10>445_SW0
+    SLICE_X22Y3.F1       net (fanout=1)        0.738   N91
+    SLICE_X22Y3.X        Tilo                  0.692   GameTitleBar/CharAddr<10>456
+                                                       GameTitleBar/CharAddr<10>456
+    SLICE_X17Y2.F4       net (fanout=1)        0.622   GameTitleBar/CharAddr<10>456
+    SLICE_X17Y2.X        Tilo                  0.643   CharAddr<10>
+                                                       GameTitleBar/CharAddr<10>496
+    RAMB16_X0Y1.ADDRA12  net (fanout=1)        1.374   CharAddr<10>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                     10.123ns (4.278ns logic, 5.845ns route)
+                                                       (42.3% logic, 57.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     29.889ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ScoreTrackerModule/MissScore_0 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.987ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.124ns (0.389 - 0.513)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ScoreTrackerModule/MissScore_0 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X11Y10.XQ      Tcko                  0.591   ScoreTrackerModule/MissScore<0>
+                                                       ScoreTrackerModule/MissScore_0
+    SLICE_X17Y4.G1       net (fanout=17)       2.125   ScoreTrackerModule/MissScore<0>
+    SLICE_X17Y4.Y        Tilo                  0.648   GameTitleBar/CharAddr<10>26
+                                                       GameTitleBar/CharAddr<10>31
+    SLICE_X21Y5.F1       net (fanout=2)        0.774   GameTitleBar/CharAddr<10>_bdd12
+    SLICE_X21Y5.X        Tilo                  0.643   N149
+                                                       GameTitleBar/CharAddr<10>382_SW0
+    SLICE_X21Y4.F1       net (fanout=1)        0.173   N149
+    SLICE_X21Y4.X        Tilo                  0.643   N91
+                                                       GameTitleBar/CharAddr<10>445_SW0
+    SLICE_X22Y3.F1       net (fanout=1)        0.738   N91
+    SLICE_X22Y3.X        Tilo                  0.692   GameTitleBar/CharAddr<10>456
+                                                       GameTitleBar/CharAddr<10>456
+    SLICE_X17Y2.F4       net (fanout=1)        0.622   GameTitleBar/CharAddr<10>456
+    SLICE_X17Y2.X        Tilo                  0.643   CharAddr<10>
+                                                       GameTitleBar/CharAddr<10>496
+    RAMB16_X0Y1.ADDRA12  net (fanout=1)        1.374   CharAddr<10>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.987ns (4.181ns logic, 5.806ns route)
+                                                       (41.9% logic, 58.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAMB16_X0Y1.ADDRA13), 91 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     30.001ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ScoreTrackerModule/MissScore_0 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.875ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.124ns (0.389 - 0.513)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ScoreTrackerModule/MissScore_0 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X11Y10.XQ      Tcko                  0.591   ScoreTrackerModule/MissScore<0>
+                                                       ScoreTrackerModule/MissScore_0
+    SLICE_X17Y15.G3      net (fanout=17)       2.309   ScoreTrackerModule/MissScore<0>
+    SLICE_X17Y15.Y       Tilo                  0.648   GameTitleBar/CharAddr<11>223
+                                                       GameTitleBar/CharAddr<11>31
+    SLICE_X16Y14.F1      net (fanout=2)        0.197   GameTitleBar/CharAddr<11>_bdd9
+    SLICE_X16Y14.X       Tilo                  0.692   GameTitleBar/CharAddr<11>21
+                                                       GameTitleBar/CharAddr<11>21
+    SLICE_X18Y17.F2      net (fanout=1)        0.501   GameTitleBar/CharAddr<11>21
+    SLICE_X18Y17.X       Tilo                  0.692   GameTitleBar/CharAddr<11>107
+                                                       GameTitleBar/CharAddr<11>107
+    SLICE_X18Y6.F4       net (fanout=1)        0.650   GameTitleBar/CharAddr<11>107
+    SLICE_X18Y6.X        Tilo                  0.692   GameTitleBar/CharAddr<11>193
+                                                       GameTitleBar/CharAddr<11>193
+    SLICE_X18Y2.F1       net (fanout=1)        0.399   GameTitleBar/CharAddr<11>193
+    SLICE_X18Y2.X        Tilo                  0.692   CharAddr<11>
+                                                       GameTitleBar/CharAddr<11>341
+    RAMB16_X0Y1.ADDRA13  net (fanout=1)        1.491   CharAddr<11>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.875ns (4.328ns logic, 5.547ns route)
+                                                       (43.8% logic, 56.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     30.045ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ScoreTrackerModule/HitScore_0 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.869ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.086ns (0.389 - 0.475)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ScoreTrackerModule/HitScore_0 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X12Y6.XQ       Tcko                  0.631   ScoreTrackerModule/HitScore<0>
+                                                       ScoreTrackerModule/HitScore_0
+    SLICE_X18Y15.F4      net (fanout=15)       2.279   ScoreTrackerModule/HitScore<0>
+    SLICE_X18Y15.X       Tilo                  0.692   GameTitleBar/CharAddr<11>_bdd12
+                                                       GameTitleBar/CharAddr<11>51
+    SLICE_X18Y16.F3      net (fanout=2)        0.483   GameTitleBar/CharAddr<11>_bdd12
+    SLICE_X18Y16.X       Tilo                  0.692   GameTitleBar/CharAddr<11>45
+                                                       GameTitleBar/CharAddr<11>45
+    SLICE_X18Y17.F1      net (fanout=1)        0.155   GameTitleBar/CharAddr<11>45
+    SLICE_X18Y17.X       Tilo                  0.692   GameTitleBar/CharAddr<11>107
+                                                       GameTitleBar/CharAddr<11>107
+    SLICE_X18Y6.F4       net (fanout=1)        0.650   GameTitleBar/CharAddr<11>107
+    SLICE_X18Y6.X        Tilo                  0.692   GameTitleBar/CharAddr<11>193
+                                                       GameTitleBar/CharAddr<11>193
+    SLICE_X18Y2.F1       net (fanout=1)        0.399   GameTitleBar/CharAddr<11>193
+    SLICE_X18Y2.X        Tilo                  0.692   CharAddr<11>
+                                                       GameTitleBar/CharAddr<11>341
+    RAMB16_X0Y1.ADDRA13  net (fanout=1)        1.491   CharAddr<11>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.869ns (4.412ns logic, 5.457ns route)
+                                                       (44.7% logic, 55.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     30.109ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ScoreTrackerModule/MissScore_2 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.735ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.156ns (0.389 - 0.545)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ScoreTrackerModule/MissScore_2 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X10Y6.XQ       Tcko                  0.631   ScoreTrackerModule/MissScore<2>
+                                                       ScoreTrackerModule/MissScore_2
+    SLICE_X17Y15.G1      net (fanout=11)       2.129   ScoreTrackerModule/MissScore<2>
+    SLICE_X17Y15.Y       Tilo                  0.648   GameTitleBar/CharAddr<11>223
+                                                       GameTitleBar/CharAddr<11>31
+    SLICE_X16Y14.F1      net (fanout=2)        0.197   GameTitleBar/CharAddr<11>_bdd9
+    SLICE_X16Y14.X       Tilo                  0.692   GameTitleBar/CharAddr<11>21
+                                                       GameTitleBar/CharAddr<11>21
+    SLICE_X18Y17.F2      net (fanout=1)        0.501   GameTitleBar/CharAddr<11>21
+    SLICE_X18Y17.X       Tilo                  0.692   GameTitleBar/CharAddr<11>107
+                                                       GameTitleBar/CharAddr<11>107
+    SLICE_X18Y6.F4       net (fanout=1)        0.650   GameTitleBar/CharAddr<11>107
+    SLICE_X18Y6.X        Tilo                  0.692   GameTitleBar/CharAddr<11>193
+                                                       GameTitleBar/CharAddr<11>193
+    SLICE_X18Y2.F1       net (fanout=1)        0.399   GameTitleBar/CharAddr<11>193
+    SLICE_X18Y2.X        Tilo                  0.692   CharAddr<11>
+                                                       GameTitleBar/CharAddr<11>341
+    RAMB16_X0Y1.ADDRA13  net (fanout=1)        1.491   CharAddr<11>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.735ns (4.368ns logic, 5.367ns route)
+                                                       (44.9% logic, 55.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAMB16_X0Y1.ADDRA11), 98 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     30.007ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_2 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.925ns (Levels of Logic = 4)
+  Clock Path Skew:      -0.068ns (0.195 - 0.263)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_2 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y14.YQ      Tcko                  0.580   VGAControlModule/Hcounter<3>
+                                                       VGAControlModule/Hcounter_2
+    SLICE_X20Y5.G1       net (fanout=49)       2.259   VGAControlModule/Hcounter<2>
+    SLICE_X20Y5.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>366
+                                                       GameTitleBar/CharAddr<10>141
+    SLICE_X19Y5.F2       net (fanout=5)        0.506   GameTitleBar/CharAddr<10>_bdd31
+    SLICE_X19Y5.X        Tilo                  0.643   GameTitleBar/CharAddr<9>331
+                                                       GameTitleBar/CharAddr<9>331
+    SLICE_X15Y5.G2       net (fanout=1)        0.785   GameTitleBar/CharAddr<9>331
+    SLICE_X15Y5.X        Tif5x                 0.924   N95
+                                                       GameTitleBar/CharAddr<9>561_SW0_F
+                                                       GameTitleBar/CharAddr<9>561_SW0
+    SLICE_X20Y2.F1       net (fanout=1)        0.854   N95
+    SLICE_X20Y2.X        Tilo                  0.692   CharAddr<9>
+                                                       GameTitleBar/CharAddr<9>584
+    RAMB16_X0Y1.ADDRA11  net (fanout=1)        1.654   CharAddr<9>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.925ns (3.867ns logic, 6.058ns route)
+                                                       (39.0% logic, 61.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     30.562ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ScoreTrackerModule/MissScore_0 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.314ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.124ns (0.389 - 0.513)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ScoreTrackerModule/MissScore_0 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X11Y10.XQ      Tcko                  0.591   ScoreTrackerModule/MissScore<0>
+                                                       ScoreTrackerModule/MissScore_0
+    SLICE_X11Y7.F2       net (fanout=17)       1.279   ScoreTrackerModule/MissScore<0>
+    SLICE_X11Y7.X        Tilo                  0.643   GameTitleBar/CharAddr<9>_bdd10
+                                                       GameTitleBar/CharAddr<9>31
+    SLICE_X17Y5.BX       net (fanout=2)        1.120   GameTitleBar/CharAddr<9>_bdd10
+    SLICE_X17Y5.X        Tbxx                  0.756   GameTitleBar/CharAddr<9>421
+                                                       GameTitleBar/CharAddr<9>421
+    SLICE_X19Y3.F2       net (fanout=1)        0.425   GameTitleBar/CharAddr<9>421
+    SLICE_X19Y3.X        Tilo                  0.643   GameTitleBar/CharAddr<9>457
+                                                       GameTitleBar/CharAddr<9>457
+    SLICE_X20Y2.G2       net (fanout=1)        0.423   GameTitleBar/CharAddr<9>457
+    SLICE_X20Y2.Y        Tilo                  0.707   CharAddr<9>
+                                                       GameTitleBar/CharAddr<9>584_SW0
+    SLICE_X20Y2.F4       net (fanout=1)        0.060   GameTitleBar/CharAddr<9>584_SW0/O
+    SLICE_X20Y2.X        Tilo                  0.692   CharAddr<9>
+                                                       GameTitleBar/CharAddr<9>584
+    RAMB16_X0Y1.ADDRA11  net (fanout=1)        1.654   CharAddr<9>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.314ns (4.353ns logic, 4.961ns route)
+                                                       (46.7% logic, 53.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     30.627ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               VGAControlModule/Hcounter_2 (FF)
+  Destination:          CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram (RAM)
+  Requirement:          40.000ns
+  Data Path Delay:      9.305ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.068ns (0.195 - 0.263)
+  Source Clock:         CLK0 rising at 0.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: VGAControlModule/Hcounter_2 to CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y14.YQ      Tcko                  0.580   VGAControlModule/Hcounter<3>
+                                                       VGAControlModule/Hcounter_2
+    SLICE_X20Y5.G1       net (fanout=49)       2.259   VGAControlModule/Hcounter<2>
+    SLICE_X20Y5.Y        Tilo                  0.707   GameTitleBar/CharAddr<10>366
+                                                       GameTitleBar/CharAddr<10>141
+    SLICE_X20Y1.G1       net (fanout=5)        0.555   GameTitleBar/CharAddr<10>_bdd31
+    SLICE_X20Y1.Y        Tilo                  0.707   GameTitleBar/CharAddr<9>536
+                                                       GameTitleBar/CharAddr<9>522
+    SLICE_X20Y1.F3       net (fanout=1)        0.043   GameTitleBar/CharAddr<9>522/O
+    SLICE_X20Y1.X        Tilo                  0.692   GameTitleBar/CharAddr<9>536
+                                                       GameTitleBar/CharAddr<9>536
+    SLICE_X20Y2.G3       net (fanout=1)        0.328   GameTitleBar/CharAddr<9>536
+    SLICE_X20Y2.Y        Tilo                  0.707   CharAddr<9>
+                                                       GameTitleBar/CharAddr<9>584_SW0
+    SLICE_X20Y2.F4       net (fanout=1)        0.060   GameTitleBar/CharAddr<9>584_SW0/O
+    SLICE_X20Y2.X        Tilo                  0.692   CharAddr<9>
+                                                       GameTitleBar/CharAddr<9>584
+    RAMB16_X0Y1.ADDRA11  net (fanout=1)        1.654   CharAddr<9>
+    RAMB16_X0Y1.CLKA     Trcck_ADDRA           0.321   CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+                                                       CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram
+    -------------------------------------------------  ---------------------------
+    Total                                      9.305ns (4.406ns logic, 4.899ns route)
+                                                       (47.4% logic, 52.6% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: PERIOD analysis for net "SysClock/CLK0_BUF" derived from
+ NET "SysClock/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ duty cycle corrected to 40 nS  HIGH 20 nS 
+
+--------------------------------------------------------------------------------
+
+Paths for end point BoomBox/Mshreg_delay_input_5/SRL16E (SLICE_X14Y17.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.823ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               BallMotionControl/trig_sound (FF)
+  Destination:          BoomBox/Mshreg_delay_input_5/SRL16E (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.853ns (Levels of Logic = 1)
+  Clock Path Skew:      0.030ns (0.231 - 0.201)
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: BallMotionControl/trig_sound to BoomBox/Mshreg_delay_input_5/SRL16E
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X12Y16.YQ      Tcko                  0.541   BallMotionControl/trig_sound
+                                                       BallMotionControl/trig_sound
+    SLICE_X14Y17.BY      net (fanout=1)        0.438   BallMotionControl/trig_sound
+    SLICE_X14Y17.CLK     Tdh         (-Th)     0.126   BoomBox/delay_input_51
+                                                       BoomBox/Mshreg_delay_input_5/SRL16E
+    -------------------------------------------------  ---------------------------
+    Total                                      0.853ns (0.415ns logic, 0.438ns route)
+                                                       (48.7% logic, 51.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point MouseClkFilter_7 (SLICE_X7Y6.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.929ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               MouseClkFilter_6 (FF)
+  Destination:          MouseClkFilter_7 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.929ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: MouseClkFilter_6 to MouseClkFilter_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X7Y6.YQ        Tcko                  0.464   MouseClkFilter<7>
+                                                       MouseClkFilter_6
+    SLICE_X7Y6.BX        net (fanout=3)        0.376   MouseClkFilter<6>
+    SLICE_X7Y6.CLK       Tckdi       (-Th)    -0.089   MouseClkFilter<7>
+                                                       MouseClkFilter_7
+    -------------------------------------------------  ---------------------------
+    Total                                      0.929ns (0.553ns logic, 0.376ns route)
+                                                       (59.5% logic, 40.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point BoomBox/Locked_inv_shift5 (SLICE_X20Y30.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.948ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               BoomBox/Locked_inv_shift4 (FF)
+  Destination:          BoomBox/Locked_inv_shift5 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.039ns (Levels of Logic = 0)
+  Clock Path Skew:      0.091ns (0.353 - 0.262)
+  Source Clock:         CLK0 rising at 40.000ns
+  Destination Clock:    CLK0 rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: BoomBox/Locked_inv_shift4 to BoomBox/Locked_inv_shift5
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y31.XQ      Tcko                  0.505   BoomBox/Locked_inv_shift4
+                                                       BoomBox/Locked_inv_shift4
+    SLICE_X20Y30.BY      net (fanout=1)        0.361   BoomBox/Locked_inv_shift4
+    SLICE_X20Y30.CLK     Tckdi       (-Th)    -0.173   BoomBox/Locked_inv_shift5
+                                                       BoomBox/Locked_inv_shift5
+    -------------------------------------------------  ---------------------------
+    Total                                      1.039ns (0.678ns logic, 0.361ns route)
+                                                       (65.3% logic, 34.7% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: PERIOD analysis for net "SysClock/CLK0_BUF" derived from
+ NET "SysClock/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ duty cycle corrected to 40 nS  HIGH 20 nS 
+
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpco)
+  Physical resource: SysClock/DCM_SP_INST/CLK0
+  Logical resource: SysClock/DCM_SP_INST/CLK0
+  Location pin: DCM_X1Y0.CLK0
+  Clock network: SysClock/CLK0_BUF
+--------------------------------------------------------------------------------
+Slack: 36.824ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.176ns (314.861MHz) (Trper_CLKA)
+  Physical resource: CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram/CLKA
+  Logical resource: CharacterBank/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram/CLKA
+  Location pin: RAMB16_X0Y1.CLKA
+  Clock network: CLK0
+--------------------------------------------------------------------------------
+Slack: 38.398ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 0.801ns (Tcl)
+  Physical resource: BallMotionControl/Vcen<8>/CLK
+  Logical resource: BallMotionControl/Vcen_8/CK
+  Location pin: SLICE_X4Y8.CLK
+  Clock network: CLK0
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for SysClock/CLKIN_IBUFG
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|SysClock/CLKIN_IBUFG           |     40.000ns|     10.000ns|     10.218ns|            0|            0|            0|         8144|
+| SysClock/CLK0_BUF             |     40.000ns|     10.218ns|          N/A|            0|            0|         8144|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |   10.218|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 8144 paths, 0 nets, and 2533 connections
+
+Design statistics:
+   Minimum period:  10.218ns{1}   (Maximum frequency:  97.867MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Mon Jul 15 08:13:12 2019 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 4524 MB
+
+
+

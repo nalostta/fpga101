@@ -1,0 +1,84 @@
+VGA controller timing:
+
+_______________________________________________________________________________________________
+horizontal:
+		   _______		   ________
+		  | 	  |		  |		
+video	  |	  	  |		  |		
+__________|		  |_______|		
+   -C->|  |<--D-->|   |<-E-
+		  
+____	______________    _________
+sync|  |		      |  |
+	|  |		      |  |
+	|__|		      |__|
+--->|  |<-B-- 
+	|<------A-------->|
+
+_______________________________________________________________________________________________	
+>Sync Pulse = 96 clocks(B) =>96*0.04=3.84us
+ HSync should be 0 and value of RGB doesn't matter.
+>Back Porch = 48 clocks (C) HSync signal should be 
+ 1 and the value of RGB shouldn't matter
+>Horizontal Video = 640 clocks (D) Hsync signal 
+ should be 1 and RGB should have the value of the pixel 
+ of the line.At every rising clock,new pixel is sampled.
+>Front porch = 16 clocks (E) HSync signal should be 1 
+ and value of RGB doesn't matter.
+ Total time = (B+C+D+E) in one horizontal line is 
+ 800 pixel clock periods.
+
+
+_______________________________________________________________________________________________
+Vertical timing:
+
+Vertical timing is similar to the horizontal timing,with only difference is it is calculated in terms of horizontal line period which is 800 pixel period.
+A frame time consists of 4 parts.
+
+	     _____________		   _________
+	    |	  		  |		  |
+video   |     	      |	      |
+________|	  		  |_______|
+  -Q->| |<-----R----->|   |<-S-
+____   ___________________   _____________
+sync| |				      | |
+    | |				      | |
+    |_|				      |_|
+ -->| |<--P-
+	|<----------O-------->|
+	
+_______________________________________________________________________________________________	
+>Sync Pule = 2 lines (P)
+ Vsync signal should be 0.
+>Back Porch = 33 lines (Q).
+ VSync should be 1.
+>Vertical video = 480 lines (R).
+ VSync signal should be 1.
+ In this time all frame pixels are sampled, HSync has to toggle as per horizontal timing and RGB
+ values are sampled for each pixel.
+>Front Porch = 10 lines (S)
+ VSync signal should be 1
+>Total time (P+Q+R+S) in one frame is 525 lines period.
+
+
+_______________________________________________________________________________________________
+Screen Refresh Rate:
+>1 pixel clock period = 0.04 us.
+>1 line period = 800*0.04 us = 32 us.
+>1 frame period = 525*32 us= 16.8ms
+>Frame Refresh rate is 59.5 Hz. So in 1 second, screen with refresh 59.5 times, and thus human eye would think that it is a continuous.
+
+
+horizontal counter
+
+0 – 639	Visible Range
+640 – 655	Front Porch
+656 – 751	Sync Pulse
+752 – 799	Back Porch
+
+
+vertical counter
+0 – 479	Visible Range
+480 – 489	Front Porch
+490 – 491	Sync Pulse
+492 – 524	Back Porch

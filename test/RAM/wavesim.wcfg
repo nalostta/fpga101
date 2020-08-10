@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/FPGA101/test/RAM/testbench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="6" />
+   <wvobject fp_name="/testbench/data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/floating" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">floating[3:0]</obj_property>
+      <obj_property name="ObjectShortName">floating[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/address" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">address[1:0]</obj_property>
+      <obj_property name="ObjectShortName">address[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/readE" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">readE</obj_property>
+      <obj_property name="ObjectShortName">readE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/writeE" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">writeE</obj_property>
+      <obj_property name="ObjectShortName">writeE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/datain" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">datain[3:0]</obj_property>
+      <obj_property name="ObjectShortName">datain[3:0]</obj_property>
+   </wvobject>
+</wave_config>

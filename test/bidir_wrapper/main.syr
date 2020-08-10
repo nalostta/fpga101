@@ -1,0 +1,482 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
+ 
+--> Reading design: main.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "main.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "main"
+Output Format                      : NGC
+Target Device                      : xc3s50a-4-tq144
+
+---- Source Options
+Top Module Name                    : main
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "clk_gen.v" in library work
+Compiling verilog file "bidir_test.v" in library work
+Module <clk_gen> compiled
+Compiling verilog file "main.v" in library work
+Module <bidir_test> compiled
+Module <main> compiled
+No errors in compilation
+Analysis of file <"main.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <main> in library <work>.
+
+Analyzing hierarchy for module <clk_gen> in library <work>.
+
+Analyzing hierarchy for module <bidir_test> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <main>.
+Module <main> is correct for synthesis.
+ 
+Analyzing module <clk_gen> in library <work>.
+Module <clk_gen> is correct for synthesis.
+ 
+    Set user-defined property "CAPACITANCE =  DONT_CARE" for instance <CLKIN_IBUFG_INST> in unit <clk_gen>.
+    Set user-defined property "IBUF_DELAY_VALUE =  0" for instance <CLKIN_IBUFG_INST> in unit <clk_gen>.
+    Set user-defined property "IBUF_LOW_PWR =  TRUE" for instance <CLKIN_IBUFG_INST> in unit <clk_gen>.
+    Set user-defined property "IOSTANDARD =  DEFAULT" for instance <CLKIN_IBUFG_INST> in unit <clk_gen>.
+    Set user-defined property "CLKDV_DIVIDE =  2.000000" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "CLKFX_DIVIDE =  25" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "CLKFX_MULTIPLY =  8" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "CLKIN_PERIOD =  40.000000" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "CLK_FEEDBACK =  1X" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <DCM_SP_INST> in unit <clk_gen>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <DCM_SP_INST> in unit <clk_gen>.
+Analyzing module <bidir_test> in library <work>.
+Module <bidir_test> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <data_en> in unit <bidir_test> has a constant value of 0 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <bidir_test>.
+    Related source file is "bidir_test.v".
+WARNING:Xst:646 - Signal <data_read> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <data_io> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:737 - Found 1-bit latch for signal <data_out>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 1-bit register for signal <my_state_out>.
+    Found 1-bit tristate buffer for signal <data_link>.
+    Found 1-bit register for signal <partner_state_out>.
+    Found 1-bit xor2 for signal <data_out$xor0000> created at line 57.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+	inferred   1 Tristate(s).
+Unit <bidir_test> synthesized.
+
+
+Synthesizing Unit <clk_gen>.
+    Related source file is "clk_gen.v".
+Unit <clk_gen> synthesized.
+
+
+Synthesizing Unit <main>.
+    Related source file is "main.v".
+WARNING:Xst:647 - Input <switch<6:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <CLKIN_IBUFG_OUT> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <clk_2mhz>.
+    Found 1-bit register for signal <by4>.
+    Found 1-bit adder for signal <by4$add0000> created at line 92.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <main> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 1-bit adder                                           : 1
+# Registers                                            : 6
+ 1-bit register                                        : 6
+# Tristates                                            : 2
+ 1-bit tristate buffer                                 : 2
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 1-bit adder                                           : 1
+# Registers                                            : 6
+ Flip-Flops                                            : 6
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <main> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 1.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 6
+ Flip-Flops                                            : 6
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : main.ngr
+Top Level Output File Name         : main
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 23
+
+Cell Usage :
+# BELS                             : 18
+#      GND                         : 1
+#      INV                         : 1
+#      LUT2                        : 9
+#      LUT3                        : 6
+#      VCC                         : 1
+# FlipFlops/Latches                : 6
+#      FDCE                        : 2
+#      FDCP                        : 1
+#      FDCPE                       : 3
+# Clock Buffers                    : 2
+#      BUFG                        : 2
+# IO Buffers                       : 17
+#      IBUF                        : 4
+#      IBUFG                       : 1
+#      IOBUF                       : 2
+#      OBUF                        : 10
+# DCMs                             : 1
+#      DCM_SP                      : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50atq144-4 
+
+ Number of Slices:                       10  out of    704     1%  
+ Number of Slice Flip Flops:              2  out of   1408     0%  
+ Number of 4 input LUTs:                 16  out of   1408     1%  
+ Number of IOs:                          23
+ Number of bonded IOBs:                  17  out of    108    15%  
+    IOB Flip Flops:                       4
+ Number of GCLKs:                         2  out of     24     8%  
+ Number of DCMs:                          1  out of      2    50%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+----------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)      | Load  |
+-----------------------------------+----------------------------+-------+
+clk                                | _8Mhz/DCM_SP_INST:CLKFX    | 2     |
+led_4_OBUF                         | NONE(Partner2/my_state_out)| 4     |
+-----------------------------------+----------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-------------------------------------------------------------------------+---------------------------------+-------+
+Control Signal                                                           | Buffer(FF name)                 | Load  |
+-------------------------------------------------------------------------+---------------------------------+-------+
+Partner1/my_state_out_and0000(Partner1/my_state_out_and00001:O)          | NONE(Partner1/my_state_out)     | 1     |
+Partner1/my_state_out_and0001(Partner1/my_state_out_and00011:O)          | NONE(Partner1/my_state_out)     | 1     |
+Partner1/partner_state_out_and0000(Partner1/partner_state_out_and00001:O)| NONE(Partner1/partner_state_out)| 1     |
+Partner2/my_state_out_and0000(Partner2/my_state_out_and00001:O)          | NONE(Partner2/my_state_out)     | 1     |
+Partner2/my_state_out_and0001(Partner2/my_state_out_and00011:O)          | NONE(Partner2/my_state_out)     | 1     |
+Partner2/partner_state_out_and0000(Partner2/partner_state_out_and00001:O)| NONE(Partner2/partner_state_out)| 1     |
+by4_and0000(clk_2mhz_and000011:O)                                        | NONE(by4)                       | 1     |
+by4_and0001(by4_and00011:O)                                              | NONE(by4)                       | 1     |
+clk_2mhz_and0000(clk_2mhz_and00001:O)                                    | NONE(clk_2mhz)                  | 1     |
+clk_2mhz_and0001(clk_2mhz_and00011:O)                                    | NONE(clk_2mhz)                  | 1     |
+-------------------------------------------------------------------------+---------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 0.857ns (Maximum Frequency: 1166.480MHz)
+   Minimum input arrival time before clock: 3.005ns
+   Maximum output required time after clock: 5.868ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 0.857ns (frequency: 1166.480MHz)
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               2.679ns (Levels of Logic = 1)
+  Source:            by4 (FF)
+  Destination:       clk_2mhz (FF)
+  Source Clock:      clk rising 0.3X
+  Destination Clock: clk rising 0.3X
+
+  Data Path: by4 to clk_2mhz
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCP:C->Q             5   0.591   0.713  by4 (by4)
+     LUT2:I1->O            1   0.643   0.420  clk_2mhz_not00011 (clk_2mhz_not0001)
+     FDCPE:CE                  0.312          clk_2mhz
+    ----------------------------------------
+    Total                      2.679ns (1.546ns logic, 1.133ns route)
+                                       (57.7% logic, 42.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              3.005ns (Levels of Logic = 2)
+  Source:            rst_2mhz (PAD)
+  Destination:       clk_2mhz (FF)
+  Destination Clock: clk rising 0.3X
+
+  Data Path: rst_2mhz to clk_2mhz
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             5   0.849   0.776  rst_2mhz_IBUF (rst_2mhz_IBUF)
+     LUT2:I0->O            1   0.648   0.420  clk_2mhz_not00011 (clk_2mhz_not0001)
+     FDCPE:CE                  0.312          clk_2mhz
+    ----------------------------------------
+    Total                      3.005ns (1.809ns logic, 1.196ns route)
+                                       (60.2% logic, 39.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'led_4_OBUF'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              3.005ns (Levels of Logic = 2)
+  Source:            datalink2 (PAD)
+  Destination:       Partner2/my_state_out (FF)
+  Destination Clock: led_4_OBUF rising
+
+  Data Path: datalink2 to Partner2/my_state_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O           5   0.849   0.776  datalink2_IOBUF (N2)
+     LUT2:I0->O            1   0.648   0.420  Partner2/my_state_out_not00011 (Partner2/my_state_out_not0001)
+     FDCPE:CE                  0.312          Partner2/my_state_out
+    ----------------------------------------
+    Total                      3.005ns (1.809ns logic, 1.196ns route)
+                                       (60.2% logic, 39.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Offset:              5.868ns (Levels of Logic = 1)
+  Source:            clk_2mhz (FF)
+  Destination:       clk_2mhz (PAD)
+  Source Clock:      clk rising 0.3X
+
+  Data Path: clk_2mhz to clk_2mhz
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCPE:C->Q            8   0.591   0.757  clk_2mhz (led_4_OBUF)
+     OBUF:I->O                 4.520          clk_2mhz_OBUF (clk_2mhz)
+    ----------------------------------------
+    Total                      5.868ns (5.111ns logic, 0.757ns route)
+                                       (87.1% logic, 12.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'led_4_OBUF'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              5.531ns (Levels of Logic = 1)
+  Source:            Partner2/my_state_out (FF)
+  Destination:       led<7> (PAD)
+  Source Clock:      led_4_OBUF rising
+
+  Data Path: Partner2/my_state_out to led<7>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCPE:C->Q            1   0.591   0.420  Partner2/my_state_out (Partner2/my_state_out)
+     OBUF:I->O                 4.520          led_7_OBUF (led<7>)
+    ----------------------------------------
+    Total                      5.531ns (5.111ns logic, 0.420ns route)
+                                       (92.4% logic, 7.6% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 4.95 secs
+ 
+--> 
+
+Total memory usage is 4551900 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    5 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+

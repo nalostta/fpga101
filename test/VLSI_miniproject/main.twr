@@ -1,0 +1,564 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+-n 3 -fastpaths -xml main.twx main.ncd -o main.twr main.pcf -ucf
+constraint_clk.ucf -ucf constraint_led.ucf -ucf constraint_pushbtn.ucf -ucf
+constraint_VGA.ucf -ucf constraint_switch.ucf
+
+Design file:              main.ncd
+Physical constraint file: main.pcf
+Device,package,speed:     xc3s50a,tq144,-4 (PRODUCTION 1.42 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 component switching limit errors)
+ Minimum period is  10.000ns.
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: instance_name/DCM_SP_INST/CLKIN
+  Logical resource: instance_name/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: instance_name/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 30.000ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 40.000ns
+  High pulse: 20.000ns
+  High pulse limit: 5.000ns (Tdcmpw_CLKIN_25_50)
+  Physical resource: instance_name/DCM_SP_INST/CLKIN
+  Logical resource: instance_name/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: instance_name/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpc)
+  Physical resource: instance_name/DCM_SP_INST/CLKIN
+  Logical resource: instance_name/DCM_SP_INST/CLKIN
+  Location pin: DCM_X1Y0.CLKIN
+  Clock network: instance_name/CLKIN_IBUFG
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: PERIOD analysis for net "instance_name/CLK0_BUF" derived 
+from  NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;  duty cycle 
+corrected to 40 nS  HIGH 20 nS  
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 1300 paths analyzed, 258 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   6.102ns.
+--------------------------------------------------------------------------------
+
+Paths for end point controller/Vcounter_9 (SLICE_X16Y22.CE), 10 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     33.898ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               controller/Hcounter_2 (FF)
+  Destination:          controller/Vcounter_9 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      6.057ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.045ns (0.237 - 0.282)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: controller/Hcounter_2 to controller/Vcounter_9
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y9.YQ       Tcko                  0.580   controller/Hcounter<3>
+                                                       controller/Hcounter_2
+    SLICE_X16Y6.G3       net (fanout=5)        1.042   controller/Hcounter<2>
+    SLICE_X16Y6.Y        Tilo                  0.707   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW0
+    SLICE_X16Y6.F1       net (fanout=1)        0.450   controller/Vcounter_cmp_ge0000221_SW0/O
+    SLICE_X16Y6.X        Tilo                  0.692   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW1
+    SLICE_X16Y8.F1       net (fanout=1)        0.439   N20
+    SLICE_X16Y8.X        Tilo                  0.692   controller/Vcounter_cmp_ge0000
+                                                       controller/Vcounter_cmp_ge0000221
+    SLICE_X16Y22.CE      net (fanout=6)        1.144   controller/Vcounter_cmp_ge0000
+    SLICE_X16Y22.CLK     Tceck                 0.311   controller/Vcounter<9>
+                                                       controller/Vcounter_9
+    -------------------------------------------------  ---------------------------
+    Total                                      6.057ns (2.982ns logic, 3.075ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     33.933ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               controller/Hcounter_3 (FF)
+  Destination:          controller/Vcounter_9 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      6.022ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.045ns (0.237 - 0.282)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: controller/Hcounter_3 to controller/Vcounter_9
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y9.XQ       Tcko                  0.591   controller/Hcounter<3>
+                                                       controller/Hcounter_3
+    SLICE_X16Y6.G4       net (fanout=5)        0.996   controller/Hcounter<3>
+    SLICE_X16Y6.Y        Tilo                  0.707   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW0
+    SLICE_X16Y6.F1       net (fanout=1)        0.450   controller/Vcounter_cmp_ge0000221_SW0/O
+    SLICE_X16Y6.X        Tilo                  0.692   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW1
+    SLICE_X16Y8.F1       net (fanout=1)        0.439   N20
+    SLICE_X16Y8.X        Tilo                  0.692   controller/Vcounter_cmp_ge0000
+                                                       controller/Vcounter_cmp_ge0000221
+    SLICE_X16Y22.CE      net (fanout=6)        1.144   controller/Vcounter_cmp_ge0000
+    SLICE_X16Y22.CLK     Tceck                 0.311   controller/Vcounter<9>
+                                                       controller/Vcounter_9
+    -------------------------------------------------  ---------------------------
+    Total                                      6.022ns (2.993ns logic, 3.029ns route)
+                                                       (49.7% logic, 50.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.084ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               controller/Hcounter_1 (FF)
+  Destination:          controller/Vcounter_9 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.871ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.045ns (0.237 - 0.282)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: controller/Hcounter_1 to controller/Vcounter_9
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y9.XQ       Tcko                  0.631   controller/Hcounter<1>
+                                                       controller/Hcounter_1
+    SLICE_X16Y6.G2       net (fanout=5)        0.805   controller/Hcounter<1>
+    SLICE_X16Y6.Y        Tilo                  0.707   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW0
+    SLICE_X16Y6.F1       net (fanout=1)        0.450   controller/Vcounter_cmp_ge0000221_SW0/O
+    SLICE_X16Y6.X        Tilo                  0.692   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW1
+    SLICE_X16Y8.F1       net (fanout=1)        0.439   N20
+    SLICE_X16Y8.X        Tilo                  0.692   controller/Vcounter_cmp_ge0000
+                                                       controller/Vcounter_cmp_ge0000221
+    SLICE_X16Y22.CE      net (fanout=6)        1.144   controller/Vcounter_cmp_ge0000
+    SLICE_X16Y22.CLK     Tceck                 0.311   controller/Vcounter<9>
+                                                       controller/Vcounter_9
+    -------------------------------------------------  ---------------------------
+    Total                                      5.871ns (3.033ns logic, 2.838ns route)
+                                                       (51.7% logic, 48.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point controller/Vcounter_8 (SLICE_X16Y22.CE), 10 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     33.898ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               controller/Hcounter_2 (FF)
+  Destination:          controller/Vcounter_8 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      6.057ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.045ns (0.237 - 0.282)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: controller/Hcounter_2 to controller/Vcounter_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y9.YQ       Tcko                  0.580   controller/Hcounter<3>
+                                                       controller/Hcounter_2
+    SLICE_X16Y6.G3       net (fanout=5)        1.042   controller/Hcounter<2>
+    SLICE_X16Y6.Y        Tilo                  0.707   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW0
+    SLICE_X16Y6.F1       net (fanout=1)        0.450   controller/Vcounter_cmp_ge0000221_SW0/O
+    SLICE_X16Y6.X        Tilo                  0.692   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW1
+    SLICE_X16Y8.F1       net (fanout=1)        0.439   N20
+    SLICE_X16Y8.X        Tilo                  0.692   controller/Vcounter_cmp_ge0000
+                                                       controller/Vcounter_cmp_ge0000221
+    SLICE_X16Y22.CE      net (fanout=6)        1.144   controller/Vcounter_cmp_ge0000
+    SLICE_X16Y22.CLK     Tceck                 0.311   controller/Vcounter<9>
+                                                       controller/Vcounter_8
+    -------------------------------------------------  ---------------------------
+    Total                                      6.057ns (2.982ns logic, 3.075ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     33.933ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               controller/Hcounter_3 (FF)
+  Destination:          controller/Vcounter_8 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      6.022ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.045ns (0.237 - 0.282)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: controller/Hcounter_3 to controller/Vcounter_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X19Y9.XQ       Tcko                  0.591   controller/Hcounter<3>
+                                                       controller/Hcounter_3
+    SLICE_X16Y6.G4       net (fanout=5)        0.996   controller/Hcounter<3>
+    SLICE_X16Y6.Y        Tilo                  0.707   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW0
+    SLICE_X16Y6.F1       net (fanout=1)        0.450   controller/Vcounter_cmp_ge0000221_SW0/O
+    SLICE_X16Y6.X        Tilo                  0.692   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW1
+    SLICE_X16Y8.F1       net (fanout=1)        0.439   N20
+    SLICE_X16Y8.X        Tilo                  0.692   controller/Vcounter_cmp_ge0000
+                                                       controller/Vcounter_cmp_ge0000221
+    SLICE_X16Y22.CE      net (fanout=6)        1.144   controller/Vcounter_cmp_ge0000
+    SLICE_X16Y22.CLK     Tceck                 0.311   controller/Vcounter<9>
+                                                       controller/Vcounter_8
+    -------------------------------------------------  ---------------------------
+    Total                                      6.022ns (2.993ns logic, 3.029ns route)
+                                                       (49.7% logic, 50.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.084ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               controller/Hcounter_1 (FF)
+  Destination:          controller/Vcounter_8 (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.871ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.045ns (0.237 - 0.282)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: controller/Hcounter_1 to controller/Vcounter_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X18Y9.XQ       Tcko                  0.631   controller/Hcounter<1>
+                                                       controller/Hcounter_1
+    SLICE_X16Y6.G2       net (fanout=5)        0.805   controller/Hcounter<1>
+    SLICE_X16Y6.Y        Tilo                  0.707   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW0
+    SLICE_X16Y6.F1       net (fanout=1)        0.450   controller/Vcounter_cmp_ge0000221_SW0/O
+    SLICE_X16Y6.X        Tilo                  0.692   N20
+                                                       controller/Vcounter_cmp_ge0000221_SW1
+    SLICE_X16Y8.F1       net (fanout=1)        0.439   N20
+    SLICE_X16Y8.X        Tilo                  0.692   controller/Vcounter_cmp_ge0000
+                                                       controller/Vcounter_cmp_ge0000221
+    SLICE_X16Y22.CE      net (fanout=6)        1.144   controller/Vcounter_cmp_ge0000
+    SLICE_X16Y22.CLK     Tceck                 0.311   controller/Vcounter<9>
+                                                       controller/Vcounter_8
+    -------------------------------------------------  ---------------------------
+    Total                                      5.871ns (3.033ns logic, 2.838ns route)
+                                                       (51.7% logic, 48.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point engine/Hst (SLICE_X4Y7.CE), 31 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     33.970ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               engine/count_0 (FF)
+  Destination:          engine/Hst (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      6.002ns (Levels of Logic = 2)
+  Clock Path Skew:      -0.028ns (0.265 - 0.293)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: engine/count_0 to engine/Hst
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X3Y8.XQ        Tcko                  0.591   engine/count<0>
+                                                       engine/count_0
+    SLICE_X5Y14.F1       net (fanout=2)        1.317   engine/count<0>
+    SLICE_X5Y14.XB       Topxb                 1.285   engine/Hcen_cmp_eq0000
+                                                       engine/Hst_and00002_wg_lut<4>
+                                                       engine/Hst_and00002_wg_cy<4>
+    SLICE_X5Y6.G4        net (fanout=16)       1.239   engine/Hcen_cmp_eq0000
+    SLICE_X5Y6.Y         Tilo                  0.648   engine/Hst_and0000
+                                                       engine/Hst_and000017
+    SLICE_X4Y7.CE        net (fanout=1)        0.611   engine/Hst_and0000
+    SLICE_X4Y7.CLK       Tceck                 0.311   engine/Hst
+                                                       engine/Hst
+    -------------------------------------------------  ---------------------------
+    Total                                      6.002ns (2.835ns logic, 3.167ns route)
+                                                       (47.2% logic, 52.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.071ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               engine/count_5 (FF)
+  Destination:          engine/Hst (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.905ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.024ns (0.265 - 0.289)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: engine/count_5 to engine/Hst
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X3Y10.YQ       Tcko                  0.580   engine/count<4>
+                                                       engine/count_5
+    SLICE_X5Y13.G1       net (fanout=2)        1.042   engine/count<5>
+    SLICE_X5Y13.COUT     Topcyg                1.178   engine/Hst_and00002_wg_cy<3>
+                                                       engine/Hst_and00002_wg_lut<3>
+                                                       engine/Hst_and00002_wg_cy<3>
+    SLICE_X5Y14.CIN      net (fanout=1)        0.000   engine/Hst_and00002_wg_cy<3>
+    SLICE_X5Y14.XB       Tcinxb                0.296   engine/Hcen_cmp_eq0000
+                                                       engine/Hst_and00002_wg_cy<4>
+    SLICE_X5Y6.G4        net (fanout=16)       1.239   engine/Hcen_cmp_eq0000
+    SLICE_X5Y6.Y         Tilo                  0.648   engine/Hst_and0000
+                                                       engine/Hst_and000017
+    SLICE_X4Y7.CE        net (fanout=1)        0.611   engine/Hst_and0000
+    SLICE_X4Y7.CLK       Tceck                 0.311   engine/Hst
+                                                       engine/Hst
+    -------------------------------------------------  ---------------------------
+    Total                                      5.905ns (3.013ns logic, 2.892ns route)
+                                                       (51.0% logic, 49.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     34.116ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               engine/count_15 (FF)
+  Destination:          engine/Hst (FF)
+  Requirement:          40.000ns
+  Data Path Delay:      5.877ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.007ns (0.265 - 0.272)
+  Source Clock:         PixClk rising at 0.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: engine/count_15 to engine/Hst
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X3Y15.YQ       Tcko                  0.580   engine/count<14>
+                                                       engine/count_15
+    SLICE_X5Y13.F2       net (fanout=2)        0.997   engine/count<15>
+    SLICE_X5Y13.COUT     Topcyf                1.195   engine/Hst_and00002_wg_cy<3>
+                                                       engine/Hst_and00002_wg_lut<2>
+                                                       engine/Hst_and00002_wg_cy<2>
+                                                       engine/Hst_and00002_wg_cy<3>
+    SLICE_X5Y14.CIN      net (fanout=1)        0.000   engine/Hst_and00002_wg_cy<3>
+    SLICE_X5Y14.XB       Tcinxb                0.296   engine/Hcen_cmp_eq0000
+                                                       engine/Hst_and00002_wg_cy<4>
+    SLICE_X5Y6.G4        net (fanout=16)       1.239   engine/Hcen_cmp_eq0000
+    SLICE_X5Y6.Y         Tilo                  0.648   engine/Hst_and0000
+                                                       engine/Hst_and000017
+    SLICE_X4Y7.CE        net (fanout=1)        0.611   engine/Hst_and0000
+    SLICE_X4Y7.CLK       Tceck                 0.311   engine/Hst
+                                                       engine/Hst
+    -------------------------------------------------  ---------------------------
+    Total                                      5.877ns (3.030ns logic, 2.847ns route)
+                                                       (51.6% logic, 48.4% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: PERIOD analysis for net "instance_name/CLK0_BUF" derived from
+ NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ duty cycle corrected to 40 nS  HIGH 20 nS 
+
+--------------------------------------------------------------------------------
+
+Paths for end point engine/Vcen_2 (SLICE_X7Y19.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.965ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               engine/Vcen_2 (FF)
+  Destination:          engine/Vcen_2 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.965ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         PixClk rising at 40.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: engine/Vcen_2 to engine/Vcen_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X7Y19.XQ       Tcko                  0.473   engine/Vcen<2>
+                                                       engine/Vcen_2
+    SLICE_X7Y19.BX       net (fanout=7)        0.408   engine/Vcen<2>
+    SLICE_X7Y19.CLK      Tckdi       (-Th)    -0.084   engine/Vcen<2>
+                                                       engine/Vcen_2
+    -------------------------------------------------  ---------------------------
+    Total                                      0.965ns (0.557ns logic, 0.408ns route)
+                                                       (57.7% logic, 42.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point engine/Hcen_2 (SLICE_X5Y4.BX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.010ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               engine/Hcen_2 (FF)
+  Destination:          engine/Hcen_2 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.010ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         PixClk rising at 40.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: engine/Hcen_2 to engine/Hcen_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X5Y4.XQ        Tcko                  0.473   engine/Hcen<2>
+                                                       engine/Hcen_2
+    SLICE_X5Y4.BX        net (fanout=7)        0.453   engine/Hcen<2>
+    SLICE_X5Y4.CLK       Tckdi       (-Th)    -0.084   engine/Hcen<2>
+                                                       engine/Hcen_2
+    -------------------------------------------------  ---------------------------
+    Total                                      1.010ns (0.557ns logic, 0.453ns route)
+                                                       (55.1% logic, 44.9% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point engine/Vcen_1 (SLICE_X7Y19.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.030ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               engine/Vcen_1 (FF)
+  Destination:          engine/Vcen_1 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.030ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         PixClk rising at 40.000ns
+  Destination Clock:    PixClk rising at 40.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: engine/Vcen_1 to engine/Vcen_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X7Y19.YQ       Tcko                  0.464   engine/Vcen<2>
+                                                       engine/Vcen_1
+    SLICE_X7Y19.BY       net (fanout=3)        0.426   engine/Vcen<1>
+    SLICE_X7Y19.CLK      Tckdi       (-Th)    -0.140   engine/Vcen<2>
+                                                       engine/Vcen_1
+    -------------------------------------------------  ---------------------------
+    Total                                      1.030ns (0.604ns logic, 0.426ns route)
+                                                       (58.6% logic, 41.4% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: PERIOD analysis for net "instance_name/CLK0_BUF" derived from
+ NET "instance_name/CLKIN_IBUFG" PERIOD = 40 ns HIGH 50%;
+ duty cycle corrected to 40 nS  HIGH 20 nS 
+
+--------------------------------------------------------------------------------
+Slack: 36.001ns (period - min period limit)
+  Period: 40.000ns
+  Min period limit: 3.999ns (250.063MHz) (Tdcmpco)
+  Physical resource: instance_name/DCM_SP_INST/CLK0
+  Logical resource: instance_name/DCM_SP_INST/CLK0
+  Location pin: DCM_X1Y0.CLK0
+  Clock network: instance_name/CLK0_BUF
+--------------------------------------------------------------------------------
+Slack: 38.398ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 40.000ns
+  Low pulse: 20.000ns
+  Low pulse limit: 0.801ns (Tcl)
+  Physical resource: controller/Hcounter<1>/CLK
+  Logical resource: controller/Hcounter_1/CK
+  Location pin: SLICE_X18Y9.CLK
+  Clock network: PixClk
+--------------------------------------------------------------------------------
+Slack: 38.398ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 40.000ns
+  High pulse: 20.000ns
+  High pulse limit: 0.801ns (Tch)
+  Physical resource: controller/Hcounter<1>/CLK
+  Logical resource: controller/Hcounter_1/CK
+  Location pin: SLICE_X18Y9.CLK
+  Clock network: PixClk
+--------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Derived Constraints for instance_name/CLKIN_IBUFG
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|instance_name/CLKIN_IBUFG      |     40.000ns|     10.000ns|      6.102ns|            0|            0|            0|         1300|
+| instance_name/CLK0_BUF        |     40.000ns|      6.102ns|          N/A|            0|            0|         1300|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    6.102|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 1300 paths, 0 nets, and 423 connections
+
+Design statistics:
+   Minimum period:  10.000ns{1}   (Maximum frequency: 100.000MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Thu Apr 04 14:23:25 2019 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 4524 MB
+
+
+

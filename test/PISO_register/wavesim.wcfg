@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/FPGA101/test/PISO_register/testbench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="4" />
+   <wvobject fp_name="/testbench/led_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">led_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">led_out[7:0]</obj_property>
+      <wvobject fp_name="/testbench/led_out[7]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">led_out[7]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[6]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">led_out[6]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[5]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">led_out[5]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[4]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">led_out[4]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[3]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">led_out[3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[2]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">led_out[2]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[1]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">led_out[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/led_out[0]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">led_out[0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/testbench/clk_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_in</obj_property>
+      <obj_property name="ObjectShortName">clk_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/rst_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_in</obj_property>
+      <obj_property name="ObjectShortName">rst_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/P_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">P_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">P_in[7:0]</obj_property>
+   </wvobject>
+</wave_config>

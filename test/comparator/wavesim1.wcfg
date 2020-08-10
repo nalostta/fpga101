@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/FPGA101/test/comparator/testbench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="4" />
+   <wvobject fp_name="/testbench/RedLed" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">RedLed</obj_property>
+      <obj_property name="ObjectShortName">RedLed</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/GreenLed" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">GreenLed</obj_property>
+      <obj_property name="ObjectShortName">GreenLed</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/BlueLed" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">BlueLed</obj_property>
+      <obj_property name="ObjectShortName">BlueLed</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/switch" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">switch[7:0]</obj_property>
+      <obj_property name="ObjectShortName">switch[7:0]</obj_property>
+   </wvobject>
+</wave_config>

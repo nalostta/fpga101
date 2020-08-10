@@ -1,0 +1,453 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> Reading design: VGA_control.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "VGA_control.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "VGA_control"
+Output Format                      : NGC
+Target Device                      : xc3s50a-4-tq144
+
+---- Source Options
+Top Module Name                    : VGA_control
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 500
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "VGA_control.v" in library work
+Module <VGA_control> compiled
+No errors in compilation
+Analysis of file <"VGA_control.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <VGA_control> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <VGA_control>.
+Module <VGA_control> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <VGA_control>.
+    Related source file is "VGA_control.v".
+INFO:Xst:1608 - Relative priorities of control signals on register <Hsync> differ from those commonly found in the selected device family. This will result in additional logic around the register.
+INFO:Xst:1608 - Relative priorities of control signals on register <Vcounts> differ from those commonly found in the selected device family. This will result in additional logic around the register.
+INFO:Xst:1608 - Relative priorities of control signals on register <Vsync> differ from those commonly found in the selected device family. This will result in additional logic around the register.
+    Found 10-bit register for signal <Hcounts>.
+    Found 1-bit register for signal <Hsync>.
+    Found 10-bit register for signal <Vcounts>.
+    Found 1-bit register for signal <Vsync>.
+    Found 10-bit adder for signal <$add0000> created at line 65.
+    Found 10-bit adder for signal <$add0001> created at line 77.
+    Found 10-bit comparator greatequal for signal <Hsync$cmp_ge0000> created at line 70.
+    Found 10-bit comparator less for signal <mux0000$cmp_lt0000> created at line 67.
+    Found 10-bit comparator less for signal <mux0000$cmp_lt0001> created at line 70.
+    Found 10-bit comparator less for signal <mux0000$cmp_lt0002> created at line 73.
+    Found 10-bit comparator greatequal for signal <Vcounts_9$cmp_ge0000> created at line 88.
+    Found 10-bit comparator greatequal for signal <Vcounts_9$cmp_ge0001> created at line 73.
+    Found 10-bit comparator greatequal for signal <Vcounts_9$cmp_ge0002> created at line 82.
+    Found 10-bit comparator greatequal for signal <Vsync$cmp_ge0000> created at line 85.
+    Found 10-bit comparator less for signal <Vsync$cmp_lt0000> created at line 82.
+    Found 10-bit comparator less for signal <Vsync$cmp_lt0001> created at line 85.
+    Found 10-bit comparator less for signal <Vsync$cmp_lt0002> created at line 88.
+    Summary:
+	inferred  22 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred  11 Comparator(s).
+Unit <VGA_control> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 10-bit adder                                          : 2
+# Registers                                            : 22
+ 1-bit register                                        : 22
+# Comparators                                          : 11
+ 10-bit comparator greatequal                          : 5
+ 10-bit comparator less                                : 6
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 10-bit adder                                          : 2
+# Registers                                            : 22
+ Flip-Flops                                            : 22
+# Comparators                                          : 11
+ 10-bit comparator greatequal                          : 5
+ 10-bit comparator less                                : 6
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <VGA_control> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block VGA_control, actual ratio is 8.
+FlipFlop Hcounts_9 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_8 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_7 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_6 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_5 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_4 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_3 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_2 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_1 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop Hcounts_0 has been replicated 1 time(s) to handle iob=true attribute.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 32
+ Flip-Flops                                            : 32
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : VGA_control.ngr
+Top Level Output File Name         : VGA_control
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 24
+
+Cell Usage :
+# BELS                             : 132
+#      GND                         : 1
+#      INV                         : 2
+#      LUT1                        : 18
+#      LUT2                        : 11
+#      LUT2_D                      : 1
+#      LUT2_L                      : 1
+#      LUT3                        : 36
+#      LUT3_L                      : 1
+#      LUT4                        : 19
+#      LUT4_D                      : 1
+#      MUXCY                       : 18
+#      MUXF5                       : 2
+#      VCC                         : 1
+#      XORCY                       : 20
+# FlipFlops/Latches                : 32
+#      FDCP                        : 20
+#      FDCPE                       : 12
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 23
+#      IBUF                        : 1
+#      OBUF                        : 22
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50atq144-4 
+
+ Number of Slices:                       57  out of    704     8%  
+ Number of Slice Flip Flops:             22  out of   1408     1%  
+ Number of 4 input LUTs:                 90  out of   1408     6%  
+ Number of IOs:                          24
+ Number of bonded IOBs:                  24  out of    108    22%  
+    IOB Flip Flops:                      10
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+PixClk                             | BUFGP                  | 32    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+---------------------------------------+------------------------+-------+
+Control Signal                         | Buffer(FF name)        | Load  |
+---------------------------------------+------------------------+-------+
+Hcounts_0_and0000(Hcounts_0_and00001:O)| NONE(Hcounts_0)        | 2     |
+Hcounts_0_and0001(Hcounts_0_and00011:O)| NONE(Hcounts_0)        | 2     |
+Hcounts_1_and0000(Hcounts_1_and00001:O)| NONE(Hcounts_1)        | 2     |
+Hcounts_1_and0001(Hcounts_1_and00011:O)| NONE(Hcounts_1)        | 2     |
+Hcounts_2_and0000(Hcounts_2_and00001:O)| NONE(Hcounts_2)        | 2     |
+Hcounts_2_and0001(Hcounts_2_and00011:O)| NONE(Hcounts_2)        | 2     |
+Hcounts_3_and0000(Hcounts_3_and00001:O)| NONE(Hcounts_3)        | 2     |
+Hcounts_3_and0001(Hcounts_3_and00011:O)| NONE(Hcounts_3)        | 2     |
+Hcounts_4_and0000(Hcounts_4_and00001:O)| NONE(Hcounts_4)        | 2     |
+Hcounts_4_and0001(Hcounts_4_and00011:O)| NONE(Hcounts_4)        | 2     |
+Hcounts_5_and0000(Hcounts_5_and00001:O)| NONE(Hcounts_5)        | 2     |
+Hcounts_5_and0001(Hcounts_5_and00011:O)| NONE(Hcounts_5)        | 2     |
+Hcounts_6_and0000(Hcounts_6_and00001:O)| NONE(Hcounts_6)        | 2     |
+Hcounts_6_and0001(Hcounts_6_and00011:O)| NONE(Hcounts_6)        | 2     |
+Hcounts_7_and0000(Hcounts_7_and00001:O)| NONE(Hcounts_7)        | 2     |
+Hcounts_7_and0001(Hcounts_7_and00011:O)| NONE(Hcounts_7)        | 2     |
+Hcounts_8_and0000(Hcounts_8_and00001:O)| NONE(Hcounts_8)        | 2     |
+Hcounts_8_and0001(Hcounts_8_and00011:O)| NONE(Hcounts_8)        | 2     |
+Hcounts_9_and0000(Hcounts_9_and00001:O)| NONE(Hcounts_9)        | 2     |
+Hcounts_9_and0001(Hcounts_9_and00011:O)| NONE(Hcounts_9)        | 2     |
+Hsync_and0000(Hsync_and0000:O)         | NONE(Hsync)            | 1     |
+Hsync_or0000(Hsync_or000085_f5:O)      | NONE(Hsync)            | 1     |
+Vcounts_0_and0000(Vcounts_0_and00001:O)| NONE(Vcounts_0)        | 1     |
+Vcounts_0_or0000(Vcounts_0_or00001:O)  | NONE(Vcounts_0)        | 1     |
+Vcounts_1_and0000(Vcounts_1_and00001:O)| NONE(Vcounts_1)        | 1     |
+Vcounts_1_or0000(Vcounts_1_or00001:O)  | NONE(Vcounts_1)        | 1     |
+Vcounts_2_and0000(Vcounts_2_and00001:O)| NONE(Vcounts_2)        | 1     |
+Vcounts_2_or0000(Vcounts_2_or00001:O)  | NONE(Vcounts_2)        | 1     |
+Vcounts_3_and0000(Vcounts_3_and00001:O)| NONE(Vcounts_3)        | 1     |
+Vcounts_3_or0000(Vcounts_3_or00001:O)  | NONE(Vcounts_3)        | 1     |
+Vcounts_4_and0000(Vcounts_4_and00001:O)| NONE(Vcounts_4)        | 1     |
+Vcounts_4_or0000(Vcounts_4_or00001:O)  | NONE(Vcounts_4)        | 1     |
+Vcounts_5_and0000(Vcounts_5_and00001:O)| NONE(Vcounts_5)        | 1     |
+Vcounts_5_or0000(Vcounts_5_or00001:O)  | NONE(Vcounts_5)        | 1     |
+Vcounts_6_and0000(Vcounts_6_and00001:O)| NONE(Vcounts_6)        | 1     |
+Vcounts_6_or0000(Vcounts_6_or00001:O)  | NONE(Vcounts_6)        | 1     |
+Vcounts_7_and0000(Vcounts_7_and00001:O)| NONE(Vcounts_7)        | 1     |
+Vcounts_7_or0000(Vcounts_7_or00001:O)  | NONE(Vcounts_7)        | 1     |
+Vcounts_8_and0000(Vcounts_8_and00001:O)| NONE(Vcounts_8)        | 1     |
+Vcounts_8_or0000(Vcounts_8_or00001:O)  | NONE(Vcounts_8)        | 1     |
+Vcounts_9_and0000(Vcounts_9_and00001:O)| NONE(Vcounts_9)        | 1     |
+Vcounts_9_or0000(Vcounts_9_or00001:O)  | NONE(Vcounts_9)        | 1     |
+Vsync_and0000(Vsync_and000026:O)       | NONE(Vsync)            | 1     |
+Vsync_or0000(Vsync_or000058_f5:O)      | NONE(Vsync)            | 1     |
+---------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 5.096ns (Maximum Frequency: 196.232MHz)
+   Minimum input arrival time before clock: 4.594ns
+   Maximum output required time after clock: 5.993ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'PixClk'
+  Clock period: 5.096ns (frequency: 196.232MHz)
+  Total number of paths / destination ports: 166 / 12
+-------------------------------------------------------------------------
+Delay:               5.096ns (Levels of Logic = 3)
+  Source:            Vcounts_6 (FF)
+  Destination:       Vcounts_9 (FF)
+  Source Clock:      PixClk rising
+  Destination Clock: PixClk rising
+
+  Data Path: Vcounts_6 to Vcounts_9
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCPE:C->Q            6   0.591   0.812  Vcounts_6 (Vcounts_6)
+     LUT3:I0->O            1   0.648   0.423  Vcounts_9_and000112 (Vcounts_9_and000112)
+     LUT4_D:I3->LO         1   0.648   0.132  Vcounts_9_and0001115 (N30)
+     LUT4:I2->O           10   0.648   0.882  Vcounts_9_and00012 (Vcounts_9_and0001)
+     FDCPE:CE                  0.312          Vcounts_9
+    ----------------------------------------
+    Total                      5.096ns (2.847ns logic, 2.249ns route)
+                                       (55.9% logic, 44.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'PixClk'
+  Total number of paths / destination ports: 13 / 12
+-------------------------------------------------------------------------
+Offset:              4.594ns (Levels of Logic = 3)
+  Source:            Locked (PAD)
+  Destination:       Vsync (FF)
+  Destination Clock: PixClk rising
+
+  Data Path: Locked to Vsync
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            31   0.849   1.294  Locked_IBUF (Locked_IBUF)
+     LUT4:I2->O            1   0.648   0.423  Vcounts_9_or0001335_SW1 (N23)
+     LUT4:I3->O            1   0.648   0.420  Vsync_not00011 (Vsync_not0001)
+     FDCPE:CE                  0.312          Vsync
+    ----------------------------------------
+    Total                      4.594ns (2.457ns logic, 2.137ns route)
+                                       (53.5% logic, 46.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'PixClk'
+  Total number of paths / destination ports: 22 / 22
+-------------------------------------------------------------------------
+Offset:              5.993ns (Levels of Logic = 1)
+  Source:            Vcounts_9 (FF)
+  Destination:       Vcounts<9> (PAD)
+  Source Clock:      PixClk rising
+
+  Data Path: Vcounts_9 to Vcounts<9>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCPE:C->Q           10   0.591   0.882  Vcounts_9 (Vcounts_9)
+     OBUF:I->O                 4.520          Vcounts_9_OBUF (Vcounts<9>)
+    ----------------------------------------
+    Total                      5.993ns (5.111ns logic, 0.882ns route)
+                                       (85.3% logic, 14.7% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 5.16 secs
+ 
+--> 
+
+Total memory usage is 4551912 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
+

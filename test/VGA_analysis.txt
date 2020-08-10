@@ -1,0 +1,18 @@
+VGA controller analysis:
+
+issues : 
+->Signals not generated in hardware in the 1st & 2nd version.
+->There were 2 latches generated.
+
+suggested changes:
+->seperate out combinational statements.
+->resetting the vga signals.
+
+doubts:
+->posedge locked vs negedge rst
+->why is initial resetting of the sync signals required.
+->case statement not working in the initial design(needs testing).
+->if-else cascaded took into account only the first if and it's else condition.
+
+notes:
+->blanking video signal

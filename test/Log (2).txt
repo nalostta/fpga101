@@ -1,0 +1,2 @@
+Using JTAG frequency 30.0MHz
+JTAG Device IDCODE = 0x02210093 

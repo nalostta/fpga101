@@ -1,0 +1,20 @@
+;AT90CAN32 Fuse Bit definitions
+;0 => Programmed, 1 => Not Programmed
+BODLEVEL: 0x7
+;TA0SEL is for AT90CAN32 & AT90CAN128 
+TA0SEL: 0x1
+OCDEN: 1
+JTAGEN: 0
+SPIEN: 0
+WDTON: 1
+EESAVE: 1
+BOOTSIZE: 0
+BOOTRST: 0
+CKDIV8: 1
+CKOUT: 1
+SUT: 0
+CKSEL: 0xF
+; Lock Bit (Need -plo command line option to write)
+BLB1: 3
+BLB0: 3
+LB: 3
